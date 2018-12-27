@@ -1,6 +1,6 @@
 {
   "id": "cotton-resources",
-  "name": "CottonResources",
+  "name": "Cotton Resources",
   "version": "1.0.0",
   "side": "universal",
   "initializers": [

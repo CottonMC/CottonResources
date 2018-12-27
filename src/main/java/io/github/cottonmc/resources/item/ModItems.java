@@ -15,7 +15,7 @@ public class ModItems {
 	}
 
 	public static Item register(String name, Item item) {
-		Registry.register(Registry.ITEM, "cotton:" + name, item);
+		Registry.register(Registry.ITEM, "cotton-resources:" + name, item);
 		return item;
 	}
 

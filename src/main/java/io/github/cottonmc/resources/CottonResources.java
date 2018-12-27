@@ -9,9 +9,16 @@ import net.minecraft.item.ItemGroup;
 import net.minecraft.item.Items;
 import net.minecraft.util.Identifier;
 
+import java.util.function.Supplier;
+
 public class CottonResources implements ModInitializer {
 
-	public static final ItemGroup cottonGroup = FabricItemGroupBuilder.build(new Identifier("cotton-resources:cotton_tab"), () -> new ItemStack(Items.IRON_INGOT));
+	public static final ItemGroup cottonGroup = FabricItemGroupBuilder.build(new Identifier("cotton-resources:cotton_tab"), new Supplier<ItemStack>() {
+		@Override
+		public ItemStack get() {
+			return new ItemStack(ModItems.COPPER_INGOT);
+		}
+	});
 
 	@Override
 	public void onInitialize() {
