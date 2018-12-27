@@ -1,0 +1,9 @@
+{
+  "id": "cotton-resources",
+  "name": "CottonResources",
+  "version": "1.0.0",
+  "side": "universal",
+  "initializers": [
+    "io.github.cottonmc.resources.CottonResources"
+  ]
+}
