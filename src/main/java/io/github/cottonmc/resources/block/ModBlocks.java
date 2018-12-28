@@ -18,13 +18,13 @@ public class ModBlocks {
 	}
 
 	public static Block register(NamedBlock block, ItemGroup tab) {
-		Registry.register(Registry.BLOCK, "cotton-resources:" + block.getName(), block.getBlock());
+		Registry.register(Registry.BLOCK, "cotton:" + block.getName(), block.getBlock());
 		BlockItem item = new BlockItem(block.getBlock(), new Item.Settings().itemGroup(tab));
 		ModItems.register(block.getName(), item);
 		return block.getBlock();
 	}
 
 	public static BlockEntityType register(String name, Supplier<BlockEntity> be) {
-		return Registry.register(Registry.BLOCK_ENTITY, "cotton-resources:" + name, BlockEntityType.Builder.create(be).method_11034(null));
+		return Registry.register(Registry.BLOCK_ENTITY, "cotton:" + name, BlockEntityType.Builder.create(be).method_11034(null));
 	}
 }
