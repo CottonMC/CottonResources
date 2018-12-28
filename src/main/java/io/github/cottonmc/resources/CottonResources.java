@@ -13,7 +13,7 @@ import java.util.function.Supplier;
 
 public class CottonResources implements ModInitializer {
 
-	public static final ItemGroup cottonGroup = FabricItemGroupBuilder.build(new Identifier("cotton-resources:cotton_tab"), new Supplier<ItemStack>() {
+	public static final ItemGroup cottonGroup = FabricItemGroupBuilder.build(new Identifier("cotton:cotton_tab"), new Supplier<ItemStack>() {
 		@Override
 		public ItemStack get() {
 			return new ItemStack(ModItems.COPPER_INGOT);
