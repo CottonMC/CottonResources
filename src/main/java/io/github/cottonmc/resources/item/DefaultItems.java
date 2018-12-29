@@ -18,6 +18,8 @@ public class DefaultItems {
         switch(name){
             case "copper_ingot":
                 return CommonItems.register(name, new Item((new Item.Settings()).itemGroup(Cotton.commonGroup)));
+            case "silver_ingot":
+                return CommonItems.register(name, new Item((new Item.Settings()).itemGroup(Cotton.commonGroup)));
             //...
             default:
                 return null; //TODO: If we add a getItem method to CommonItems we could call it here.
