@@ -26,11 +26,17 @@ apply plugin: net.fabricmc.loom.LoomGradlePlugin
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
-archivesBaseName = "cotton"
-version = "18w50a-1.0.0"
+archivesBaseName = "cotton-resources"
+version = "18w50a-0.0.1"
+
 
 repositories {
 	maven { url 'https://jitpack.io' }
+
+	maven {
+		//jankson
+		url "http://repo.elytradev.com/"
+	}
 }
 
 dependencies {
@@ -42,5 +48,12 @@ dependencies {
 	modCompile "io.github.prospector.silk:SilkAPI:1.0.0-25"
 
 	//the main cotton api.
-	modCompile "com.github.CottonMC:cotton:master-SNAPSHOT"
+	modCompile "com.github.cottonmc:cotton:master-SNAPSHOT"
+
+	//this shouldn't *need* to be here, but has to right now because no jar-in-jar
+	implementation "blue.endless:jankson:1.0.0-7"
+}
+
+configurations.all {
+	resolutionStrategy.cacheChangingModulesFor 0, 'seconds'
 }
