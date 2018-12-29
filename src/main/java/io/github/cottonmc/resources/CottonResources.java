@@ -12,7 +12,7 @@ import net.minecraft.item.Item;
 
 public class CottonResources implements ModInitializer {
 
-	ModLogger logger = new ModLogger("CottonResources", "CR");
+	ModLogger logger = new ModLogger("CottonResources", "COTTON RESOURCES");
 	CottonResourcesConfig config;
 
 	@Override
