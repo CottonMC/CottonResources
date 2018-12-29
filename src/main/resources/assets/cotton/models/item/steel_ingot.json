@@ -1,6 +1,6 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "cotton-resources:item/copper_ingot"
+    "layer0": "cotton:item/steel_ingot"
   }
 }
