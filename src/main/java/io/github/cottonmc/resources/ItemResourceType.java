@@ -28,14 +28,23 @@ public class ItemResourceType implements ResourceType {
         return name;
     }
 
-    @Override
-    public boolean governs(String itemName) {
-        if (itemName.equals(name) && affixes.contains("")) return true;
-        return ResourceType.super.governs(itemName);
+    protected String getAffix(String name) {
+        if (name.equals(getDomain())) return ""; //Empty affix
+        if (!name.startsWith(getDomain()+"_")) return ""; //Invalid affix
+        return name.substring(getDomain().length()+1); //Consume our domain prefix and the underscore
     }
 
-    public void withAffixes(String... affixes) {
+    @Override
+    public boolean governs(String itemName) {
+        if (itemName.equals(name) && affixes.contains("")) return true; //matches empty affix
+        if (!itemName.startsWith(getDomain()+"_")) return false; //not even our prefix
+        String affix = getAffix(itemName);
+        return (affixes.contains(affix));
+    }
+
+    public ItemResourceType withAffixes(String... affixes) {
         for(String affix : affixes) this.affixes.add(affix);
+        return this;
     }
     @Override
     public Item getItem(String itemName) {

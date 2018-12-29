@@ -29,8 +29,8 @@ public class CommonResources {
         builtinMetal("brass",    null, MACHINE_AFFIXES);
         builtinMetal("electrum", null); //no ore, no gears/plates
         
-        builtinItem("coal_dust");
-        builtinItem("coal_coke"); //TODO: Define a non-metal type we can add a blind block supplier to?
+        builtinItem("coal", "dust");
+        BUILTINS.put("coal_coke", new GenericResourceType("coal_coke").withBlockAffix("block", BlockSuppliers.METAL_BLOCK).withAffixes(""));
         builtinItem("mercury");
         
         //These might get rods or molten capsules. They'd just need to be added to the end.
@@ -52,9 +52,9 @@ public class CommonResources {
         BUILTINS.put(id, result);
     }
 
-    /**Registers an Item based on its name if it is supported or returns it if it already exists.
-    * @param name The name of the block that shall be registered.
-     * @return The Block associated with the given name or null if no Block for that name was found
+    /**Registers a Block based on its name if it is supported, or returns it if it already exists.
+     * @param name The name of the bloc.
+     * @return The Block associated with the given name, or null if the name is not supported.
      */
     @Nullable
     public static Block provideBlock(String name){
@@ -63,17 +63,17 @@ public class CommonResources {
             //It exists, get it from the registry
             return Registry.BLOCK.get(id);
         }
-        
+
         for(ResourceType type : BUILTINS.values()) {
             if (type.governs(name)) return type.getBlock(name);
         }
-        
+
         return null;
     }
 
     /**Registers an Item based on its name if it is supported, or returns it if it already exists.
-     * @param name The name of the item
-     * @return The Item associated with the given name or null if the name is not supported.
+     * @param name The name of the item.
+     * @return The Item associated with the given name, or null if the name is not supported.
      */
     @Nullable
     public static Item provideItem(String name){
@@ -82,14 +82,18 @@ public class CommonResources {
             //It exists, get it from the registry
             return Registry.ITEM.get(id);
         }
-        
+
         for(ResourceType type : BUILTINS.values()) {
             if (type.governs(name)) return type.getItem(name);
         }
-        
+
         return null;
     }
 
+    /** 
+     * @param name the name of a resource, such as "copper", "coal_coke", or "mercury".
+     * @return the ResourceType with this name if it exists, or null if none exists.
+     */
     @Nullable
     public static ResourceType provideResource(String name) {
         return BUILTINS.get(name);
