@@ -29,6 +29,7 @@ targetCompatibility = 1.8
 archivesBaseName = "cotton-resources"
 version = "18w50a-0.0.1"
 
+
 repositories {
 	maven { url 'https://jitpack.io' }
 
