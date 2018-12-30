@@ -14,7 +14,7 @@ public class MetalResourceType extends GenericResourceType {
     }
 
     public MetalResourceType withItemAffixes(String... affixes) {
-        for(String affix : affixes) this.affixes.add(affix);
+        for(String affix : affixes) this.itemAffixes.add(affix);
         return this;
     }
 

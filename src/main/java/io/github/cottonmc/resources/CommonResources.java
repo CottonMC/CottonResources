@@ -7,6 +7,8 @@ import java.util.function.Supplier;
 
 import javax.annotation.Nullable;
 
+import io.github.cottonmc.cotton.registry.CommonBlocks;
+import io.github.cottonmc.cotton.registry.CommonItems;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.util.Identifier;
@@ -30,7 +32,7 @@ public class CommonResources {
         builtinMetal("electrum", null); //no ore, no gears/plates
         
         builtinItem("coal", "dust");
-        BUILTINS.put("coal_coke", new GenericResourceType("coal_coke").withBlockAffix("block", BlockSuppliers.METAL_BLOCK).withAffixes(""));
+        BUILTINS.put("coal_coke", new GenericResourceType("coal_coke").withBlockAffix("block", BlockSuppliers.COAL_BLOCK).withItemAffixes(""));
         builtinItem("mercury");
         
         //These might get rods or molten capsules. They'd just need to be added to the end.
@@ -48,7 +50,7 @@ public class CommonResources {
 
     private static void builtinItem(String id, String... extraAffixes) {
         ItemResourceType result = new ItemResourceType(id, extraAffixes);
-        if (extraAffixes.length==0) result.withAffixes(""); //This is just a base type with no affixes, like "mercury".
+        if (extraAffixes.length==0) result.withItemAffixes(""); //This is just a base type with no affixes, like "mercury".
         BUILTINS.put(id, result);
     }
 
@@ -58,11 +60,8 @@ public class CommonResources {
      */
     @Nullable
     public static Block provideBlock(String name){
-        Identifier id = new Identifier("cotton", name);
-        if (Registry.BLOCK.contains(id)) {
-            //It exists, get it from the registry
-            return Registry.BLOCK.get(id);
-        }
+        Block existing = CommonBlocks.getBlock(name);
+        if (existing!=null) return existing;
 
         for(ResourceType type : BUILTINS.values()) {
             if (type.governs(name)) return type.getBlock(name);
@@ -77,11 +76,8 @@ public class CommonResources {
      */
     @Nullable
     public static Item provideItem(String name){
-        Identifier id = new Identifier("cotton", name);
-        if (Registry.ITEM.contains(id)) {
-            //It exists, get it from the registry
-            return Registry.ITEM.get(id);
-        }
+        Item existing = CommonItems.getItem(name);
+        if (existing!=null) return existing;
 
         for(ResourceType type : BUILTINS.values()) {
             if (type.governs(name)) return type.getItem(name);
