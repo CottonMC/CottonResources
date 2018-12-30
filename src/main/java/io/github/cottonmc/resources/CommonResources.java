@@ -11,8 +11,6 @@ import io.github.cottonmc.cotton.registry.CommonBlocks;
 import io.github.cottonmc.cotton.registry.CommonItems;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
-import net.minecraft.util.Identifier;
-import net.minecraft.util.registry.Registry;
 
 public class CommonResources {
     private static String[] MACHINE_AFFIXES = new String[] {"gear", "plate"};
@@ -25,7 +23,6 @@ public class CommonResources {
         builtinMetal("silver", BlockSuppliers.IRON_TIER_ORE,  MACHINE_AFFIXES);
         builtinMetal("lead",   BlockSuppliers.IRON_TIER_ORE,  MACHINE_AFFIXES);
         builtinMetal("zinc",   BlockSuppliers.STONE_TIER_ORE);
-        builtinMetal("uranium",BlockSuppliers.IRON_TIER_ORE); //TODO: Registers ingot, nugget, and block. Should it?
         
         builtinMetal("steel",    null, MACHINE_AFFIXES);
         builtinMetal("brass",    null, MACHINE_AFFIXES);
