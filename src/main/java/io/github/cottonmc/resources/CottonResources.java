@@ -1,8 +1,8 @@
 package io.github.cottonmc.resources;
 
-import io.github.cottonmc.cotton.config.ConfigManager;
-import io.github.cottonmc.cotton.logging.Ansi;
-import io.github.cottonmc.cotton.logging.ModLogger;
+import io.github.cottonmc.cotton.util.config.ConfigManager;
+import io.github.cottonmc.cotton.util.logging.Ansi;
+import io.github.cottonmc.cotton.util.logging.ModLogger;
 import io.github.cottonmc.resources.config.CottonResourcesConfig;
 import net.fabricmc.api.ModInitializer;
 import net.minecraft.block.Block;
