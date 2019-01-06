@@ -1,13 +1,12 @@
 package io.github.cottonmc.resources;
 
-import java.util.function.Supplier;
-
 import net.fabricmc.fabric.block.FabricBlockSettings;
 import net.fabricmc.fabric.tags.FabricItemTags;
 import net.minecraft.block.Block;
 import net.minecraft.block.Material;
-import net.minecraft.block.MaterialColor;
 import net.minecraft.block.OreBlock;
+
+import java.util.function.Supplier;
 
 public class BlockSuppliers {
     /** A generic metal ore supplier, similar to the properties of coal or iron ore. */
