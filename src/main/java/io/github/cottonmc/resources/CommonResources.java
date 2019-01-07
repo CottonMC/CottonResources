@@ -1,16 +1,15 @@
 package io.github.cottonmc.resources;
 
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.function.Supplier;
-
-import javax.annotation.Nullable;
-
 import io.github.cottonmc.cotton.registry.CommonBlocks;
 import io.github.cottonmc.cotton.registry.CommonItems;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
+
+import javax.annotation.Nullable;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.function.Supplier;
 
 public class CommonResources {
     private static String[] MACHINE_AFFIXES = new String[] {"gear", "plate"};
@@ -40,14 +39,18 @@ public class CommonResources {
 
     private static void builtinMetal(String id, Supplier<Block> oreSupplier, String... extraAffixes) {
         MetalResourceType result = new MetalResourceType(id).withOreSupplier(oreSupplier);
-        if (extraAffixes.length>0) result.withItemAffixes(extraAffixes);
+        if (extraAffixes.length > 0){
+            result.withItemAffixes(extraAffixes);
+        }
         
         BUILTINS.put(id, result);
     }
 
     private static void builtinItem(String id, String... extraAffixes) {
         ItemResourceType result = new ItemResourceType(id, extraAffixes);
-        if (extraAffixes.length==0) result.withItemAffixes(""); //This is just a base type with no affixes, like "mercury".
+        if (extraAffixes.length == 0){
+            result.withItemAffixes(""); //This is just a base type with no affixes, like "mercury".
+        }
         BUILTINS.put(id, result);
     }
 
@@ -61,7 +64,7 @@ public class CommonResources {
         if (existing!=null) return existing;
 
         for(ResourceType type : BUILTINS.values()) {
-            if (type.governs(name)) return type.getBlock(name);
+            if (type.contains(name)) return type.getBlock(name);
         }
 
         return null;
@@ -74,10 +77,12 @@ public class CommonResources {
     @Nullable
     public static Item provideItem(String name){
         Item existing = CommonItems.getItem(name);
-        if (existing!=null) return existing;
+        if (existing != null) {
+            return existing;
+        }
 
         for(ResourceType type : BUILTINS.values()) {
-            if (type.governs(name)) return type.getItem(name);
+            if (type.contains(name)) return type.getItem(name);
         }
 
         return null;

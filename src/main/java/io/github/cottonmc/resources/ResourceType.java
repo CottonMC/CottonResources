@@ -1,20 +1,20 @@
 package io.github.cottonmc.resources;
 
-import javax.annotation.Nullable;
-
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 
+import javax.annotation.Nullable;
+
 public interface ResourceType {
-    /** Gets the domain, which is the base resource name. */
-    String getDomain();
+    /** Gets the base resource name. */
+    String getBaseResource();
 
     /** Finds out whether this object takes responsibility for creating and registering the given block or item name.
-     * For instance, a resource with the domain "copper" will govern "copper_ingot" and "copper_block"; and a
+     * For instance, a resource with the domain "copper" will contain "copper_ingot" and "copper_block"; and a
      * resource with the domain "mercury" will govern an item named "mercury".
      */
-    default boolean governs(String itemName) {
-        return itemName.startsWith(getDomain()+"_");
+    default boolean contains(String itemName) {
+        return itemName.startsWith(getBaseResource()+"_");
     }
 
     /** 

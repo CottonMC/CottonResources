@@ -1,8 +1,9 @@
 package io.github.cottonmc.resources;
 
-import java.util.function.Supplier;
-
 import net.minecraft.block.Block;
+
+import java.util.Arrays;
+import java.util.function.Supplier;
 
 public class MetalResourceType extends GenericResourceType {
     protected Supplier<Block> oreSupplier = BlockSuppliers.STONE_TIER_ORE;
@@ -14,7 +15,7 @@ public class MetalResourceType extends GenericResourceType {
     }
 
     public MetalResourceType withItemAffixes(String... affixes) {
-        for(String affix : affixes) this.itemAffixes.add(affix);
+        this.itemAffixes.addAll(Arrays.asList(affixes));
         return this;
     }
 
@@ -24,7 +25,7 @@ public class MetalResourceType extends GenericResourceType {
     }
 
     @Override
-    public String getDomain() {
+    public String getBaseResource() {
         return name;
     }
 }

@@ -1,13 +1,14 @@
 package io.github.cottonmc.resources;
 
-import java.util.HashSet;
-import java.util.Set;
-
 import io.github.cottonmc.cotton.Cotton;
 import io.github.cottonmc.cotton.registry.CommonBlocks;
 import io.github.cottonmc.cotton.registry.CommonItems;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
+
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
 
 public class ItemResourceType implements ResourceType {
     protected final String name;
@@ -23,26 +24,37 @@ public class ItemResourceType implements ResourceType {
     }
 
     @Override
-    public String getDomain() {
+    public String getBaseResource() {
         return name;
     }
 
     protected String getAffix(String name) {
-        if (name.equals(getDomain())) return ""; //Empty affix
-        if (!name.startsWith(getDomain()+"_")) return ""; //Invalid affix
-        return name.substring(getDomain().length()+1); //Consume our domain prefix and the underscore
+        //Empty affix
+        if (name.equals(getBaseResource())) {
+            return "";
+        }
+        //Invalid affix
+        if (!name.startsWith(getBaseResource()+"_")) {
+            return "";
+        }
+        return name.substring(getBaseResource().length()+1); //Consume our domain prefix and the underscore
     }
 
     @Override
-    public boolean governs(String itemName) {
-        if (itemName.equals(name) && itemAffixes.contains("")) return true; //matches empty affix
-        if (!itemName.startsWith(getDomain()+"_")) return false; //not even our prefix
+    public boolean contains(String itemName) {
+        //matches empty affix
+        if (itemName.equals(name) && itemAffixes.contains("")) {
+            return true;
+        }
+        if (!itemName.startsWith(getBaseResource()+"_")) {
+            return false; //not even our prefix
+        }
         String affix = getAffix(itemName);
         return (itemAffixes.contains(affix));
     }
 
     public ItemResourceType withItemAffixes(String... affixes) {
-        for(String affix : affixes) this.itemAffixes.add(affix);
+        this.itemAffixes.addAll(Arrays.asList(affixes));
         return this;
     }
     @Override
@@ -52,21 +64,19 @@ public class ItemResourceType implements ResourceType {
             return existing;
         } else {
             //It's in our court.
-            if (!governs(itemName)) return null; //One last sanity check.
+            if (!contains(itemName)) return null; //One last sanity check.
             boolean shouldCreate = false;
-            
-            if (!shouldCreate) {
-                for(String affix : itemAffixes) {
-                    if (affix.equals("") && itemName.equals(name)) { //if e.g. our domain is "coal_coke" and the itemName is "coal_coke"
-                        shouldCreate = true;
-                        break;
-                    } else if (itemName.equals(name+"_"+affix)) {
-                        shouldCreate = true;
-                        break;
-                    }
+
+            for(String affix : itemAffixes) {
+                if (affix.equals("") && itemName.equals(name)) { //if e.g. our domain is "coal_coke" and the itemName is "coal_coke"
+                    shouldCreate = true;
+                    break;
+                } else if (itemName.equals(name+"_"+affix)) {
+                    shouldCreate = true;
+                    break;
                 }
             }
-            
+
             if (shouldCreate) {
                 return CommonItems.register(itemName, new Item((new Item.Settings()).itemGroup(Cotton.commonGroup)));
             } else {
@@ -77,8 +87,7 @@ public class ItemResourceType implements ResourceType {
 
     @Override
     public Block getBlock(String blockName) {
-        Block existing = CommonBlocks.getBlock(blockName);
-        return existing;
+        return CommonBlocks.getBlock(blockName);
     }
 
     @Override
