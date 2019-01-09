@@ -15,24 +15,18 @@ buildscript {
 	}
 }
 
-plugins {
-	id 'java'
-	id 'eclipse'
-	id 'idea'
-}
-
 apply plugin: net.fabricmc.loom.LoomGradlePlugin
+apply plugin: 'maven-publish'
 
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
 archivesBaseName = "cotton-resources"
-version = "18w50a-0.0.1"
-
+group = "io.github.cottonmc"
+version = "0.0.1+18w50a"
 
 repositories {
-	maven { url 'https://jitpack.io' }
-
+	mavenLocal()
 	maven {
 		//jankson
 		url "http://repo.elytradev.com/"
@@ -44,16 +38,55 @@ dependencies {
 	mappings "net.fabricmc:yarn:18w50a.71"
 	modCompile "net.fabricmc:fabric-loader:0.3.0.75"
 	modCompile "net.fabricmc:fabric:0.1.2.64"
-	implementation 'org.jetbrains:annotations:15.0'
-	modCompile "io.github.prospector.silk:SilkAPI:1.0.0-25"
 
 	//the main cotton api.
-	modCompile "com.github.cottonmc:cotton:master-SNAPSHOT"
-
-	//this shouldn't *need* to be here, but has to right now because no jar-in-jar
-	implementation "blue.endless:jankson:1.0.0-7"
+	modCompile "io.github.cottonmc:cotton:0.0.2+18w50a"
+	
+	//Neither of these are used at the moment
+	//implementation "blue.endless:jankson:1.0.0-7"
+	//modCompile "io.github.prospector.silk:SilkAPI:1.0.0-25"
+	
+	implementation "com.google.code.findbugs:jsr305:3.0.2"
 }
 
-configurations.all {
-	resolutionStrategy.cacheChangingModulesFor 0, 'seconds'
+publishing {
+	publications {
+		maven(MavenPublication) {
+			from components.java
+		
+			artifactId = "cotton-resources"
+			
+			pom.withXml {
+				def pomFile = asNode()
+				def depsNode = pomFile.get("dependencies");
+				pomFile.remove(depsNode);
+				
+				def newDeps = pomFile.appendNode("dependencies");
+				configurations.modCompile.getResolvedConfiguration().getFirstLevelModuleDependencies().each {
+					def artifactNode = newDeps.appendNode("dependency")
+					artifactNode.appendNode('groupId', it.moduleGroup)
+					artifactNode.appendNode('artifactId', it.moduleName)
+					artifactNode.appendNode('version', it.moduleVersion)
+				}
+			}
+			artifacts = [
+				artifact ("${project.buildDir.absolutePath}/libs/${archivesBaseName}-${version}.jar") { //release jar - file location not provided anywhere in loom
+					classifier null
+					builtBy remapJar
+				},
+				artifact ("${project.buildDir.absolutePath}/libs/${archivesBaseName}-${version}-dev.jar") { //release jar - file location not provided anywhere in loom
+					classifier "dev"
+					builtBy remapJar
+				},
+				artifact (sourcesJar)
+			]
+		}
+	}
+}
+
+task sourcesJar(type: Jar) {
+	baseName = archivesBaseName
+	classifier = "sources"
+	from sourceSets.main.allSource
+	from sourceSets.main.resources
 }
