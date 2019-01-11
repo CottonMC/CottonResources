@@ -15,6 +15,10 @@ buildscript {
 	}
 }
 
+plugins {
+	id "com.jfrog.artifactory" version "4.9.0"
+}
+
 apply plugin: net.fabricmc.loom.LoomGradlePlugin
 apply plugin: 'maven-publish'
 
@@ -48,6 +52,29 @@ dependencies {
 	
 	implementation "com.google.code.findbugs:jsr305:3.0.2"
 }
+
+
+artifactory {
+	contextUrl = 'http://server.bbkr.space:8081/artifactory/'
+	publish {
+		repository {
+		if(version.contains("SNAPSHOT){
+			repoKey = "libs-snapshot-local"
+			}else{
+			repoKey = "libs-release-local"
+			}
+			username = System.getProperty("artifactoryUser")
+			password = System.getProperty("artifactoryPassword")
+		}
+		defaults {
+			publications('maven')
+			
+			publishArtifacts = true
+			publishPom = true
+		}
+	}
+}
+
 
 publishing {
 	publications {
