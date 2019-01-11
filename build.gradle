@@ -58,7 +58,7 @@ artifactory {
 	contextUrl = 'http://server.bbkr.space:8081/artifactory/'
 	publish {
 		repository {
-		if(version.contains("SNAPSHOT){
+		if(version.contains("SNAPSHOT)){
 			repoKey = "libs-snapshot-local"
 			}else{
 			repoKey = "libs-release-local"
