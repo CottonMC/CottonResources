@@ -35,6 +35,10 @@ repositories {
 		//jankson
 		url "http://repo.elytradev.com/"
 	}
+	maven {
+		//cotton
+		url "http://server.bbkr.space:8081/artifactory/libs-snapshot"
+	}
 }
 
 dependencies {
@@ -44,12 +48,12 @@ dependencies {
 	modCompile "net.fabricmc:fabric:0.1.2.64"
 
 	//the main cotton api.
-	modCompile "io.github.cottonmc:cotton:0.0.2+18w50a"
-	
+	modCompile "io.github.cottonmc:cotton:0.0.2+18w50a-SNAPSHOT"
+
 	//Neither of these are used at the moment
 	//implementation "blue.endless:jankson:1.0.0-7"
 	//modCompile "io.github.prospector.silk:SilkAPI:1.0.0-25"
-	
+
 	implementation "com.google.code.findbugs:jsr305:3.0.2"
 }
 
@@ -68,7 +72,7 @@ artifactory {
 		}
 		defaults {
 			publications('maven')
-			
+
 			publishArtifacts = true
 			publishPom = true
 		}
@@ -80,14 +84,14 @@ publishing {
 	publications {
 		maven(MavenPublication) {
 			from components.java
-		
+
 			artifactId = "cotton-resources"
-			
+
 			pom.withXml {
 				def pomFile = asNode()
 				def depsNode = pomFile.get("dependencies");
 				pomFile.remove(depsNode);
-				
+
 				def newDeps = pomFile.appendNode("dependencies");
 				configurations.modCompile.getResolvedConfiguration().getFirstLevelModuleDependencies().each {
 					def artifactNode = newDeps.appendNode("dependency")
