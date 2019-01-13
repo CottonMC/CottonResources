@@ -56,17 +56,19 @@ public class GenericResourceType extends ItemResourceType {
     @Override
     public Block getBlock(String blockName) {
         Block existing = CommonBlocks.getBlock(blockName);
-        if (existing!=null) return existing;
+        if (existing != null) {
+            return existing;
+        }
         
         String affix = getAffix(blockName);
         Supplier<Block> blockSupplier = blockAffixes.get(affix);
-        return (blockSupplier==null) ? null : CommonBlocks.register(blockName, blockSupplier.get());
+        return (blockSupplier == null) ? null : CommonBlocks.register(blockName, blockSupplier.get());
     }
     
     @Override
     public void registerAllBlocks() {
         for(String affix : blockAffixes.keySet()) {
-            getBlock(getBaseResource()+"_"+affix);
+            getBlock(getBaseResource() + "_" + affix);
         }
     }
 }

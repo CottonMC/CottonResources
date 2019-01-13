@@ -14,8 +14,8 @@ import java.util.function.Supplier;
 public class CommonResources {
     private static String[] MACHINE_AFFIXES = new String[] {"gear", "plate"};
     private static String[] RADIOACTIVE_AFFIXES = new String[] {"dust"};
-    
-    private static final Map<String, ResourceType> BUILTINS = new HashMap<>();
+
+    public static final Map<String, ResourceType> BUILTINS = new HashMap<>();
     
     static {
         builtinMetal("copper", BlockSuppliers.STONE_TIER_ORE, MACHINE_AFFIXES);

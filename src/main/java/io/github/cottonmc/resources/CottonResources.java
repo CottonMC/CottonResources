@@ -10,8 +10,8 @@ import net.minecraft.item.Item;
 
 public class CottonResources implements ModInitializer {
 
-	ModLogger logger = new ModLogger("CottonResources", "COTTON RESOURCES");
-	CottonResourcesConfig config;
+	public static ModLogger logger = new ModLogger("CottonResources", "COTTON RESOURCES");
+	public static CottonResourcesConfig config;
 
 	@Override
 	public void onInitialize() {
