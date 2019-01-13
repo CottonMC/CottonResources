@@ -22,9 +22,9 @@ public class CottonResourcesConfig {
         //ores.putAll(OreGenerationSettings.getDefaultSettingsFor("copper", "silver", "lead", "zinc"));
         ores.putAll(OreGenerationSettings.getDefaultSettingsFor("copper", "lead", "zinc"));
         ores.put("silver", OreGenerationSettings.getDefault().
-                withOreBlock("cotton:silver_ore").withMaxHeight(32).
-                withClusterCount(2).
-                withClusterSize(8));
+                withOreBlock("cotton:silver_ore").withMaxHeight(24).
+                withClusterCount(8).
+                withClusterSize(6));
     }
 
 
