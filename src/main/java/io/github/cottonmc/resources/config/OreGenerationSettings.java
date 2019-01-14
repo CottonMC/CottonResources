@@ -10,6 +10,7 @@ import java.util.HashMap;
 
 public class OreGenerationSettings {
 
+    public boolean enabled;
     public String base_material;
     public String ore_block;
     public int min_height;
@@ -17,6 +18,16 @@ public class OreGenerationSettings {
     public ArrayList<Integer> dimensions;
     public int cluster_count;
     public int cluster_size;
+
+    public OreGenerationSettings enable() {
+        this.enabled = true;
+        return this;
+    }
+
+    public OreGenerationSettings disable() {
+        this.enabled = false;
+        return this;
+    }
 
     public OreGenerationSettings withBaseMaterial(String base_material) {
         this.base_material = base_material;
@@ -50,6 +61,7 @@ public class OreGenerationSettings {
 
     public static OreGenerationSettings getDefault() {
         OreGenerationSettings settings = new OreGenerationSettings();
+        settings.enabled = true;
         settings.base_material = "minecraft:stone";
         settings.ore_block = Registry.BLOCK.getId(Blocks.LIGHT_BLUE_WOOL).toString();
         settings.min_height = 6;
