@@ -27,7 +27,7 @@ targetCompatibility = 1.8
 
 archivesBaseName = "cotton-resources"
 group = "io.github.cottonmc"
-version = "0.0.1+18w50a"
+version = "0.0.1+19w02a"
 
 repositories {
 	mavenLocal()
@@ -42,13 +42,13 @@ repositories {
 }
 
 dependencies {
-	minecraft "com.mojang:minecraft:18w50a"
-	mappings "net.fabricmc:yarn:18w50a.71"
-	modCompile "net.fabricmc:fabric-loader:0.3.0.75"
-	modCompile "net.fabricmc:fabric:0.1.2.64"
+	minecraft "com.mojang:minecraft:19w02a"
+	mappings "net.fabricmc:yarn:19w02a.24"
+	modCompile "net.fabricmc:fabric-loader:0.3.2.96"
+	modCompile "net.fabricmc:fabric:0.1.4.73"
 
 	//the main cotton api.
-	modCompile "io.github.cottonmc:cotton:0.0.2+18w50a-SNAPSHOT"
+	modCompile "io.github.cottonmc:cotton:0.0.2+19w02a-SNAPSHOT"
 
 	//Neither of these are used at the moment
 	//implementation "blue.endless:jankson:1.0.0-7"
