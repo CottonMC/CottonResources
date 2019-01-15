@@ -24,8 +24,4 @@ public class MetalResourceType extends GenericResourceType {
         return this;
     }
 
-    @Override
-    public String getBaseResource() {
-        return name;
-    }
 }

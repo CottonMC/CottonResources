@@ -6,7 +6,7 @@ import net.minecraft.item.Item;
 import javax.annotation.Nullable;
 
 public interface ResourceType {
-    /** Gets the base resource name. */
+    /** Gets the base resource name. For example, "copper". */
     String getBaseResource();
 
     /** Finds out whether this object takes responsibility for creating and registering the given block or item name.
@@ -17,10 +17,20 @@ public interface ResourceType {
         return itemName.startsWith(getBaseResource()+"_");
     }
 
+    /**
+     *
+     * Returns the full name of the block/item for the given affix. For example, given "ore", returns "copper_ore",
+     * if this is a copper resource.
+     */
+    default String getFullNameForAffix(String affix) {
+        return getBaseResource() + "_" + affix;
+    }
+
     /** 
      * Gets the item (or BlockItem!) corresponding to this item name. If it's already defined, returns the
-     * already-defined one. If it's a builtin, registers and returns the builtin. Only if it's neither registered nor
-     * builtin is null returned.
+     * already-defined one. Only if it's neither registered nor builtin is null returned.
+     * For example, if you want to get cotton:copper_ingot, and baseResource is copper,
+     *      * you pass "ingot" in, since that is the affix.
      */
     @Nullable
     Item getItem(String itemName);
@@ -28,18 +38,12 @@ public interface ResourceType {
     /** 
      * Gets the block corresponding to this block name. If it's already defined, returns the already-defined one. If
      * it's a builtin, registers and returns the builtin. Only if it's neither registered nor builtin is null returned.
+     * For example, if you want to get cotton:copper_ore, and baseResource is copper,
+     *      * you pass "ore" in, since that is the affix.
      */
     @Nullable
     Block getBlock(String blockName);
-
-    /** Registers all non-block builtin items of this type that haven't already been registered */
-    void registerAllItems();
-    /** Registers all blocks (and their associated ItemBlocks) of this type that haven't already been registered. */
-    void registerAllBlocks();
     
     /** Registers all blocks and items of this type that haven't already been registered */
-    default void registerAll() {
-        registerAllItems();
-        registerAllBlocks();
-    }
+    void registerAll();
 }

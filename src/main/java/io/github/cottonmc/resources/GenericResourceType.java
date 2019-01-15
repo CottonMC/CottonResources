@@ -1,31 +1,55 @@
 package io.github.cottonmc.resources;
 
+import io.github.cottonmc.cotton.Cotton;
 import io.github.cottonmc.cotton.registry.CommonBlocks;
 import io.github.cottonmc.cotton.registry.CommonItems;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
 import java.util.function.Supplier;
 
-public class GenericResourceType extends ItemResourceType {
-    Map<String, Supplier<Block>> blockAffixes = new HashMap<>();
+public class GenericResourceType implements ResourceType {
+    protected String name;
+    protected Map<String, Supplier<Block>> blockAffixes = new HashMap<>();
+    protected HashSet<String> itemAffixes = new HashSet<>();
 
     public GenericResourceType(String name) {
-        super(name);
+        this.name = name;
+        registerAll();
     }
 
     public GenericResourceType withBlockAffix(String affix, Supplier<Block> supplier) {
         blockAffixes.put(affix, supplier);
         return this;
     }
-    
+
+    public String getAffixFor(String itemName) {
+        return itemName.substring(getBaseResource().length() + 1);
+    }
+
+    @Override
+    public String getBaseResource() {
+        return name;
+    }
+
+    public GenericResourceType withItemAffixes(String... affixes) {
+        this.itemAffixes.addAll(Arrays.asList(affixes));
+        return this;
+    }
+
     @Override
     public boolean contains(String itemName) {
-        if (itemName.equals(name) && itemAffixes.contains("")) return true; //matches empty affix
-        if (!itemName.startsWith(getBaseResource()+"_")) return false; //not even our prefix
-        String affix = getAffix(itemName);
+        if (itemName.equals(name) && itemAffixes.contains("")){
+            return true; //matches empty affix
+        }
+        if (!itemName.startsWith(getBaseResource()+"_")){
+            return false; //not even our prefix
+        }
+        String affix = getAffixFor(itemName);
         
         return (itemAffixes.contains(affix) || blockAffixes.keySet().contains(affix));
     }
@@ -33,42 +57,57 @@ public class GenericResourceType extends ItemResourceType {
     @Override
     public Item getItem(String itemName) {
         Item existing = CommonItems.getItem(itemName);
-        if (existing!=null) {
+        if (existing != null) {
             return existing;
         }
-
-        //Reject creating things we don't own
-        if (!itemName.startsWith(getBaseResource())) {
+        else {
+            CottonResources.logger.warn("No item found with name " + itemName + "!");
             return null;
         }
-        
-        //Prefer blocks if present
-        String affix = getAffix(itemName);
-        Supplier<Block> blockSupplier = blockAffixes.get(affix);
-        if (blockSupplier!=null) {
-            return CommonBlocks.register(itemName, blockSupplier.get()).getItem();
-        }
-        
-        //Fallback to items
-        return super.getItem(itemName);
     }
-    
+
+    public Item registerItem(String itemName) {
+        return CommonItems.register(itemName, new Item((new Item.Settings()).itemGroup(Cotton.commonGroup)));
+    }
+
     @Override
     public Block getBlock(String blockName) {
         Block existing = CommonBlocks.getBlock(blockName);
         if (existing != null) {
             return existing;
         }
-        
-        String affix = getAffix(blockName);
-        Supplier<Block> blockSupplier = blockAffixes.get(affix);
-        return (blockSupplier == null) ? null : CommonBlocks.register(blockName, blockSupplier.get());
+        else {
+            CottonResources.logger.warn("No block found with name " + blockName + "!");
+            return null;
+        }
     }
-    
+
+    public Block registerBlock(String blockName) {
+        String affix = getAffixFor(blockName);
+        Supplier<Block> blockSupplier = blockAffixes.get(affix);
+        if (blockSupplier == null) {
+            return null;
+        }
+        return CommonBlocks.register(blockName, blockSupplier.get());
+    }
+
     @Override
-    public void registerAllBlocks() {
-        for(String affix : blockAffixes.keySet()) {
-            getBlock(getBaseResource() + "_" + affix);
+    public void registerAll() {
+        registerBlocks();
+        registerItems();
+    }
+
+    public void registerBlocks() {
+        for (String affix : blockAffixes.keySet()) {
+            registerBlock(getFullNameForAffix(affix));
+            CottonResources.logger.info("Registered block " + getFullNameForAffix(affix) + "!");
+        }
+    }
+
+    public void registerItems() {
+        for (String affix : itemAffixes) {
+            registerItem(getFullNameForAffix(affix));
+            CottonResources.logger.info("Registered item " + getFullNameForAffix(affix) + "!");
         }
     }
 }
