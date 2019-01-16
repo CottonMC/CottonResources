@@ -27,7 +27,7 @@ targetCompatibility = 1.8
 
 archivesBaseName = "cotton-resources"
 group = "io.github.cottonmc"
-version = "0.0.1+19w02a"
+version = "0.0.1+19w02a-SNAPSHOT"
 
 repositories {
 	mavenLocal()
@@ -57,15 +57,18 @@ dependencies {
 	implementation "com.google.code.findbugs:jsr305:3.0.2"
 }
 
+if(rootProject.file('private.gradle').exists()) { //gives people more ways to configure the project for publish
+	apply from: 'private.gradle'
+}
 
 artifactory {
 	contextUrl = 'http://server.bbkr.space:8081/artifactory/'
 	publish {
 		repository {
 		if(version.contains("SNAPSHOT")){
-			repoKey = "libs-snapshot-local"
+				repoKey = "libs-snapshot-local"
 			}else{
-			repoKey = "libs-release-local"
+				repoKey = "libs-release-local"
 			}
 			username = System.getProperty("artifactoryUser")
 			password = System.getProperty("artifactoryPassword")
