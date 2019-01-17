@@ -27,7 +27,7 @@ targetCompatibility = 1.8
 
 archivesBaseName = "cotton-resources"
 group = "io.github.cottonmc"
-version = "0.0.1+19w02a-SNAPSHOT"
+version = "0.0.1+19w03a-SNAPSHOT"
 
 repositories {
 	mavenLocal()
@@ -48,7 +48,7 @@ dependencies {
 	modCompile "net.fabricmc:fabric:0.1.4.73"
 
 	//the main cotton api.
-	modCompile "io.github.cottonmc:cotton:0.0.2+19w02a-SNAPSHOT"
+	modCompile "io.github.cottonmc:cotton:0.0.2+19w03a-SNAPSHOT"
 
 	//Neither of these are used at the moment
 	//implementation "blue.endless:jankson:1.0.0-7"
@@ -62,22 +62,24 @@ if(rootProject.file('private.gradle').exists()) { //gives people more ways to co
 }
 
 artifactory {
-	contextUrl = 'http://server.bbkr.space:8081/artifactory/'
-	publish {
-		repository {
-		if(version.contains("SNAPSHOT")){
-				repoKey = "libs-snapshot-local"
-			}else{
-				repoKey = "libs-release-local"
+	if (project.hasProperty("artifactoryUsername")) {
+		contextUrl = 'http://server.bbkr.space:8081/artifactory/'
+		publish {
+			repository {
+			if(version.contains("SNAPSHOT")){
+					repoKey = "libs-snapshot-local"
+				}else{
+					repoKey = "libs-release-local"
+				}
+				username = artifactoryUsername
+				password = artifactoryPassword
 			}
-			username = artifactoryUsername
-			password = artifactoryPassword
-		}
-		defaults {
-			publications('maven')
+			defaults {
+				publications('maven')
 
-			publishArtifacts = true
-			publishPom = true
+				publishArtifacts = true
+				publishPom = true
+			}
 		}
 	}
 }
