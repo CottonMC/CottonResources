@@ -33,10 +33,6 @@ public class CommonResources {
         builtinItem("plutonium", RADIOACTIVE_AFFIXES);
         builtinItem("thorium",   RADIOACTIVE_AFFIXES);
     }
-    
-    static {
-        initialize();
-    }
 
     private static void builtinMetal(String id, Supplier<Block> oreSupplier, String... extraAffixes) {
         MetalResourceType result = new MetalResourceType(id).withOreSupplier(oreSupplier);

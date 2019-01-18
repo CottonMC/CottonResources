@@ -1,5 +1,6 @@
 buildscript {
 	repositories {
+		mavenLocal()
 		mavenCentral()
 		jcenter()
 		maven {
@@ -7,7 +8,7 @@ buildscript {
 			url = 'http://maven.modmuss50.me/'
 		}
 		maven {
-			url "https://plugins.gradle.org/m2/"
+			url "http://plugins.gradle.org/m2/"
 		}
 	}
 	dependencies {
@@ -27,10 +28,12 @@ targetCompatibility = 1.8
 
 archivesBaseName = "cotton-resources"
 group = "io.github.cottonmc"
-version = "0.0.1+19w02a-SNAPSHOT"
+version = "0.0.2+19w03a-SNAPSHOT"
 
 repositories {
 	mavenLocal()
+	mavenCentral()
+	jcenter()
 	maven {
 		//jankson
 		url "http://repo.elytradev.com/"
@@ -39,11 +42,18 @@ repositories {
 		//cotton
 		url "http://server.bbkr.space:8081/artifactory/libs-snapshot"
 	}
+	maven {
+		name = 'Fabric'
+		url = 'http://maven.modmuss50.me/'
+	}
+	maven {
+		url "http://plugins.gradle.org/m2/"
+	}
 }
 
 dependencies {
-	minecraft "com.mojang:minecraft:19w02a"
-	mappings "net.fabricmc:yarn:19w02a.24"
+	minecraft "com.mojang:minecraft:19w03a"
+	mappings "net.fabricmc:yarn:19w03a.7"
 	modCompile "net.fabricmc:fabric-loader:0.3.2.96"
 	modCompile "net.fabricmc:fabric:0.1.4.73"
 
@@ -65,9 +75,10 @@ artifactory {
 	contextUrl = 'http://server.bbkr.space:8081/artifactory/'
 	publish {
 		repository {
-		if(version.contains("SNAPSHOT")){
-				repoKey = "libs-snapshot-local"
-			}else{
+			if (version.contains("SNAPSHOT")){
+					repoKey = "libs-snapshot-local"
+			}
+			else {
 				repoKey = "libs-release-local"
 			}
 			username = artifactoryUsername

@@ -17,6 +17,7 @@ public class CottonResources implements ModInitializer {
 
 		config = ConfigManager.loadConfig(CottonResourcesConfig.class);
 		CommonResources.initialize();
+		logger.info("Cotton-resources initialized.");
 
 	}
 }
