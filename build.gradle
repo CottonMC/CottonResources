@@ -1,6 +1,5 @@
 buildscript {
 	repositories {
-		mavenLocal()
 		mavenCentral()
 		jcenter()
 		maven {
@@ -8,7 +7,7 @@ buildscript {
 			url = 'http://maven.modmuss50.me/'
 		}
 		maven {
-			url "http://plugins.gradle.org/m2/"
+			url "https://plugins.gradle.org/m2/"
 		}
 	}
 	dependencies {
@@ -28,12 +27,10 @@ targetCompatibility = 1.8
 
 archivesBaseName = "cotton-resources"
 group = "io.github.cottonmc"
-version = "0.0.3+19w05a-SNAPSHOT"
+version = "0.0.1+19w03a-SNAPSHOT"
 
 repositories {
 	mavenLocal()
-	mavenCentral()
-	jcenter()
 	maven {
 		//jankson
 		url "http://repo.elytradev.com/"
@@ -42,25 +39,16 @@ repositories {
 		//cotton
 		url "http://server.bbkr.space:8081/artifactory/libs-snapshot"
 	}
-	maven {
-		name = 'Fabric'
-		url = 'http://maven.modmuss50.me/'
-	}
-	maven {
-		url "http://plugins.gradle.org/m2/"
-	}
 }
 
 dependencies {
-	minecraft "com.mojang:minecraft:19w05a"
-	mappings "net.fabricmc:yarn:19w05a.6"
-	modCompile "net.fabricmc:fabric-loader:0.3.4.104"
-
-	// Fabric API. This is technically optional, but you probably want it anyway.
-	modCompile "net.fabricmc:fabric:0.1.5.87"
+	minecraft "com.mojang:minecraft:19w03a"
+	mappings "net.fabricmc:yarn:19w03a.7"
+	modCompile "net.fabricmc:fabric-loader:0.3.2.96"
+	modCompile "net.fabricmc:fabric:0.1.4.73"
 
 	//the main cotton api.
-	modCompile "io.github.cottonmc:cotton:0.0.2+19w05a-SNAPSHOT"
+	modCompile "io.github.cottonmc:cotton:0.0.2+19w03a-SNAPSHOT"
 
 	//Neither of these are used at the moment
 	//implementation "blue.endless:jankson:1.0.0-7"
@@ -74,23 +62,24 @@ if(rootProject.file('private.gradle').exists()) { //gives people more ways to co
 }
 
 artifactory {
-	contextUrl = 'http://server.bbkr.space:8081/artifactory/'
-	publish {
-		repository {
-			if (version.contains("SNAPSHOT")){
+	if (project.hasProperty("artifactoryUsername")) {
+		contextUrl = 'http://server.bbkr.space:8081/artifactory/'
+		publish {
+			repository {
+			if(version.contains("SNAPSHOT")){
 					repoKey = "libs-snapshot-local"
+				}else{
+					repoKey = "libs-release-local"
+				}
+				username = artifactoryUsername
+				password = artifactoryPassword
 			}
-			else {
-				repoKey = "libs-release-local"
-			}
-			username = artifactoryUsername
-			password = artifactoryPassword
-		}
-		defaults {
-			publications('maven')
+			defaults {
+				publications('maven')
 
-			publishArtifacts = true
-			publishPom = true
+				publishArtifacts = true
+				publishPom = true
+			}
 		}
 	}
 }
