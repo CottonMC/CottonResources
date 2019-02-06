@@ -9,17 +9,15 @@ import net.minecraft.item.Item;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Map;
 import java.util.function.Supplier;
 
 public class GenericResourceType implements ResourceType {
     protected String name;
-    protected Map<String, Supplier<Block>> blockAffixes = new HashMap<>();
+    protected HashMap<String, Supplier<Block>> blockAffixes = new HashMap<>();
     protected HashSet<String> itemAffixes = new HashSet<>();
 
     public GenericResourceType(String name) {
         this.name = name;
-        registerAll();
     }
 
     public GenericResourceType withBlockAffix(String affix, Supplier<Block> supplier) {
@@ -43,10 +41,10 @@ public class GenericResourceType implements ResourceType {
 
     @Override
     public boolean contains(String itemName) {
-        if (itemName.equals(name) && itemAffixes.contains("")){
+        if (itemName.equals(name) && itemAffixes.contains("")) {
             return true; //matches empty affix
         }
-        if (!itemName.startsWith(getBaseResource()+"_")){
+        if (!itemName.startsWith(getBaseResource()+"_")) {
             return false; //not even our prefix
         }
         String affix = getAffixFor(itemName);

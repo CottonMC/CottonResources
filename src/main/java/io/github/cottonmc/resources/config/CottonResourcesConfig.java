@@ -8,16 +8,20 @@ import java.util.HashMap;
 @ConfigFile(name="CottonResources")
 public class CottonResourcesConfig {
 
-    @Comment("Generation settings")
-    public HashMap<String, OreGenerationSettings> ores = new HashMap<>();
+    @Comment("Needs to be implemented")
+    public static boolean override_vanilla_generation = false;
 
+    @Comment("Generation settings")
+    public static HashMap<String, OreGenerationSettings> ores = new HashMap<>();
+
+    // DO NOT MAKE THIS STATIC, ignore IntelliJ.
+    // When static init runs, CommonResources is not initialized yet, making everything crash.
     {
-        //ores.putAll(OreGenerationSettings.getDefaultSettingsFor("copper", "silver", "lead", "zinc"));
-        ores.putAll(OreGenerationSettings.getDefaultSettingsFor("copper", "lead", "zinc"));
-        ores.put("silver", OreGenerationSettings.getDefault().
-                withOreBlock("cotton:silver_ore").withMaxHeight(24).
-                withClusterCount(8).
-                withClusterSize(6));
+        ores.putAll(OreGenerationSettings.getDefaultSettingsFor("silver", "lead", "zinc"));
+        ores.put("copper", OreGenerationSettings.getDefault().
+                withOreBlock("cotton:copper_ore").withMaxHeight(96).
+                withClusterCount(256).
+                withClusterSize(16));
     }
 
 

@@ -32,9 +32,14 @@ public class CommonResources {
         builtinItem("uranium",   RADIOACTIVE_AFFIXES);
         builtinItem("plutonium", RADIOACTIVE_AFFIXES);
         builtinItem("thorium",   RADIOACTIVE_AFFIXES);
+
+        for (ResourceType resource : BUILTINS.values()) {
+            resource.registerAll();
+        }
     }
 
     private static void builtinMetal(String id, Supplier<Block> oreSupplier, String... extraAffixes) {
+        CottonResources.logger.info("registering " + id);
         MetalResourceType result = new MetalResourceType(id).withOreSupplier(oreSupplier);
         if (extraAffixes.length > 0){
             result.withItemAffixes(extraAffixes);

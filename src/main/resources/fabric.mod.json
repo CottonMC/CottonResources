@@ -1,9 +1,12 @@
 {
   "id": "cotton-resources",
   "name": "Cotton Resources",
-  "version": "1.0.0",
+  "version": "0.0.3",
   "side": "universal",
   "initializers": [
     "io.github.cottonmc.resources.CottonResources"
-  ]
+  ],
+  "mixins": {
+    "common": "cotton.common.json"
+  }
 }
