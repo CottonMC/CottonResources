@@ -36,6 +36,8 @@ public class CommonResources {
         for (ResourceType resource : BUILTINS.values()) {
             resource.registerAll();
         }
+
+        OreGeneration.registerOres();
     }
 
     private static void builtinMetal(String id, Supplier<Block> oreSupplier, String... extraAffixes) {

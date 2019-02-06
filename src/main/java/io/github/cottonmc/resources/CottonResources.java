@@ -14,7 +14,6 @@ public class CottonResources implements ModInitializer {
 	@Override
 	public void onInitialize() {
 		logger.setPrefixFormat(Ansi.Blue);
-
 		CommonResources.initialize();
 		config = ConfigManager.loadConfig(CottonResourcesConfig.class);
 		logger.info("cotton-resources initialized.");

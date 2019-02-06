@@ -42,13 +42,13 @@ repositories {
 }
 
 dependencies {
-	minecraft "com.mojang:minecraft:19w03a"
-	mappings "net.fabricmc:yarn:19w03a.7"
-	modCompile "net.fabricmc:fabric-loader:0.3.2.96"
-	modCompile "net.fabricmc:fabric:0.1.4.73"
+	minecraft "com.mojang:minecraft:19w05a"
+	mappings "net.fabricmc:yarn:19w05a.14"
+	modCompile "net.fabricmc:fabric-loader:0.3.5.106"
+	modCompile "net.fabricmc:fabric:0.1.5.88"
 
 	//the main cotton api.
-	modCompile "io.github.cottonmc:cotton:0.0.2+19w03a-SNAPSHOT"
+	modCompile "io.github.cottonmc:cotton:0.0.2+19w05a-SNAPSHOT"
 
 	//Neither of these are used at the moment
 	//implementation "blue.endless:jankson:1.0.0-7"
