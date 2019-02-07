@@ -1,6 +1,5 @@
 package io.github.cottonmc.resources;
 
-import io.github.cottonmc.resources.config.CottonResourcesConfig;
 import io.github.cottonmc.resources.config.OreGenerationSettings;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
@@ -16,7 +15,7 @@ import java.util.Map;
 public class OreGeneration {
     public static void registerOres() {
         for (Biome biome : Registry.BIOME) {
-            for (Map.Entry<String, OreGenerationSettings> ore : CottonResourcesConfig.ores.entrySet()) {
+            for (Map.Entry<String, OreGenerationSettings> ore : CottonResources.config.ores.entrySet()) {
                 String name = ore.getKey();
                 OreGenerationSettings settings = ore.getValue();
                 biome.addFeature(GenerationStep.Feature.UNDERGROUND_ORES,

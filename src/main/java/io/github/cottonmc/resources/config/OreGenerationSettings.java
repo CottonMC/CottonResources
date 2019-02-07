@@ -14,7 +14,7 @@ public class OreGenerationSettings {
     public String ore_block;
     public int min_height;
     public int max_height;
-    public ArrayList<Integer> dimensions;
+    public ArrayList<Integer> dimensions_blacklist;
     public int cluster_count;
     public int cluster_size;
 
@@ -40,8 +40,8 @@ public class OreGenerationSettings {
         this.max_height = max_height;
         return this;
     }
-    public OreGenerationSettings withDimensions(ArrayList<Integer> dimensions) {
-        this.dimensions = dimensions;
+    public OreGenerationSettings excludeDimension(int dimension) {
+        this.dimensions_blacklist.add(dimension);
         return this;
     }
     public OreGenerationSettings withClusterCount(int cluster_count) {
@@ -59,8 +59,9 @@ public class OreGenerationSettings {
         settings.ore_block = Registry.BLOCK.getId(Blocks.LIGHT_BLUE_WOOL).toString();
         settings.min_height = 6;
         settings.max_height = 64;
-        settings.dimensions = new ArrayList<>();
-        settings.dimensions.add(0);
+        settings.dimensions_blacklist = new ArrayList<>();
+        settings.dimensions_blacklist.add(-1);
+        settings.dimensions_blacklist.add(1);
         settings.cluster_count = 8;
         settings.cluster_size = 8;
         return settings;

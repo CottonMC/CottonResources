@@ -9,10 +9,10 @@ import java.util.HashMap;
 public class CottonResourcesConfig {
 
     @Comment("Needs to be implemented")
-    public static boolean override_vanilla_generation = false;
+    public boolean override_vanilla_generation = false;
 
     @Comment("Generation settings")
-    public static HashMap<String, OreGenerationSettings> ores = new HashMap<>();
+    public HashMap<String, OreGenerationSettings> ores = new HashMap<>();
 
     // DO NOT MAKE THIS STATIC, ignore IntelliJ.
     // When static init runs, CommonResources is not initialized yet, making everything crash.
