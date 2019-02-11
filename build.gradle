@@ -27,7 +27,7 @@ targetCompatibility = 1.8
 
 archivesBaseName = "cotton-resources"
 group = "io.github.cottonmc"
-version = "0.0.1+19w03a-SNAPSHOT"
+version = "0.0.1+19w06a-SNAPSHOT"
 
 repositories {
 	mavenLocal()
