@@ -14,8 +14,6 @@ public class CottonResourcesConfig {
     @Comment("Generation settings")
     public HashMap<String, OreGenerationSettings> ores = new HashMap<>();
 
-    // DO NOT MAKE THIS STATIC, ignore IntelliJ.
-    // When static init runs, CommonResources is not initialized yet, making everything crash.
     {
         ores.putAll(OreGenerationSettings.getDefaultSettingsFor("silver", "lead", "zinc"));
         ores.put("copper", OreGenerationSettings.getDefault().

@@ -1,7 +1,5 @@
 package io.github.cottonmc.resources.config;
 
-import io.github.cottonmc.resources.CommonResources;
-import io.github.cottonmc.resources.ResourceType;
 import net.minecraft.block.Blocks;
 import net.minecraft.util.registry.Registry;
 
@@ -68,12 +66,10 @@ public class OreGenerationSettings {
     }
 
     public static HashMap<String, OreGenerationSettings> getDefaultSettingsFor(String... resources) {
+        // This does not check that the resource exists (since we faced loading order issues). Only use on actual ores!
         HashMap<String, OreGenerationSettings> ores = new HashMap<>();
         for (String resourceName : resources) {
-            ResourceType resource = CommonResources.BUILTINS.get(resourceName);
-            if (resource.contains(resource.getBaseResource() + "_ore")) {
-                ores.put(resourceName, OreGenerationSettings.getDefault());
-            }
+            ores.put(resourceName, OreGenerationSettings.getDefault());
         }
         return ores;
     }

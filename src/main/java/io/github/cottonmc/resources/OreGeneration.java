@@ -30,7 +30,6 @@ public class OreGeneration {
                         )
                 );
             }
-            biome.addFeature(GenerationStep.Feature.UNDERGROUND_ORES, Biome.configureFeature(Feature.ORE, new OreFeatureConfig(OreFeatureConfig.Target.NATURAL_STONE, Registry.BLOCK.get(new Identifier("cotton:copper_ore")).getDefaultState(), 17), Decorator.COUNT_RANGE, new RangeDecoratorConfig(20, 0, 0, 128)));
         }
     }
 }

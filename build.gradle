@@ -3,15 +3,16 @@ buildscript {
 		mavenCentral()
 		jcenter()
 		maven {
-			name = 'Fabric'
-			url = 'http://maven.modmuss50.me/'
+			name = "Fabric"
+			url = "http://maven.modmuss50.me/"
 		}
 		maven {
 			url "https://plugins.gradle.org/m2/"
 		}
 	}
 	dependencies {
-		classpath "net.fabricmc:fabric-loom:0.2.0-SNAPSHOT"
+		classpath "net.fabricmc:fabric-loom:0.2.0-SNAPSHOT" //Don't backdate before 0.2.0; features in this version prevent messy workarounds!
+		classpath "com.github.jengelman.gradle.plugins:shadow:5.0.0"
 	}
 }
 
@@ -22,75 +23,87 @@ plugins {
 apply plugin: net.fabricmc.loom.LoomGradlePlugin
 apply plugin: 'maven-publish'
 
+apply from: "project.gradle"
+
+if (ext.needsShadow) {
+	apply plugin: "com.github.johnrengelman.shadow"
+}
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
-archivesBaseName = "cotton-resources"
-group = "io.github.cottonmc"
-version = "0.0.1+19w03a-SNAPSHOT"
+archivesBaseName = ext.projectName
+group = ext.group
+version = ext.version + ((ext.snapshot) ? "-SNAPSHOT" : "")
 
 repositories {
-	mavenLocal()
+	mavenCentral()
 	maven {
-		//jankson
-		url "http://repo.elytradev.com/"
-	}
-	maven {
-		//cotton
 		url "http://server.bbkr.space:8081/artifactory/libs-snapshot"
 	}
 }
 
 dependencies {
-	minecraft "com.mojang:minecraft:19w05a"
-	mappings "net.fabricmc:yarn:19w05a.14"
-	modCompile "net.fabricmc:fabric-loader:0.3.5.106"
-	modCompile "net.fabricmc:fabric:0.1.5.88"
-
-	//the main cotton api.
-	modCompile "io.github.cottonmc:cotton:0.0.2+19w05a-SNAPSHOT"
-
-	//Neither of these are used at the moment
-	//implementation "blue.endless:jankson:1.0.0-7"
-	//modCompile "io.github.prospector.silk:SilkAPI:1.0.0-25"
-
+	minecraft "com.mojang:minecraft:"+project.ext.minecraft
+	mappings "net.fabricmc:yarn:"+project.ext.mappings
+	modCompile "net.fabricmc:fabric-loader:"+project.ext.loader
+	if (project.ext.fabricMod!=null) {
+		modCompile "net.fabricmc:fabric:"+project.ext.fabricMod
+	}
+	if (project.ext.silkMod!=null) {
+		modCompile "io.github.prospector.silk:SilkAPI:"+project.ext.silkMod
+	}
+	if (project.ext.cotton!=null) {
+		modCompile "io.github.cottonmc:cotton:"+project.ext.cotton
+	}
+	if (project.ext.jankson!=null) {
+		if (needsShadow) {
+			//Jankson will be shadowed
+			shadow "blue.endless:jankson:"+project.ext.jankson
+			implementation "blue.endless:jankson:"+project.ext.jankson
+		} else {
+			System.out.println("#################################################################")
+			System.out.println("# Shadow is disabled. Jankson will be ommitted from this build! #")
+			System.out.println("#################################################################")
+		}
+	}
 	implementation "com.google.code.findbugs:jsr305:3.0.2"
 }
 
-if(rootProject.file('private.gradle').exists()) { //gives people more ways to configure the project for publish
-	apply from: 'private.gradle'
+task sourcesJar(type: Jar) {
+	baseName = archivesBaseName
+	classifier = "sources"
+	from sourceSets.main.allSource
+	from sourceSets.main.resources
 }
 
-artifactory {
-	if (project.hasProperty("artifactoryUsername")) {
-		contextUrl = 'http://server.bbkr.space:8081/artifactory/'
-		publish {
-			repository {
-			if(version.contains("SNAPSHOT")){
-					repoKey = "libs-snapshot-local"
-				}else{
-					repoKey = "libs-release-local"
-				}
-				username = artifactoryUsername
-				password = artifactoryPassword
-			}
-			defaults {
-				publications('maven')
+shadowJar {
+	if (project.ext.jankson!=null) {
+		relocate 'blue.endless.jankson', 'io.github.cottonmc.repackage.blue.endless.jankson'
+	}
 
-				publishArtifacts = true
-				publishPom = true
-			}
-		}
+	classifier = "shadow"
+	configurations = [project.configurations.shadow]
+}
+
+if (ext.needsShadow) { //If we're using shadow, we need to let remap know it's remapping the shadowJar
+	remapJar {
+		dependsOn shadowJar
+		jar = shadowJar.archivePath
 	}
 }
 
+
+if(rootProject.file('private.gradle').exists()) { //Publishing details
+	apply from: 'private.gradle'
+}
 
 publishing {
 	publications {
 		maven(MavenPublication) {
 			from components.java
 
-			artifactId = "cotton-resources"
+			artifactId = project.ext.projectName
+
 
 			pom.withXml {
 				def pomFile = asNode()
@@ -106,23 +119,55 @@ publishing {
 				}
 			}
 			artifacts = [
-				artifact ("${project.buildDir.absolutePath}/libs/${archivesBaseName}-${version}.jar") { //release jar - file location not provided anywhere in loom
-					classifier null
-					builtBy remapJar
-				},
-				artifact ("${project.buildDir.absolutePath}/libs/${archivesBaseName}-${version}-dev.jar") { //release jar - file location not provided anywhere in loom
-					classifier "dev"
-					builtBy remapJar
-				},
-				artifact (sourcesJar)
+					artifact ("${project.buildDir.absolutePath}/libs/${archivesBaseName}-${project.version}-shadow.jar") { //release jar - file location not provided anywhere in loom
+						classifier null
+						builtBy remapJar
+					},
+					artifact ("${project.buildDir.absolutePath}/libs/${archivesBaseName}-${project.version}-shadow-dev.jar") { //release jar - file location not provided anywhere in loom
+						classifier "dev"
+						builtBy remapJar
+					},
+					artifact (tasks.sourcesJar)
 			]
+		}
+	}
+	/* Supply an ext block in private.gradle like so:
+
+	   ext { mavenSnapshotDir="file:///some_local_directory_path" }
+
+	 * and then just run "./gradlew publish" to save the artifacts to the specified directory, in a way that they can be
+	 * served by apache or your favorite httpd and behave like a maven repo. Complete with verification hashes.
+	 */
+	repositories {
+		if (rootProject.ext.has("localMavenUrl")) {
+			maven {
+				url = rootProject.ext.localMavenUrl
+			}
 		}
 	}
 }
 
-task sourcesJar(type: Jar) {
-	baseName = archivesBaseName
-	classifier = "sources"
-	from sourceSets.main.allSource
-	from sourceSets.main.resources
+artifactory {
+	if (project.hasProperty("artifactoryUsername")) {
+		contextUrl = 'http://server.bbkr.space:8081/artifactory/'
+		publish {
+			repository {
+				if (version.contains("SNAPSHOT")) {
+					repoKey = "libs-snapshot"
+				} else {
+					repoKey = "libs-release"
+				}
+				username = artifactoryUsername
+				password = artifactoryPassword
+			}
+			defaults {
+				publications('maven')
+
+				publishArtifacts = true
+				publishPom = true
+			}
+		}
+	} else {
+		println "Cannot configure artifactory; please define ext.artifactoryUsername and ext.artifactoryPassword before running artifactoryPublish"
+	}
 }
