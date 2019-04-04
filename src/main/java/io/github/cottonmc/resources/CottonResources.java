@@ -11,14 +11,12 @@ public class CottonResources implements ModInitializer {
 	public static final String MODID = "cotton-resources";
 
 	public static ModLogger logger = new ModLogger(MODID, "COTTON RESOURCES");
-	public static CottonResourcesConfig config;
+	public static CottonResourcesConfig config = ConfigManager.loadConfig(CottonResourcesConfig.class);
 
 	@Override
 	public void onInitialize() {
 		logger.setPrefixFormat(Ansi.Yellow);
-		config = ConfigManager.loadConfig(CottonResourcesConfig.class);
 		CommonResources.initialize();
 		logger.info("cotton-resources initialized.");
-
 	}
 }
