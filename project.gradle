@@ -1,7 +1,7 @@
 ext {
 	projectName = "cotton-resources"
 	group = "io.github.cottonmc"
-	version = "0.0.3+19w14a"
+	version = "0.0.4+19w14a"
 	snapshot = true
 
 	minecraft = "19w14a";
