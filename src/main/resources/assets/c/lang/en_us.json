@@ -1,0 +1,61 @@
+{
+  "item.c.copper_ingot"    : "Copper Ingot",
+  "item.c.copper_nugget"   : "Copper Nugget",
+  "item.c.copper_dust"     : "Copper Dust",
+  "item.c.copper_gear"     : "Copper Gear",
+  "item.c.copper_plate"    : "Copper Plate",
+  "block.c.copper_ore"     : "Copper Ore",
+  "block.c.copper_block"   : "Copper Block",
+
+  "item.c.silver_ingot"    : "Silver Ingot",
+  "item.c.silver_nugget"   : "Silver Nugget",
+  "item.c.silver_dust"     : "Silver Dust",
+  "item.c.silver_gear"     : "Silver Gear",
+  "item.c.silver_plate"    : "Silver Plate",
+  "block.c.silver_ore"     : "Silver Ore",
+  "block.c.silver_block"   : "Silver Block",
+
+  "item.c.lead_ingot"      : "Lead Ingot",
+  "item.c.lead_nugget"     : "Lead Nugget",
+  "item.c.lead_dust"       : "Lead Dust",
+  "item.c.lead_gear"       : "Lead Gear",
+  "item.c.lead_plate"      : "Lead Plate",
+  "block.c.lead_ore"       : "Lead Ore",
+  "block.c.lead_block"     : "Lead Block",
+
+  "item.c.zinc_ingot"      : "Zinc Ingot",
+  "item.c.zinc_nugget"     : "Zinc Nugget",
+  "item.c.zinc_dust"       : "Zinc Dust",
+  "block.c.zinc_ore"       : "Zinc Ore",
+  "block.c.zinc_block"     : "Zinc Block",
+
+  "item.c.steel_ingot"     : "Steel Ingot",
+  "item.c.steel_nugget"    : "Steel Nugget",
+  "item.c.steel_dust"      : "Steel Dust",
+  "item.c.steel_gear"      : "Steel Gear",
+  "block.c.steel_block"    : "Steel Block",
+
+  "item.c.electrum_ingot"  : "Electrum Ingot",
+  "item.c.electrum_nugget" : "Electrum Nugget",
+  "item.c.electrum_dust"   : "Electrum Dust",
+  "block.c.electrum_block" : "Electrum Block",
+
+  "item.c.brass_ingot"     : "Brass Ingot",
+  "item.c.brass_nugget"    : "Brass Nugget",
+  "item.c.brass_dust"      : "Brass Dust",
+  "item.c.brass_gear"      : "Brass Gear",
+  "item.c.brass_plate"     : "Brass Plate",
+  "block.c.brass_block"    : "Brass Block",
+  
+  "item.c.coal_dust"       : "Coal Dust",
+  "item.c.coal_coke"       : "Coal Coke",
+  "block.c.coal_coke_block": "Coal Coke Block",
+
+  "item.c.mercury"         : "Mercury",
+
+  "item.c.uranium_dust"    : "Uranium Dust",
+  "block.c.uranium_ore"    : "Uranium Ore",
+  "item.c.plutonium_dust"  : "Plutonium Dust",
+  "item.c.thorium_dust"    : "Thorium Dust"
+
+}

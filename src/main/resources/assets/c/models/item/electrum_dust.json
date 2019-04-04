@@ -1,6 +1,7 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "cotton:item/steel_ingot"
+    "layer0": "c:item/electrum_dust"
   }
 }
+
