@@ -1,12 +1,20 @@
 {
+  "schemaVersion": 1,
   "id": "cotton-resources",
-  "name": "Cotton Resources",
   "version": "0.0.3",
-  "side": "universal",
-  "initializers": [
-    "io.github.cottonmc.resources.CottonResources"
+  "name": "Cotton Resources",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "io.github.cottonmc.resources.CottonResources"
+    ]
+  },
+  "mixins": [
+    "cotton.common.json"
   ],
-  "mixins": {
-    "common": "cotton.common.json"
+
+  "requires": {
+    "fabricloader": ">=0.4.0",
+    "fabric": "*"
   }
 }

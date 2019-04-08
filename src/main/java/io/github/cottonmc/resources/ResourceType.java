@@ -20,10 +20,10 @@ public interface ResourceType {
     /**
      *
      * Returns the full name of the block/item for the given affix. For example, given "ore", returns "copper_ore",
-     * if this is a copper resource.
+     * if this is a copper resource. If the affix is empty, only the base resource name is returned.
      */
     default String getFullNameForAffix(String affix) {
-        return getBaseResource() + "_" + affix;
+        return affix.equals("") ? getBaseResource() : getBaseResource() + "_" + affix;
     }
 
     /** 
