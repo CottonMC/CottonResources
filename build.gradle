@@ -11,7 +11,7 @@ buildscript {
 		}
 	}
 	dependencies {
-		classpath "net.fabricmc:fabric-loom:0.2.0-SNAPSHOT" //Don't backdate before 0.2.0; features in this version prevent messy workarounds!
+		classpath "net.fabricmc:fabric-loom:0.2.1-SNAPSHOT" //Don't backdate before 0.2.0; features in this version prevent messy workarounds!
 		classpath "com.github.jengelman.gradle.plugins:shadow:5.0.0"
 	}
 }
@@ -48,12 +48,15 @@ dependencies {
 	modCompile "net.fabricmc:fabric-loader:"+project.ext.loader
 	if (project.ext.fabricMod!=null) {
 		modCompile "net.fabricmc:fabric:"+project.ext.fabricMod
+		include "net.fabricmc:fabric:"+project.ext.fabricMod
 	}
 	if (project.ext.silkMod!=null) {
 		modCompile "io.github.prospector.silk:SilkAPI:"+project.ext.silkMod
+		include "io.github.prospector.silk:SilkAPI:"+project.ext.silkMod
 	}
 	if (project.ext.cotton!=null) {
 		modCompile "io.github.cottonmc:cotton:"+project.ext.cotton
+		include "io.github.cottonmc:cotton:"+project.ext.cotton
 	}
 	if (project.ext.jankson!=null) {
 		if (needsShadow) {
@@ -67,6 +70,17 @@ dependencies {
 		}
 	}
 	implementation "com.google.code.findbugs:jsr305:3.0.2"
+}
+
+processResources {
+	inputs.property "version", project.ext.version
+	from(sourceSets.main.resources.srcDirs) {
+		include "fabric.mod.json"
+		expand version: project.ext.version
+	}
+	from(sourceSets.main.resources.srcDirs) {
+		exclude "fabric.mod.json"
+	}
 }
 
 task sourcesJar(type: Jar) {
