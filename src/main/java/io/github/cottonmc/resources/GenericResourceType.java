@@ -5,6 +5,7 @@ import io.github.cottonmc.cotton.registry.CommonBlocks;
 import io.github.cottonmc.cotton.registry.CommonItems;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
+import net.minecraft.item.block.BlockItem;
 
 import java.util.Arrays;
 import java.util.HashMap;
@@ -86,7 +87,11 @@ public class GenericResourceType implements ResourceType {
         if (blockSupplier == null) {
             return null;
         }
-        return CommonBlocks.register(blockName, blockSupplier.get());
+        
+        Block resultBlock = blockSupplier.get();
+        BlockItem resultItem =  new BlockItem(resultBlock, new Item.Settings().itemGroup(Cotton.commonGroup)); //Shouldn't be necessary, but is?
+        
+        return CommonBlocks.register(blockName, resultBlock, resultItem);
     }
 
     @Override

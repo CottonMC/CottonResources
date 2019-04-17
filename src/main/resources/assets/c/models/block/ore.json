@@ -1,0 +1,31 @@
+{
+	"parent": "minecraft:block/block",
+	"elements": [
+		{
+			"name": "base",
+			"from": [0, 0, 0],
+			"to": [16, 16, 16],
+			"faces": {
+				"north": {"uv": [0, 0, 16, 16], "texture": "#stone"},
+				"east": {"uv": [0, 0, 16, 16], "texture": "#stone"},
+				"south": {"uv": [0, 0, 16, 16], "texture": "#stone"},
+				"west": {"uv": [0, 0, 16, 16], "texture": "#stone"},
+				"up": {"uv": [0, 0, 16, 16], "texture": "#stone"},
+				"down": {"uv": [0, 0, 16, 16], "texture": "#stone"}
+			}
+		},
+		{
+			"name": "ore",
+			"from": [-0.05, -0.05, -0.05],
+			"to": [16.05, 16.05, 16.05],
+			"faces": {
+				"north": {"uv": [0, 0, 16, 16], "texture": "#ore"},
+				"east": {"uv": [0, 0, 16, 16], "texture": "#ore"},
+				"south": {"uv": [0, 0, 16, 16], "texture": "#ore"},
+				"west": {"uv": [0, 0, 16, 16], "texture": "#ore"},
+				"up": {"uv": [0, 0, 16, 16], "texture": "#ore"},
+				"down": {"uv": [0, 0, 16, 16], "texture": "#ore"}
+			}
+		}
+	]
+}
