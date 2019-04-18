@@ -5,6 +5,7 @@ import net.minecraft.util.registry.Registry;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 public class OreGenerationSettings {
 
@@ -12,7 +13,7 @@ public class OreGenerationSettings {
     public String ore_block;
     public int min_height;
     public int max_height;
-    public ArrayList<Integer> dimensions_blacklist;
+    public List<Integer> dimensions_blacklist;
     public int cluster_count;
     public int cluster_size;
 
