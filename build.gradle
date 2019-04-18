@@ -131,12 +131,13 @@ publishing {
 					artifactNode.appendNode('version', it.moduleVersion)
 				}
 			}
+			def artifactEnding = (project.ext.needsShadow) ? "-shadow" : "";
 			artifacts = [
-					artifact ("${project.buildDir.absolutePath}/libs/${archivesBaseName}-${project.version}-shadow.jar") { //release jar - file location not provided anywhere in loom
+					artifact ("${project.buildDir.absolutePath}/libs/${archivesBaseName}-${project.version}" + artifactEnding + ".jar") { //release jar - file location not provided anywhere in loom
 						classifier null
 						builtBy remapJar
 					},
-					artifact ("${project.buildDir.absolutePath}/libs/${archivesBaseName}-${project.version}-shadow-dev.jar") { //release jar - file location not provided anywhere in loom
+					artifact ("${project.buildDir.absolutePath}/libs/${archivesBaseName}-${project.version}" + artifactEnding + ".jar") { //release jar - file location not provided anywhere in loom
 						classifier "dev"
 						builtBy remapJar
 					},
@@ -145,9 +146,7 @@ publishing {
 		}
 	}
 	/* Supply an ext block in private.gradle like so:
-
 	   ext { mavenSnapshotDir="file:///some_local_directory_path" }
-
 	 * and then just run "./gradlew publish" to save the artifacts to the specified directory, in a way that they can be
 	 * served by apache or your favorite httpd and behave like a maven repo. Complete with verification hashes.
 	 */
