@@ -40,7 +40,12 @@ public class OreGeneration {
     }
 
     public static void addDefaultGen(String resource, OreGenerationSettings settings) {
-        if (!CottonResources.config.ores.containsKey(resource) || registered.contains(resource)) {
+        if (!CottonResources.config.ores.containsKey(resource)) {
+            if (registered.contains(resource)) {
+                CottonResources.logger.warn("A mod tried to register ore gen for " + resource + ", even though another mod already did. Only the first ore gen will be added.");
+                CottonResources.logger.warn("Try adding ore gen to the Cotton Resources config file to avoid this issue.");
+                return;
+            }
             registered.add(resource);
             for (Biome biome : Registry.BIOME) {
                 if (!Registry.BLOCK.containsId(new Identifier(settings.ore_block)) || !settings.enabled) continue;
