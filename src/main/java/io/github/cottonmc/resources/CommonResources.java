@@ -36,20 +36,22 @@ public class CommonResources {
         builtinItem("plutonium", RADIOACTIVE_AFFIXES);
         builtinItem("thorium",   RADIOACTIVE_AFFIXES);
 
+        boolean enableAllResources = CottonResources.config.enabledResources.contains("*");
+
         for (ResourceType resource : BUILTINS.values()) {
-            resource.registerAll();
+            if (enableAllResources || CottonResources.config.enabledResources.contains(resource.getBaseResource())) resource.registerAll();
         }
 
         OreGeneration.registerOres();
     }
 
     private static void builtinMetal(String id, Supplier<Block> oreSupplier, String... extraAffixes) {
-        CottonResources.logger.info("registering " + id);
+//        CottonResources.logger.info("registering " + id);
         MetalResourceType result = new MetalResourceType(id).withOreSupplier(oreSupplier);
         if (extraAffixes.length > 0){
             result.withItemAffixes(extraAffixes);
         }
-        
+
         BUILTINS.put(id, result);
     }
 

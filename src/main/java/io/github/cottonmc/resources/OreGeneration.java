@@ -18,6 +18,7 @@ public class OreGeneration {
             for (Map.Entry<String, OreGenerationSettings> ore : CottonResources.config.ores.entrySet()) {
                 String name = ore.getKey();
                 OreGenerationSettings settings = ore.getValue();
+                if (!Registry.BLOCK.containsId(new Identifier(settings.ore_block))) continue;
                 biome.addFeature(GenerationStep.Feature.UNDERGROUND_ORES,
                         Biome.configureFeature(
                                 Feature.ORE,

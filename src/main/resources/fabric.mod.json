@@ -10,7 +10,7 @@
     ]
   },
   "mixins": [
-    "cotton.common.json"
+    "cotton-resources.common.json"
   ],
 
   "requires": {
