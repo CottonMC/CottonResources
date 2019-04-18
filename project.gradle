@@ -1,7 +1,7 @@
 ext {
 	projectName = "cotton-resources"
 	group = "io.github.cottonmc"
-	version = "0.0.6+19w14b"
+	version = "0.0.7+19w14b"
 	snapshot = true
 
 	minecraft = "19w14b";
@@ -10,9 +10,9 @@ ext {
 	fabricMod = "0.2.6.121";
 	cotton = "0.5.0+19w14b-SNAPSHOT"
 	silkMod = null
-	jankson = "1.1.0" //If needsShadow is false, jankson will not be included!
+	jankson = null //If needsShadow is false, jankson will not be included!
 
-	needsShadow = true
+	needsShadow = false
 } 
 
 repositories {

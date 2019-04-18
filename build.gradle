@@ -90,16 +90,15 @@ task sourcesJar(type: Jar) {
 	from sourceSets.main.resources
 }
 
-shadowJar {
-	if (project.ext.jankson!=null) {
-		relocate 'blue.endless.jankson', 'io.github.cottonmc.repackage.blue.endless.jankson'
-	}
-
-	classifier = "shadow"
-	configurations = [project.configurations.shadow]
-}
-
 if (ext.needsShadow) { //If we're using shadow, we need to let remap know it's remapping the shadowJar
+	shadowJar {
+		if (project.ext.jankson!=null) {
+			relocate 'blue.endless.jankson', 'io.github.cottonmc.repackage.blue.endless.jankson'
+		}
+
+		classifier = "shadow"
+		configurations = [project.configurations.shadow]
+	}
 	remapJar {
 		dependsOn shadowJar
 		jar = shadowJar.archivePath

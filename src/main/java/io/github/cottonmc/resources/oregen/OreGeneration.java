@@ -1,13 +1,15 @@
-package io.github.cottonmc.resources;
+package io.github.cottonmc.resources.oregen;
 
+import io.github.cottonmc.resources.CottonResources;
 import io.github.cottonmc.resources.config.OreGenerationSettings;
+import io.github.cottonmc.resources.oregen.CottonOreFeature;
+import io.github.cottonmc.resources.oregen.CottonOreFeatureConfig;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.GenerationStep;
 import net.minecraft.world.gen.decorator.Decorator;
 import net.minecraft.world.gen.decorator.RangeDecoratorConfig;
-import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.gen.feature.OreFeatureConfig;
 
 import java.util.HashSet;
@@ -26,11 +28,12 @@ public class OreGeneration {
                 if (!Registry.BLOCK.containsId(new Identifier(settings.ore_block)) || !settings.enabled) continue;
                 biome.addFeature(GenerationStep.Feature.UNDERGROUND_ORES,
                         Biome.configureFeature(
-                                Feature.ORE,
-                                new OreFeatureConfig(
+                                CottonOreFeature.COTTON_ORE,
+                                new CottonOreFeatureConfig(
                                         OreFeatureConfig.Target.NATURAL_STONE,
                                         Registry.BLOCK.get(new Identifier(settings.ore_block)).getDefaultState(),
-                                        settings.cluster_size),
+                                        settings.cluster_size,
+                                        settings.dimensions_blacklist),
                                 Decorator.COUNT_RANGE,
                                 new RangeDecoratorConfig(settings.cluster_count, 0, 0, settings.max_height)
                         )
@@ -51,11 +54,12 @@ public class OreGeneration {
                 if (!Registry.BLOCK.containsId(new Identifier(settings.ore_block)) || !settings.enabled) continue;
                 biome.addFeature(GenerationStep.Feature.UNDERGROUND_ORES,
                         Biome.configureFeature(
-                                Feature.ORE,
-                                new OreFeatureConfig(
+                                CottonOreFeature.COTTON_ORE,
+                                new CottonOreFeatureConfig(
                                         OreFeatureConfig.Target.NATURAL_STONE,
                                         Registry.BLOCK.get(new Identifier(settings.ore_block)).getDefaultState(),
-                                        settings.cluster_size),
+                                        settings.cluster_size,
+                                        settings.dimensions_blacklist),
                                 Decorator.COUNT_RANGE,
                                 new RangeDecoratorConfig(settings.cluster_count, 0, 0, settings.max_height)
                         )

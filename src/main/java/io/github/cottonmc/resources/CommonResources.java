@@ -1,6 +1,7 @@
 package io.github.cottonmc.resources;
 
 
+import io.github.cottonmc.resources.oregen.OreGeneration;
 import net.minecraft.block.Block;
 
 import javax.annotation.Nullable;

@@ -9,7 +9,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(DefaultBiomeFeatures.class)
-public abstract class OreGenerationMixin {
+public abstract class MixinVanillaOregen {
 
 
     @Inject(method = "addDefaultOres", at = @At(value = "HEAD"))

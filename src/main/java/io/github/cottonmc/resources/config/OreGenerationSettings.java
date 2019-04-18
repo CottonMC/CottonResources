@@ -1,6 +1,7 @@
 package io.github.cottonmc.resources.config;
 
 import net.minecraft.block.Blocks;
+import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 
 import java.util.ArrayList;
@@ -13,7 +14,7 @@ public class OreGenerationSettings {
     public String ore_block;
     public int min_height;
     public int max_height;
-    public List<Integer> dimensions_blacklist;
+    public List<String> dimensions_blacklist;
     public int cluster_count;
     public int cluster_size;
 
@@ -39,7 +40,7 @@ public class OreGenerationSettings {
         this.max_height = max_height;
         return this;
     }
-    public OreGenerationSettings excludeDimension(int dimension) {
+    public OreGenerationSettings excludeDimension(String dimension) {
         this.dimensions_blacklist.add(dimension);
         return this;
     }
@@ -59,8 +60,8 @@ public class OreGenerationSettings {
         settings.min_height = 6;
         settings.max_height = 64;
         settings.dimensions_blacklist = new ArrayList<>();
-        settings.dimensions_blacklist.add(-1);
-        settings.dimensions_blacklist.add(1);
+        settings.dimensions_blacklist.add("minecraft:the_nether");
+        settings.dimensions_blacklist.add("minecraft:the_end");
         settings.cluster_count = 8;
         settings.cluster_size = 8;
         return settings;
