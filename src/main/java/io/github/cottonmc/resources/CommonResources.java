@@ -27,6 +27,9 @@ public class CommonResources {
         builtinItem("coal", "dust");
         BUILTINS.put("coal_coke", new GenericResourceType("coal_coke").withBlockAffix("block", BlockSuppliers.COAL_BLOCK).withItemAffixes(""));
         builtinItem("mercury");
+        
+        builtinItem("iron", "gear", "plate", "dust");
+        builtinItem("gold", "gear", "plate", "dust");
 
         //These might get rods or molten capsules. They'd just need to be added to the end.
         builtinItem("uranium",   RADIOACTIVE_AFFIXES);
