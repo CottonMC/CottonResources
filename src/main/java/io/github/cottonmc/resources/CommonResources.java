@@ -1,8 +1,11 @@
 package io.github.cottonmc.resources;
 
 
+import io.github.cottonmc.cotton.Cotton;
+import io.github.cottonmc.cotton.datapack.recipe.RecipeUtil;
 import io.github.cottonmc.resources.oregen.OreGeneration;
 import net.minecraft.block.Block;
+import net.minecraft.util.Identifier;
 
 import javax.annotation.Nullable;
 import java.util.HashMap;
@@ -41,13 +44,14 @@ public class CommonResources {
 
         for (ResourceType resource : BUILTINS.values()) {
             if (enableAllResources || CottonResources.config.enabledResources.contains(resource.getBaseResource())) resource.registerAll();
+            else nullifyRecipes(resource);
         }
 
         OreGeneration.registerOres();
     }
 
     private static void builtinMetal(String id, Supplier<Block> oreSupplier, String... extraAffixes) {
-//        CottonResources.logger.info("registering " + id);
+        if (Cotton.isDevEnv) CottonResources.logger.info("registering " + id);
         MetalResourceType result = new MetalResourceType(id).withOreSupplier(oreSupplier);
         if (extraAffixes.length > 0){
             result.withItemAffixes(extraAffixes);
@@ -71,5 +75,18 @@ public class CommonResources {
     @Nullable
     public static ResourceType provideResource(String name) {
         return BUILTINS.get(name);
+    }
+
+    // nullify recipes for metals not currently enabled
+    private static void nullifyRecipes(ResourceType resource) {
+        if (resource instanceof MetalResourceType) {
+            MetalResourceType metal = (MetalResourceType)resource;
+            RecipeUtil.removeRecipe(new Identifier(Cotton.SHARED_NAMESPACE, metal.name + "_block"));
+            RecipeUtil.removeRecipe(new Identifier(Cotton.SHARED_NAMESPACE, metal.name + "_ingot"));
+            RecipeUtil.removeRecipe(new Identifier(Cotton.SHARED_NAMESPACE, metal.name + "_ingot_from_blasting"));
+            RecipeUtil.removeRecipe(new Identifier(Cotton.SHARED_NAMESPACE, metal.name + "_ingot_from_" + metal.name + "_block"));
+            RecipeUtil.removeRecipe(new Identifier(Cotton.SHARED_NAMESPACE, metal.name + "_ingot_from_nuggets"));
+            RecipeUtil.removeRecipe(new Identifier(Cotton.SHARED_NAMESPACE, metal.name + "_nugget"));
+        }
     }
 }

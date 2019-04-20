@@ -4,8 +4,8 @@ import io.github.cottonmc.cotton.Cotton;
 import io.github.cottonmc.cotton.registry.CommonBlocks;
 import io.github.cottonmc.cotton.registry.CommonItems;
 import net.minecraft.block.Block;
+import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
-import net.minecraft.item.block.BlockItem;
 
 import java.util.Arrays;
 import java.util.HashMap;
@@ -103,14 +103,14 @@ public class GenericResourceType implements ResourceType {
     public void registerBlocks() {
         for (String affix : blockAffixes.keySet()) {
             registerBlock(getFullNameForAffix(affix));
-//            CottonResources.logger.info("Registered block " + getFullNameForAffix(affix) + "!");
+            if (Cotton.isDevEnv) CottonResources.logger.info("Registered block " + getFullNameForAffix(affix) + "!");
         }
     }
 
     public void registerItems() {
         for (String affix : itemAffixes) {
             registerItem(getFullNameForAffix(affix));
-//            CottonResources.logger.info("Registered item " + getFullNameForAffix(affix) + "!");
+            if (Cotton.isDevEnv) CottonResources.logger.info("Registered item " + getFullNameForAffix(affix) + "!");
         }
     }
 }

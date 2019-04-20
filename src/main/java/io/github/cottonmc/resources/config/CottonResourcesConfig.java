@@ -14,13 +14,15 @@ public class CottonResourcesConfig {
     public boolean override_vanilla_generation = false;
 
     @Comment("Which built-in resources should be registered, even if a mod doesn't ask for them. \n"
-            + "Adding a \"*\" entry will register all built-in resources.")
+            + "Adding a \"*\" entry will register all built-in resources. \n"
+            + "This may cause console spam with recipes missing items.")
     public List<String> enabledResources = new ArrayList<>();
 
     @Comment("Settings for ore generation. If an ore isn't registered, it won't generate.")
     public HashMap<String, OreGenerationSettings> ores = new HashMap<>();
 
     {
+        enabledResources.add("*");
         ores.putAll(OreGenerationSettings.getDefaultSettingsFor("silver", "lead", "zinc"));
         ores.put("copper", OreGenerationSettings.getDefault().
                 withOreBlock("c:copper_ore").withMaxHeight(96).
