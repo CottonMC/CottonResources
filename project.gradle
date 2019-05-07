@@ -4,10 +4,10 @@ ext {
 	version = "0.0.7+1.14"
 	snapshot = true
 
-	minecraft = "1.14 Pre-Release 5"
-	mappings = "1.14 Pre-Release 5+build.2"
-	loader = "0.4.1+build.127"
-	fabricMod = "0.2.7+build.125"
+	minecraft = "1.14"
+	mappings = "1.14+build.17"
+	loader = "0.4.6+build.141"
+	fabricMod = "0.2.7+build.127"
 	cotton = "0.6.0+1.14-SNAPSHOT"
 	silkMod = null
 	jankson = null //If needsShadow is false, jankson will not be included!
