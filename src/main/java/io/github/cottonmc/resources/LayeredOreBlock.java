@@ -11,6 +11,6 @@ public class LayeredOreBlock extends OreBlock {
 
     @Override
     public BlockRenderLayer getRenderLayer() {
-        return BlockRenderLayer.MIPPED_CUTOUT;
+        return BlockRenderLayer.CUTOUT_MIPPED;
     }
 }

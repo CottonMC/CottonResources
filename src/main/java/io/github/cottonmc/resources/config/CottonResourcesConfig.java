@@ -23,7 +23,6 @@ public class CottonResourcesConfig {
 
     {
         enabledResources.add("*");
-        //ores.putAll(OreGenerationSettings.getDefaultSettingsFor("silver", "lead", "zinc"));
         ores.put("copper", OreGenerationSettings.getDefault().withOreBlock("c:copper_ore").
                 withMaxHeight(96).withMinHeight(32).
                 withClusterCount(20).withClusterSize(10));
