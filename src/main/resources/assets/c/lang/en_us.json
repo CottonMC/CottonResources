@@ -23,6 +23,30 @@
   "block.c.lead_ore"       : "Lead Ore",
   "block.c.lead_block"     : "Lead Block",
 
+  "item.c.tin_ingot"       : "Tin Ingot",
+  "item.c.tin_nugget"      : "Tin Nugget",
+  "item.c.tin_dust"        : "Tin Dust",
+  "item.c.tin_gear"        : "Tin Gear",
+  "item.c.tin_plate"       : "Tin Plate",
+  "block.c.tin_ore"        : "Tin Ore",
+  "block.c.tin_block"      : "Tin Block",
+
+  "item.c.aluminum_ingot"  : "Aluminum Ingot",
+  "item.c.aluminum_nugget" : "Aluminum Nugget",
+  "item.c.aluminum_dust"   : "Aluminum Dust",
+  "item.c.aluminum_gear"   : "Aluminum Gear",
+  "item.c.aluminum_plate"  : "Aluminum Plate",
+  "block.c.aluminum_ore"   : "Aluminum Ore",
+  "block.c.aluminum_block" : "Aluminum Block",
+
+  "item.c.tungsten_ingot"  : "Tungsten Ingot",
+  "item.c.tungsten_nugget" : "Tungsten Nugget",
+  "item.c.tungsten_dust"   : "Tungsten Dust",
+  "item.c.tungsten_gear"   : "Tungsten Gear",
+  "item.c.tungsten_plate"  : "Tungsten Plate",
+  "block.c.tungsten_ore"   : "Tungsten Ore",
+  "block.c.tungsten_block" : "Tungsten Block",
+
   "item.c.zinc_ingot"      : "Zinc Ingot",
   "item.c.zinc_nugget"     : "Zinc Nugget",
   "item.c.zinc_dust"       : "Zinc Dust",
@@ -46,7 +70,7 @@
   "item.c.brass_gear"      : "Brass Gear",
   "item.c.brass_plate"     : "Brass Plate",
   "block.c.brass_block"    : "Brass Block",
-  
+
   "item.c.coal_dust"       : "Coal Dust",
   "item.c.coal_coke"       : "Coal Coke",
   "block.c.coal_coke_block": "Coal Coke Block",
@@ -55,7 +79,19 @@
 
   "item.c.uranium_dust"    : "Uranium Dust",
   "block.c.uranium_ore"    : "Uranium Ore",
+  "item.c.uranium_ingot"   : "Uranium Ingot",
+  "item.c.uranium_nugget"  : "Uranium Nugget",
+  "item.c.uranium_block"   : "Uranium Block",
+
+
+  "item.c.plutonium_ingot" : "Plutonium Ingot",
+  "item.c.plutonium_nugget": "Plutonium Nugget",
   "item.c.plutonium_dust"  : "Plutonium Dust",
-  "item.c.thorium_dust"    : "Thorium Dust"
+  "item.c.plutonium_block" : "Plutonium Block",
+
+  "item.c.thorium_ingot"   : "Thorium Ingot",
+  "item.c.thorium_nugget"  : "Thorium Nugget",
+  "item.c.thorium_dust"    : "Thorium Dust",
+  "item.c.thorium_block"   : "Thorium Block"
 
 }
