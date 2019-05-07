@@ -23,11 +23,19 @@ public class CottonResourcesConfig {
 
     {
         enabledResources.add("*");
-        ores.putAll(OreGenerationSettings.getDefaultSettingsFor("silver", "lead", "zinc"));
-        ores.put("copper", OreGenerationSettings.getDefault().
-                withOreBlock("c:copper_ore").withMaxHeight(96).
-                withClusterCount(256).
-                withClusterSize(16));
+        //ores.putAll(OreGenerationSettings.getDefaultSettingsFor("silver", "lead", "zinc"));
+        ores.put("copper", OreGenerationSettings.getDefault().withOreBlock("c:copper_ore").
+                withMaxHeight(96).withMinHeight(32).
+                withClusterCount(20).withClusterSize(10));
+        ores.put("silver", OreGenerationSettings.getDefault().withOreBlock("c:silver_ore").
+                withMaxHeight(48).withMinHeight(6).
+                withClusterCount(4).withClusterSize(8));
+        ores.put("lead", OreGenerationSettings.getDefault().withOreBlock("c:lead_ore").
+                withMaxHeight(48).withMinHeight(6).
+                withClusterCount(4).withClusterSize(8));
+        ores.put("zinc", OreGenerationSettings.getDefault().withOreBlock("c:zinc_ore").
+                withMaxHeight(72).withMinHeight(6).
+                withClusterCount(8).withClusterSize(8));
     }
 
 
