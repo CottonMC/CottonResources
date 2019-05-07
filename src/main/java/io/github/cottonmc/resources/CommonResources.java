@@ -23,10 +23,6 @@ public class CommonResources {
         builtinMetal("silver", BlockSuppliers.IRON_TIER_ORE,  MACHINE_AFFIXES);
         builtinMetal("lead",   BlockSuppliers.IRON_TIER_ORE,  MACHINE_AFFIXES);
         builtinMetal("zinc",   BlockSuppliers.STONE_TIER_ORE);
-        builtinMetal("tin", BlockSuppliers.STONE_TIER_ORE, MACHINE_AFFIXES);
-        builtinMetal("nickel", BlockSuppliers.IRON_TIER_ORE, MACHINE_AFFIXES);
-        builtinMetal("aluminum", BlockSuppliers.IRON_TIER_ORE, MACHINE_AFFIXES);
-        builtinMetal("tungsten", BlockSuppliers.IRON_TIER_ORE, MACHINE_AFFIXES);
 
         builtinMetal("steel",    null, MACHINE_AFFIXES);
         builtinMetal("brass",    null, MACHINE_AFFIXES);
@@ -40,9 +36,9 @@ public class CommonResources {
         builtinItem("gold", "gear", "plate", "dust");
 
         //These might get rods or molten capsules. They'd just need to be added to the end.
-        builtinMetal("uranium", BlockSuppliers.DIAMOND_TIER_ORE, RADIOACTIVE_AFFIXES);
-        builtinMetal("plutonium", null, RADIOACTIVE_AFFIXES);
-        builtinMetal("thorium",   null, RADIOACTIVE_AFFIXES);
+        builtinItem("uranium",   RADIOACTIVE_AFFIXES);
+        builtinItem("plutonium", RADIOACTIVE_AFFIXES);
+        builtinItem("thorium",   RADIOACTIVE_AFFIXES);
 
         boolean enableAllResources = CottonResources.config.enabledResources.contains("*");
 

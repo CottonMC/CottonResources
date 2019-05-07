@@ -35,7 +35,6 @@ public class CottonResourcesConfig {
         ores.put("zinc", OreGenerationSettings.getDefault().withOreBlock("c:zinc_ore").
                 withMaxHeight(72).withMinHeight(6).
                 withClusterCount(8).withClusterSize(8));
-        OreBlock
     }
 
 
