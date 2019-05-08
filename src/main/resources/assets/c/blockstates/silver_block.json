@@ -1,5 +1,5 @@
 {
-  "variants": {
-    "": { "model": "c:block/silver_block" }
-  }
+    "variants": {
+        "": { "model": "c:block/silver_block" }
+    }
 }

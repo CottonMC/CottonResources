@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "tag": "c:topaz_block"
+    }
+  ],
+  "result": {
+    "item": "c:topaz",
+    "count": 9
+  }
+}

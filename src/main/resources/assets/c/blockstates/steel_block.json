@@ -1,5 +1,5 @@
 {
-  "variants": {
-    "": { "model": "c:block/steel_block" }
-  }
+    "variants": {
+        "": { "model": "c:block/steel_block" }
+    }
 }

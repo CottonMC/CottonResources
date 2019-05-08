@@ -1,7 +1,4 @@
 {
-  "parent": "c:block/ore",
+  "parent": "block/cube_all",
   "textures": {
     "stone": "minecraft:block/stone",
-    "ore": "c:block/lead_ore"
-  }
-}

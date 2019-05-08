@@ -1,7 +1,6 @@
 {
-  "parent": "item/generated",
-  "textures": {
-    "layer0": "c:item/uranium_nugget"
-  }
+    "parent": "item/generated",
+    "textures": {
+        "layer0": "c:item/uranium_nugget"
+    }
 }
-

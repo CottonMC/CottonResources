@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:blasting",
+  "ingredient": [
+    {
+      "tag": "c:tin_ore"
+    },
+    {
+      "tag": "c:tin_dust"
+    }
+  ],
+  "result": "c:tin_ingot",
+  "experience": 1.0,
+  "cookingtime": 100
+}

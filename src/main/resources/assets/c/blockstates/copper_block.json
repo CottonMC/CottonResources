@@ -1,5 +1,5 @@
 {
-  "variants": {
-    "": { "model": "c:block/copper_block" }
-  }
+    "variants": {
+        "": { "model": "c:block/copper_block" }
+    }
 }

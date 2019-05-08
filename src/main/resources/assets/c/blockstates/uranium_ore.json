@@ -1,5 +1,5 @@
 {
-  "variants": {
-    "": { "model": "c:block/uranium_ore" }
-  }
+    "variants": {
+        "": { "model": "c:block/uranium_ore" }
+    }
 }

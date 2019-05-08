@@ -1,4 +1,3 @@
 {
-  "parent": "c:block/copper_block"
+    "parent": "c:block/copper_block"
 }
-

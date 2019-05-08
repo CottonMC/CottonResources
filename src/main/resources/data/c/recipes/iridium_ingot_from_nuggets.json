@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "iridium_ingot",
+  "pattern": [
+    "###",
+    "###",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "tag": "c:iridium_nugget"
+    }
+  },
+  "result": {
+    "item": "c:iridium_ingot"
+  }
+}
