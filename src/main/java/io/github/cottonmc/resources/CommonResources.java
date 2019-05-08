@@ -23,6 +23,12 @@ public class CommonResources {
         builtinMetal("silver", BlockSuppliers.IRON_TIER_ORE,  MACHINE_AFFIXES);
         builtinMetal("lead",   BlockSuppliers.IRON_TIER_ORE,  MACHINE_AFFIXES);
         builtinMetal("zinc",   BlockSuppliers.STONE_TIER_ORE);
+        builtinMetal("aluminum", BlockSuppliers.IRON_TIER_ORE);
+        builtinMetal("cobalt", BlockSuppliers.IRON_TIER_ORE);
+        builtinMetal("tin", BlockSuppliers.STONE_TIER_ORE);
+        builtinMetal("tungsten", BlockSuppliers.IRON_TIER_ORE);
+
+        builtinMetal("uranium",   BlockSuppliers.IRON_TIER_ORE);
 
         builtinMetal("steel",    null, MACHINE_AFFIXES);
         builtinMetal("brass",    null, MACHINE_AFFIXES);
@@ -36,7 +42,6 @@ public class CommonResources {
         builtinItem("gold", "gear", "plate", "dust");
 
         //These might get rods or molten capsules. They'd just need to be added to the end.
-        builtinItem("uranium",   RADIOACTIVE_AFFIXES);
         builtinItem("plutonium", RADIOACTIVE_AFFIXES);
         builtinItem("thorium",   RADIOACTIVE_AFFIXES);
 
