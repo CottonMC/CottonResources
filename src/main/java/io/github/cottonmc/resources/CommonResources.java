@@ -31,6 +31,11 @@ public class CommonResources {
         builtinMetal("tin", BlockSuppliers.STONE_TIER_ORE);
         builtinMetal("tungsten", BlockSuppliers.IRON_TIER_ORE);
 
+        builtinMetal("platinum", BlockSuppliers.IRON_TIER_ORE);
+        builtinMetal("palladium", BlockSuppliers.IRON_TIER_ORE);
+        builtinMetal("osmium", BlockSuppliers.IRON_TIER_ORE);
+        builtinMetal("iridium", BlockSuppliers.IRON_TIER_ORE);
+
         builtinMetal("uranium",   BlockSuppliers.IRON_TIER_ORE);
 
         builtinMetal("steel",    null, MACHINE_AFFIXES);
