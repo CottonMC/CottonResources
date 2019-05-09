@@ -1,7 +1,0 @@
-{
-  "parent": "c:block/ore",
-  "textures": {
-    "stone": "minecraft:block/stone",
-    "ore": "c:block/plutonium_ore"
-  }
-}

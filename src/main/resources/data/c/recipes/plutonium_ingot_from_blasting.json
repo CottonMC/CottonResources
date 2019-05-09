@@ -1,13 +1,8 @@
 {
   "type": "minecraft:blasting",
-  "ingredient": [
-    {
-      "tag": "c:plutonium_ore"
-    },
-    {
+  "ingredient": {
       "tag": "c:plutonium_dust"
-    }
-  ],
+    },
   "result": "c:plutonium_ingot",
   "experience": 1.0,
   "cookingtime": 100
