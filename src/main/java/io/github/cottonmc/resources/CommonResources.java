@@ -15,7 +15,7 @@ public class CommonResources {
     private static String[] MACHINE_AFFIXES = new String[] {"gear", "plate"};
     private static String[] RADIOACTIVE_AFFIXES = new String[] {"dust"};
 
-    public static final Map<String, ResourceType> BUILTINS = new HashMap<>();
+    private static final Map<String, ResourceType> BUILTINS = new HashMap<>();
 
     public static void initialize() {
         builtinMetal("copper", BlockSuppliers.STONE_TIER_ORE, MACHINE_AFFIXES);
@@ -54,7 +54,10 @@ public class CommonResources {
                     // || IsResourceRequestedBymodJson?
                 resource.registerAll();
             }
-            else nullifyRecipes(resource);
+            else {
+                resource.registerAll();
+                nullifyRecipes(resource);
+            }
         }
         OreGeneration.registerOres();
     }
