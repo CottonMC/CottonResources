@@ -17,10 +17,6 @@ public class CommonResources {
 
     public static final Map<String, ResourceType> BUILTINS = new HashMap<>();
 
-    /** more resources which mods requested to add. These resources are also in builtins,
-     *  they are here so they can be enabled in the registration without being present in the JSON config. */
-    public static final Map<String, ResourceType> ENABLED_ADDITIONAL_RESOURCES = new HashMap<>();
-
     public static void initialize() {
         builtinMetal("copper", BlockSuppliers.STONE_TIER_ORE, MACHINE_AFFIXES);
         builtinMetal("silver", BlockSuppliers.IRON_TIER_ORE,  MACHINE_AFFIXES);
@@ -48,18 +44,13 @@ public class CommonResources {
         builtinItem("plutonium", RADIOACTIVE_AFFIXES);
         builtinItem("thorium",   RADIOACTIVE_AFFIXES);
 
-        boolean enableAllResources = CottonResources.config.enabledResources.contains("*");
-
         for (ResourceType resource : BUILTINS.values()) {
-            if (enableAllResources ||
-                    CottonResources.config.enabledResources.contains(resource.getBaseResource()) ||
-                    ENABLED_ADDITIONAL_RESOURCES.values().contains(resource)
-            ) {
+            if (CottonResources.config.ores.get(resource.getBaseResource()).enabled) {
+                    // || IsResourceRequestedBymodJson?
                 resource.registerAll();
             }
             else nullifyRecipes(resource);
         }
-
         OreGeneration.registerOres();
     }
 
@@ -82,10 +73,9 @@ public class CommonResources {
     }
 
 
-    /** PUBLIC API METHOD **/
+    /** TODO from json pls */
     public static void requestResource(String name) {
-        ENABLED_ADDITIONAL_RESOURCES.put(name, BUILTINS.get(name));
-        CottonResources.logger.info(name + " requested by another mod!");
+
     }
 
     // nullify recipes for metals not currently enabled
