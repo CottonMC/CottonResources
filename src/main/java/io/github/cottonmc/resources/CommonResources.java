@@ -48,6 +48,9 @@ public class CommonResources {
         builtinRadioactive("plutonium", null);
         builtinRadioactive("thorium", null);
 
+        builtinItem("diamond", "dust");
+        //builtinItem("emerald", "dust");
+
         builtinGem("ruby", BlockSuppliers.IRON_TIER_ORE);
         builtinGem("topaz", BlockSuppliers.IRON_TIER_ORE);
 
