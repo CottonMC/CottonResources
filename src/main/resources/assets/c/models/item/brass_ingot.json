@@ -1,7 +1,6 @@
 {
-  "parent": "item/generated",
-  "textures": {
-    "layer0": "c:item/brass_ingot"
-  }
+    "parent": "item/generated",
+    "textures": {
+        "layer0": "c:item/brass_ingot"
+    }
 }
-

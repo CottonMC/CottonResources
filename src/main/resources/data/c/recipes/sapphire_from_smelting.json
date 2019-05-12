@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smelting",
+  "ingredient": {
+    "tag": "c:sapphire_ore"
+  },
+  "result": "c:sapphire",
+  "experience": 1.0,
+  "cookingtime": 200
+}

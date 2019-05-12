@@ -1,0 +1,7 @@
+{
+  "parent": "c:block/ore",
+  "textures": {
+    "stone": "minecraft:block/stone",
+    "ore": "c:block/osmium_ore"
+  }
+}

@@ -1,7 +1,6 @@
 {
-  "parent": "item/generated",
-  "textures": {
-    "layer0": "c:item/copper_nugget"
-  }
+    "parent": "item/generated",
+    "textures": {
+        "layer0": "c:item/copper_nugget"
+    }
 }
-

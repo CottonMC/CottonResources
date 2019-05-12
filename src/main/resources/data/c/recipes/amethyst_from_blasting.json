@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:blasting",
+  "ingredient": {
+    "tag": "c:amethyst_ore"
+  },
+  "result": "c:amethyst",
+  "experience": 1.0,
+  "cookingtime": 100
+}

@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "tungsten_ingot",
+  "pattern": [
+    "###",
+    "###",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "tag": "c:tungsten_nugget"
+    }
+  },
+  "result": {
+    "item": "c:tungsten_ingot"
+  }
+}

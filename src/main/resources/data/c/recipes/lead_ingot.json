@@ -1,8 +1,13 @@
 {
   "type": "minecraft:smelting",
-  "ingredient": {
-    "tag": "c:lead_ore"
-  },
+  "ingredient": [
+    {
+      "tag": "c:lead_ore"
+    },
+    {
+      "tag": "c:lead_dust"
+    }
+  ],
   "result": "c:lead_ingot",
   "experience": 0.7,
   "cookingtime": 200

@@ -1,8 +1,13 @@
 {
   "type": "minecraft:blasting",
-  "ingredient": {
-    "tag": "c:copper_ore"
-  },
+  "ingredient": [
+    {
+      "tag": "c:copper_ore"
+    },
+    {
+      "tag": "c:copper_dust"
+    }
+  ],
   "result": "c:copper_ingot",
   "experience": 0.7,
   "cookingtime": 100

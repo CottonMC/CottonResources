@@ -1,5 +1,5 @@
 {
-  "variants": {
-    "": { "model": "c:block/brass_block" }
-  }
+    "variants": {
+        "": { "model": "c:block/brass_block" }
+    }
 }
