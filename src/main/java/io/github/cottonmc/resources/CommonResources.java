@@ -5,6 +5,8 @@ import io.github.cottonmc.cotton.Cotton;
 import io.github.cottonmc.cotton.datapack.recipe.RecipeUtil;
 import io.github.cottonmc.resources.config.OreGenerationSettings;
 import io.github.cottonmc.resources.oregen.OreGeneration;
+import io.github.cottonmc.resources.oregen.OreVoting;
+import net.fabricmc.fabric.api.resource.ResourceManagerHelper;
 import net.minecraft.block.Block;
 import net.minecraft.util.Identifier;
 
@@ -71,6 +73,8 @@ public class CommonResources {
             }
         }
         OreGeneration.registerOres();
+        
+        ResourceManagerHelper.get(net.minecraft.resource.ResourceType.SERVER_DATA).registerReloadListener(OreVoting.instance());
     }
 
     private static void builtinMetal(String id, Supplier<Block> oreSupplier, String... extraAffixes) {

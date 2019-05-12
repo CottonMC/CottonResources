@@ -2,6 +2,8 @@ package io.github.cottonmc.resources.oregen;
 
 import io.github.cottonmc.resources.CottonResources;
 import io.github.cottonmc.resources.config.OreGenerationSettings;
+import net.minecraft.block.Block;
+import net.minecraft.block.Blocks;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.biome.Biome;
@@ -24,13 +26,16 @@ public class OreGeneration {
                 if (ore.getValue().enabled) {
                     registered.add(ore.getKey());
                     OreGenerationSettings settings = ore.getValue();
-                    if (!Registry.BLOCK.containsId(new Identifier(settings.ore_block)) || !settings.enabled) continue;
+                    
+                    Block oreBlock = Registry.BLOCK.get(new Identifier(settings.ore_block));
+                    if (oreBlock==Blocks.AIR || !settings.enabled) continue;
+                    
                     biome.addFeature(GenerationStep.Feature.UNDERGROUND_ORES,
                             Biome.configureFeature(
                                     CottonOreFeature.COTTON_ORE,
                                     new CottonOreFeatureConfig(
                                             OreFeatureConfig.Target.NATURAL_STONE,
-                                            Registry.BLOCK.get(new Identifier(settings.ore_block)).getDefaultState(),
+                                            oreBlock.getDefaultState(),
                                             settings.cluster_size,
                                             settings.dimensions_blacklist),
                                     Decorator.COUNT_RANGE,
