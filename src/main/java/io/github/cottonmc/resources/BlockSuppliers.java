@@ -13,11 +13,17 @@ public class BlockSuppliers {
             .hardness(3.0f)
             .resistance(3.0f)
             .build());
-    /** A resilient metal ore provider, similar to the properties of redstone ore. */
+    /** A resilient metal ore supplier, similar to the properties of redstone ore. */
     public static final Supplier<Block> IRON_TIER_ORE = () -> new LayeredOreBlock(FabricBlockSettings.of(Material.STONE)
             .hardness(3.0f)
             .resistance(3.0f)
             .breakByTool(FabricItemTags.PICKAXES, 2)
+            .build());
+    /** An extremely resilient metal ore supplier, only harvestable by diamond or better pickaxes. */
+    public static final Supplier<Block> DIAMOND_TIER_ORE = () -> new LayeredOreBlock(FabricBlockSettings.of(Material.STONE)
+            .hardness(3.0f)
+            .resistance(3.0f)
+            .breakByTool(FabricItemTags.PICKAXES, 3)
             .build());
     /** A generic metal block supplier, based on the properties from iron_block */
     public static final Supplier<Block> METAL_BLOCK = () -> new Block(FabricBlockSettings.of(Material.METAL)

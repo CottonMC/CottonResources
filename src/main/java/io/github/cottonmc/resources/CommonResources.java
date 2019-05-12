@@ -44,20 +44,18 @@ public class CommonResources {
         builtinItem("gold", "gear", "plate", "dust");
 
         //These might get rods or molten capsules. They'd just need to be added to the end.
-        builtinRadioactive("uranium", BlockSuppliers.IRON_TIER_ORE);
+        builtinRadioactive("uranium", BlockSuppliers.DIAMOND_TIER_ORE);
         builtinRadioactive("plutonium", null);
         builtinRadioactive("thorium", null);
 
-        builtinItem("diamond", "dust");
-        //builtinItem("emerald", "dust");
+        builtinItem("diamond", "gear", "dust");
+        builtinItem("emerald", "gear", "dust");
 
         builtinGem("ruby", BlockSuppliers.IRON_TIER_ORE);
         builtinGem("topaz", BlockSuppliers.IRON_TIER_ORE);
-
-        //no textures yet
-        //builtinGem("amethyst", BlockSuppliers.IRON_TIER_ORE);
-        //builtinGem("peridot", BlockSuppliers.IRON_TIER_ORE);
-        //builtinGem("sapphire", BlockSuppliers.IRON_TIER_ORE);
+        builtinGem("amethyst", BlockSuppliers.IRON_TIER_ORE);
+        builtinGem("peridot", BlockSuppliers.IRON_TIER_ORE);
+        builtinGem("sapphire", BlockSuppliers.IRON_TIER_ORE);
 
         for (ResourceType resource : BUILTINS.values()) {
             OreGenerationSettings oreGenerationSettings = CottonResources.config.ores.get(resource.getBaseResource());
@@ -77,7 +75,9 @@ public class CommonResources {
 
     private static void builtinMetal(String id, Supplier<Block> oreSupplier, String... extraAffixes) {
         if (Cotton.isDevEnv) CottonResources.logger.info("registering " + id);
-        MetalResourceType result = new MetalResourceType(id).withOreSupplier(oreSupplier);
+        MetalResourceType result = new MetalResourceType(id);
+        if (oreSupplier!=null) result.withOreSupplier(oreSupplier);
+        
         if (extraAffixes.length > 0) {
             result.withItemAffixes(extraAffixes);
         }
@@ -97,7 +97,9 @@ public class CommonResources {
 
     private static void builtinRadioactive(String id, Supplier<Block> oreSupplier, String... extraAffixes) {
         if (Cotton.isDevEnv) CottonResources.logger.info("registering " + id);
-        RadioactiveResourceType result = new RadioactiveResourceType(id).withOreSupplier(oreSupplier);
+        RadioactiveResourceType result = new RadioactiveResourceType(id);
+        if (oreSupplier!=null) result.withOreSupplier(oreSupplier);
+        
         if (extraAffixes.length > 0) {
             result.withItemAffixes(extraAffixes);
         }
