@@ -11,7 +11,7 @@ buildscript {
 		}
 	}
 	dependencies {
-		classpath "net.fabricmc:fabric-loom:0.2.1-SNAPSHOT" //Don't backdate before 0.2.0; features in this version prevent messy workarounds!
+		classpath "net.fabricmc:fabric-loom:0.2.2-SNAPSHOT" //Don't backdate before 0.2.0; features in this version prevent messy workarounds!
 		classpath "com.github.jengelman.gradle.plugins:shadow:5.0.0"
 	}
 }
@@ -47,8 +47,8 @@ dependencies {
 	mappings "net.fabricmc:yarn:"+project.ext.mappings
 	modCompile "net.fabricmc:fabric-loader:"+project.ext.loader
 	if (project.ext.fabricMod!=null) {
-		modCompile "net.fabricmc:fabric:"+project.ext.fabricMod
-		include "net.fabricmc:fabric:"+project.ext.fabricMod
+		modCompile "net.fabricmc.fabric-api:fabric-api:${project.ext.fabricMod}"
+		include "net.fabricmc.fabric-api:fabric-api:${project.ext.fabricMod}"
 	}
 	if (project.ext.silkMod!=null) {
 		modCompile "io.github.prospector.silk:SilkAPI:"+project.ext.silkMod

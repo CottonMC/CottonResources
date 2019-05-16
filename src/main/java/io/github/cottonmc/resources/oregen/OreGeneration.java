@@ -26,10 +26,10 @@ public class OreGeneration {
                 if (ore.getValue().enabled) {
                     registered.add(ore.getKey());
                     OreGenerationSettings settings = ore.getValue();
-                    
+
                     Block oreBlock = Registry.BLOCK.get(new Identifier(settings.ore_block));
                     if (oreBlock==Blocks.AIR || !settings.enabled) continue;
-                    
+
                     biome.addFeature(GenerationStep.Feature.UNDERGROUND_ORES,
                             Biome.configureFeature(
                                     CottonOreFeature.COTTON_ORE,
