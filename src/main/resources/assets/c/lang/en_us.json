@@ -34,6 +34,7 @@
   "item.c.steel_dust"      : "Steel Dust",
   "item.c.steel_gear"      : "Steel Gear",
   "block.c.steel_block"    : "Steel Block",
+  "item.c.steel_plate"     : "Steel Plate",
 
   "item.c.electrum_ingot"  : "Electrum Ingot",
   "item.c.electrum_nugget" : "Electrum Nugget",
@@ -56,6 +57,80 @@
   "item.c.uranium_dust"    : "Uranium Dust",
   "block.c.uranium_ore"    : "Uranium Ore",
   "item.c.plutonium_dust"  : "Plutonium Dust",
-  "item.c.thorium_dust"    : "Thorium Dust"
+  "item.c.thorium_dust"    : "Thorium Dust",
+
+  "item.c.aluminum_ingot": "Aluminum Ingot",
+  "item.c.aluminum_nugget": "Aluminum Nugget",
+  "item.c.aluminum_dust": "Aluminum Dust",
+  "block.c.aluminum_ore": "Aluminum Ore",
+  "block.c.aluminum_block": "Aluminum Block",
+
+  "item.c.cobalt_ingot": "Cobalt Ingot",
+  "item.c.cobalt_nugget": "Cobalt Nugget",
+  "item.c.cobalt_dust": "Cobalt Dust",
+  "block.c.cobalt_ore": "Cobalt Ore",
+  "block.c.cobalt_block": "Cobalt Block",
+
+  "item.c.iridium_ingot": "Iridium Ingot",
+  "item.c.iridium_nugget": "Iridium Nugget",
+  "item.c.iridium_dust": "Iridium Dust",
+  "block.c.iridium_ore": "Iridium Ore",
+  "block.c.iridium_block": "Iridium Block",
+
+  "item.c.osmium_ingot": "Osmium Ingot",
+  "item.c.osmium_nugget": "Osmium Nugget",
+  "item.c.osmium_dust": "Osmium Dust",
+  "block.c.osmium_ore": "Osmium Ore",
+  "block.c.osmium_block": "Osmium Block",
+
+  "item.c.palladium_ingot": "Palladium Ingot",
+  "item.c.palladium_nugget": "Palladium Nugget",
+  "item.c.palladium_dust": "Palladium Dust",
+  "block.c.palladium_ore": "Palladium Ore",
+  "block.c.palladium_block": "Palladium Block",
+
+  "item.c.peridot": "Peridot",
+  "item.c.peridot_dust": "Peridot Dust",
+  "block.c.peridot_ore": "Peridot Ore",
+  "block.c.peridot_block": "Peridot Block",
+
+  "item.c.platinum_ingot": "Platinum Ingot",
+  "item.c.platinum_nugget": "Platinum Nugget",
+  "item.c.platinum_dust": "Platinum Dust",
+  "block.c.platinum_ore": "Platinum Ore",
+  "block.c.platinum_block": "Platinum Block",
+
+  "item.c.ruby": "Ruby",
+  "item.c.ruby_dust": "Ruby Dust",
+  "block.c.ruby_ore": "Ruby Ore",
+  "block.c.ruby_block": "Ruby Block",
+
+  "item.c.sapphire": "Sapphire",
+  "item.c.sapphire_dust": "Sapphire Dust",
+  "block.c.sapphire_ore": "Sapphire Ore",
+  "block.c.sapphire_block": "Sapphire Block",
+  
+  "item.c.tin_ingot": "Tin Ingot",
+  "item.c.tin_nugget": "Tin Nugget",
+  "item.c.tin_dust": "Tin Dust",
+  "block.c.tin_ore": "Tin Ore",
+  "block.c.tin_block": "Tin Block",
+
+  "item.c.titanium_ingot": "Titanium Ingot",
+  "item.c.titanium_nugget": "Titanium Nugget",
+  "item.c.titanium_dust": "Titanium Dust",
+  "block.c.titanium_ore": "Titanium Ore",
+  "block.c.titanium_block": "Titanium Block",
+
+  "item.c.topaz": "Topaz",
+  "item.c.topaz_dust": "Topaz Dust",
+  "block.c.topaz_ore": "Topaz Ore",
+  "block.c.topaz_block": "Topaz Block",
+
+  "item.c.tungsten_ingot": "Tungsten Ingot",
+  "item.c.tungsten_nugget": "Tungsten Nugget",
+  "item.c.tungsten_dust": "Tungsten Dust",
+  "block.c.tungsten_ore": "Tungsten Ore",
+  "block.c.tungsten_block": "Tungsten Block"
 
 }

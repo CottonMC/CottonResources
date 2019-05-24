@@ -1,6 +1,7 @@
 {
   "parent": "block/cube_all",
   "textures": {
+    "particle": "c:block/platinum_block",
     "all": "c:block/platinum_block"
   }
 }

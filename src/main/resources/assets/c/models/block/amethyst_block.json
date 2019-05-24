@@ -1,6 +1,7 @@
 {
   "parent": "block/cube_all",
   "textures": {
+    "particle": "c:block/amethyst_block",
     "all": "c:block/amethyst_block"
   }
 }

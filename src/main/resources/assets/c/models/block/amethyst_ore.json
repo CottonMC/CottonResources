@@ -1,6 +1,7 @@
 {
   "parent": "c:block/ore",
   "textures": {
+    "particle": "c:block/amethyst_ore",
     "stone": "minecraft:block/stone",
     "ore": "c:block/amethyst_ore"
   }
