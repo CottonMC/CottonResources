@@ -48,7 +48,7 @@ dependencies {
 	modCompile "net.fabricmc:fabric-loader:"+project.ext.loader
 	if (project.ext.fabricMod!=null) {
 		modCompile "net.fabricmc.fabric-api:fabric-api:${project.ext.fabricMod}"
-		include "net.fabricmc.fabric-api:fabric-api:${project.ext.fabricMod}"
+		//include "net.fabricmc.fabric-api:fabric-api:${project.ext.fabricMod}"
 	}
 	if (project.ext.silkMod!=null) {
 		modCompile "io.github.prospector.silk:SilkAPI:"+project.ext.silkMod
