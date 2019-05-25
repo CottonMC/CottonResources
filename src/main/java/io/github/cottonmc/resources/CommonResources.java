@@ -23,20 +23,21 @@ public class CommonResources {
         builtinMetal("copper", BlockSuppliers.STONE_TIER_ORE, MACHINE_AFFIXES);
         builtinMetal("silver", BlockSuppliers.IRON_TIER_ORE, MACHINE_AFFIXES);
         builtinMetal("lead", BlockSuppliers.IRON_TIER_ORE, MACHINE_AFFIXES);
-        builtinMetal("zinc", BlockSuppliers.STONE_TIER_ORE);
-        builtinMetal("aluminum", BlockSuppliers.IRON_TIER_ORE);
-        builtinMetal("cobalt", BlockSuppliers.IRON_TIER_ORE);
-        builtinMetal("tin", BlockSuppliers.STONE_TIER_ORE);
-        builtinMetal("tungsten", BlockSuppliers.IRON_TIER_ORE);
+        builtinMetal("zinc", BlockSuppliers.STONE_TIER_ORE, MACHINE_AFFIXES);
+        builtinMetal("aluminum", BlockSuppliers.IRON_TIER_ORE, MACHINE_AFFIXES);
+        builtinMetal("cobalt", BlockSuppliers.IRON_TIER_ORE, MACHINE_AFFIXES);
+        builtinMetal("tin", BlockSuppliers.STONE_TIER_ORE, MACHINE_AFFIXES);
+        builtinMetal("titanium", BlockSuppliers.IRON_TIER_ORE, MACHINE_AFFIXES);
+        builtinMetal("tungsten", BlockSuppliers.IRON_TIER_ORE, MACHINE_AFFIXES);
 
-        builtinMetal("platinum", BlockSuppliers.IRON_TIER_ORE);
-        builtinMetal("palladium", BlockSuppliers.IRON_TIER_ORE);
-        builtinMetal("osmium", BlockSuppliers.IRON_TIER_ORE);
-        builtinMetal("iridium", BlockSuppliers.IRON_TIER_ORE);
+        builtinMetal("platinum", BlockSuppliers.IRON_TIER_ORE, MACHINE_AFFIXES);
+        builtinMetal("palladium", BlockSuppliers.IRON_TIER_ORE, MACHINE_AFFIXES);
+        builtinMetal("osmium", BlockSuppliers.IRON_TIER_ORE, MACHINE_AFFIXES);
+        builtinMetal("iridium", BlockSuppliers.IRON_TIER_ORE, MACHINE_AFFIXES);
 
         builtinMetal("steel", null, MACHINE_AFFIXES);
         builtinMetal("brass", null, MACHINE_AFFIXES);
-        builtinMetal("electrum", null); //no ore, no gears/plates
+        builtinMetal("electrum", null, MACHINE_AFFIXES); //no ore, no gears/plates
 
         builtinItem("coal", "dust");
         BUILTINS.put("coal_coke", new GenericResourceType("coal_coke").withBlockAffix("block", BlockSuppliers.COAL_BLOCK).withItemAffixes(""));
@@ -46,18 +47,18 @@ public class CommonResources {
         builtinItem("gold", "gear", "plate", "dust");
 
         //These might get rods or molten capsules. They'd just need to be added to the end.
-        builtinRadioactive("uranium", BlockSuppliers.DIAMOND_TIER_ORE);
-        builtinRadioactive("plutonium", null);
-        builtinRadioactive("thorium", null);
+        builtinRadioactive("uranium", BlockSuppliers.DIAMOND_TIER_ORE, "gear", "plate", "ingot", "nugget");
+        builtinRadioactive("plutonium", null, "gear", "plate", "ingot", "nugget");
+        builtinRadioactive("thorium", null, "gear", "plate", "ingot", "nugget");
 
-        builtinItem("diamond", "gear", "dust");
-        builtinItem("emerald", "gear", "dust");
+        builtinItem("diamond", "gear", "plate", "dust");
+        builtinItem("emerald", "gear", "plate", "dust");
 
-        builtinGem("ruby", BlockSuppliers.IRON_TIER_ORE);
-        builtinGem("topaz", BlockSuppliers.IRON_TIER_ORE);
-        builtinGem("amethyst", BlockSuppliers.IRON_TIER_ORE);
-        builtinGem("peridot", BlockSuppliers.IRON_TIER_ORE);
-        builtinGem("sapphire", BlockSuppliers.IRON_TIER_ORE);
+        builtinGem("ruby", BlockSuppliers.IRON_TIER_ORE, MACHINE_AFFIXES);
+        builtinGem("topaz", BlockSuppliers.IRON_TIER_ORE, MACHINE_AFFIXES);
+        builtinGem("amethyst", BlockSuppliers.IRON_TIER_ORE, MACHINE_AFFIXES);
+        builtinGem("peridot", BlockSuppliers.IRON_TIER_ORE, MACHINE_AFFIXES);
+        builtinGem("sapphire", BlockSuppliers.IRON_TIER_ORE, MACHINE_AFFIXES);
 
         for (ResourceType resource : BUILTINS.values()) {
             OreGenerationSettings oreGenerationSettings = CottonResources.config.ores.get(resource.getBaseResource());
@@ -73,15 +74,15 @@ public class CommonResources {
             }
         }
         OreGeneration.registerOres();
-        
+
         ResourceManagerHelper.get(net.minecraft.resource.ResourceType.SERVER_DATA).registerReloadListener(OreVoting.instance());
     }
 
     private static void builtinMetal(String id, Supplier<Block> oreSupplier, String... extraAffixes) {
         if (Cotton.isDevEnv) CottonResources.logger.info("registering " + id);
         MetalResourceType result = new MetalResourceType(id);
-        if (oreSupplier!=null) result.withOreSupplier(oreSupplier);
-        
+        if (oreSupplier != null) result.withOreSupplier(oreSupplier);
+
         if (extraAffixes.length > 0) {
             result.withItemAffixes(extraAffixes);
         }
@@ -102,8 +103,8 @@ public class CommonResources {
     private static void builtinRadioactive(String id, Supplier<Block> oreSupplier, String... extraAffixes) {
         if (Cotton.isDevEnv) CottonResources.logger.info("registering " + id);
         RadioactiveResourceType result = new RadioactiveResourceType(id);
-        if (oreSupplier!=null) result.withOreSupplier(oreSupplier);
-        
+        if (oreSupplier != null) result.withOreSupplier(oreSupplier);
+
         if (extraAffixes.length > 0) {
             result.withItemAffixes(extraAffixes);
         }

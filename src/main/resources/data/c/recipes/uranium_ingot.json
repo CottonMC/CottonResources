@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:smelting",
+  "ingredient": [
+    {
+      "tag": "c:uranium_ore"
+    },
+    {
+      "tag": "c:uranium_dust"
+    }
+  ],
+  "result": "c:uranium_ingot",
+  "experience": 1.0,
+  "cookingtime": 200
+}

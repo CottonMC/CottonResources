@@ -1,6 +1,6 @@
 {
-  "parent": "item/generated",
-  "textures": {
-    "layer0": "c:item/silver_plate"
-  }
+    "parent": "item/generated",
+    "textures": {
+        "layer0": "c:item/silver_plate"
+    }
 }
