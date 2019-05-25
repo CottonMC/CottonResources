@@ -1,4 +1,20 @@
 {
+
+  "item.c.wood_gear" : "Wooden Gear",
+  "item.c.stone_gear" : "Stone Gear",
+  "item.c.iron_gear" : "Iron Gear",
+  "item.c.gold_gear" : "Golden Gear",
+  "item.c.iron_gear" : "Diamond Gear",
+  "item.c.emerald_gear" : "Emerald Gear",
+
+  "item.c.wood_plate" : "Wood Plate",
+  "item.c.stone_plate" : "Stone Plate",
+  "item.c.iron_plate" : "Iron Plate",
+  "item.c.gold_plate" : "Golden Plate",
+  "item.c.diamond_plate" : "Diamond Plate",
+  "item.c.emerald_plate" : "Emerald Plate",
+
+
   "item.c.copper_ingot"    : "Copper Ingot",
   "item.c.copper_nugget"   : "Copper Nugget",
   "item.c.copper_dust"     : "Copper Dust",
