@@ -1,7 +1,6 @@
 {
-  "parent": "item/generated",
-  "textures": {
-    "layer0": "c:item/coal_coke_dust"
-  }
+    "parent": "item/generated",
+    "textures": {
+        "layer0": "c:item/coal_coke_dust"
+    }
 }
-
