@@ -37,7 +37,7 @@ public class CommonResources {
 
         builtinMetal("steel", null, MACHINE_AFFIXES);
         builtinMetal("brass", null, MACHINE_AFFIXES);
-        builtinMetal("electrum", null, MACHINE_AFFIXES); //no ore, no gears/plates
+        builtinMetal("electrum", null, MACHINE_AFFIXES);
 
         builtinItem("coal", "dust");
         BUILTINS.put("coal_coke", new GenericResourceType("coal_coke").withBlockAffix("block", BlockSuppliers.COAL_BLOCK).withItemAffixes(""));
