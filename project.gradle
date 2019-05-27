@@ -1,19 +1,19 @@
 ext {
-	projectName = "cotton-resources"
-	group = "io.github.cottonmc"
-	version = "1.1.5+1.14.1"
-	snapshot = true
+    projectName = "cotton-resources"
+    group = "io.github.cottonmc"
+    version = "1.1.6+1.14.1"
+    snapshot = true
 
-	minecraft = "1.14.1"
-	mappings = "1.14.1+build.10"
-	loader = "0.4.7+build.147"
-	fabricMod = "0.3.0-pre+build.156"
-	cotton = "0.6.7+1.14.1-SNAPSHOT"
-	silkMod = null
-	jankson = null //If needsShadow is false, jankson will not be included!
+    minecraft = "1.14.1"
+    mappings = "1.14.1+build.10"
+    loader = "0.4.7+build.147"
+    fabricMod = "0.3.0-pre+build.156"
+    cotton = "0.6.7+1.14.1-SNAPSHOT"
+    silkMod = null
+    jankson = null //If needsShadow is false, jankson will not be included!
 
-	needsShadow = false
-} 
+    needsShadow = false
+}
 
 repositories {
 }
