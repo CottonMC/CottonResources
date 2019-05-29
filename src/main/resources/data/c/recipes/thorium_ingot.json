@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:smelting",
+  "ingredient": [
+    {
+      "tag": "c:thorium_dust"
+    }
+  ],
+  "result": "c:thorium_ingot",
+  "experience": 1.0,
+  "cookingtime": 200
+}

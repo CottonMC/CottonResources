@@ -10,6 +10,7 @@ public class RadioactiveResourceType extends GenericResourceType {
     public RadioactiveResourceType(String name) {
         super(name);
         withItemAffixes("dust");
+        withBlockAffix("block", BlockSuppliers.METAL_BLOCK);
     }
 
     public RadioactiveResourceType withOreSupplier(Supplier<Block> oreSupplier) {
