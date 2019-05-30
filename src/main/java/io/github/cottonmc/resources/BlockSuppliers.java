@@ -1,7 +1,7 @@
 package io.github.cottonmc.resources;
 
 import net.fabricmc.fabric.api.block.FabricBlockSettings;
-import net.fabricmc.fabric.api.tag.FabricItemTags;
+import net.fabricmc.fabric.api.tools.FabricToolTags;
 import net.minecraft.block.Block;
 import net.minecraft.block.Material;
 
@@ -17,13 +17,13 @@ public class BlockSuppliers {
     public static final Supplier<Block> IRON_TIER_ORE = () -> new LayeredOreBlock(FabricBlockSettings.of(Material.STONE)
             .hardness(3.0f)
             .resistance(3.0f)
-            .breakByTool(FabricItemTags.PICKAXES, 2)
+            .breakByTool(FabricToolTags.PICKAXES, 2)
             .build());
     /** An extremely resilient metal ore supplier, only harvestable by diamond or better pickaxes. */
     public static final Supplier<Block> DIAMOND_TIER_ORE = () -> new LayeredOreBlock(FabricBlockSettings.of(Material.STONE)
             .hardness(3.0f)
             .resistance(3.0f)
-            .breakByTool(FabricItemTags.PICKAXES, 3)
+            .breakByTool(FabricToolTags.PICKAXES, 3)
             .build());
     /** A generic metal block supplier, based on the properties from iron_block */
     public static final Supplier<Block> METAL_BLOCK = () -> new Block(FabricBlockSettings.of(Material.METAL)
