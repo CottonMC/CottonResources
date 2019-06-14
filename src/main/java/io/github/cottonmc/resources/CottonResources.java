@@ -1,7 +1,6 @@
 package io.github.cottonmc.resources;
 
 import io.github.cottonmc.cotton.config.ConfigManager;
-import io.github.cottonmc.cotton.logging.Ansi;
 import io.github.cottonmc.cotton.logging.ModLogger;
 import io.github.cottonmc.resources.config.CottonResourcesConfig;
 import net.fabricmc.api.ModInitializer;
@@ -15,7 +14,6 @@ public class CottonResources implements ModInitializer {
 
 	@Override
 	public void onInitialize() {
-		logger.setPrefixFormat(Ansi.Yellow);
 		CommonResources.initialize();
 		logger.info("cotton-resources initialized.");
 	}

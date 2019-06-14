@@ -79,7 +79,7 @@ public class CommonResources {
     }
 
     private static void builtinMetal(String id, Supplier<Block> oreSupplier, String... extraAffixes) {
-        if (Cotton.isDevEnv) CottonResources.logger.info("registering " + id);
+        CottonResources.logger.devInfo("registering " + id);
         MetalResourceType result = new MetalResourceType(id);
         if (oreSupplier != null) result.withOreSupplier(oreSupplier);
 
@@ -91,7 +91,7 @@ public class CommonResources {
     }
 
     private static void builtinGem(String id, Supplier<Block> oreSupplier, String... extraAffixes) {
-        if (Cotton.isDevEnv) CottonResources.logger.info("registering " + id);
+        CottonResources.logger.devInfo("registering " + id);
         GemResourceType result = new GemResourceType(id).withOreSupplier(oreSupplier);
         if (extraAffixes.length > 0) {
             result.withItemAffixes(extraAffixes);
@@ -101,7 +101,7 @@ public class CommonResources {
     }
 
     private static void builtinRadioactive(String id, Supplier<Block> oreSupplier, String... extraAffixes) {
-        if (Cotton.isDevEnv) CottonResources.logger.info("registering " + id);
+        CottonResources.logger.devInfo("registering " + id);
         RadioactiveResourceType result = new RadioactiveResourceType(id);
         if (oreSupplier != null) result.withOreSupplier(oreSupplier);
 
