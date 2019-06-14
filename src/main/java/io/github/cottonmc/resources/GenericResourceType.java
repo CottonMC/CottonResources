@@ -103,14 +103,14 @@ public class GenericResourceType implements ResourceType {
     public void registerBlocks() {
         for (String affix : blockAffixes.keySet()) {
             registerBlock(getFullNameForAffix(affix));
-            if (Cotton.isDevEnv) CottonResources.logger.info("Registered block " + getFullNameForAffix(affix) + "!");
+            CottonResources.logger.devInfo("Registered block " + getFullNameForAffix(affix) + "!");
         }
     }
 
     public void registerItems() {
         for (String affix : itemAffixes) {
             registerItem(getFullNameForAffix(affix));
-            if (Cotton.isDevEnv) CottonResources.logger.info("Registered item " + getFullNameForAffix(affix) + "!");
+            CottonResources.logger.devInfo("Registered item " + getFullNameForAffix(affix) + "!");
         }
     }
 }
