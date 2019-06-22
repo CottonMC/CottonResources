@@ -38,7 +38,7 @@ version = ext.version + ((ext.snapshot) ? "-SNAPSHOT" : "")
 repositories {
 	mavenCentral()
 	maven {
-		url "http://server.bbkr.space:8081/artifactory/libs-snapshot"
+		url "http://server.bbkr.space:8081/artifactory/libs-release"
 	}
 }
 
@@ -59,10 +59,10 @@ dependencies {
 		include "io.github.cottonmc:cotton:"+project.ext.cotton
 	}
 	if (project.ext.jankson!=null) {
+		implementation "blue.endless:jankson:"+project.ext.jankson
 		if (needsShadow) {
 			//Jankson will be shadowed
 			shadow "blue.endless:jankson:"+project.ext.jankson
-			implementation "blue.endless:jankson:"+project.ext.jankson
 		} else {
 			System.out.println("#################################################################")
 			System.out.println("# Shadow is disabled. Jankson will be ommitted from this build! #")
