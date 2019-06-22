@@ -1,7 +1,7 @@
 package io.github.cottonmc.resources.oregen;
 
-import io.github.cottonmc.repackage.blue.endless.jankson.Jankson;
-import io.github.cottonmc.repackage.blue.endless.jankson.impl.SyntaxError;
+import blue.endless.jankson.Jankson;
+import blue.endless.jankson.impl.SyntaxError;
 import io.github.cottonmc.resources.CottonResources;
 import net.fabricmc.fabric.api.resource.IdentifiableResourceReloadListener;
 import net.minecraft.resource.ResourceManager;
