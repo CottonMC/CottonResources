@@ -66,7 +66,7 @@ public class GenericResourceType implements ResourceType {
     }
 
     public Item registerItem(String itemName) {
-        return CommonItems.register(itemName, new Item((new Item.Settings()).itemGroup(Cotton.commonGroup)));
+        return CommonItems.register(itemName, new Item((new Item.Settings()).group(Cotton.commonGroup)));
     }
 
     @Override
@@ -89,7 +89,7 @@ public class GenericResourceType implements ResourceType {
         }
         
         Block resultBlock = blockSupplier.get();
-        BlockItem resultItem =  new BlockItem(resultBlock, new Item.Settings().itemGroup(Cotton.commonGroup)); //Shouldn't be necessary, but is?
+        BlockItem resultItem =  new BlockItem(resultBlock, new Item.Settings().group(Cotton.commonGroup)); //Shouldn't be necessary, but is?
         
         return CommonBlocks.register(blockName, resultBlock, resultItem);
     }

@@ -1,174 +1,80 @@
-buildscript {
-	repositories {
-		mavenCentral()
-		jcenter()
-		maven {
-			name = "Fabric"
-			url = "http://maven.modmuss50.me/"
-		}
-		maven {
-			url "https://plugins.gradle.org/m2/"
-		}
-	}
-	dependencies {
-		classpath "net.fabricmc:fabric-loom:0.2.2-SNAPSHOT" //Don't backdate before 0.2.0; features in this version prevent messy workarounds!
-		classpath "com.github.jengelman.gradle.plugins:shadow:5.0.0"
-	}
-}
-
 plugins {
-	id "com.jfrog.artifactory" version "4.9.0"
+	id 'fabric-loom' version '0.2.3-SNAPSHOT'
+	id 'maven-publish'
+	id 'com.jfrog.artifactory' version '4.9.0'
 }
 
-apply plugin: net.fabricmc.loom.LoomGradlePlugin
-apply plugin: 'maven-publish'
+sourceCompatibility = JavaVersion.VERSION_1_8
+targetCompatibility = JavaVersion.VERSION_1_8
 
-apply from: "project.gradle"
-
-if (ext.needsShadow) {
-	apply plugin: "com.github.johnrengelman.shadow"
-}
-sourceCompatibility = 1.8
-targetCompatibility = 1.8
-
-archivesBaseName = ext.projectName
-group = ext.group
-version = ext.version + ((ext.snapshot) ? "-SNAPSHOT" : "")
+archivesBaseName = project.archives_base_name
+version = project.mod_version
+group = project.maven_group
 
 repositories {
-	mavenCentral()
-	maven {
-		url "http://server.bbkr.space:8081/artifactory/libs-release"
-	}
+	maven { url "http://server.bbkr.space:8081/artifactory/libs-release/" }
 }
 
 dependencies {
-	minecraft "com.mojang:minecraft:"+project.ext.minecraft
-	mappings "net.fabricmc:yarn:"+project.ext.mappings
-	modCompile "net.fabricmc:fabric-loader:"+project.ext.loader
-	if (project.ext.fabricMod!=null) {
-		modCompile "net.fabricmc.fabric-api:fabric-api:${project.ext.fabricMod}"
-		//include "net.fabricmc.fabric-api:fabric-api:${project.ext.fabricMod}"
-	}
-	if (project.ext.silkMod!=null) {
-		modCompile "io.github.prospector.silk:SilkAPI:"+project.ext.silkMod
-		include "io.github.prospector.silk:SilkAPI:"+project.ext.silkMod
-	}
-	if (project.ext.cotton!=null) {
-		modCompile "io.github.cottonmc:cotton:"+project.ext.cotton
-		include "io.github.cottonmc:cotton:"+project.ext.cotton
-	}
-	if (project.ext.jankson!=null) {
-		implementation "blue.endless:jankson:"+project.ext.jankson
-		if (needsShadow) {
-			//Jankson will be shadowed
-			shadow "blue.endless:jankson:"+project.ext.jankson
-		} else {
-			System.out.println("#################################################################")
-			System.out.println("# Shadow is disabled. Jankson will be ommitted from this build! #")
-			System.out.println("#################################################################")
-		}
-	}
+	minecraft "com.mojang:minecraft:${project.minecraft_version}"
+	mappings "net.fabricmc:yarn:${project.yarn_mappings}"
+	modCompile "net.fabricmc:fabric-loader:${project.loader_version}"
+	modCompile "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
+	modCompile "io.github.cottonmc:cotton:${project.cotton_version}"
+	modCompile "io.github.cottonmc:Jankson:${project.jankson_version}"
+	include "io.github.cottonmc:cotton:${project.cotton_version}"
+	include "io.github.cottonmc:Jankson:${project.jankson_version}"
 	implementation "com.google.code.findbugs:jsr305:3.0.2"
 }
 
 processResources {
-	inputs.property "version", project.ext.version
+	inputs.property "version", project.version
+
 	from(sourceSets.main.resources.srcDirs) {
 		include "fabric.mod.json"
-		expand version: project.ext.version
+		expand "version": project.version
 	}
+
 	from(sourceSets.main.resources.srcDirs) {
 		exclude "fabric.mod.json"
 	}
 }
 
-task sourcesJar(type: Jar) {
-	baseName = archivesBaseName
+tasks.withType(JavaCompile) {
+	options.encoding = "UTF-8"
+}
+
+task sourcesJar(type: Jar, dependsOn: classes) {
 	classifier = "sources"
 	from sourceSets.main.allSource
-	from sourceSets.main.resources
 }
 
-if (ext.needsShadow) { //If we're using shadow, we need to let remap know it's remapping the shadowJar
-	shadowJar {
-		if (project.ext.jankson!=null) {
-			relocate 'blue.endless.jankson', 'io.github.cottonmc.repackage.blue.endless.jankson'
-		}
-
-		classifier = "shadow"
-		configurations = [project.configurations.shadow]
-	}
-	remapJar {
-		dependsOn shadowJar
-		jar = shadowJar.archivePath
-	}
-}
-
-
-if(rootProject.file('private.gradle').exists()) { //Publishing details
-	apply from: 'private.gradle'
+jar {
+	from "LICENSE"
 }
 
 publishing {
 	publications {
-		maven(MavenPublication) {
-			from components.java
-
-			artifactId = project.ext.projectName
-
-
-			pom.withXml {
-				def pomFile = asNode()
-				def depsNode = pomFile.get("dependencies")
-				pomFile.remove(depsNode)
-
-				def newDeps = pomFile.appendNode("dependencies")
-				configurations.modCompile.getResolvedConfiguration().getFirstLevelModuleDependencies().each {
-					def artifactNode = newDeps.appendNode("dependency")
-					artifactNode.appendNode('groupId', it.moduleGroup)
-					artifactNode.appendNode('artifactId', it.moduleName)
-					artifactNode.appendNode('version', it.moduleVersion)
-				}
+		mavenJava(MavenPublication) {
+			artifact(jar) {
+				builtBy remapJar
 			}
-			def artifactEnding = (project.ext.needsShadow) ? "-shadow" : "";
-			artifacts = [
-					artifact ("${project.buildDir.absolutePath}/libs/${archivesBaseName}-${project.version}" + artifactEnding + ".jar") { //release jar - file location not provided anywhere in loom
-						classifier null
-						builtBy remapJar
-					},
-					artifact ("${project.buildDir.absolutePath}/libs/${archivesBaseName}-${project.version}" + artifactEnding + ".jar") { //release jar - file location not provided anywhere in loom
-						classifier "dev"
-						builtBy remapJar
-					},
-					artifact (tasks.sourcesJar)
-			]
-		}
-	}
-	/* Supply an ext block in private.gradle like so:
-	   ext { mavenSnapshotDir="file:///some_local_directory_path" }
-	 * and then just run "./gradlew publish" to save the artifacts to the specified directory, in a way that they can be
-	 * served by apache or your favorite httpd and behave like a maven repo. Complete with verification hashes.
-	 */
-	repositories {
-		if (rootProject.ext.has("localMavenUrl")) {
-			maven {
-				url = rootProject.ext.localMavenUrl
+			artifact(sourcesJar) {
+				builtBy remapSourcesJar
 			}
 		}
 	}
 }
 
+if (rootProject.file('private.gradle').exists()) {
+	apply(from: 'private.gradle')
+}
+
 artifactory {
 	if (project.hasProperty("artifactoryUsername")) {
-		contextUrl = 'http://server.bbkr.space:8081/artifactory/'
+		contextUrl = 'http://server.bbkr.space:8081/artifactory/libs-release/'
 		publish {
 			repository {
-				if (version.contains("SNAPSHOT")) {
-					repoKey = "libs-snapshot"
-				} else {
-					repoKey = "libs-release"
-				}
 				username = artifactoryUsername
 				password = artifactoryPassword
 			}
@@ -180,6 +86,6 @@ artifactory {
 			}
 		}
 	} else {
-		println "Cannot configure artifactory; please define ext.artifactoryUsername and ext.artifactoryPassword before running artifactoryPublish"
+		println "Missing Artifactory username (and password)"
 	}
 }
