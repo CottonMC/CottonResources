@@ -14,21 +14,21 @@ public abstract class MixinVanillaOregen {
 
     @Inject(method = "addDefaultOres", at = @At(value = "HEAD"))
     private static void mixinDefaultOres(Biome biome_1, CallbackInfo ci) {
-        if (CottonResources.config.override_vanilla_generation) {
+        if (CottonResources.CONFIG.override_vanilla_generation) {
             ci.cancel();
         }
     }
 
     @Inject(method = "addExtraGoldOre", at = @At(value = "HEAD"))
     private static void mixinExtraGoldOre(Biome biome_1, CallbackInfo ci) {
-        if (CottonResources.config.override_vanilla_generation) {
+        if (CottonResources.CONFIG.override_vanilla_generation) {
             ci.cancel();
         }
     }
 
     @Inject(method = "addEmeraldOre", at = @At(value = "HEAD"))
     private static void mixinEmeraldOre(Biome biome_1, CallbackInfo ci) {
-        if (CottonResources.config.override_vanilla_generation) {
+        if (CottonResources.CONFIG.override_vanilla_generation) {
             ci.cancel();
         }
     }

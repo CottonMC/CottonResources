@@ -1,11 +1,11 @@
 package io.github.cottonmc.resources;
 
-
 import io.github.cottonmc.cotton.Cotton;
 import io.github.cottonmc.cotton.datapack.recipe.RecipeUtil;
 import io.github.cottonmc.resources.config.OreGenerationSettings;
 import io.github.cottonmc.resources.oregen.OreGeneration;
 import io.github.cottonmc.resources.oregen.OreVoting;
+import io.github.cottonmc.resources.type.*;
 import net.fabricmc.fabric.api.resource.ResourceManagerHelper;
 import net.minecraft.block.Block;
 import net.minecraft.util.Identifier;
@@ -61,9 +61,9 @@ public class CommonResources {
         builtinGem("sapphire", BlockSuppliers.IRON_TIER_ORE, MACHINE_AFFIXES);
 
         for (ResourceType resource : BUILTINS.values()) {
-            OreGenerationSettings oreGenerationSettings = CottonResources.config.ores.get(resource.getBaseResource());
+            OreGenerationSettings oreGenerationSettings = CottonResources.CONFIG.ores.get(resource.getBaseResource());
             if (oreGenerationSettings == null) {
-                CottonResources.logger.warn("No ore generation settings found for " + resource.getBaseResource() + " so registering anyway");
+                CottonResources.LOGGER.warn("No ore generation settings found for " + resource.getBaseResource() + " so registering anyway");
                 resource.registerAll();
             } else if (oreGenerationSettings.enabled) {
                 // || IsResourceRequestedBymodJson?
@@ -79,7 +79,7 @@ public class CommonResources {
     }
 
     private static void builtinMetal(String id, Supplier<Block> oreSupplier, String... extraAffixes) {
-        CottonResources.logger.devInfo("registering " + id);
+        CottonResources.LOGGER.devInfo("registering " + id);
         MetalResourceType result = new MetalResourceType(id);
         if (oreSupplier != null) result.withOreSupplier(oreSupplier);
 
@@ -91,7 +91,7 @@ public class CommonResources {
     }
 
     private static void builtinGem(String id, Supplier<Block> oreSupplier, String... extraAffixes) {
-        CottonResources.logger.devInfo("registering " + id);
+        CottonResources.LOGGER.devInfo("registering " + id);
         GemResourceType result = new GemResourceType(id).withOreSupplier(oreSupplier);
         if (extraAffixes.length > 0) {
             result.withItemAffixes(extraAffixes);
@@ -101,7 +101,7 @@ public class CommonResources {
     }
 
     private static void builtinRadioactive(String id, Supplier<Block> oreSupplier, String... extraAffixes) {
-        CottonResources.logger.devInfo("registering " + id);
+        CottonResources.LOGGER.devInfo("registering " + id);
         RadioactiveResourceType result = new RadioactiveResourceType(id);
         if (oreSupplier != null) result.withOreSupplier(oreSupplier);
 
@@ -132,12 +132,12 @@ public class CommonResources {
     private static void nullifyRecipes(ResourceType resource) {
         if (resource instanceof MetalResourceType) {
             MetalResourceType metal = (MetalResourceType) resource;
-            RecipeUtil.removeRecipe(new Identifier(Cotton.SHARED_NAMESPACE, metal.name + "_block"));
-            RecipeUtil.removeRecipe(new Identifier(Cotton.SHARED_NAMESPACE, metal.name + "_ingot"));
-            RecipeUtil.removeRecipe(new Identifier(Cotton.SHARED_NAMESPACE, metal.name + "_ingot_from_blasting"));
-            RecipeUtil.removeRecipe(new Identifier(Cotton.SHARED_NAMESPACE, metal.name + "_ingot_from_" + metal.name + "_block"));
-            RecipeUtil.removeRecipe(new Identifier(Cotton.SHARED_NAMESPACE, metal.name + "_ingot_from_nuggets"));
-            RecipeUtil.removeRecipe(new Identifier(Cotton.SHARED_NAMESPACE, metal.name + "_nugget"));
+            RecipeUtil.removeRecipe(new Identifier(Cotton.SHARED_NAMESPACE, metal.getBaseResource() + "_block"));
+            RecipeUtil.removeRecipe(new Identifier(Cotton.SHARED_NAMESPACE, metal.getBaseResource() + "_ingot"));
+            RecipeUtil.removeRecipe(new Identifier(Cotton.SHARED_NAMESPACE, metal.getBaseResource() + "_ingot_from_blasting"));
+            RecipeUtil.removeRecipe(new Identifier(Cotton.SHARED_NAMESPACE, metal.getBaseResource() + "_ingot_from_" + metal.getBaseResource() + "_block"));
+            RecipeUtil.removeRecipe(new Identifier(Cotton.SHARED_NAMESPACE, metal.getBaseResource() + "_ingot_from_nuggets"));
+            RecipeUtil.removeRecipe(new Identifier(Cotton.SHARED_NAMESPACE, metal.getBaseResource() + "_nugget"));
         }
     }
 }

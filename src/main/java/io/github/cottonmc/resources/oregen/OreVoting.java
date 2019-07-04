@@ -33,7 +33,7 @@ public class OreVoting implements IdentifiableResourceReloadListener {
                     } catch (IOException ex) {
                         ex.printStackTrace();
                     } catch (SyntaxError ex) {
-                        CottonResources.logger.error(ex.getCompleteMessage());
+                        CottonResources.LOGGER.error(ex.getCompleteMessage());
                     }
                 }
                 

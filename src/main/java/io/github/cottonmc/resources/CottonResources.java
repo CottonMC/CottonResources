@@ -8,13 +8,12 @@ import net.fabricmc.api.ModInitializer;
 public class CottonResources implements ModInitializer {
 
 	public static final String MODID = "cotton-resources";
-
-	public static ModLogger logger = new ModLogger(MODID, "COTTON RESOURCES");
-	public static CottonResourcesConfig config = ConfigManager.loadConfig(CottonResourcesConfig.class);
+	public static ModLogger LOGGER = new ModLogger(MODID, "COTTON RESOURCES");
+	public static CottonResourcesConfig CONFIG = ConfigManager.loadConfig(CottonResourcesConfig.class);
 
 	@Override
 	public void onInitialize() {
 		CommonResources.initialize();
-		logger.info("cotton-resources initialized.");
+		LOGGER.info("cotton-resources initialized.");
 	}
 }
