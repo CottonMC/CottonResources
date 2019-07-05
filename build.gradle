@@ -56,7 +56,8 @@ jar {
 publishing {
 	publications {
 		mavenJava(MavenPublication) {
-			artifact(jar) {
+			artifact ("${buildDir.absolutePath}/libs/${archivesBaseName}-${version}.jar") {
+				classifier null
 				builtBy remapJar
 			}
 
