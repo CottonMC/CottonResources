@@ -6,7 +6,7 @@ import net.minecraft.item.Item;
 import javax.annotation.Nullable;
 
 public interface ResourceType {
-    /** Gets the base resources name. For example, "copper". */
+    /** Gets the base resource name. For example, "copper". */
     String getBaseResource();
 
     /** Finds out whether this object takes responsibility for creating and registering the given block or item name.
