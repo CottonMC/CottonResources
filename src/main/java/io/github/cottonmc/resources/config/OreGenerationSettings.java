@@ -1,7 +1,6 @@
 package io.github.cottonmc.resources.config;
 
 import net.minecraft.block.Blocks;
-import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 
 import java.util.ArrayList;

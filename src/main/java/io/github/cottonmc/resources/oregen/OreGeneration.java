@@ -22,7 +22,7 @@ public class OreGeneration {
 
     public static void registerOres() {
         for (Biome biome : Registry.BIOME) {
-            for (Map.Entry<String, OreGenerationSettings> ore : CottonResources.config.ores.entrySet()) {
+            for (Map.Entry<String, OreGenerationSettings> ore : CottonResources.CONFIG.ores.entrySet()) {
                 if (ore.getValue().enabled) {
                     registered.add(ore.getKey());
                     OreGenerationSettings settings = ore.getValue();

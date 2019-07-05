@@ -1,8 +1,9 @@
-package io.github.cottonmc.resources;
+package io.github.cottonmc.resources.type;
 
 import io.github.cottonmc.cotton.Cotton;
 import io.github.cottonmc.cotton.registry.CommonBlocks;
 import io.github.cottonmc.cotton.registry.CommonItems;
+import io.github.cottonmc.resources.CottonResources;
 import net.minecraft.block.Block;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
@@ -60,13 +61,13 @@ public class GenericResourceType implements ResourceType {
             return existing;
         }
         else {
-            CottonResources.logger.warn("No item found with name " + itemName + "!");
+            CottonResources.LOGGER.warn("No item found with name " + itemName + "!");
             return null;
         }
     }
 
     public Item registerItem(String itemName) {
-        return CommonItems.register(itemName, new Item((new Item.Settings()).itemGroup(Cotton.commonGroup)));
+        return CommonItems.register(itemName, new Item((new Item.Settings()).group(Cotton.commonGroup)));
     }
 
     @Override
@@ -76,7 +77,7 @@ public class GenericResourceType implements ResourceType {
             return existing;
         }
         else {
-            CottonResources.logger.warn("No block found with name " + blockName + "!");
+            CottonResources.LOGGER.warn("No block found with name " + blockName + "!");
             return null;
         }
     }
@@ -89,7 +90,7 @@ public class GenericResourceType implements ResourceType {
         }
         
         Block resultBlock = blockSupplier.get();
-        BlockItem resultItem =  new BlockItem(resultBlock, new Item.Settings().itemGroup(Cotton.commonGroup)); //Shouldn't be necessary, but is?
+        BlockItem resultItem =  new BlockItem(resultBlock, new Item.Settings().group(Cotton.commonGroup)); //Shouldn't be necessary, but is?
         
         return CommonBlocks.register(blockName, resultBlock, resultItem);
     }
@@ -103,14 +104,14 @@ public class GenericResourceType implements ResourceType {
     public void registerBlocks() {
         for (String affix : blockAffixes.keySet()) {
             registerBlock(getFullNameForAffix(affix));
-            CottonResources.logger.devInfo("Registered block " + getFullNameForAffix(affix) + "!");
+            CottonResources.LOGGER.devInfo("Registered block " + getFullNameForAffix(affix) + "!");
         }
     }
 
     public void registerItems() {
         for (String affix : itemAffixes) {
             registerItem(getFullNameForAffix(affix));
-            CottonResources.logger.devInfo("Registered item " + getFullNameForAffix(affix) + "!");
+            CottonResources.LOGGER.devInfo("Registered item " + getFullNameForAffix(affix) + "!");
         }
     }
 }

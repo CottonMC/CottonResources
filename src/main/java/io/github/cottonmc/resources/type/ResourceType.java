@@ -1,4 +1,4 @@
-package io.github.cottonmc.resources;
+package io.github.cottonmc.resources.type;
 
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;

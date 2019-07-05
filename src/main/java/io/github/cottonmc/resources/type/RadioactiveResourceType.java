@@ -1,5 +1,6 @@
-package io.github.cottonmc.resources;
+package io.github.cottonmc.resources.type;
 
+import io.github.cottonmc.resources.BlockSuppliers;
 import net.minecraft.block.Block;
 
 import java.util.function.Supplier;
