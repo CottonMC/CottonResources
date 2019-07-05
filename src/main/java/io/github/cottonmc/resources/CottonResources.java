@@ -87,7 +87,7 @@ public class CottonResources implements ModInitializer {
         }
         OreGeneration.registerOres();
 
-        ResourceManagerHelper.get(net.minecraft.resource.ResourceType.SERVER_DATA).registerReloadListener(OreVoting.instance());
+        ResourceManagerHelper.get(net.minecraft.resource.ResourceType.SERVER_DATA).registerReloadListener(new OreVoting());
     }
 
     private static void builtinMetal(String id, Supplier<Block> oreSupplier, String... extraAffixes) {
