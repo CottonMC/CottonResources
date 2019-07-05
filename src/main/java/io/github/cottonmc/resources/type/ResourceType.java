@@ -10,8 +10,8 @@ public interface ResourceType {
     String getBaseResource();
 
     /** Finds out whether this object takes responsibility for creating and registering the given block or item name.
-     * For instance, a resources with the domain "copper" will contain "copper_ingot" and "copper_block"; and a
-     * resources with the domain "mercury" will govern an item named "mercury".
+     * For instance, a resource with the domain "copper" will contain "copper_ingot" and "copper_block"; and a
+     * resource with the domain "mercury" will govern an item named "mercury".
      */
     default boolean contains(String itemName) {
         return itemName.startsWith(getBaseResource()+"_");
@@ -20,7 +20,7 @@ public interface ResourceType {
     /**
      *
      * Returns the full name of the block/item for the given affix. For example, given "ore", returns "copper_ore",
-     * if this is a copper resources. If the affix is empty, only the base resources name is returned.
+     * if this is a copper resource. If the affix is empty, only the base resource name is returned.
      */
     default String getFullNameForAffix(String affix) {
         return affix.equals("") ? getBaseResource() : getBaseResource() + "_" + affix;

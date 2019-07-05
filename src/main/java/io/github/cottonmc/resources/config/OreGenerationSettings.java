@@ -67,7 +67,7 @@ public class OreGenerationSettings {
     }
 
     public static HashMap<String, OreGenerationSettings> getDefaultSettingsFor(String... resources) {
-        // This does not check that the resources exists (since we faced loading order issues). Only use on actual ores!
+        // This does not check that the resource exists (since we faced loading order issues). Only use on actual ores!
         HashMap<String, OreGenerationSettings> ores = new HashMap<>();
         for (String resourceName : resources) {
             ores.put(resourceName, OreGenerationSettings.getDefault().withOreBlock("c:"+resourceName+"_ore"));
