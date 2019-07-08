@@ -1,0 +1,54 @@
+{
+	"generators": {
+		"ruby": {
+			"dimensions": [ { "tag": "overworlds" } ],
+
+			"ore_block": "c:ruby_ore",
+			
+			"min_height": 6,
+			"max_height": 16,
+			"cluster_count": 1,
+			"cluster_size": 5
+		},
+		"topaz": {
+			"dimensions": [ { "tag": "overworlds" } ],
+
+			"ore_block": "c:topaz_ore",
+			
+			"min_height": 6,
+			"max_height": 16,
+			"cluster_count": 1,
+			"cluster_size": 5
+		},
+		"sapphire": {
+			"dimensions": [ { "tag": "overworlds" } ],
+
+			"ore_block": "c:sapphire_ore",
+			
+			"min_height": 6,
+			"max_height": 16,
+			"cluster_count": 1,
+			"cluster_size": 5
+		},
+		"peridot": {
+			"dimensions": [ { "tag": "overworlds" } ],
+
+			"ore_block": "c:peridot_ore",
+			
+			"min_height": 6,
+			"max_height": 16,
+			"cluster_count": 1,
+			"cluster_size": 5
+		},
+		"amethyst": {
+			"dimensions": [ { "tag": "overworlds" } ],
+
+			"ore_block": "c:amethyst_ore",
+			
+			"min_height": 6,
+			"max_height": 16,
+			"cluster_count": 1,
+			"cluster_size": 5
+		}
+	}
+}

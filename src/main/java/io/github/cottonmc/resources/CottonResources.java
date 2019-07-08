@@ -77,9 +77,9 @@ public class CottonResources implements ModInitializer {
             if (oreGenerationSettings == null) {
                 LOGGER.warn("No ore generation settings found for " + resource.getBaseResource() + " so registering anyway");
                 resource.registerAll();
-            } else if (oreGenerationSettings.enabled) {
-                // || IsResourceRequestedBymodJson?
-                resource.registerAll();
+            //} else if (oreGenerationSettings.enabled) {
+            //    // || IsResourceRequestedBymodJson?
+            //    resource.registerAll();
             } else {
                 resource.registerAll();
                 nullifyRecipes(resource);

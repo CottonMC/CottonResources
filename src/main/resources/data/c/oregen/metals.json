@@ -1,0 +1,152 @@
+{
+	/* An array of ore feature configurations to offer up as options if cotton-resources
+	 * doesn't already have builtin configs for them.
+	 *
+	 * Priorities are as follows:
+	 * 1: Server datapack always wins
+	 * 2: If there's no server datapack entry for this key, but there are mod entries, a
+	 *    mod entry is chosen on a first-come first-serve basis. The order is undefined
+	 *    and probably sensitive to mod or resource-loader dependencies. These mod
+	 *    entries should always be offered in the namespace of the mod making the request.
+	 * 3: cotton-resources itself may contain an entry in the 'c' namespace, which is used
+	 *    if no higher-priority entry exists.
+	 * 4: if a block is found with an id of 'c:resource_ore' where 'resource' is the key
+	 *    requested, a completely defaulted generator is synthesized for that block's
+	 *    default blockState.
+	 */
+	"generators": {
+		"copper": {
+			"dimensions": [ { "tag": "overworlds" } ], //this is the default. Specified here for demonstration purposes
+			"biomes": [ "*" ],                         //same
+
+			"ore_block": "c:copper_ore",
+			
+			"min_height": 32,
+			"max_height": 96,
+			"cluster_count": 20,
+			"cluster_size": 10
+		},
+
+		"silver": {
+			"ore_block": "c:silver_ore",
+			
+			"min_height": 6,
+			"max_height": 48,
+			"cluster_count": 4,
+			"cluster_size": 8,
+		},
+
+		"lead": {
+			"ore_block": "c:lead_ore",
+			
+			"min_height": 6,
+			"max_height": 48,
+			"cluster_count": 4,
+			"cluster_size": 8,
+		},
+
+		"zinc": {
+			"ore_block": "c:zinc_ore",
+			
+			"min_height": 6,
+			"max_height": 48,
+			"cluster_count": 8,
+			"cluster_size": 8,
+		},
+
+		"uranium": {
+			"dimensions": [ "minecraft:the_nether" ],
+
+			"ore_block": "c:uranium_ore",
+			
+			"min_height": 6,
+			"max_height": 32,
+			"cluster_count": 4,
+			"cluster_size": 4,
+		},
+
+		"tin": {
+			"ore_block": "c:tin_ore",
+			
+			"min_height": 6,
+			"max_height": 48,
+			"cluster_count": 8,
+			"cluster_size": 8,
+		},
+
+		"aluminum": {
+			"ore_block": "c:aluminum_ore",
+			
+			"min_height": 6,
+			"max_height": 48,
+			"cluster_count": 4,
+			"cluster_size": 8,
+		},
+
+		"tungsten": {
+			"dimensions": [ "minecraft:the_nether" ],
+
+			"ore_block": "c:tungsten_ore",
+			
+			"min_height": 6,
+			"max_height": 32,
+			"cluster_count": 4,
+			"cluster_size": 8,
+		},
+
+		"cobalt": {
+			"dimensions": [ "minecraft:the_nether" ],
+
+			"ore_block": "c:cobalt_ore",
+			
+			"min_height": 6,
+			"max_height": 64,
+			"cluster_count": 20,
+			"cluster_size": 3,
+		},
+
+		"platinum": {
+			"dimensions": [ "minecraft:the_end" ],
+
+			"ore_block": "c:platinum_ore",
+			
+			"min_height": 6,
+			"max_height": 64,
+			"cluster_count": 2,
+			"cluster_size": 3,
+		},
+
+		"palladium": {
+			"dimensions": [ "minecraft:the_end" ],
+
+			"ore_block": "c:palladium_ore",
+
+			"min_height": 6,
+			"max_height": 64,
+			"cluster_count": 2,
+			"cluster_size": 3,
+		},
+
+		"osmium": {
+			"dimensions": [ "minecraft:the_end" ],
+
+			"ore_block": "c:osmium_ore",
+
+			"min_height": 6,
+			"max_height": 64,
+			"cluster_count": 2,
+			"cluster_size": 3,
+		},
+
+		"iridium": {
+			"dimensions": [ "minecraft:the_nether" ],
+
+			"ore_block": "c:iridium_ore",
+
+			"min_height": 32,
+			"max_height": 64,
+			"cluster_count": 2,
+			"cluster_size": 3,
+		},
+	}
+}
