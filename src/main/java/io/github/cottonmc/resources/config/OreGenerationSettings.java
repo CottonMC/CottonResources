@@ -1,11 +1,11 @@
 package io.github.cottonmc.resources.config;
 
-import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
-
+import blue.endless.jankson.JsonElement;
+import blue.endless.jankson.JsonObject;
 import io.github.cottonmc.resources.oregen.BiomeSpec;
 import io.github.cottonmc.resources.oregen.DimensionSpec;
 
@@ -18,8 +18,10 @@ public class OreGenerationSettings {
 	public int cluster_count = 8;
 	public int cluster_size = 8;
 	
+	public OreGenerationSettings() {
+	}
+	
 	public OreGenerationSettings withOreBlock(String ore_block) {
-		Block block = Registry.BLOCK.get(new Identifier(ore_block));
 		this.ore_block = Registry.BLOCK.get(new Identifier(ore_block)).getDefaultState();
 		return this;
 	}
@@ -32,7 +34,7 @@ public class OreGenerationSettings {
 		return this;
 	}
 	public OreGenerationSettings excludeDimension(String dimension) {
-		this.biomes.deny.add(new Identifier(dimension));
+		//this.biomes.deny.add(new Identifier(dimension));
 		return this;
 	}
 	public OreGenerationSettings withClusterCount(int cluster_count) {
@@ -49,5 +51,34 @@ public class OreGenerationSettings {
 		settings.excludeDimension("minecraft:the_nether");
 		settings.excludeDimension("minecraft:the_end");
 		return settings;
+	}
+	
+	//Handle some of the especially-vague polymorphism of DimensionSpec and BiomeSpec
+	public static OreGenerationSettings deserialize(JsonObject obj) {
+		System.out.println("deserialize called");
+		
+		OreGenerationSettings result = new OreGenerationSettings();
+		result.ore_block = obj.get(BlockState.class, "block");
+		
+		result.min_height = getIntOrDefault(obj, "min_height", result.min_height);
+		result.max_height = getIntOrDefault(obj, "max_height", result.max_height);
+		result.cluster_count = getIntOrDefault(obj, "cluster_count", result.cluster_count);
+		result.cluster_size = getIntOrDefault(obj, "cluster_size", result.cluster_size);
+		
+		JsonElement dimensionsElem = obj.get("dimensions");
+		System.out.println("Deserializing dimensionSpec....");
+		if (dimensionsElem!=null) result.dimensions =
+			DimensionSpec.deserialize(dimensionsElem);
+		
+		JsonElement biomesElem = obj.get("biomes");
+		if (biomesElem!=null) result.biomes =
+			BiomeSpec.deserialize(biomesElem);
+		
+		return result;
+	}
+	
+	public static int getIntOrDefault(JsonObject obj, String key, int defaultValue) {
+		Integer val = obj.get(Integer.class, key);
+		return (val==null) ? defaultValue : val;
 	}
 }

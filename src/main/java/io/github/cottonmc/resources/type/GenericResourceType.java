@@ -1,8 +1,8 @@
 package io.github.cottonmc.resources.type;
 
-import io.github.cottonmc.cotton.Cotton;
-import io.github.cottonmc.cotton.registry.CommonBlocks;
-import io.github.cottonmc.cotton.registry.CommonItems;
+import io.github.cottonmc.cotton.commons.CommonBlocks;
+import io.github.cottonmc.cotton.commons.CommonItems;
+import io.github.cottonmc.cotton.commons.CottonCommons;
 import io.github.cottonmc.resources.CottonResources;
 import net.minecraft.block.Block;
 import net.minecraft.item.BlockItem;
@@ -67,7 +67,7 @@ public class GenericResourceType implements ResourceType {
     }
 
     public Item registerItem(String itemName) {
-        return CommonItems.register(itemName, new Item((new Item.Settings()).group(Cotton.commonGroup)));
+        return CommonItems.register(itemName, new Item((new Item.Settings()).group(CottonCommons.commonGroup)));
     }
 
     @Override
@@ -90,7 +90,7 @@ public class GenericResourceType implements ResourceType {
         }
         
         Block resultBlock = blockSupplier.get();
-        BlockItem resultItem =  new BlockItem(resultBlock, new Item.Settings().group(Cotton.commonGroup)); //Shouldn't be necessary, but is?
+        BlockItem resultItem =  new BlockItem(resultBlock, new Item.Settings().group(CottonCommons.commonGroup)); //Shouldn't be necessary, but is?
         
         return CommonBlocks.register(blockName, resultBlock, resultItem);
     }
@@ -104,14 +104,14 @@ public class GenericResourceType implements ResourceType {
     public void registerBlocks() {
         for (String affix : blockAffixes.keySet()) {
             registerBlock(getFullNameForAffix(affix));
-            CottonResources.LOGGER.devInfo("Registered block " + getFullNameForAffix(affix) + "!");
+            //CottonResources.LOGGER.devInfo("Registered block " + getFullNameForAffix(affix) + "!");
         }
     }
 
     public void registerItems() {
         for (String affix : itemAffixes) {
             registerItem(getFullNameForAffix(affix));
-            CottonResources.LOGGER.devInfo("Registered item " + getFullNameForAffix(affix) + "!");
+            //CottonResources.LOGGER.devInfo("Registered item " + getFullNameForAffix(affix) + "!");
         }
     }
 }

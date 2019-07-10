@@ -1,7 +1,7 @@
 package io.github.cottonmc.resources;
 
-import io.github.cottonmc.cotton.Cotton;
 import io.github.cottonmc.cotton.config.ConfigManager;
+import io.github.cottonmc.cotton.datapack.CottonDatapack;
 import io.github.cottonmc.cotton.datapack.recipe.RecipeUtil;
 import io.github.cottonmc.cotton.logging.ModLogger;
 import io.github.cottonmc.resources.config.CottonResourcesConfig;
@@ -91,7 +91,7 @@ public class CottonResources implements ModInitializer {
     }
 
     private static void builtinMetal(String id, Supplier<Block> oreSupplier, String... extraAffixes) {
-        LOGGER.devInfo("registering " + id);
+        //LOGGER.devInfo("registering " + id); //Nope
         MetalResourceType result = new MetalResourceType(id);
         if (oreSupplier != null) result.withOreSupplier(oreSupplier);
 
@@ -103,7 +103,7 @@ public class CottonResources implements ModInitializer {
     }
 
     private static void builtinGem(String id, Supplier<Block> oreSupplier, String... extraAffixes) {
-        LOGGER.devInfo("registering " + id);
+        //LOGGER.devInfo("registering " + id); //Pls no
         GemResourceType result = new GemResourceType(id).withOreSupplier(oreSupplier);
         if (extraAffixes.length > 0) {
             result.withItemAffixes(extraAffixes);
@@ -113,7 +113,7 @@ public class CottonResources implements ModInitializer {
     }
 
     private static void builtinRadioactive(String id, Supplier<Block> oreSupplier, String... extraAffixes) {
-        LOGGER.devInfo("registering " + id);
+        //LOGGER.devInfo("registering " + id); //Pls don't
         RadioactiveResourceType result = new RadioactiveResourceType(id);
         if (oreSupplier != null) result.withOreSupplier(oreSupplier);
 
@@ -144,12 +144,12 @@ public class CottonResources implements ModInitializer {
     private static void nullifyRecipes(ResourceType resource) {
         if (resource instanceof MetalResourceType) {
             MetalResourceType metal = (MetalResourceType) resource;
-            RecipeUtil.removeRecipe(new Identifier(Cotton.SHARED_NAMESPACE, metal.getBaseResource() + "_block"));
-            RecipeUtil.removeRecipe(new Identifier(Cotton.SHARED_NAMESPACE, metal.getBaseResource() + "_ingot"));
-            RecipeUtil.removeRecipe(new Identifier(Cotton.SHARED_NAMESPACE, metal.getBaseResource() + "_ingot_from_blasting"));
-            RecipeUtil.removeRecipe(new Identifier(Cotton.SHARED_NAMESPACE, metal.getBaseResource() + "_ingot_from_" + metal.getBaseResource() + "_block"));
-            RecipeUtil.removeRecipe(new Identifier(Cotton.SHARED_NAMESPACE, metal.getBaseResource() + "_ingot_from_nuggets"));
-            RecipeUtil.removeRecipe(new Identifier(Cotton.SHARED_NAMESPACE, metal.getBaseResource() + "_nugget"));
+            RecipeUtil.removeRecipe(new Identifier(CottonDatapack.SHARED_NAMESPACE, metal.getBaseResource() + "_block"));
+            RecipeUtil.removeRecipe(new Identifier(CottonDatapack.SHARED_NAMESPACE, metal.getBaseResource() + "_ingot"));
+            RecipeUtil.removeRecipe(new Identifier(CottonDatapack.SHARED_NAMESPACE, metal.getBaseResource() + "_ingot_from_blasting"));
+            RecipeUtil.removeRecipe(new Identifier(CottonDatapack.SHARED_NAMESPACE, metal.getBaseResource() + "_ingot_from_" + metal.getBaseResource() + "_block"));
+            RecipeUtil.removeRecipe(new Identifier(CottonDatapack.SHARED_NAMESPACE, metal.getBaseResource() + "_ingot_from_nuggets"));
+            RecipeUtil.removeRecipe(new Identifier(CottonDatapack.SHARED_NAMESPACE, metal.getBaseResource() + "_nugget"));
         }
     }
 }

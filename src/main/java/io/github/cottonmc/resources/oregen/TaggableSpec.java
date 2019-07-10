@@ -17,7 +17,7 @@ import net.minecraft.util.Identifier;
  * A concise schema for json allow/deny semantics for anything that has an Identifier and can be held in a Tag
  */
 public abstract class TaggableSpec<T> implements Predicate<T> {
-	public static final Identifier ANY = new Identifier("*");
+	public static final Identifier ANY = new Identifier("any");
 	
 	public final Set<Identifier> allow = new HashSet<>();
 	public final Set<Identifier> deny = new HashSet<>();
@@ -91,7 +91,8 @@ public abstract class TaggableSpec<T> implements Predicate<T> {
 			if (s.startsWith("#")) {
 				return tagResolver.apply(new Identifier(s.substring(1)));
 			} else {
-				return ImmutableSet.of(new Identifier(line.toString()));
+				if (s.equals("*")) return ImmutableSet.of(ANY);
+				return ImmutableSet.of(new Identifier(s));
 			}
 		} else if (line instanceof JsonObject) {
 			JsonElement tag = ((JsonObject)line).get("tag");

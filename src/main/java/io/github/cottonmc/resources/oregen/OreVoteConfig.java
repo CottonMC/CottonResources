@@ -2,15 +2,38 @@ package io.github.cottonmc.resources.oregen;
 
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 
-import blue.endless.jankson.Comment;
+import blue.endless.jankson.JsonArray;
+import blue.endless.jankson.JsonElement;
+import blue.endless.jankson.JsonObject;
+import blue.endless.jankson.JsonPrimitive;
 import io.github.cottonmc.resources.config.OreGenerationSettings;
 
 public class OreVoteConfig {
-	@Comment("A set of ResourceType names (without affixes) that this mod needs, whose generation\n will be enabled unless explicitly blocked from the cotton-resources config.\nExample: ['nickel', 'copper', 'coal_coke']")
-	public final Set<String> requests = new HashSet<String>();
+	public final Set<String> ores = new HashSet<String>();
 	
-	@Comment("A set of ore feature configurations to offer up as options if cotton-resources\n doesn't already have builtin configs for them. Multiple offered configurations will be picked from at random.\nExample: 'nickel': { target:'NATURAL_STONE', size: 4, state: 'c:nickel_ore', dimensionBlocklist: [] }")
-	public final HashMap<String, OreGenerationSettings> offers = new HashMap<>();
+	public final HashMap<String, OreGenerationSettings> generators = new HashMap<>();
+	
+	public static OreVoteConfig deserialize(JsonObject obj) {
+		OreVoteConfig result = new OreVoteConfig();
+		
+		JsonArray oresArray = obj.get(JsonArray.class, "ores");
+		if (oresArray!=null) for(JsonElement elem : oresArray) {
+			if (elem instanceof JsonPrimitive) result.ores.add(((JsonPrimitive)elem).asString());
+		}
+		
+		JsonObject generatorsObj = obj.getObject("generators");
+		if (generatorsObj!=null) {
+			for(Map.Entry<String, JsonElement> entry : generatorsObj.entrySet()) {
+				if (entry.getValue() instanceof JsonObject) {
+					OreGenerationSettings generator = OreGenerationSettings.deserialize((JsonObject) entry.getValue());
+					result.generators.put(entry.getKey(), generator);
+				}
+			}
+		}
+		
+		return result;
+	}
 }

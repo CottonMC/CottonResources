@@ -1,23 +1,8 @@
 {
-	/* An array of ore feature configurations to offer up as options if cotton-resources
-	 * doesn't already have builtin configs for them.
-	 *
-	 * Priorities are as follows:
-	 * 1: Server datapack always wins
-	 * 2: If there's no server datapack entry for this key, but there are mod entries, a
-	 *    mod entry is chosen on a first-come first-serve basis. The order is undefined
-	 *    and probably sensitive to mod or resource-loader dependencies. These mod
-	 *    entries should always be offered in the namespace of the mod making the request.
-	 * 3: cotton-resources itself may contain an entry in the 'c' namespace, which is used
-	 *    if no higher-priority entry exists.
-	 * 4: if a block is found with an id of 'c:resource_ore' where 'resource' is the key
-	 *    requested, a completely defaulted generator is synthesized for that block's
-	 *    default blockState.
-	 */
 	"generators": {
 		"copper": {
-			"dimensions": [ { "tag": "overworlds" } ], //this is the default. Specified here for demonstration purposes
-			"biomes": [ "*" ],                         //same
+			"dimensions": [ { "tag": "overworlds" } ],
+			"biomes": [ "*" ],
 
 			"ore_block": "c:copper_ore",
 			

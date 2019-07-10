@@ -1,6 +1,5 @@
 {
-	"ores": [
-		//Just an example, but also helpful for enabling a lot of oregen in a testing environment
+	//"ores": [
 		/*
 		"copper", "silver", "lead", "zinc", "aluminum", "cobalt", "tin", "titanium", "tungsten",
 		"platinum", "palladium", "osmium", "iridium",
@@ -8,5 +7,5 @@
 		"uranium",
 		"ruby", "topaz", "amethyst", "peridot", "sapphire"
 		*/
-	]
+	//]
 } 
