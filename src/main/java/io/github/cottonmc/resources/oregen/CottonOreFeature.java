@@ -37,7 +37,9 @@ public class CottonOreFeature extends Feature<DefaultFeatureConfig> {
 		
 		
 		Chunk toGenerateIn = world.getChunk(pos);
+		System.out.println("Generating into "+toGenerateIn.getPos());
 		//if we cross a chunk boundary, it should be in the +X/+Z direction, so pick cuboids in that configuration
+		
 		
 		//TODO: Iterate through the map of enabled ores
 			//TODO: Grab the blockstate for this ore

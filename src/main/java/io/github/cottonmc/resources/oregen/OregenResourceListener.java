@@ -15,7 +15,7 @@ import net.minecraft.util.Identifier;
 import java.io.IOException;
 import java.util.Collection;
 
-public class OreVoting implements SynchronousResourceReloadListener, IdentifiableResourceReloadListener {
+public class OregenResourceListener implements SynchronousResourceReloadListener, IdentifiableResourceReloadListener {
 	protected final OreVoteConfig jsonConfig = new OreVoteConfig();
 	
 	@Override
@@ -66,6 +66,6 @@ public class OreVoting implements SynchronousResourceReloadListener, Identifiabl
 
 	@Override
 	public Identifier getFabricId() {
-		return new Identifier("cotton-resources", "ore_voting");
+		return new Identifier(CottonResources.MODID, "ore_voting");
 	}
 }
