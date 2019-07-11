@@ -1,11 +1,15 @@
 package io.github.cottonmc.resources.oregen;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import com.google.common.collect.ImmutableSet;
 
 import blue.endless.jankson.JsonElement;
+import io.github.cottonmc.resources.CottonResources;
+import net.minecraft.tag.Tag;
 import net.minecraft.util.Identifier;
+import net.minecraft.util.registry.Registry;
 import net.minecraft.world.dimension.Dimension;
 import net.minecraft.world.dimension.DimensionType;
 
@@ -36,7 +40,15 @@ public class DimensionSpec extends TaggableSpec<Dimension> {
 		return TaggableSpec.deserialize(new DimensionSpec(), elem, DimensionSpec::resolveTag);
 	}
 	
-	public static Set<Identifier> resolveTag(Identifier id) {
-		return ImmutableSet.of();
+	public static Set<Identifier> resolveTag(Identifier tagName) {
+		Tag<DimensionType> tag = CottonResources.DIMENSION_TAGS.get(tagName);
+		if (tag==null) return ImmutableSet.of();
+		
+		HashSet<Identifier> result = new HashSet<>();
+		for(DimensionType dimension : tag.values()) {
+			Identifier id = Registry.DIMENSION.getId(dimension);
+			if (id!=null) result.add(id);
+		}
+		return result;
 	}
 }

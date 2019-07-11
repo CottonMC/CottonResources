@@ -17,10 +17,14 @@ import io.github.cottonmc.resources.type.ResourceType;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.resource.ResourceManagerHelper;
 import net.minecraft.block.Block;
+import net.minecraft.tag.TagContainer;
 import net.minecraft.util.Identifier;
+import net.minecraft.world.biome.Biome;
+import net.minecraft.world.dimension.DimensionType;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 import java.util.function.Supplier;
 
 public class CottonResources implements ModInitializer {
@@ -31,6 +35,14 @@ public class CottonResources implements ModInitializer {
 	private static final String[] MACHINE_AFFIXES = new String[]{"gear", "plate"};
 	private static final Map<String, ResourceType> BUILTINS = new HashMap<>();
 	private static OreVoteConfig RESOLVED_CONFIG = new OreVoteConfig();
+	
+	public static final TagContainer<DimensionType> DIMENSION_TAGS = new TagContainer<>((identifier)->{
+		return Optional.empty();
+	}, "", false, "");
+	
+	public static final TagContainer<Biome> BIOME_TAGS = new TagContainer<>((identifier)->{
+		return Optional.empty();
+	}, "", false, "");
 
 	@Override
 	public void onInitialize() {
@@ -90,6 +102,11 @@ public class CottonResources implements ModInitializer {
 		OreGeneration.registerOres();
 
 		ResourceManagerHelper.get(net.minecraft.resource.ResourceType.SERVER_DATA).registerReloadListener(new OregenResourceListener());
+		
+		//TODO: is there a tag container registry so we can ask minecraft to load these from json instead?
+		DIMENSION_TAGS.getOrCreate(new Identifier("c:hells")).values().add(DimensionType.THE_NETHER);
+		DIMENSION_TAGS.getOrCreate(new Identifier("c:overworlds")).values().add(DimensionType.OVERWORLD);
+		DIMENSION_TAGS.getOrCreate(new Identifier("c:ends")).values().add(DimensionType.THE_END);
 	}
 
 	private static void builtinMetal(String id, Supplier<Block> oreSupplier, String... extraAffixes) {
