@@ -9,6 +9,7 @@ import io.github.cottonmc.resources.config.OreGenerationSettings;
 import io.github.cottonmc.resources.oregen.OreGeneration;
 import io.github.cottonmc.resources.oregen.OreVoteConfig;
 import io.github.cottonmc.resources.oregen.OregenResourceListener;
+import io.github.cottonmc.resources.tag.DimensionTypeTags;
 import io.github.cottonmc.resources.type.GemResourceType;
 import io.github.cottonmc.resources.type.GenericResourceType;
 import io.github.cottonmc.resources.type.MetalResourceType;
@@ -17,14 +18,11 @@ import io.github.cottonmc.resources.type.ResourceType;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.resource.ResourceManagerHelper;
 import net.minecraft.block.Block;
-import net.minecraft.tag.TagContainer;
 import net.minecraft.util.Identifier;
-import net.minecraft.world.biome.Biome;
 import net.minecraft.world.dimension.DimensionType;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Optional;
 import java.util.function.Supplier;
 
 public class CottonResources implements ModInitializer {
@@ -36,14 +34,6 @@ public class CottonResources implements ModInitializer {
 	private static final Map<String, ResourceType> BUILTINS = new HashMap<>();
 	private static OreVoteConfig RESOLVED_CONFIG = new OreVoteConfig();
 	
-	public static final TagContainer<DimensionType> DIMENSION_TAGS = new TagContainer<>((identifier)->{
-		return Optional.empty();
-	}, "", false, "");
-	
-	public static final TagContainer<Biome> BIOME_TAGS = new TagContainer<>((identifier)->{
-		return Optional.empty();
-	}, "", false, "");
-
 	@Override
 	public void onInitialize() {
 		builtinMetal("copper", BlockSuppliers.STONE_TIER_ORE, MACHINE_AFFIXES);
@@ -104,9 +94,9 @@ public class CottonResources implements ModInitializer {
 		ResourceManagerHelper.get(net.minecraft.resource.ResourceType.SERVER_DATA).registerReloadListener(new OregenResourceListener());
 		
 		//TODO: is there a tag container registry so we can ask minecraft to load these from json instead?
-		DIMENSION_TAGS.getOrCreate(new Identifier("c:hells")).values().add(DimensionType.THE_NETHER);
-		DIMENSION_TAGS.getOrCreate(new Identifier("c:overworlds")).values().add(DimensionType.OVERWORLD);
-		DIMENSION_TAGS.getOrCreate(new Identifier("c:ends")).values().add(DimensionType.THE_END);
+		DimensionTypeTags.CONTAINER.getOrCreate(new Identifier("c:hells")).values().add(DimensionType.THE_NETHER);
+		DimensionTypeTags.CONTAINER.getOrCreate(new Identifier("c:overworlds")).values().add(DimensionType.OVERWORLD);
+		DimensionTypeTags.CONTAINER.getOrCreate(new Identifier("c:ends")).values().add(DimensionType.THE_END);
 	}
 
 	private static void builtinMetal(String id, Supplier<Block> oreSupplier, String... extraAffixes) {

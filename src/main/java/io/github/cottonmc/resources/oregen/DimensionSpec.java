@@ -6,7 +6,7 @@ import java.util.Set;
 import com.google.common.collect.ImmutableSet;
 
 import blue.endless.jankson.JsonElement;
-import io.github.cottonmc.resources.CottonResources;
+import io.github.cottonmc.resources.tag.DimensionTypeTags;
 import net.minecraft.tag.Tag;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
@@ -41,7 +41,7 @@ public class DimensionSpec extends TaggableSpec<Dimension> {
 	}
 	
 	public static Set<Identifier> resolveTag(Identifier tagName) {
-		Tag<DimensionType> tag = CottonResources.DIMENSION_TAGS.get(tagName);
+		Tag<DimensionType> tag = DimensionTypeTags.CONTAINER.get(tagName);
 		if (tag==null) return ImmutableSet.of();
 		
 		HashSet<Identifier> result = new HashSet<>();

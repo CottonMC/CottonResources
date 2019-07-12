@@ -6,7 +6,7 @@ import java.util.Set;
 import com.google.common.collect.ImmutableSet;
 
 import blue.endless.jankson.JsonElement;
-import io.github.cottonmc.resources.CottonResources;
+import io.github.cottonmc.resources.tag.BiomeTags;
 import net.minecraft.tag.Tag;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
@@ -40,7 +40,7 @@ public class BiomeSpec extends TaggableSpec<Biome> {
 	}
 	
 	public static Set<Identifier> resolveTag(Identifier tagName) {
-		Tag<Biome> tag = CottonResources.BIOME_TAGS.get(tagName);
+		Tag<Biome> tag = BiomeTags.CONTAINER.get(tagName);
 		if (tag==null) return ImmutableSet.of();
 		
 		HashSet<Identifier> result = new HashSet<>();
