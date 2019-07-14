@@ -20,6 +20,7 @@ import net.minecraft.world.gen.feature.FeatureConfig;
 
 import java.util.BitSet;
 import java.util.Random;
+import java.util.Set;
 import java.util.function.Function;
 
 public class CottonOreFeature extends Feature<DefaultFeatureConfig> {
@@ -50,30 +51,33 @@ public class CottonOreFeature extends Feature<DefaultFeatureConfig> {
 			
 				//For now, spit debug info
 				if (settings.ores.isEmpty()) {
-					//System.out.println("    ORE WAS NULL FOR "+s);
 					continue;
 				}
-				Identifier blockId = Registry.BLOCK.getId(settings.ores.iterator().next().getBlock());
-				System.out.println("    generating "+s+"="+blockId+" at base "+toGenerateIn.getPos());
+				
+				//Pick an epicenter
+				int maxCluster = 7; //MaxCluster can't go past 7 without adding some overbleed
+				int overbleed = 0; //Increase to allow ore deposits to overlap South/East chunks by this amount
+				int clusterSize = Math.max(1, Math.min(maxCluster, settings.cluster_size)); //Clamp to 1..maxCluster
+				
+				int radius = (int) Math.log(clusterSize) + 2;
+				
+				int clusterX = rand.nextInt(16 + overbleed - (radius*2))+radius;
+				int clusterZ = rand.nextInt(16 + overbleed - (radius*2))+radius;
+				int heightRange = settings.max_height-settings.min_height; if (heightRange<1) heightRange=1;
+				int clusterY = rand.nextInt(heightRange)+settings.min_height;
+				
+				clusterX += toGenerateIn.getPos().getStartX();
+				clusterZ += toGenerateIn.getPos().getStartZ();
+				
+				int blocksGenerated = generateVeinPart(world, clusterX, clusterY, clusterZ, clusterSize, radius, settings.ores, 85, rand);
+				System.out.println("    Generated "+blocksGenerated+" at "+clusterX+","+clusterY+","+clusterZ);
+				
+				//Identifier blockId = Registry.BLOCK.getId(settings.ores.iterator().next().getBlock());
+				//System.out.println("    generating "+s+"="+blockId+" at base "+toGenerateIn.getPos());
 			} else {
 				System.out.println("    skipping "+s+" here.");
 			}
 		}
-		
-		
-		//if we cross a chunk boundary, it should be in the +X/+Z direction, so pick cuboids in that configuration
-		
-		
-		//TODO: Iterate through the map of enabled ores
-			//TODO: Grab the blockstate for this ore
-			//TODO: Pick an epicenter somewhere in the chunk
-			//TODO: For i=0..numChunks-1
-				//TODO: Generate a cuboid near the epicenter that sits either wholly within the chunk, or overlaps in the +X or +Z direction by a few blocks,
-				//TODO: Splat ores in a gaussian ellipsoid bounded by this cuboid, selecting replacement params per-dimension(?)
-			
-		
-		
-		
 		
 		//TODO: Throw away most of this hellishly overcomplicated vanilla code and just splat ores into one or more intersecting gaussian spheres
 		/*
@@ -109,96 +113,35 @@ public class CottonOreFeature extends Feature<DefaultFeatureConfig> {
 		return false;
 	}
 	
-	protected int generateVeinPart(IWorld world, int x, int y, int z, float radius, BlockState[] states) {
-		return 0;
-	}
-
-	protected boolean generateVeinPart(IWorld world, Random rand, DefaultFeatureConfig config, double maxX, double minX, double maxZ, double minZ, double maxY, double minY, int int_1, int int_2, int int_3, int int_4, int int_5) {
-		/*
-		int int_6 = 0;
-		BitSet bitSet_1 = new BitSet(int_4 * int_5 * int_4);
-		BlockPos.Mutable blockPos$Mutable_1 = new BlockPos.Mutable();
-		double[] doubles_1 = new double[config.size * 4];
-
-		int oreNum;
-		double double_12;
-		double double_13;
-		double double_14;
-		double double_15;
-		for(oreNum = 0; oreNum < config.size; ++oreNum) {
-			float float_1 = (float)oreNum / (float)config.size;
-			double_12 = MathHelper.lerp((double)float_1, maxX, minX);
-			double_13 = MathHelper.lerp((double)float_1, maxY, minY);
-			double_14 = MathHelper.lerp((double)float_1, maxZ, minZ);
-			double_15 = rand.nextDouble() * (double)config.size / 16.0D;
-			double double_11 = ((double)(MathHelper.sin(3.1415927F * float_1) + 1.0F) * double_15 + 1.0D) / 2.0D;
-			doubles_1[oreNum * 4 + 0] = double_12;
-			doubles_1[oreNum * 4 + 1] = double_13;
-			doubles_1[oreNum * 4 + 2] = double_14;
-			doubles_1[oreNum * 4 + 3] = double_11;
-		}
-
-		for(oreNum = 0; oreNum < config.size - 1; ++oreNum) {
-			if (doubles_1[oreNum * 4 + 3] > 0.0D) {
-				for(int int_9 = oreNum + 1; int_9 < config.size; ++int_9) {
-					if (doubles_1[int_9 * 4 + 3] > 0.0D) {
-						double_12 = doubles_1[oreNum * 4 + 0] - doubles_1[int_9 * 4 + 0];
-						double_13 = doubles_1[oreNum * 4 + 1] - doubles_1[int_9 * 4 + 1];
-						double_14 = doubles_1[oreNum * 4 + 2] - doubles_1[int_9 * 4 + 2];
-						double_15 = doubles_1[oreNum * 4 + 3] - doubles_1[int_9 * 4 + 3];
-						if (double_15 * double_15 > double_12 * double_12 + double_13 * double_13 + double_14 * double_14) {
-							if (double_15 > 0.0D) {
-								doubles_1[int_9 * 4 + 3] = -1.0D;
-							} else {
-								doubles_1[oreNum * 4 + 3] = -1.0D;
-							}
-						}
-					}
+	protected int generateVeinPart(IWorld world, int x, int y, int z, int clumpSize, int radius, Set<BlockState> states, int density, Random rand) {
+		int rad2 = radius * radius;
+		BlockState[] blocks = states.toArray(new BlockState[states.size()]);
+		int replaced = 0;
+		for(int zi = (int)(z - radius); zi<= (int)(z + radius); zi++) {
+			for(int xi = (int)(x - radius); xi<= (int)(x + radius); xi++) {
+				for(int yi = (int)(y - radius); yi<= (int)(y + radius); yi++) {
+					if (yi<0 || yi>255) continue;
+					if (rand.nextInt(100)>density) continue;
+					
+					int dx = xi-x;
+					int dy = yi-y;
+					int dz = zi-z;
+					int dist2 = dx*dx+dy*dy+dz*dz;
+					if (dist2 > rad2) continue;
+					
+					BlockPos pos = new BlockPos(xi, yi, zi);
+					BlockState toReplace = world.getBlockState(pos);
+					
+					if (toReplace.isAir() || !toReplace.isSimpleFullBlock(world, pos)) continue; //TODO: real replacement criteria
+					
+					BlockState replaceWith = blocks[rand.nextInt(blocks.length)];
+					world.setBlockState(new BlockPos(xi,yi,zi), replaceWith, 3);
+					replaced++;
+					if (replaced>=clumpSize) return replaced;
 				}
 			}
 		}
-
-		for(oreNum = 0; oreNum < config.size; ++oreNum) {
-			double double_16 = doubles_1[oreNum * 4 + 3];
-			if (double_16 >= 0.0D) {
-				double double_17 = doubles_1[oreNum * 4 + 0];
-				double double_18 = doubles_1[oreNum * 4 + 1];
-				double double_19 = doubles_1[oreNum * 4 + 2];
-				int int_11 = Math.max(MathHelper.floor(double_17 - double_16), int_1);
-				int int_12 = Math.max(MathHelper.floor(double_18 - double_16), int_2);
-				int int_13 = Math.max(MathHelper.floor(double_19 - double_16), int_3);
-				int int_14 = Math.max(MathHelper.floor(double_17 + double_16), int_11);
-				int int_15 = Math.max(MathHelper.floor(double_18 + double_16), int_12);
-				int int_16 = Math.max(MathHelper.floor(double_19 + double_16), int_13);
-
-				for(int int_17 = int_11; int_17 <= int_14; ++int_17) {
-					double double_20 = ((double)int_17 + 0.5D - double_17) / double_16;
-					if (double_20 * double_20 < 1.0D) {
-						for(int int_18 = int_12; int_18 <= int_15; ++int_18) {
-							double double_21 = ((double)int_18 + 0.5D - double_18) / double_16;
-							if (double_20 * double_20 + double_21 * double_21 < 1.0D) {
-								for(int int_19 = int_13; int_19 <= int_16; ++int_19) {
-									double double_22 = ((double)int_19 + 0.5D - double_19) / double_16;
-									if (double_20 * double_20 + double_21 * double_21 + double_22 * double_22 < 1.0D) {
-										int int_20 = int_17 - int_1 + (int_18 - int_2) * int_4 + (int_19 - int_3) * int_4 * int_5;
-										if (!bitSet_1.get(int_20)) {
-											bitSet_1.set(int_20);
-											blockPos$Mutable_1.set(int_17, int_18, int_19);
-											if (config.target.getCondition().test(world.getBlockState(blockPos$Mutable_1))) {
-												world.setBlockState(blockPos$Mutable_1, config.state, 2);
-												++int_6;
-											}
-										}
-									}
-								}
-							}
-						}
-					}
-				}
-			}
-		}
-
-		return int_6 > 0;*/
-		return false;
+		
+		return replaced;
 	}
 }
