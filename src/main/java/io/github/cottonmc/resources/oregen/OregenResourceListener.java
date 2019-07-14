@@ -5,16 +5,21 @@ import blue.endless.jankson.JsonObject;
 import blue.endless.jankson.impl.SyntaxError;
 import io.github.cottonmc.jankson.JanksonFactory;
 import io.github.cottonmc.resources.CottonResources;
-import net.fabricmc.fabric.api.resource.IdentifiableResourceReloadListener;
+import net.fabricmc.fabric.api.resource.SimpleSynchronousResourceReloadListener;
 import net.minecraft.resource.Resource;
 import net.minecraft.resource.ResourceManager;
-import net.minecraft.resource.SynchronousResourceReloadListener;
 import net.minecraft.util.Identifier;
+import net.minecraft.util.registry.Registry;
+import net.minecraft.world.biome.Biome;
+import net.minecraft.world.gen.GenerationStep;
+import net.minecraft.world.gen.decorator.Decorator;
+import net.minecraft.world.gen.decorator.RangeDecoratorConfig;
+import net.minecraft.world.gen.feature.FeatureConfig;
 
 import java.io.IOException;
 import java.util.Collection;
 
-public class OregenResourceListener implements SynchronousResourceReloadListener, IdentifiableResourceReloadListener {
+public class OregenResourceListener implements SimpleSynchronousResourceReloadListener{
 	protected static final OreVoteConfig jsonConfig = new OreVoteConfig();
 	
 	@Override
@@ -42,7 +47,6 @@ public class OregenResourceListener implements SynchronousResourceReloadListener
 				System.out.println(configObject);
 				OreVoteConfig configLocal = 
 						OreVoteConfig.deserialize(configObject);
-						//jankson.fromJson(configObject, OreVoteConfig.class);
 				//Fold this config into the globally resolved one
 				jsonConfig.ores.addAll(configLocal.ores);
 				

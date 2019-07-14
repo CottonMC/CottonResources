@@ -5,16 +5,15 @@ import java.util.Map;
 import com.google.common.util.concurrent.MoreExecutors;
 
 import io.github.cottonmc.resources.CottonResources;
-import net.fabricmc.fabric.api.resource.IdentifiableResourceReloadListener;
+import net.fabricmc.fabric.api.resource.SimpleSynchronousResourceReloadListener;
 import net.minecraft.resource.ResourceManager;
-import net.minecraft.resource.SynchronousResourceReloadListener;
 import net.minecraft.tag.RegistryTagContainer;
 import net.minecraft.tag.Tag;
 import net.minecraft.tag.TagContainer;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 
-public class WorldTagReloadListener implements SynchronousResourceReloadListener, IdentifiableResourceReloadListener {
+public class WorldTagReloadListener implements SimpleSynchronousResourceReloadListener {
 	public static final Identifier ID = new Identifier(CottonResources.MODID, "world_tags");
 	
 	//implements SynchronousResourceReloadListener {

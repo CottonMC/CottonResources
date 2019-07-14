@@ -14,7 +14,6 @@ import net.minecraft.world.dimension.Dimension;
 import net.minecraft.world.dimension.DimensionType;
 
 public class DimensionSpec extends TaggableSpec<Dimension> {
-	//TODO: Dimension tag registry
 	
 	public DimensionSpec allowTag(Identifier tag) {
 		allow.addAll(resolveTag(tag));

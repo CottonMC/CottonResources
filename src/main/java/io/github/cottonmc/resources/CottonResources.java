@@ -1,27 +1,27 @@
 package io.github.cottonmc.resources;
 
 import io.github.cottonmc.cotton.config.ConfigManager;
-import io.github.cottonmc.cotton.datapack.CottonDatapack;
-import io.github.cottonmc.cotton.datapack.recipe.RecipeUtil;
 import io.github.cottonmc.cotton.logging.ModLogger;
 import io.github.cottonmc.resources.config.CottonResourcesConfig;
-import io.github.cottonmc.resources.oregen.OreGeneration;
-import io.github.cottonmc.resources.oregen.OreGenerationSettings;
-import io.github.cottonmc.resources.oregen.OreVoteConfig;
+import io.github.cottonmc.resources.oregen.CottonOreFeature;
 import io.github.cottonmc.resources.oregen.OregenResourceListener;
-import io.github.cottonmc.resources.tag.DimensionTypeTags;
+import io.github.cottonmc.resources.tag.WorldTagReloadListener;
 import io.github.cottonmc.resources.type.GemResourceType;
 import io.github.cottonmc.resources.type.GenericResourceType;
 import io.github.cottonmc.resources.type.MetalResourceType;
 import io.github.cottonmc.resources.type.RadioactiveResourceType;
 import io.github.cottonmc.resources.type.ResourceType;
 import net.fabricmc.api.ModInitializer;
+import net.fabricmc.fabric.api.event.registry.RegistryEntryAddedCallback;
 import net.fabricmc.fabric.api.resource.ResourceManagerHelper;
 import net.minecraft.block.Block;
-import net.minecraft.util.Identifier;
-import net.minecraft.world.dimension.DimensionType;
+import net.minecraft.util.registry.Registry;
+import net.minecraft.world.biome.Biome;
+import net.minecraft.world.gen.GenerationStep;
+import net.minecraft.world.gen.decorator.Decorator;
+import net.minecraft.world.gen.decorator.RangeDecoratorConfig;
+import net.minecraft.world.gen.feature.FeatureConfig;
 
-import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Supplier;
@@ -77,25 +77,34 @@ public class CottonResources implements ModInitializer {
 		builtinGem("sapphire", BlockSuppliers.IRON_TIER_ORE, MACHINE_AFFIXES);
 
 		for (ResourceType resource : BUILTINS.values()) {
-			OreGenerationSettings oreGenerationSettings = CONFIG.ores.get(resource.getBaseResource());
-			if (oreGenerationSettings == null) {
-				LOGGER.warn("No ore generation settings found for " + resource.getBaseResource() + " so registering anyway");
-				resource.registerAll();
-				//} else if (oreGenerationSettings.enabled) {
-				//    // || IsResourceRequestedBymodJson?
-				//    resource.registerAll();
-			} else {
-				resource.registerAll();
-				nullifyRecipes(resource);
-			}
+			resource.registerAll();
 		}
-		OreGeneration.registerOres();
-
+		
+		setupBiomeGenerators(); //add cotton-resources ores to all current biomes
+		RegistryEntryAddedCallback.event(Registry.BIOME).register((id, ident, biome)->setupBiomeGenerator(biome)); //Add cotton-resources ores to any later biomes that appear
+		
 		ResourceManagerHelper.get(net.minecraft.resource.ResourceType.SERVER_DATA).registerReloadListener(new OregenResourceListener());
+		ResourceManagerHelper.get(net.minecraft.resource.ResourceType.SERVER_DATA).registerReloadListener(new WorldTagReloadListener());
+	}
+	
+	private static void setupBiomeGenerators() {
+		for (Biome biome : Registry.BIOME) {
+			setupBiomeGenerator(biome);
+		}
+	}
+	
+	private static void setupBiomeGenerator(Biome biome) {
+		biome.addFeature(GenerationStep.Feature.UNDERGROUND_ORES,
+			Biome.configureFeature(
+				CottonOreFeature.COTTON_ORE,
+				FeatureConfig.DEFAULT,
+				Decorator.COUNT_RANGE,
+				new RangeDecoratorConfig(1, 0, 0, 256)
+			)
+		);
 	}
 
 	private static void builtinMetal(String id, Supplier<Block> oreSupplier, String... extraAffixes) {
-		//LOGGER.devInfo("registering " + id); //Nope
 		MetalResourceType result = new MetalResourceType(id);
 		if (oreSupplier != null) result.withOreSupplier(oreSupplier);
 
@@ -107,7 +116,6 @@ public class CottonResources implements ModInitializer {
 	}
 
 	private static void builtinGem(String id, Supplier<Block> oreSupplier, String... extraAffixes) {
-		//LOGGER.devInfo("registering " + id); //Pls no
 		GemResourceType result = new GemResourceType(id).withOreSupplier(oreSupplier);
 		if (extraAffixes.length > 0) {
 			result.withItemAffixes(extraAffixes);
@@ -117,7 +125,6 @@ public class CottonResources implements ModInitializer {
 	}
 
 	private static void builtinRadioactive(String id, Supplier<Block> oreSupplier, String... extraAffixes) {
-		//LOGGER.devInfo("registering " + id); //Pls don't
 		RadioactiveResourceType result = new RadioactiveResourceType(id);
 		if (oreSupplier != null) result.withOreSupplier(oreSupplier);
 
@@ -140,10 +147,10 @@ public class CottonResources implements ModInitializer {
 	/**
 	 * TODO from json pls
 	 */
-	public static void requestResource(String name) {
-
-	}
-
+	//public static void requestResource(String name) {
+	//}
+	
+	/*
 	// nullify recipes for metals not currently enabled
 	private static void nullifyRecipes(ResourceType resource) {
 		if (resource instanceof MetalResourceType) {
@@ -155,5 +162,5 @@ public class CottonResources implements ModInitializer {
 			RecipeUtil.removeRecipe(new Identifier(CottonDatapack.SHARED_NAMESPACE, metal.getBaseResource() + "_ingot_from_nuggets"));
 			RecipeUtil.removeRecipe(new Identifier(CottonDatapack.SHARED_NAMESPACE, metal.getBaseResource() + "_nugget"));
 		}
-	}
+	}*/
 }

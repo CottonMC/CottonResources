@@ -1,7 +1,6 @@
 package io.github.cottonmc.resources.oregen;
 
 import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 

@@ -13,7 +13,6 @@ import net.minecraft.util.registry.Registry;
 import net.minecraft.world.biome.Biome;
 
 public class BiomeSpec extends TaggableSpec<Biome> {
-	//TODO: Biome tag registry
 	
 	public BiomeSpec allowTag(Identifier tag) {
 		allow.addAll(resolveTag(tag));
