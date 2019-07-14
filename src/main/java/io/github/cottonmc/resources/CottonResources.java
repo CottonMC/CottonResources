@@ -205,25 +205,5 @@ public class CottonResources implements ModInitializer {
 		}
 		BUILTINS.put(id, result);
 	}
-
-
-	/**
-	 * TODO from json pls
-	 */
-	//public static void requestResource(String name) {
-	//}
 	
-	/*
-	// nullify recipes for metals not currently enabled
-	private static void nullifyRecipes(ResourceType resource) {
-		if (resource instanceof MetalResourceType) {
-			MetalResourceType metal = (MetalResourceType) resource;
-			RecipeUtil.removeRecipe(new Identifier(CottonDatapack.SHARED_NAMESPACE, metal.getBaseResource() + "_block"));
-			RecipeUtil.removeRecipe(new Identifier(CottonDatapack.SHARED_NAMESPACE, metal.getBaseResource() + "_ingot"));
-			RecipeUtil.removeRecipe(new Identifier(CottonDatapack.SHARED_NAMESPACE, metal.getBaseResource() + "_ingot_from_blasting"));
-			RecipeUtil.removeRecipe(new Identifier(CottonDatapack.SHARED_NAMESPACE, metal.getBaseResource() + "_ingot_from_" + metal.getBaseResource() + "_block"));
-			RecipeUtil.removeRecipe(new Identifier(CottonDatapack.SHARED_NAMESPACE, metal.getBaseResource() + "_ingot_from_nuggets"));
-			RecipeUtil.removeRecipe(new Identifier(CottonDatapack.SHARED_NAMESPACE, metal.getBaseResource() + "_nugget"));
-		}
-	}*/
 }

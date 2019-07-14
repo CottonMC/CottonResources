@@ -28,7 +28,7 @@ public class CottonOreFeature extends Feature<DefaultFeatureConfig> {
 		
 		Chunk toGenerateIn = world.getChunk(pos);
 		Biome biome = toGenerateIn.getBiome(pos);
-		System.out.println("Generating into "+toGenerateIn.getPos()+" <- "+config.ores);
+		//System.out.println("Generating into "+toGenerateIn.getPos()+" <- "+config.ores);
 		for(String s : config.ores) {
 			OreGenerationSettings settings = config.generators.get(s);
 			if (settings==null) continue;
@@ -45,11 +45,12 @@ public class CottonOreFeature extends Feature<DefaultFeatureConfig> {
 				int blocksGenerated = 0;
 				for(int i=0; i<clusters; i++) {
 					//Pick an epicenter
-					int maxCluster = 7; //MaxCluster can't go past 7 without adding some overbleed
+					int maxCluster = 7;
 					int overbleed = 0; //Increase to allow ore deposits to overlap South/East chunks by this amount
 					int clusterSize = Math.max(1, Math.min(maxCluster, settings.cluster_size)); //Clamp to 1..maxCluster
 					
-					int radius = (int) Math.log(clusterSize) + 2;
+					int radius = (int) Math.log(clusterSize) + 2; //radius can't go past 7 without adding some overbleed
+					if (radius>7) radius=7;
 					
 					int clusterX = rand.nextInt(16 + overbleed - (radius*2))+radius;
 					int clusterZ = rand.nextInt(16 + overbleed - (radius*2))+radius;
@@ -63,18 +64,11 @@ public class CottonOreFeature extends Feature<DefaultFeatureConfig> {
 					blocksGenerated += generatedThisCluster;
 				}
 				
-				System.out.println("    Generated "+blocksGenerated+" in "+clusters+" clusters.");
+				//System.out.println("    Generated "+blocksGenerated+" in "+clusters+" clusters.");
 			} else {
-				System.out.println("    skipping "+s+" here.");
+				//System.out.println("    skipping "+s+" here.");
 			}
 		}
-
-		return false;
-	}
-	
-	protected boolean generateVein(IWorld world, int x, int z, OreGenerationSettings settings) {
-		// x/z is the northwest corner of the chunk; generation is offset into these values
-		
 		
 		return false;
 	}
@@ -84,6 +78,8 @@ public class CottonOreFeature extends Feature<DefaultFeatureConfig> {
 		BlockState[] blocks = states.toArray(new BlockState[states.size()]);
 		int replaced = 0;
 		
+		//TODO: Maybe add these into a set and scramble them so that ores distribute more evenly into the sphere
+		//      Alternatively, we could spray ores *at random* using a gaussian distribution. Not sure which is better.
 		for(int zi = (int)(z - radius); zi<= (int)(z + radius); zi++) {
 			for(int xi = (int)(x - radius); xi<= (int)(x + radius); xi++) {
 				for(int yi = (int)(y - radius); yi<= (int)(y + radius); yi++) {

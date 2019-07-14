@@ -6,15 +6,8 @@ import blue.endless.jankson.impl.SyntaxError;
 import io.github.cottonmc.jankson.JanksonFactory;
 import io.github.cottonmc.resources.CottonResources;
 import net.fabricmc.fabric.api.resource.SimpleSynchronousResourceReloadListener;
-import net.minecraft.resource.Resource;
 import net.minecraft.resource.ResourceManager;
 import net.minecraft.util.Identifier;
-import net.minecraft.util.registry.Registry;
-import net.minecraft.world.biome.Biome;
-import net.minecraft.world.gen.GenerationStep;
-import net.minecraft.world.gen.decorator.Decorator;
-import net.minecraft.world.gen.decorator.RangeDecoratorConfig;
-import net.minecraft.world.gen.feature.FeatureConfig;
 
 import java.io.IOException;
 import java.util.Collection;
@@ -27,31 +20,18 @@ public class OregenResourceListener implements SimpleSynchronousResourceReloadLi
 		jsonConfig.generators.clear();
 		jsonConfig.ores.clear();
 		
-		Jankson jankson = JanksonFactory.builder()
-				.registerTypeAdapter(OreGenerationSettings.class, OreGenerationSettings::deserialize)
-				.build();
-		
-		
+		Jankson jankson = JanksonFactory.builder().build();
 		
 		Collection<Identifier> identifiers = resourceManager.findResources("oregen", (rsrc) -> rsrc.endsWith(".json") || rsrc.endsWith(".json5"));
 		
 		for (Identifier id : identifiers) {
 			
 			try {
-				Resource rsrc = resourceManager.getResource(id);
-				
-				
 				
 				JsonObject configObject = jankson.load(resourceManager.getResource(id).getInputStream());
-				configObject.setMarshaller(jankson.getMarshaller()); //maybe fix?
-				System.out.println(configObject);
-				OreVoteConfig configLocal = 
-						OreVoteConfig.deserialize(configObject);
+				OreVoteConfig configLocal = OreVoteConfig.deserialize(configObject);
 				//Fold this config into the globally resolved one
 				jsonConfig.ores.addAll(configLocal.ores);
-				
-				System.out.println("Loading generators for "+configLocal.generators.keySet()+" provided by "+rsrc.getResourcePackName());
-				System.out.println(jankson.toJson(configLocal));
 				jsonConfig.generators.putAll(configLocal.generators);
 				
 			} catch (IOException ex) {
@@ -61,8 +41,8 @@ public class OregenResourceListener implements SimpleSynchronousResourceReloadLi
 			}
 		}
 		
-		System.out.println("Final set of generator keys available: "+jsonConfig.generators.keySet());
-		System.out.println("Enabled generators: "+jsonConfig.ores);
+		CottonResources.LOGGER.info("Final set of generator keys available: %s", jsonConfig.generators.keySet());
+		CottonResources.LOGGER.info("Enabled generators: %s", jsonConfig.ores);
 	}
 
 	@Override
