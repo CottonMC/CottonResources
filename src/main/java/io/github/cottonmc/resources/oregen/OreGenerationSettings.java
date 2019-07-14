@@ -1,16 +1,23 @@
-package io.github.cottonmc.resources.config;
+package io.github.cottonmc.resources.oregen;
 
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
+
+import java.util.HashSet;
+import java.util.Set;
+
+import com.google.common.collect.ImmutableSet;
+
+import blue.endless.jankson.JsonArray;
 import blue.endless.jankson.JsonElement;
 import blue.endless.jankson.JsonObject;
-import io.github.cottonmc.resources.oregen.BiomeSpec;
-import io.github.cottonmc.resources.oregen.DimensionSpec;
+import blue.endless.jankson.JsonPrimitive;
+import io.github.cottonmc.jankson.BlockAndItemSerializers;
 
 public class OreGenerationSettings {
-	public BlockState ore_block = Blocks.LIGHT_BLUE_WOOL.getDefaultState();
+	public Set<BlockState> ores = new HashSet<>();
 	public int min_height = 6;
 	public int max_height = 64;
 	public DimensionSpec dimensions = new DimensionSpec();
@@ -22,7 +29,7 @@ public class OreGenerationSettings {
 	}
 	
 	public OreGenerationSettings withOreBlock(String ore_block) {
-		this.ore_block = Registry.BLOCK.get(new Identifier(ore_block)).getDefaultState();
+		this.ores.add(Registry.BLOCK.get(new Identifier(ore_block)).getDefaultState());
 		return this;
 	}
 	public OreGenerationSettings withMinHeight(int min_height) {
@@ -55,10 +62,9 @@ public class OreGenerationSettings {
 	
 	//Handle some of the especially-vague polymorphism of DimensionSpec and BiomeSpec
 	public static OreGenerationSettings deserialize(JsonObject obj) {
-		System.out.println("deserialize called");
-		
 		OreGenerationSettings result = new OreGenerationSettings();
-		result.ore_block = obj.get(BlockState.class, "block");
+		JsonElement blockElem = obj.get("ore_block");
+		result.ores.addAll(deserializeBlockState(blockElem));
 		
 		result.min_height = getIntOrDefault(obj, "min_height", result.min_height);
 		result.max_height = getIntOrDefault(obj, "max_height", result.max_height);
@@ -66,15 +72,30 @@ public class OreGenerationSettings {
 		result.cluster_size = getIntOrDefault(obj, "cluster_size", result.cluster_size);
 		
 		JsonElement dimensionsElem = obj.get("dimensions");
-		System.out.println("Deserializing dimensionSpec....");
-		if (dimensionsElem!=null) result.dimensions =
-			DimensionSpec.deserialize(dimensionsElem);
+		if (dimensionsElem!=null) result.dimensions = DimensionSpec.deserialize(dimensionsElem);
 		
 		JsonElement biomesElem = obj.get("biomes");
-		if (biomesElem!=null) result.biomes =
-			BiomeSpec.deserialize(biomesElem);
+		if (biomesElem!=null) result.biomes = BiomeSpec.deserialize(biomesElem);
 		
 		return result;
+	}
+	
+	public static Set<BlockState> deserializeBlockState(JsonElement elem) {
+		if (elem==null) return ImmutableSet.of();
+		
+		if (elem instanceof JsonPrimitive) {
+			return ImmutableSet.of(BlockAndItemSerializers.getBlockStatePrimitive(((JsonPrimitive) elem).getValue()));
+		} else if (elem instanceof JsonObject) {
+			return ImmutableSet.of(BlockAndItemSerializers.getBlockState((JsonObject) elem));
+		} else if (elem instanceof JsonArray) {
+			HashSet<BlockState> result = new HashSet<>();
+			for(JsonElement e : (JsonArray)elem) {
+				result.addAll(deserializeBlockState(e));
+			}
+			return result;
+		} else { //JsonNull, etc
+			return ImmutableSet.of();
+		}
 	}
 	
 	public static int getIntOrDefault(JsonObject obj, String key, int defaultValue) {

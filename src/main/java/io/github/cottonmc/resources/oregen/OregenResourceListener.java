@@ -5,7 +5,6 @@ import blue.endless.jankson.JsonObject;
 import blue.endless.jankson.impl.SyntaxError;
 import io.github.cottonmc.jankson.JanksonFactory;
 import io.github.cottonmc.resources.CottonResources;
-import io.github.cottonmc.resources.config.OreGenerationSettings;
 import net.fabricmc.fabric.api.resource.IdentifiableResourceReloadListener;
 import net.minecraft.resource.Resource;
 import net.minecraft.resource.ResourceManager;
@@ -16,7 +15,7 @@ import java.io.IOException;
 import java.util.Collection;
 
 public class OregenResourceListener implements SynchronousResourceReloadListener, IdentifiableResourceReloadListener {
-	protected final OreVoteConfig jsonConfig = new OreVoteConfig();
+	protected static final OreVoteConfig jsonConfig = new OreVoteConfig();
 	
 	@Override
 	public void apply(ResourceManager resourceManager) {
@@ -51,8 +50,6 @@ public class OregenResourceListener implements SynchronousResourceReloadListener
 				System.out.println(jankson.toJson(configLocal));
 				jsonConfig.generators.putAll(configLocal.generators);
 				
-				
-				
 			} catch (IOException ex) {
 				CottonResources.LOGGER.error(ex.getMessage(), ex);
 			} catch (SyntaxError ex) {
@@ -67,5 +64,9 @@ public class OregenResourceListener implements SynchronousResourceReloadListener
 	@Override
 	public Identifier getFabricId() {
 		return new Identifier(CottonResources.MODID, "ore_voting");
+	}
+	
+	public static OreVoteConfig getConfig() {
+		return jsonConfig;
 	}
 }

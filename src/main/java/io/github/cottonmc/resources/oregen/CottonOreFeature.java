@@ -2,12 +2,15 @@ package io.github.cottonmc.resources.oregen;
 
 import com.mojang.datafixers.Dynamic;
 
-import io.github.cottonmc.resources.config.OreGenerationSettings;
+import io.github.cottonmc.resources.CottonResources;
+import net.minecraft.block.BlockState;
+import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.Heightmap;
 import net.minecraft.world.IWorld;
+import net.minecraft.world.biome.Biome;
 import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.gen.chunk.ChunkGenerator;
 import net.minecraft.world.gen.chunk.ChunkGeneratorConfig;
@@ -26,18 +29,38 @@ public class CottonOreFeature extends Feature<DefaultFeatureConfig> {
 		super(DefaultFeatureConfig::deserialize);
 	}
 
-	public boolean generate(IWorld world, ChunkGenerator<? extends ChunkGeneratorConfig> generator, Random rand, BlockPos pos, DefaultFeatureConfig config) {
+	public boolean generate(IWorld world, ChunkGenerator<? extends ChunkGeneratorConfig> generator, Random rand, BlockPos pos, DefaultFeatureConfig uselessConfig) {
 		//if (!config.dimensions.test(world.getDimension())) return false;
 		//if (!config.biomes.test(world.getBiome(pos))) return false;
 		
 		//if (config.dimensionBlocklist.contains(Registry.DIMENSION.getId(world.getDimension().getType()).toString())) return false;
 		//float diameter = rand.nextFloat() * 3.1415927F; //this makes a quantity in degrees through half a circle, so that we can pick a random rectangular X/Z spread whose elongation follows a gaussian distribution.
-		
-		
+		OreVoteConfig config = OregenResourceListener.getConfig();
+		if (config.ores.isEmpty()) return true; // We didn't generate anything, but yes, don't retry.
 		
 		
 		Chunk toGenerateIn = world.getChunk(pos);
-		System.out.println("Generating into "+toGenerateIn.getPos());
+		Biome biome = toGenerateIn.getBiome(pos);
+		System.out.println("Generating into "+toGenerateIn.getPos()+" <- "+config.ores);
+		for(String s : config.ores) {
+			OreGenerationSettings settings = config.generators.get(s);
+			if (settings==null) continue;
+			
+			if (settings.dimensions.test(world.getDimension()) && settings.biomes.test(biome)) {
+			
+				//For now, spit debug info
+				if (settings.ores.isEmpty()) {
+					//System.out.println("    ORE WAS NULL FOR "+s);
+					continue;
+				}
+				Identifier blockId = Registry.BLOCK.getId(settings.ores.iterator().next().getBlock());
+				System.out.println("    generating "+s+"="+blockId+" at base "+toGenerateIn.getPos());
+			} else {
+				System.out.println("    skipping "+s+" here.");
+			}
+		}
+		
+		
 		//if we cross a chunk boundary, it should be in the +X/+Z direction, so pick cuboids in that configuration
 		
 		
@@ -77,6 +100,17 @@ public class CottonOreFeature extends Feature<DefaultFeatureConfig> {
 		}*/
 
 		return false;
+	}
+	
+	protected boolean generateVein(IWorld world, int x, int z, OreGenerationSettings settings) {
+		// x/z is the northwest corner of the chunk; generation is offset into these values
+		
+		
+		return false;
+	}
+	
+	protected int generateVeinPart(IWorld world, int x, int y, int z, float radius, BlockState[] states) {
+		return 0;
 	}
 
 	protected boolean generateVeinPart(IWorld world, Random rand, DefaultFeatureConfig config, double maxX, double minX, double maxZ, double minZ, double maxY, double minY, int int_1, int int_2, int int_3, int int_4, int int_5) {

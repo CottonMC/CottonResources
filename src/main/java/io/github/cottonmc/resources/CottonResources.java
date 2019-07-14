@@ -5,8 +5,8 @@ import io.github.cottonmc.cotton.datapack.CottonDatapack;
 import io.github.cottonmc.cotton.datapack.recipe.RecipeUtil;
 import io.github.cottonmc.cotton.logging.ModLogger;
 import io.github.cottonmc.resources.config.CottonResourcesConfig;
-import io.github.cottonmc.resources.config.OreGenerationSettings;
 import io.github.cottonmc.resources.oregen.OreGeneration;
+import io.github.cottonmc.resources.oregen.OreGenerationSettings;
 import io.github.cottonmc.resources.oregen.OreVoteConfig;
 import io.github.cottonmc.resources.oregen.OregenResourceListener;
 import io.github.cottonmc.resources.tag.DimensionTypeTags;
@@ -21,6 +21,7 @@ import net.minecraft.block.Block;
 import net.minecraft.util.Identifier;
 import net.minecraft.world.dimension.DimensionType;
 
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Supplier;
@@ -32,7 +33,6 @@ public class CottonResources implements ModInitializer {
 	public static final CottonResourcesConfig CONFIG = ConfigManager.loadConfig(CottonResourcesConfig.class);
 	private static final String[] MACHINE_AFFIXES = new String[]{"gear", "plate"};
 	private static final Map<String, ResourceType> BUILTINS = new HashMap<>();
-	private static OreVoteConfig RESOLVED_CONFIG = new OreVoteConfig();
 	
 	@Override
 	public void onInitialize() {
@@ -92,11 +92,6 @@ public class CottonResources implements ModInitializer {
 		OreGeneration.registerOres();
 
 		ResourceManagerHelper.get(net.minecraft.resource.ResourceType.SERVER_DATA).registerReloadListener(new OregenResourceListener());
-		
-		//TODO: is there a tag container registry so we can ask minecraft to load these from json instead?
-		DimensionTypeTags.CONTAINER.getOrCreate(new Identifier("c:hells")).values().add(DimensionType.THE_NETHER);
-		DimensionTypeTags.CONTAINER.getOrCreate(new Identifier("c:overworlds")).values().add(DimensionType.OVERWORLD);
-		DimensionTypeTags.CONTAINER.getOrCreate(new Identifier("c:ends")).values().add(DimensionType.THE_END);
 	}
 
 	private static void builtinMetal(String id, Supplier<Block> oreSupplier, String... extraAffixes) {

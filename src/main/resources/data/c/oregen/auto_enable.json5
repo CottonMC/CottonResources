@@ -1,11 +1,9 @@
 {
-	//"ores": [
-		/*
+	/*"ores": [
 		"copper", "silver", "lead", "zinc", "aluminum", "cobalt", "tin", "titanium", "tungsten",
 		"platinum", "palladium", "osmium", "iridium",
 		"coal_coke",
 		"uranium",
-		"ruby", "topaz", "amethyst", "peridot", "sapphire"
-		*/
-	//]
+		"ruby", "topaz", "amethyst", "peridot", "sapphire
+	]*/
 } 

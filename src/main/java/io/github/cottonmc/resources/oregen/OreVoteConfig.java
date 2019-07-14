@@ -9,7 +9,6 @@ import blue.endless.jankson.JsonArray;
 import blue.endless.jankson.JsonElement;
 import blue.endless.jankson.JsonObject;
 import blue.endless.jankson.JsonPrimitive;
-import io.github.cottonmc.resources.config.OreGenerationSettings;
 
 public class OreVoteConfig {
 	public final Set<String> ores = new HashSet<String>();
