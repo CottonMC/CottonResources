@@ -1,0 +1,148 @@
+{
+	"generators": {
+		"aluminum": {
+			"ore_block": "c:aluminum_ore",
+			
+			"min_height": 6,
+			"max_height": 48,
+			"cluster_count": 4,
+			"cluster_size": 8,
+		},
+
+		"cobalt": {
+			"dimensions": [ "minecraft:the_nether" ],
+
+			"ore_block": "c:cobalt_ore",
+			
+			"min_height": 6,
+			"max_height": 64,
+			"cluster_count": 20,
+			"cluster_size": 3,
+		},
+
+		"copper": {
+			"dimensions": [ { "tag": "overworlds" } ],
+			"biomes": [ "*" ],
+
+			"ore_block": "c:copper_ore",
+			
+			"min_height": 32,
+			"max_height": 96,
+			"cluster_count": 20,
+			"cluster_size": 10
+		},
+
+		"iridium": {
+			"dimensions": [ "minecraft:the_nether" ],
+
+			"ore_block": "c:iridium_ore",
+
+			"min_height": 32,
+			"max_height": 64,
+			"cluster_count": 2,
+			"cluster_size": 3,
+		},
+
+		"lead": {
+			"ore_block": "c:lead_ore",
+			
+			"min_height": 6,
+			"max_height": 48,
+			"cluster_count": 4,
+			"cluster_size": 8,
+		},
+
+		"osmium": {
+			"dimensions": [ "minecraft:the_end" ],
+
+			"ore_block": "c:osmium_ore",
+
+			"min_height": 6,
+			"max_height": 64,
+			"cluster_count": 2,
+			"cluster_size": 3,
+		},
+
+		"palladium": {
+			"dimensions": [ "minecraft:the_end" ],
+
+			"ore_block": "c:palladium_ore",
+
+			"min_height": 6,
+			"max_height": 64,
+			"cluster_count": 2,
+			"cluster_size": 3,
+		},
+
+		"platinum": {
+			"dimensions": [ "minecraft:the_end" ],
+
+			"ore_block": "c:platinum_ore",
+			
+			"min_height": 6,
+			"max_height": 64,
+			"cluster_count": 2,
+			"cluster_size": 3,
+		},
+
+		"silver": {
+			"ore_block": "c:silver_ore",
+			
+			"min_height": 6,
+			"max_height": 48,
+			"cluster_count": 4,
+			"cluster_size": 8,
+		},
+
+		"tin": {
+			"ore_block": "c:tin_ore",
+			
+			"min_height": 6,
+			"max_height": 48,
+			"cluster_count": 8,
+			"cluster_size": 8,
+		},
+
+		"titanium": {
+			"dimensions": [ "minecraft:the_nether" ],
+
+			"ore_block": "c:titanium_ore",
+			
+			"min_height": 6,
+			"max_height": 256,
+			"cluster_count": 4,
+			"cluster_size": 4,
+		},
+
+		"tungsten": {
+			"dimensions": [ "minecraft:the_nether" ],
+
+			"ore_block": "c:tungsten_ore",
+			
+			"min_height": 6,
+			"max_height": 32,
+			"cluster_count": 4,
+			"cluster_size": 8,
+		},
+
+		"uranium": {
+			"dimensions": [ "minecraft:the_nether" ],
+
+			"ore_block": "c:uranium_ore",
+			
+			"min_height": 6,
+			"max_height": 32,
+			"cluster_count": 4,
+			"cluster_size": 4,
+		},
+
+		"zinc": {
+			"ore_block": "c:zinc_ore",
+			
+			"min_height": 6,
+			"max_height": 48,
+			"cluster_count": 8,
+			"cluster_size": 8,
+		}
+	}
+}
