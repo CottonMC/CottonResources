@@ -40,7 +40,7 @@ public class OreGenerationSettings {
 		return this;
 	}
 	public OreGenerationSettings excludeDimension(String dimension) {
-		//this.biomes.deny.add(new Identifier(dimension));
+		this.biomes.deny.add(new Identifier(dimension));
 		return this;
 	}
 	public OreGenerationSettings withClusterCount(int cluster_count) {

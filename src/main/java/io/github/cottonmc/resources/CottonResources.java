@@ -38,10 +38,8 @@ import java.util.function.Supplier;
 
 import com.google.common.collect.ImmutableSet;
 import com.mojang.brigadier.Command;
-import com.mojang.brigadier.builder.LiteralArgumentBuilder;
 import com.mojang.brigadier.context.CommandContext;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
-import com.mojang.brigadier.tree.CommandNode;
 import com.mojang.brigadier.tree.LiteralCommandNode;
 
 public class CottonResources implements ModInitializer {
