@@ -59,7 +59,7 @@ public class CottonOreFeature extends Feature<DefaultFeatureConfig> {
 					for(int j=0; j<SPHERES.length; j++) { //find the smallest clump in our vocabulary which expresses the number of ores
 						Clump clump = SPHERES[j];
 						if (clump.size()>=settings.cluster_size) {
-							System.out.println("Cluster size "+settings.cluster_size+" matched against clump #"+j);
+							//System.out.println("Cluster size "+settings.cluster_size+" matched against clump #"+j);
 							radius = j+1;
 							break;
 						}
@@ -75,10 +75,10 @@ public class CottonOreFeature extends Feature<DefaultFeatureConfig> {
 					
 					int generatedThisCluster = generateVeinPartGaussianClump(world, clusterX, clusterY, clusterZ, settings.cluster_size, radius, settings.ores, 85, rand);
 					blocksGenerated += generatedThisCluster;
-					System.out.println("    Generated "+generatedThisCluster+" out of "+settings.cluster_size+" expected.");
+					//System.out.println("    Generated "+generatedThisCluster+" out of "+settings.cluster_size+" expected.");
 				}
 				
-				System.out.println("    Generated "+blocksGenerated+" in "+clusters+" clusters out of "+settings.cluster_size+"*"+clusters+"="+(settings.cluster_size*clusters));
+				//System.out.println("    Generated "+blocksGenerated+" in "+clusters+" clusters out of "+settings.cluster_size+"*"+clusters+"="+(settings.cluster_size*clusters));
 			} else {
 				//System.out.println("    skipping "+s+" here.");
 			}
