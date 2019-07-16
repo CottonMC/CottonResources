@@ -1,7 +1,7 @@
 plugins {
-	id 'fabric-loom' version '0.2.3-SNAPSHOT'
-	id 'maven-publish'
-	id 'com.jfrog.artifactory' version '4.9.0'
+    id 'fabric-loom' version '0.2.3-SNAPSHOT'
+    id 'maven-publish'
+    id 'com.jfrog.artifactory' version '4.9.0'
 }
 
 sourceCompatibility = JavaVersion.VERSION_1_8
@@ -12,89 +12,97 @@ version = mod_version
 group = maven_group
 
 repositories {
-	maven { url "http://server.bbkr.space:8081/artifactory/libs-release/" }
+    maven { url "http://server.bbkr.space:8081/artifactory/libs-release/" }
 }
 
 dependencies {
-	minecraft "com.mojang:minecraft:${minecraft_version}"
-	mappings "net.fabricmc:yarn:${yarn_mappings}"
-	modCompile "net.fabricmc:fabric-loader:${loader_version}"
-	modCompile "net.fabricmc.fabric-api:fabric-api:${fabric_version}"
-	
-	modCompile "io.github.cottonmc.cotton:cotton-commons:${cotton_commons_version}"
-	
-	modCompile "io.github.cottonmc:Jankson:${jankson_version}"
-	include "io.github.cottonmc:Jankson:${jankson_version}"
+    minecraft "com.mojang:minecraft:${minecraft_version}"
+    mappings "net.fabricmc:yarn:${yarn_mappings}"
+    modCompile "net.fabricmc:fabric-loader:${loader_version}"
+    modCompile "net.fabricmc.fabric-api:fabric-api:${fabric_version}"
 
-	implementation "com.google.code.findbugs:jsr305:3.0.2"
+    modCompile "io.github.cottonmc.cotton:cotton-commons:${cotton_commons_version}"
+
+    modCompile "io.github.cottonmc:Jankson:${jankson_version}"
+    include "io.github.cottonmc:Jankson:${jankson_version}"
+
+    implementation "com.google.code.findbugs:jsr305:3.0.2"
 }
 
 processResources {
-	inputs.property "version", version
+    inputs.property "version", version
 
-	from(sourceSets.main.resources.srcDirs) {
-		include "fabric.mod.json"
-		expand "version": version
-	}
+    from(sourceSets.main.resources.srcDirs) {
+        include "fabric.mod.json"
+        expand "version": version
+    }
 
-	from(sourceSets.main.resources.srcDirs) {
-		exclude "fabric.mod.json"
-	}
+    from(sourceSets.main.resources.srcDirs) {
+        exclude "fabric.mod.json"
+    }
 }
 
 tasks.withType(JavaCompile) {
-	options.encoding = "UTF-8"
+    options.encoding = "UTF-8"
 }
 
 task sourcesJar(type: Jar, dependsOn: classes) {
-	classifier = "sources"
-	from sourceSets.main.allSource
+    classifier = "sources"
+    from sourceSets.main.allSource
 }
 
 jar {
-	from "LICENSE"
+    from "LICENSE"
 }
 
 publishing {
-	publications {
-		mavenJava(MavenPublication) {
-			artifact ("${buildDir.absolutePath}/libs/${archivesBaseName}-${version}.jar") {
-				classifier null
-				builtBy remapJar
-			}
+    publications {
+        mavenJava(MavenPublication) {
+            artifact("${buildDir.absolutePath}/libs/${archivesBaseName}-${version}.jar") {
+                classifier null
+                builtBy remapJar
+            }
 
-			artifact ("${buildDir.absolutePath}/libs/${archivesBaseName}-${version}-dev.jar") {
-				classifier "dev"
-				builtBy remapJar
-			}
+            artifact("${buildDir.absolutePath}/libs/${archivesBaseName}-${version}-dev.jar") {
+                classifier "dev"
+                builtBy remapJar
+            }
 
-			artifact(sourcesJar) {
-				builtBy remapSourcesJar
-			}
-		}
-	}
+            artifact(sourcesJar) {
+                builtBy remapSourcesJar
+            }
+        }
+    }
 }
 
 if (file('private.gradle').exists()) {
-	apply(from: 'private.gradle')
+    apply(from: 'private.gradle')
 }
 
 artifactory {
-	if (hasProperty("artifactoryUsername")) {
-		contextUrl = 'http://server.bbkr.space:8081/artifactory/libs-release/'
-		publish {
-			repository {
-				username = artifactoryUsername
-				password = artifactoryPassword
-			}
-			defaults {
-				publications('maven')
+    if (ext.has("artifactoryUsername")) {
+        contextUrl = 'http://server.bbkr.space:8081/artifactory/'
+        publish {
+            repository {
+                if (version.contains("SNAPSHOT")) {
+                    repoKey = 'libs-snapshot-local'
+                } else {
+                    repoKey = 'libs-release-local'
+                }
 
-				publishArtifacts = true
-				publishPom = true
-			}
-		}
-	} else {
-		println "Missing Artifactory username (and password)"
-	}
+                username = artifactoryUsername
+                password = artifactoryPassword
+            }
+            defaults {
+                publications('maven')
+
+                publishArtifacts = true
+                publishPom = true
+            }
+        }
+    } else {
+        println "Missing Artifactory username (and password)"
+    }
 }
+
+artifactoryPublish.dependsOn build
