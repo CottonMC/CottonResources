@@ -3,15 +3,22 @@ package io.github.cottonmc.resources.type;
 import io.github.cottonmc.cotton.commons.CommonBlocks;
 import io.github.cottonmc.cotton.commons.CommonItems;
 import io.github.cottonmc.cotton.commons.CottonCommons;
+import io.github.cottonmc.cotton.datapack.CottonDatapack;
 import io.github.cottonmc.resources.CottonResources;
 import net.minecraft.block.Block;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
+import net.minecraft.item.Items;
+import net.minecraft.util.Identifier;
+import net.minecraft.util.registry.Registry;
 
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.function.Supplier;
+
+import com.google.common.collect.ImmutableSet;
 
 public class GenericResourceType implements ResourceType {
     protected String name;
@@ -56,14 +63,10 @@ public class GenericResourceType implements ResourceType {
 
     @Override
     public Item getItem(String itemName) {
-        Item existing = CommonItems.getItem(itemName);
-        if (existing != null) {
-            return existing;
-        }
-        else {
-            CottonResources.LOGGER.warn("No item found with name " + itemName + "!");
-            return null;
-        }
+        String fullName = (itemName!=null && !itemName.isEmpty()) ? name+"_"+itemName : name;
+        
+        Identifier id = new Identifier(CottonDatapack.SHARED_NAMESPACE, fullName); //Because CommonItems.getItem has a condition flipped
+        return Registry.ITEM.getOrEmpty(id).orElse(null);
     }
 
     public Item registerItem(String itemName) {
@@ -72,7 +75,7 @@ public class GenericResourceType implements ResourceType {
 
     @Override
     public Block getBlock(String blockName) {
-        Block existing = CommonBlocks.getBlock(blockName);
+        Block existing = (blockName!=null) ? CommonBlocks.getBlock(name+"_"+blockName) : CommonBlocks.getBlock(name);
         if (existing != null) {
             return existing;
         }
@@ -94,7 +97,11 @@ public class GenericResourceType implements ResourceType {
         
         return CommonBlocks.register(blockName, resultBlock, resultItem);
     }
-
+    
+    public Collection<String> getAffixes() {
+    	return ImmutableSet.<String>builder().addAll(itemAffixes).addAll(blockAffixes.keySet()).build();
+    }
+    
     @Override
     public void registerAll() {
         registerBlocks();

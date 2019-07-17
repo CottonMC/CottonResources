@@ -48,7 +48,7 @@ public class CottonResources implements ModInitializer {
 	public static final ModLogger LOGGER = new ModLogger(MODID, "COTTON RESOURCES");
 	public static final CottonResourcesConfig CONFIG = ConfigManager.loadConfig(CottonResourcesConfig.class);
 	private static final String[] MACHINE_AFFIXES = new String[]{"gear", "plate"};
-	private static final Map<String, ResourceType> BUILTINS = new HashMap<>();
+	public static final Map<String, ResourceType> BUILTINS = new HashMap<>();
 	
 	@Override
 	public void onInitialize() {

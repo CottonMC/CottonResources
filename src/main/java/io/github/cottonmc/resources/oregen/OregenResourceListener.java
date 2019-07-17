@@ -5,6 +5,7 @@ import blue.endless.jankson.JsonObject;
 import blue.endless.jankson.impl.SyntaxError;
 import io.github.cottonmc.jankson.JanksonFactory;
 import io.github.cottonmc.resources.CottonResources;
+import io.github.cottonmc.resources.compat.REISafeCompat;
 import net.fabricmc.fabric.api.resource.SimpleSynchronousResourceReloadListener;
 import net.minecraft.resource.ResourceManager;
 import net.minecraft.util.Identifier;
@@ -32,6 +33,7 @@ public class OregenResourceListener implements SimpleSynchronousResourceReloadLi
 				OreVoteConfig configLocal = OreVoteConfig.deserialize(configObject);
 				//Fold this config into the globally resolved one
 				jsonConfig.ores.addAll(configLocal.ores);
+				jsonConfig.ores.removeAll(CottonResources.CONFIG.disabledResources);
 				jsonConfig.generators.putAll(configLocal.generators);
 				
 			} catch (IOException ex) {
@@ -43,6 +45,8 @@ public class OregenResourceListener implements SimpleSynchronousResourceReloadLi
 		
 		CottonResources.LOGGER.info("Final set of generator keys available: %s", jsonConfig.generators.keySet());
 		CottonResources.LOGGER.info("Enabled generators: %s", jsonConfig.ores);
+		
+		REISafeCompat.doObjectHiding.run();
 	}
 
 	@Override
