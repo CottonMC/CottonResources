@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:smelting",
+  "group": "tungsten_ingot",
+  "ingredient": [
+    {
+      "tag": "c:tungsten_ore"
+    },
+    {
+      "tag": "c:tungsten_dust"
+    }
+  ],
+  "result": "c:tungsten_ingot",
+  "experience": 1.0,
+  "cookingtime": 200
+}

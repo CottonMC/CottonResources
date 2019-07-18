@@ -1,5 +1,6 @@
 {
   "type": "minecraft:blasting",
+  "group": "zinc_ingot",
   "ingredient": [
     {
       "tag": "c:zinc_ore"
@@ -9,6 +10,6 @@
     }
   ],
   "result": "c:zinc_ingot",
-  "experience": 0.7,
+  "experience": 1.0,
   "cookingtime": 100
 }

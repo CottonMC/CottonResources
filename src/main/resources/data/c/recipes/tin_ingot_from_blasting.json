@@ -1,5 +1,6 @@
 {
   "type": "minecraft:blasting",
+  "group": "tin_ingot",
   "ingredient": [
     {
       "tag": "c:tin_ore"

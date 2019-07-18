@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "tungsten_gear",
+  "pattern": [
+    " R ",
+    "RRR",
+    " R "
+  ],
+  "key": {
+    "R": {
+      "tag": "c:tungsten_ingot"
+    }
+  },
+  "result": {
+    "item": "c:tungsten_gear"
+  }
+}

@@ -1,5 +1,6 @@
 {
   "type": "minecraft:blasting",
+  "group": "iridium_ingot",
   "ingredient": [
     {
       "tag": "c:iridium_ore"

@@ -1,5 +1,6 @@
 {
   "type": "minecraft:blasting",
+  "group": "aluminum_ingot",
   "ingredient": [
     {
       "tag": "c:aluminum_ore"

@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "aluminum_ingot",
+  "pattern": [
+    "RRR",
+    "RRR",
+    "RRR"
+  ],
+  "key": {
+    "R": {
+      "tag": "c:aluminum_nugget"
+    }
+  },
+  "result": {
+    "item": "c:aluminum_ingot"
+  }
+}

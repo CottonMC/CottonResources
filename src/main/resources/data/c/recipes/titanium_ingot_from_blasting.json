@@ -1,5 +1,6 @@
 {
   "type": "minecraft:blasting",
+  "group": "titanium_ingot",
   "ingredient": [
     {
       "tag": "c:titanium_ore"

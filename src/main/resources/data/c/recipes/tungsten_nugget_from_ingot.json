@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "tungsten_nugget",
+  "ingredients": [
+    {
+      "tag": "c:tungsten_ingot"
+    }
+  ],
+  "result": {
+    "item": "c:tungsten_nugget",
+    "count": 9
+  }
+}
