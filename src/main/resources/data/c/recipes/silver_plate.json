@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "silver_plate",
+  "pattern": [
+    "R",
+    "R"
+  ],
+  "key": {
+    "R": {
+      "tag": "c:silver_ingot"
+    }
+  },
+  "result": {
+    "item": "c:silver_plate"
+  }
+}

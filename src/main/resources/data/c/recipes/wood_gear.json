@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "wood_gear",
+  "pattern": [
+    " R ",
+    "RRR",
+    " R "
+  ],
+  "key": {
+    "R": { "tag": "minecraft:planks" }
+  },
+  "result": {
+    "item": "c:wood_gear"
+  }
+}

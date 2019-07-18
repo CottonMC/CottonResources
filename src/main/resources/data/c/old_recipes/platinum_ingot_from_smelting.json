@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:smelting",
+  "group": "platinum_ingot",
+  "ingredient": [
+    {
+      "tag": "c:platinum_ore"
+    },
+    {
+      "tag": "c:platinum_dust"
+    }
+  ],
+  "result": "c:platinum_ingot",
+  "experience": 1.0,
+  "cookingtime": 200
+}

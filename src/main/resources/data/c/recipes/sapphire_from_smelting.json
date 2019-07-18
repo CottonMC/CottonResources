@@ -1,5 +1,6 @@
 {
   "type": "minecraft:smelting",
+  "group": "sapphire",
   "ingredient": {
     "tag": "c:sapphire_ore"
   },

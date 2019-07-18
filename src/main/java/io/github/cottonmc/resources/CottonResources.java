@@ -75,6 +75,8 @@ public class CottonResources implements ModInitializer {
 		BUILTINS.put("coal_coke", new GenericResourceType("coal_coke").withBlockAffix("block", BlockSuppliers.COAL_BLOCK).withItemAffixes(""));
 		builtinItem("mercury");
 
+		builtinItem("wood", "gear");
+		builtinItem("stone", "gear");
 		builtinItem("iron", "gear", "plate", "dust");
 		builtinItem("gold", "gear", "plate", "dust");
 

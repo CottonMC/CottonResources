@@ -1,5 +1,6 @@
 {
   "type": "minecraft:smelting",
+  "group": "ruby",
   "ingredient": {
     "tag": "c:ruby_ore"
   },

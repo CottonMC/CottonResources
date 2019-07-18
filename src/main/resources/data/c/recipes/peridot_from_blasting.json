@@ -1,5 +1,6 @@
 {
   "type": "minecraft:blasting",
+  "group": "peridot",
   "ingredient": {
     "tag": "c:peridot_ore"
   },

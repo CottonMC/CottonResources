@@ -1,7 +1,9 @@
 package io.github.cottonmc.resources.compat;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
+
+import com.google.common.collect.ImmutableSet;
 
 import io.github.cottonmc.resources.CottonResources;
 import io.github.cottonmc.resources.oregen.OregenResourceListener;
@@ -16,6 +18,10 @@ import net.minecraft.util.Identifier;
 public class REICompat implements REIPluginEntry {
 	public static final Identifier ID = new Identifier(CottonResources.MODID, "disable_items");
 	
+	private static final Set<String> IMMUNE_TO_HIDING = ImmutableSet.<String>of(
+			"wood", "stone", "iron", "gold", "diamond"
+			);
+	
 	@Override
 	public Identifier getPluginIdentifier() {
 		return ID;
@@ -23,14 +29,14 @@ public class REICompat implements REIPluginEntry {
 	
 	@Override
 	public void registerItems(ItemRegistry itemRegistry) {
-		System.out.println("Registering object-hiding");
-		
+		CottonResources.LOGGER.info("Configuring resource visibility");
 		recheckItemHiding(itemRegistry.getModifiableItemList());
-		//REISafeCompat.doObjectHiding = ()->recheckItemHiding(itemRegistry.getModifiableItemList());
 	}
 	
 	public void recheckItemHiding(List<ItemStack> list) {
 		for (ResourceType rsrc : CottonResources.BUILTINS.values()) {
+			if (IMMUNE_TO_HIDING.contains(rsrc.getBaseResource())) continue;
+			
 			boolean enabled = OregenResourceListener.getConfig().ores.contains(rsrc.getBaseResource());
 			for(String affix : rsrc.getAffixes()) {
 				Item item = rsrc.getItem(affix);

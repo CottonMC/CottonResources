@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "uranium_plate",
+  "pattern": [
+    "R",
+    "R"
+  ],
+  "key": {
+    "R": {
+      "tag": "c:uranium_ingot"
+    }
+  },
+  "result": {
+    "item": "c:uranium_plate"
+  }
+}

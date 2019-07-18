@@ -1,5 +1,6 @@
 {
   "type": "minecraft:blasting",
+  "group": "ruby",
   "ingredient": {
     "tag": "c:ruby_ore"
   },

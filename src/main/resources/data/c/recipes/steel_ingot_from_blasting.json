@@ -1,8 +1,9 @@
 {
   "type": "minecraft:blasting",
+  "group": "steel_ingot",
   "ingredient": {
-      "tag": "c:steel_dust"
-    },
+    "tag": "c:steel_dust"
+  },
   "result": "c:steel_ingot",
   "experience": 1.0,
   "cookingtime": 100

@@ -1,4 +1,5 @@
 {
+  "itemGroup.cotton-commons.common_tab": "Common Materials",
   "block.c.aluminum_block": "Aluminum Block",
   "block.c.aluminum_ore": "Aluminum Ore",
   "item.c.aluminum_dust": "Aluminum Dust",
@@ -173,5 +174,7 @@
   "item.c.electrum_ingot": "Electrum Ingot",
   "item.c.electrum_gear": "Electrum Gear",
   "item.c.electrum_plate": "Electrum Plate",
-  "item.c.mercury": "Mercury"
+  "item.c.mercury": "Mercury",
+  "item.c.wood_gear": "Wood Gear",
+  "item.c.stone_gear": "Stone Gear"
 }

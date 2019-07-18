@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:blasting",
+  "ingredient": {
+    "tag": "c:topaz_ore"
+  },
+  "result": "c:topaz",
+  "experience": 1.0,
+  "cookingtime": 100
+}

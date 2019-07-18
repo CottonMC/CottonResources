@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:blasting",
+  "group": "{{{resource}}}",
+  "ingredient": {
+    "tag": "c:{{{resource}}}_ore"
+  },
+  "result": "c:{{{resource}}}",
+  "experience": 1.0,
+  "cookingtime": 100
+}

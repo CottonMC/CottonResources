@@ -1,5 +1,6 @@
 {
   "type": "minecraft:smelting",
+  "group": "peridot",
   "ingredient": {
     "tag": "c:peridot_ore"
   },

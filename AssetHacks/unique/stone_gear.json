@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "stone_gear",
+  "pattern": [
+    " R ",
+    "RRR",
+    " R "
+  ],
+  "key": {
+    "R": { "item": "minecraft:cobblestone" }
+  },
+  "result": {
+    "item": "c:stone_gear"
+  }
+}

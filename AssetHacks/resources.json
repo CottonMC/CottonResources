@@ -1,0 +1,6 @@
+{
+	"metals": [ "cobalt", "aluminum", "lead", "tin", "copper", "silver", "zinc", "titanium", "tungsten", "platinum", "iridium", "osmium", "palladium", "uranium" ],
+	"gems": [ "ruby", "sapphire", "amethyst", "topaz", "peridot" ],
+	"alloys": [ "electrum", "brass", "steel"],
+	"radioactive": [ "uranium", "plutonium", "thorium" ]
+}

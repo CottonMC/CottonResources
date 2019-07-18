@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:smelting",
+  "group": "titanium_ingot",
+  "ingredient": [
+    {
+      "tag": "c:titanium_ore"
+    },
+    {
+      "tag": "c:titanium_dust"
+    }
+  ],
+  "result": "c:titanium_ingot",
+  "experience": 1.0,
+  "cookingtime": 200
+}

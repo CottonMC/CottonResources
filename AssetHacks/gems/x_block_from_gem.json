@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "{{{resource}}}_block",
+  "pattern": [
+    "RRR",
+    "RRR",
+    "RRR"
+  ],
+  "key": {
+    "R": {
+      "tag": "c:{{{resource}}}"
+    }
+  },
+  "result": {
+    "item": "c:{{{resource}}}_block"
+  }
+}

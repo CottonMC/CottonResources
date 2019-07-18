@@ -1,5 +1,6 @@
 {
   "type": "minecraft:smelting",
+  "group": "topaz",
   "ingredient": {
     "tag": "c:topaz_ore"
   },

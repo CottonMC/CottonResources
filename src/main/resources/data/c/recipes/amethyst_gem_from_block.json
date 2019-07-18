@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "amethyst",
+  "ingredients": [
+    {
+      "tag": "c:amethyst_block"
+    }
+  ],
+  "result": {
+    "item": "c:amethyst",
+    "count": 9
+  }
+}

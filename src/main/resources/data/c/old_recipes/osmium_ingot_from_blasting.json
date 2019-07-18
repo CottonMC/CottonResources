@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:blasting",
+  "group": "osmium_ingot",
+  "ingredient": [
+    {
+      "tag": "c:osmium_ore"
+    },
+    {
+      "tag": "c:osmium_dust"
+    }
+  ],
+  "result": "c:osmium_ingot",
+  "experience": 1.0,
+  "cookingtime": 100
+}
