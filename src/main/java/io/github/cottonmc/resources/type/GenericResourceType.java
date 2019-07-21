@@ -3,7 +3,6 @@ package io.github.cottonmc.resources.type;
 import io.github.cottonmc.cotton.commons.CommonBlocks;
 import io.github.cottonmc.cotton.commons.CommonItems;
 import io.github.cottonmc.cotton.commons.CottonCommons;
-import io.github.cottonmc.cotton.datapack.CottonDatapack;
 import io.github.cottonmc.resources.CottonResources;
 import net.minecraft.block.Block;
 import net.minecraft.item.BlockItem;
@@ -65,12 +64,12 @@ public class GenericResourceType implements ResourceType {
     public Item getItem(String itemName) {
         String fullName = (itemName!=null && !itemName.isEmpty()) ? name+"_"+itemName : name;
         
-        Identifier id = new Identifier(CottonDatapack.SHARED_NAMESPACE, fullName); //Because CommonItems.getItem has a condition flipped
+        Identifier id = new Identifier("c", fullName); //Because CommonItems.getItem has a condition flipped
         return Registry.ITEM.getOrEmpty(id).orElse(null);
     }
 
     public Item registerItem(String itemName) {
-        return CommonItems.register(itemName, new Item((new Item.Settings()).group(CottonCommons.commonGroup)));
+        return CommonItems.register(itemName, new Item((new Item.Settings()).group(CottonCommons.ITEM_GROUP)));
     }
 
     @Override
@@ -93,7 +92,7 @@ public class GenericResourceType implements ResourceType {
         }
         
         Block resultBlock = blockSupplier.get();
-        BlockItem resultItem =  new BlockItem(resultBlock, new Item.Settings().group(CottonCommons.commonGroup)); //Shouldn't be necessary, but is?
+        BlockItem resultItem =  new BlockItem(resultBlock, new Item.Settings().group(CottonCommons.ITEM_GROUP)); //Shouldn't be necessary, but is?
         
         return CommonBlocks.register(blockName, resultBlock, resultItem);
     }
