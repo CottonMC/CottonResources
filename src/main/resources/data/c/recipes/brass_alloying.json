@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "brass_dust",
+  "ingredients": [
+    {
+      "item": "c:copper_dust"
+    },
+    {
+      "item": "c:copper_dust"
+    },
+    {
+      "item": "c:zinc_dust"
+    }
+  ],
+  "result": {
+    "item": "c:brass_dust",
+    "count": 2
+  }
+}

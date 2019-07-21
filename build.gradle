@@ -12,6 +12,7 @@ version = mod_version
 group = maven_group
 
 repositories {
+    mavenLocal();
     maven { url "http://server.bbkr.space:8081/artifactory/libs-release/" }
     maven { url "https://minecraft.curseforge.com/api/maven" } //resolves REI
 }
