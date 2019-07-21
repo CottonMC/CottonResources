@@ -3,6 +3,8 @@
   "id": "cotton-resources",
   "version": "${version}",
   "name": "Cotton Resources",
+  "icon": "assets/c/icon.png",
+  "description": "Reference mod for ores, ingots, tools, liquids, and all you can imagine",
   "environment": "*",
   "entrypoints": {
     "main": [
@@ -15,6 +17,14 @@
   "mixins": [
     "cotton-resources.common.json"
   ],
+  "authors": [
+    "the Cotton Team"
+  ],
+  "contact": {
+    "homepage": "https://github.com/CottonMC/CottonResources",
+    "sources": "https://github.com/CottonMC/CottonResources",
+    "issues": "https://github.com/CottonMC/CottonResources/issues"
+  },
 
   "requires": {
     "fabricloader": ">=0.4.0",
