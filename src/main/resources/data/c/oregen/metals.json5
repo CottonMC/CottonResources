@@ -16,7 +16,7 @@
 			
 			"min_height": 6,
 			"max_height": 64,
-			"cluster_count": 20,
+			"cluster_count": 15,
 			"cluster_size": 3,
 		},
 
@@ -28,7 +28,7 @@
 			
 			"min_height": 32,
 			"max_height": 96,
-			"cluster_count": 20,
+			"cluster_count": 15,
 			"cluster_size": 10
 		},
 
