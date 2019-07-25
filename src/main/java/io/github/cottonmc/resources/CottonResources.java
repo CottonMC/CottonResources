@@ -1,9 +1,9 @@
 package io.github.cottonmc.resources;
 
-import io.github.cottonmc.cotton.config.ConfigManager;
-import io.github.cottonmc.cotton.logging.ModLogger;
+import io.github.cottonmc.jankson.JanksonFactory;
 import io.github.cottonmc.resources.config.CottonResourcesConfig;
 import io.github.cottonmc.resources.oregen.CottonOreFeature;
+import io.github.cottonmc.resources.oregen.OreGenerationSettings;
 import io.github.cottonmc.resources.oregen.OregenResourceListener;
 import io.github.cottonmc.resources.tag.WorldTagReloadListener;
 import io.github.cottonmc.resources.type.GemResourceType;
@@ -12,16 +12,21 @@ import io.github.cottonmc.resources.type.MetalResourceType;
 import io.github.cottonmc.resources.type.RadioactiveResourceType;
 import io.github.cottonmc.resources.type.ResourceType;
 import net.fabricmc.api.ModInitializer;
+import net.fabricmc.fabric.api.client.itemgroup.FabricItemGroupBuilder;
 import net.fabricmc.fabric.api.event.registry.RegistryEntryAddedCallback;
 import net.fabricmc.fabric.api.registry.CommandRegistry;
 import net.fabricmc.fabric.api.resource.ResourceManagerHelper;
+import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
+import net.minecraft.item.ItemGroup;
+import net.minecraft.item.ItemStack;
 import net.minecraft.server.command.CommandManager;
 import net.minecraft.server.command.ServerCommandSource;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.text.LiteralText;
+import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.biome.Biome;
@@ -31,10 +36,19 @@ import net.minecraft.world.gen.decorator.Decorator;
 import net.minecraft.world.gen.decorator.RangeDecoratorConfig;
 import net.minecraft.world.gen.feature.FeatureConfig;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 import java.util.function.Supplier;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import com.google.common.collect.ImmutableSet;
 import com.mojang.brigadier.Command;
@@ -42,16 +56,33 @@ import com.mojang.brigadier.context.CommandContext;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import com.mojang.brigadier.tree.LiteralCommandNode;
 
-public class CottonResources implements ModInitializer {
+import blue.endless.jankson.Jankson;
+import blue.endless.jankson.JsonElement;
+import blue.endless.jankson.JsonGrammar;
+import blue.endless.jankson.JsonObject;
+import blue.endless.jankson.impl.SyntaxError;
 
+public class CottonResources implements ModInitializer {
+	public static final String COMMON = "c";
 	public static final String MODID = "cotton-resources";
-	public static final ModLogger LOGGER = new ModLogger(MODID, "COTTON RESOURCES");
-	public static final CottonResourcesConfig CONFIG = ConfigManager.loadConfig(CottonResourcesConfig.class);
+	public static final Logger LOGGER = LogManager.getLogger("Resources");
+	public static CottonResourcesConfig CONFIG = new CottonResourcesConfig(); //ConfigManager.loadConfig(CottonResourcesConfig.class);
 	private static final String[] MACHINE_AFFIXES = new String[]{"gear", "plate"};
 	public static final Map<String, ResourceType> BUILTINS = new HashMap<>();
 	
+	public static ItemGroup ITEM_GROUP = FabricItemGroupBuilder.build(new Identifier(MODID, "resources"), ()->new ItemStack(BUILTINS.get("copper").getItem("gear")));
+	
 	@Override
 	public void onInitialize() {
+		File file = new File(FabricLoader.getInstance().getConfigDirectory(),"CottonResources.json5");
+		if (file.exists()) {
+			CONFIG = loadConfig();
+			saveConfig(CONFIG);
+		} else {
+			saveConfig(CONFIG);
+		}
+		
+		
 		builtinMetal("copper", BlockSuppliers.STONE_TIER_ORE, MACHINE_AFFIXES);
 		builtinMetal("silver", BlockSuppliers.IRON_TIER_ORE, MACHINE_AFFIXES);
 		builtinMetal("lead", BlockSuppliers.IRON_TIER_ORE, MACHINE_AFFIXES);
@@ -206,4 +237,47 @@ public class CottonResources implements ModInitializer {
 		BUILTINS.put(id, result);
 	}
 	
+	
+	public static CottonResourcesConfig loadConfig() {
+		File file = new File(FabricLoader.getInstance().getConfigDirectory(),"CottonResources.json5");
+		
+		Jankson jankson = JanksonFactory.createJankson();
+		try {
+			JsonObject json = jankson.load(file);
+			CottonResourcesConfig loading = jankson.fromJson(json, CottonResourcesConfig.class);
+			
+			//Manually reload oregen because BiomeSpec and DimensionSpec can be fussy
+			JsonObject oregen = json.getObject("oregen");
+			if (oregen!=null) {
+				for(Map.Entry<String, JsonElement> entry : oregen.entrySet()) {
+					if (entry instanceof JsonObject) {
+						OreGenerationSettings settings = OreGenerationSettings.deserialize((JsonObject)entry.getValue());
+						loading.generators.put(entry.getKey(), settings);
+					}
+				}
+			}
+			
+			return loading;
+		} catch (IOException | SyntaxError e) {
+			e.printStackTrace();
+		}
+		
+		return new CottonResourcesConfig();
+	}
+
+	public static void saveConfig(CottonResourcesConfig config) {
+		File file = new File(FabricLoader.getInstance().getConfigDirectory(),"CottonResources.json5");
+		
+		Jankson jankson = JanksonFactory.builder()
+				//.registerSerializer(BiomeSpec.class, BiomeSpec.)
+				.build();
+		
+		JsonElement json = jankson.toJson(config);
+		
+		try (FileOutputStream out = new FileOutputStream(file, false)) {
+			out.write(json.toJson(JsonGrammar.JSON5).getBytes(StandardCharsets.UTF_8));
+		} catch (IOException ex) {
+			LOGGER.error("Could not write config", ex);
+		}
+	}
 }
