@@ -40,7 +40,7 @@ var tagTemplateSrc = fs.readFileSync("tag.json", "utf8");
 var tagTemplate = handlebars.compile(tagTemplateSrc);
 
 console.log("Generating tags for metals");
-var specializations = [ "ingot", "nugget", "block", "ore", "gear", "plate" ];
+var specializations = [ "ingot", "nugget", "block", "ore", "gear", "plate", "dust" ];
 for (var j in templatePlan.metals) {
 	var resource = templatePlan.metals[j];
 	for(i in specializations) {
@@ -53,7 +53,7 @@ for (var j in templatePlan.metals) {
 }
 
 console.log("Generating tags for gems");
-specializations = [ "block", "ore", "gear", "plate" ];
+specializations = [ "block", "ore", "gear", "plate", "dust" ];
 for (var j in templatePlan.gems) {
 	var resource = templatePlan.gems[j];
 	console.log("    generating "+resource);
@@ -72,7 +72,7 @@ for (var j in templatePlan.gems) {
 }
 
 console.log("Generating tags for alloys");
-specializations = [ "ingot", "nugget", "block", "gear", "plate" ];
+specializations = [ "ingot", "nugget", "block", "gear", "plate", "dust" ];
 for (var j in templatePlan.alloys) {
 	var resource = templatePlan.alloys[j];
 	for(i in specializations) {
@@ -85,7 +85,7 @@ for (var j in templatePlan.alloys) {
 }
 
 console.log("Generating tags for radioactive byproducts");
-specializations = [ "ingot", "nugget", "block", "gear", "plate" ];
+specializations = [ "ingot", "nugget", "block", "gear", "plate", "dust" ];
 for (var j in templatePlan.radioactive) {
 	var resource = templatePlan.radioactive[j];
 	for(i in specializations) {
