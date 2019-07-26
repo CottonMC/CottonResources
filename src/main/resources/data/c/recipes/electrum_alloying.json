@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "electrum_dust",
+  "ingredients": [
+    {
+      "item": "c:gold_dust"
+    },
+    {
+      "item": "c:silver_dust"
+    }
+  ],
+  "result": {
+    "item": "c:electrum_dust",
+    "count": 1
+  }
+}

@@ -15,6 +15,8 @@ public class OreVoteConfig {
 	
 	public final HashMap<String, OreGenerationSettings> generators = new HashMap<>();
 	
+	public final HashMap<String, HashMap<String, String>> replacements = new HashMap<>();
+	
 	public static OreVoteConfig deserialize(JsonObject obj) {
 		OreVoteConfig result = new OreVoteConfig();
 		

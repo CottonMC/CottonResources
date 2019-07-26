@@ -1,6 +1,11 @@
 package io.github.cottonmc.resources.oregen;
 
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.Blocks;
+import net.minecraft.tag.BlockTags;
+import net.minecraft.tag.Tag;
+import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.IWorld;
@@ -11,8 +16,11 @@ import net.minecraft.world.gen.chunk.ChunkGeneratorConfig;
 import net.minecraft.world.gen.feature.DefaultFeatureConfig;
 import net.minecraft.world.gen.feature.Feature;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Random;
 import java.util.Set;
+import java.util.function.Predicate;
 
 public class CottonOreFeature extends Feature<DefaultFeatureConfig> {
 	public static final CottonOreFeature COTTON_ORE = Registry.register(Registry.FEATURE, "cotton:ore", new CottonOreFeature());
@@ -20,6 +28,12 @@ public class CottonOreFeature extends Feature<DefaultFeatureConfig> {
 	public static Clump[] SPHERES = {
 			Clump.of(1), Clump.of(2), Clump.of(3), Clump.of(4), Clump.of(5), Clump.of(6), Clump.of(7), Clump.of(8), Clump.of(9)
 	};
+	
+	public static final Predicate<Block> NATURAL_STONE = (it)->
+			it==Blocks.STONE    ||
+			it==Blocks.GRANITE  ||
+			it==Blocks.DIORITE  ||
+			it==Blocks.ANDESITE;
 
 	public CottonOreFeature() {
 		super(DefaultFeatureConfig::deserialize);
@@ -73,7 +87,7 @@ public class CottonOreFeature extends Feature<DefaultFeatureConfig> {
 					clusterX += toGenerateIn.getPos().getStartX();
 					clusterZ += toGenerateIn.getPos().getStartZ();
 					
-					int generatedThisCluster = generateVeinPartGaussianClump(world, clusterX, clusterY, clusterZ, settings.cluster_size, radius, settings.ores, 85, rand);
+					int generatedThisCluster = generateVeinPartGaussianClump(s, world, clusterX, clusterY, clusterZ, settings.cluster_size, radius, settings.ores, 85, rand);
 					blocksGenerated += generatedThisCluster;
 					//System.out.println("    Generated "+generatedThisCluster+" out of "+settings.cluster_size+" expected.");
 				}
@@ -87,6 +101,7 @@ public class CottonOreFeature extends Feature<DefaultFeatureConfig> {
 		return false;
 	}
 	
+	/*
 	protected int generateVeinPart(IWorld world, int x, int y, int z, int clumpSize, int radius, Set<BlockState> states, int density, Random rand) {
 		int rad2 = radius * radius;
 		BlockState[] blocks = states.toArray(new BlockState[states.size()]);
@@ -106,14 +121,7 @@ public class CottonOreFeature extends Feature<DefaultFeatureConfig> {
 					int dist2 = dx*dx+dy*dy+dz*dz;
 					if (dist2 > rad2) continue;
 					
-					/*
-					BlockPos pos = new BlockPos(xi, yi, zi);
-					BlockState toReplace = world.getBlockState(pos);
-					
-					if (toReplace.isAir() || !toReplace.isSimpleFullBlock(world, pos)) continue; //TODO: real replacement criteria
-					
-					BlockState replaceWith = blocks[rand.nextInt(blocks.length)];
-					world.setBlockState(new BlockPos(xi,yi,zi), replaceWith, 3);*/
+
 					if (replace(world, xi, yi, zi, blocks, rand)) {
 						replaced++;
 						if (replaced>=clumpSize) return replaced;
@@ -147,9 +155,9 @@ public class CottonOreFeature extends Feature<DefaultFeatureConfig> {
 		}
 		
 		return replaced;
-	}
+	}*/
 	
-	protected int generateVeinPartGaussianClump(IWorld world, int x, int y, int z, int clumpSize, int radius, Set<BlockState> states, int density, Random rand) {
+	protected int generateVeinPartGaussianClump(String resourceName, IWorld world, int x, int y, int z, int clumpSize, int radius, Set<BlockState> states, int density, Random rand) {
 		int radIndex = radius-1;
 		Clump clump = (radIndex<SPHERES.length) ? SPHERES[radIndex].copy() : Clump.of(radius);
 		
@@ -159,7 +167,7 @@ public class CottonOreFeature extends Feature<DefaultFeatureConfig> {
 		for(int i=0; i<clump.size(); i++) {
 			if (clump.isEmpty()) break;
 			BlockPos pos = clump.removeGaussian(rand, x, y, z);
-			if (replace(world, pos.getX(), pos.getY(), pos.getZ(), blocks, rand)) {
+			if (replace(world, pos.getX(), pos.getY(), pos.getZ(), resourceName, blocks, rand)) {
 				replaced++;
 				if (replaced>=clumpSize) return replaced;
 			}
@@ -168,14 +176,61 @@ public class CottonOreFeature extends Feature<DefaultFeatureConfig> {
 		return replaced;
 	}
 	
-	public boolean replace(IWorld world, int x, int y, int z, BlockState[] states, Random rand) {
+	/**
+	 * 
+	 * @param world
+	 * @param x
+	 * @param y
+	 * @param z
+	 * @param states fallback states to use if there is no replacer for natural stone
+	 * @param rand
+	 * @return
+	 */
+	public boolean replace(IWorld world, int x, int y, int z, String resource, BlockState[] states, Random rand) {
 		BlockPos pos = new BlockPos(x, y, z);
 		BlockState toReplace = world.getBlockState(pos);
+		HashMap<String, String> replacementSpecs = OregenResourceListener.getConfig().replacements.get(resource);
+		if (replacementSpecs==null) {
+			if (!NATURAL_STONE.test(toReplace.getBlock())) return false; //Fixes surface copper
+			
+			BlockState replacement = states[rand.nextInt(states.length)];
+			world.setBlockState(pos, replacement, 3);
+			return true;
+		}
 		
-		if (toReplace.isAir() || !toReplace.isSimpleFullBlock(world, pos)) return false; //TODO: real replacement criteria
-		
-		BlockState replaceWith = states[rand.nextInt(states.length)];
-		world.setBlockState(pos, replaceWith, 3);
-		return true;
+		for(Map.Entry<String, String> entry : replacementSpecs.entrySet()) {
+			if (test(toReplace.getBlock(), entry.getKey())) {
+				BlockState replacement = getBlockState(entry.getValue(), rand);
+				if (replacement==null) continue;
+				
+				world.setBlockState(pos, replacement, 3);
+				break;
+			}
+		}
+		return false;
+	}
+	
+	public boolean test(Block block, String spec) {
+		if (spec.startsWith("#")) {
+			Tag<Block> tag = BlockTags.getContainer().get(new Identifier(spec.substring(1)));
+			if (tag==null) return false;
+			return tag.contains(block);
+		} else {
+			Block b = Registry.BLOCK.get(new Identifier(spec));
+			if (b==Blocks.AIR) return false;
+			return block==b;
+		}
+	}
+	
+	public BlockState getBlockState(String spec, Random rnd) {
+		if (spec.startsWith("#")) {
+			Tag<Block> tag = BlockTags.getContainer().get(new Identifier(spec.substring(1)));
+			if (tag==null) return null;
+			return tag.getRandom(rnd).getDefaultState();
+		} else {
+			Block b = Registry.BLOCK.get(new Identifier(spec));
+			if (b==Blocks.AIR) return null;
+			return b.getDefaultState();
+		}
 	}
 }
