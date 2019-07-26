@@ -26,7 +26,7 @@
     "issues": "https://github.com/CottonMC/CottonResources/issues"
   },
 
-  "requires": {
+  "depends": {
     "fabricloader": ">=0.4.0",
     "fabric": "*"
   }
