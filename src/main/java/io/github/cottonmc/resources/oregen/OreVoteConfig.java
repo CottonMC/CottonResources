@@ -35,6 +35,25 @@ public class OreVoteConfig {
 			}
 		}
 		
+		JsonObject replacementsObj = obj.getObject("replacements");
+		if (replacementsObj!=null) {
+			for(Map.Entry<String, JsonElement> entry : replacementsObj.entrySet()) {
+				String resourceName = entry.getKey();
+				if (entry.getValue() instanceof JsonObject) {
+					JsonObject resourceObj = (JsonObject) entry.getValue();
+					for(Map.Entry<String, JsonElement> resourceReplacement : resourceObj.entrySet()) {
+						if (resourceReplacement.getValue() instanceof JsonPrimitive) {
+							String replacementValue = ((JsonPrimitive)resourceReplacement.getValue()).asString();
+							String replacementKey = resourceReplacement.getKey();
+							
+							HashMap<String,String> repl = result.replacements.computeIfAbsent(resourceName, (it)->new HashMap<>());
+							repl.put(replacementKey, replacementValue);
+						}
+					}
+				}
+			}
+		}
+		
 		return result;
 	}
 }

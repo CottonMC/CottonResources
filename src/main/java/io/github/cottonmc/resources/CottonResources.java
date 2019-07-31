@@ -1,6 +1,7 @@
 package io.github.cottonmc.resources;
 
 import io.github.cottonmc.jankson.JanksonFactory;
+import io.github.cottonmc.resources.command.StripCommand;
 import io.github.cottonmc.resources.config.CottonResourcesConfig;
 import io.github.cottonmc.resources.oregen.CottonOreFeature;
 import io.github.cottonmc.resources.oregen.OreGenerationSettings;
@@ -18,42 +19,29 @@ import net.fabricmc.fabric.api.registry.CommandRegistry;
 import net.fabricmc.fabric.api.resource.ResourceManagerHelper;
 import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 import net.minecraft.server.command.CommandManager;
 import net.minecraft.server.command.ServerCommandSource;
-import net.minecraft.server.network.ServerPlayerEntity;
-import net.minecraft.text.LiteralText;
 import net.minecraft.util.Identifier;
-import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.biome.Biome;
-import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.gen.GenerationStep;
 import net.minecraft.world.gen.decorator.Decorator;
 import net.minecraft.world.gen.decorator.RangeDecoratorConfig;
 import net.minecraft.world.gen.feature.FeatureConfig;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Set;
 import java.util.function.Supplier;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import com.google.common.collect.ImmutableSet;
-import com.mojang.brigadier.Command;
-import com.mojang.brigadier.context.CommandContext;
-import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import com.mojang.brigadier.tree.LiteralCommandNode;
 
 import blue.endless.jankson.Jankson;
@@ -135,46 +123,10 @@ public class CottonResources implements ModInitializer {
 		ResourceManagerHelper.get(net.minecraft.resource.ResourceType.SERVER_DATA).registerReloadListener(new OregenResourceListener());
 		ResourceManagerHelper.get(net.minecraft.resource.ResourceType.SERVER_DATA).registerReloadListener(new WorldTagReloadListener());
 		
-		//TODO: Move to its own StripCommand class
 		CommandRegistry.INSTANCE.register(false, (dispatcher)->{
-			Command<ServerCommandSource> stripCommand = new Command<ServerCommandSource>() {
-				private final Set<Block> TO_STRIP = ImmutableSet.<Block>of(
-							Blocks.STONE, Blocks.GRANITE, Blocks.DIORITE, Blocks.ANDESITE,
-							Blocks.DIRT, Blocks.GRASS_BLOCK,
-							Blocks.ACACIA_LOG, Blocks.OAK_LOG, Blocks.BIRCH_LOG, Blocks.DARK_OAK_LOG, Blocks.JUNGLE_LOG, Blocks.SPRUCE_LOG,
-							Blocks.ACACIA_LEAVES, Blocks.DARK_OAK_LEAVES, Blocks.BIRCH_LEAVES, Blocks.DARK_OAK_LEAVES, Blocks.JUNGLE_LEAVES, Blocks.SPRUCE_LEAVES
-						);
-				
-				@Override
-				public int run(CommandContext<ServerCommandSource> context) throws CommandSyntaxException {
-					
-					ServerPlayerEntity caller = context.getSource().getPlayer();
-					Chunk chunk = caller.getEntityWorld().getChunk(caller.getBlockPos());
-					context.getSource().sendFeedback(new LiteralText("Stripping "+chunk.getPos()+"..."), true);
-					
-					for(int z=0; z<16; z++) {
-						for(int x=0; x<16; x++) {
-							for(int y=0; y<256; y++) {
-								//TODO: better test for natural stone
-								BlockPos pos = chunk.getPos().toBlockPos(x, y, z);
-								BlockState toReplace = caller.getEntityWorld().getBlockState(pos);
-								if (toReplace.isAir()) continue;
-								if (TO_STRIP.contains(toReplace.getBlock())) {
-									caller.getEntityWorld().setBlockState(pos, Blocks.AIR.getDefaultState(), 3);
-								}
-							}
-						}
-					}
-					
-					
-					context.getSource().sendFeedback(new LiteralText("Chunk stripped."), true);
-					return 1;
-				}
-			};
-			
 			LiteralCommandNode<ServerCommandSource> stripCommandNode = CommandManager.literal("strip")
-					.executes(stripCommand)
-					.requires((source)->source.hasPermissionLevel(2))
+					.executes(new StripCommand())
+					.requires((source)->source.hasPermissionLevel(3))
 					.build();
 			
 			dispatcher.getRoot().addChild(stripCommandNode);

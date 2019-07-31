@@ -20,6 +20,7 @@ public class OregenResourceListener implements SimpleSynchronousResourceReloadLi
 	public void apply(ResourceManager resourceManager) {
 		jsonConfig.generators.clear();
 		jsonConfig.ores.clear();
+		jsonConfig.replacements.clear();
 		
 		Jankson jankson = JanksonFactory.builder().build();
 		
@@ -28,13 +29,13 @@ public class OregenResourceListener implements SimpleSynchronousResourceReloadLi
 		for (Identifier id : identifiers) {
 			
 			try {
-				
 				JsonObject configObject = jankson.load(resourceManager.getResource(id).getInputStream());
 				OreVoteConfig configLocal = OreVoteConfig.deserialize(configObject);
 				//Fold this config into the globally resolved one
 				jsonConfig.ores.addAll(configLocal.ores);
 				jsonConfig.ores.removeAll(CottonResources.CONFIG.disabledResources);
 				jsonConfig.generators.putAll(configLocal.generators);
+				
 				
 			} catch (IOException ex) {
 				CottonResources.LOGGER.error(ex.getMessage(), ex);
