@@ -144,5 +144,6 @@
 			"cluster_count": 8,
 			"cluster_size": 8,
 		}
-	}
+	},
+	"replacements": { "cobalt": { "minecraft:netherrack": "c:cobalt_ore" } }
 }
