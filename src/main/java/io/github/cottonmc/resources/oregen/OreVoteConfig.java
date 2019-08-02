@@ -41,6 +41,7 @@ public class OreVoteConfig {
 				String resourceName = entry.getKey();
 				if (entry.getValue() instanceof JsonObject) {
 					JsonObject resourceObj = (JsonObject) entry.getValue();
+					
 					for(Map.Entry<String, JsonElement> resourceReplacement : resourceObj.entrySet()) {
 						if (resourceReplacement.getValue() instanceof JsonPrimitive) {
 							String replacementValue = ((JsonPrimitive)resourceReplacement.getValue()).asString();

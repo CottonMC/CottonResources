@@ -35,6 +35,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Supplier;
@@ -53,7 +54,7 @@ import blue.endless.jankson.impl.SyntaxError;
 public class CottonResources implements ModInitializer {
 	public static final String COMMON = "c";
 	public static final String MODID = "cotton-resources";
-	public static final Logger LOGGER = LogManager.getLogger("Resources");
+	public static final Logger LOGGER = LogManager.getLogger("CottonResources", new PrefixMessageFactory("CottonResources"));
 	public static CottonResourcesConfig CONFIG = new CottonResourcesConfig(); //ConfigManager.loadConfig(CottonResourcesConfig.class);
 	private static final String[] MACHINE_AFFIXES = new String[]{"gear", "plate"};
 	public static final Map<String, ResourceType> BUILTINS = new HashMap<>();
@@ -76,7 +77,9 @@ public class CottonResources implements ModInitializer {
 		builtinMetal("lead", BlockSuppliers.IRON_TIER_ORE, MACHINE_AFFIXES);
 		builtinMetal("zinc", BlockSuppliers.STONE_TIER_ORE, MACHINE_AFFIXES);
 		builtinMetal("aluminum", BlockSuppliers.IRON_TIER_ORE, MACHINE_AFFIXES);
-		builtinMetal("cobalt", BlockSuppliers.IRON_TIER_ORE, MACHINE_AFFIXES);
+		MetalResourceType cobalt = builtinMetal("cobalt", BlockSuppliers.IRON_TIER_ORE, MACHINE_AFFIXES);
+		cobalt.withBlockAffix("nether_ore", BlockSuppliers.IRON_TIER_ORE);
+		
 		builtinMetal("tin", BlockSuppliers.STONE_TIER_ORE, MACHINE_AFFIXES);
 		builtinMetal("titanium", BlockSuppliers.IRON_TIER_ORE, MACHINE_AFFIXES);
 		builtinMetal("tungsten", BlockSuppliers.IRON_TIER_ORE, MACHINE_AFFIXES);
@@ -150,7 +153,7 @@ public class CottonResources implements ModInitializer {
 		);
 	}
 
-	private static void builtinMetal(String id, Supplier<Block> oreSupplier, String... extraAffixes) {
+	private static MetalResourceType builtinMetal(String id, Supplier<Block> oreSupplier, String... extraAffixes) {
 		MetalResourceType result = new MetalResourceType(id);
 		if (oreSupplier != null) result.withOreSupplier(oreSupplier);
 
@@ -159,6 +162,7 @@ public class CottonResources implements ModInitializer {
 		}
 
 		BUILTINS.put(id, result);
+		return result;
 	}
 
 	private static void builtinGem(String id, Supplier<Block> oreSupplier, String... extraAffixes) {
@@ -231,5 +235,12 @@ public class CottonResources implements ModInitializer {
 		} catch (IOException ex) {
 			LOGGER.error("Could not write config", ex);
 		}
+	}
+	
+	@SafeVarargs
+	public static <T> T[] mergeArrays(T[] a, T... b) {
+		T[] result = Arrays.copyOf(a, a.length+b.length);
+		System.arraycopy(b, 0, result, a.length, b.length);
+		return result;
 	}
 }

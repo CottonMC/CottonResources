@@ -190,24 +190,25 @@ public class CottonOreFeature extends Feature<DefaultFeatureConfig> {
 		BlockPos pos = new BlockPos(x, y, z);
 		BlockState toReplace = world.getBlockState(pos);
 		HashMap<String, String> replacementSpecs = OregenResourceListener.getConfig().replacements.get(resource);
-		if (replacementSpecs==null) {
+		if (replacementSpecs!=null) {
+			//System.out.println("Activating replacementSpecs for resource "+resource);
+			for(Map.Entry<String, String> entry : replacementSpecs.entrySet()) {
+				if (test(toReplace.getBlock(), entry.getKey())) {
+					BlockState replacement = getBlockState(entry.getValue(), rand);
+					if (replacement==null) continue;
+					
+					world.setBlockState(pos, replacement, 3);
+					return true;
+				}
+			}
+			return false; //There are replacements defined for this resource, but none could be applied.
+		} else {
 			if (!NATURAL_STONE.test(toReplace.getBlock())) return false; //Fixes surface copper
 			
 			BlockState replacement = states[rand.nextInt(states.length)];
 			world.setBlockState(pos, replacement, 3);
 			return true;
 		}
-		
-		for(Map.Entry<String, String> entry : replacementSpecs.entrySet()) {
-			if (test(toReplace.getBlock(), entry.getKey())) {
-				BlockState replacement = getBlockState(entry.getValue(), rand);
-				if (replacement==null) continue;
-				
-				world.setBlockState(pos, replacement, 3);
-				break;
-			}
-		}
-		return false;
 	}
 	
 	public boolean test(Block block, String spec) {

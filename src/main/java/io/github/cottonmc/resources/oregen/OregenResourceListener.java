@@ -12,6 +12,8 @@ import net.minecraft.util.Identifier;
 
 import java.io.IOException;
 import java.util.Collection;
+import java.util.HashMap;
+import java.util.Map;
 
 public class OregenResourceListener implements SimpleSynchronousResourceReloadListener{
 	protected static final OreVoteConfig jsonConfig = new OreVoteConfig();
@@ -33,8 +35,13 @@ public class OregenResourceListener implements SimpleSynchronousResourceReloadLi
 				OreVoteConfig configLocal = OreVoteConfig.deserialize(configObject);
 				//Fold this config into the globally resolved one
 				jsonConfig.ores.addAll(configLocal.ores);
-				jsonConfig.ores.removeAll(CottonResources.CONFIG.disabledResources);
 				jsonConfig.generators.putAll(configLocal.generators);
+				for(Map.Entry<String, HashMap<String, String>> entry : configLocal.replacements.entrySet()) {
+					String resourceName = entry.getKey();
+					HashMap<String, String> newReplacers = entry.getValue();
+					HashMap<String, String> oldReplacers = jsonConfig.replacements.computeIfAbsent(resourceName, (it)->new HashMap<>());
+					oldReplacers.putAll(newReplacers);
+				}
 				
 				
 			} catch (IOException ex) {
@@ -44,8 +51,19 @@ public class OregenResourceListener implements SimpleSynchronousResourceReloadLi
 			}
 		}
 		
-		CottonResources.LOGGER.info("Final set of generator keys available: %s", jsonConfig.generators.keySet());
-		CottonResources.LOGGER.info("Enabled generators: %s", jsonConfig.ores);
+		//Config overrides all this, so clobber anything that exists with the config:
+		jsonConfig.generators.putAll(CottonResources.CONFIG.generators);
+		jsonConfig.ores.removeAll(CottonResources.CONFIG.disabledResources);
+		
+		CottonResources.LOGGER.info("Final set of generator keys available: {}", jsonConfig.generators.keySet());
+		CottonResources.LOGGER.info("Enabled generators: {}", jsonConfig.ores);
+		CottonResources.LOGGER.info("Replacers defined for {} resources:", jsonConfig.replacements.size());
+		/*for(Map.Entry<String, HashMap<String, String>> replacerBlockEntry : jsonConfig.replacements.entrySet()) {
+			String resourceName = replacerBlockEntry.getKey();
+			HashMap<String, String> replacements = replacerBlockEntry.getValue();
+			CottonResources.LOGGER.info("    Replacers for {}: {}", resourceName, replacements);
+			//System.out.println("    Replacers for "+resourceName+": "+replacements);
+		}*/
 		
 		REISafeCompat.doObjectHiding.run();
 	}
