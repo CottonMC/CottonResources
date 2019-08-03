@@ -1,0 +1,31 @@
+{
+	"block.cotton-resources.metal.step": {
+		"category": "player",
+		"sounds": [
+			{
+				"name": "c:metal_0",
+				"volume": 0.6,
+				"pitch": 0.3,
+				"stream": false
+			},
+			{
+				"name": "c:metal_1",
+				"volume": 0.6,
+				"pitch": 0.3,
+				"stream": false
+			},
+			{
+				"name": "c:metal_2",
+				"volume": 0.6,
+				"pitch": 0.3,
+				"stream": false
+			},
+			{
+				"name": "c:metal_3",
+				"volume": 0.8,
+				"pitch": 0.3,
+				"stream": false
+			}
+		]
+	}
+}

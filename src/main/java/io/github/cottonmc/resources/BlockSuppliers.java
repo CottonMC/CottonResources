@@ -27,6 +27,7 @@ public class BlockSuppliers {
             .build());
     /** A generic metal block supplier, based on the properties from iron_block */
     public static final Supplier<Block> METAL_BLOCK = () -> new Block(FabricBlockSettings.of(Material.METAL)
+    		.sounds(CottonResources.METAL_SOUND_GROUP)
             .hardness(5.0f)
             .resistance(6.0f)
             .build());

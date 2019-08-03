@@ -23,6 +23,9 @@ import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 import net.minecraft.server.command.CommandManager;
 import net.minecraft.server.command.ServerCommandSource;
+import net.minecraft.sound.BlockSoundGroup;
+import net.minecraft.sound.SoundEvent;
+import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.biome.Biome;
@@ -61,6 +64,9 @@ public class CottonResources implements ModInitializer {
 	
 	public static ItemGroup ITEM_GROUP = FabricItemGroupBuilder.build(new Identifier(MODID, "resources"), ()->new ItemStack(BUILTINS.get("copper").getItem("gear")));
 	
+	public static SoundEvent METAL_STEP_SOUND;
+	public static BlockSoundGroup METAL_SOUND_GROUP;
+	
 	@Override
 	public void onInitialize() {
 		File file = new File(FabricLoader.getInstance().getConfigDirectory(),"CottonResources.json5");
@@ -71,6 +77,8 @@ public class CottonResources implements ModInitializer {
 			saveConfig(CONFIG);
 		}
 		
+		METAL_STEP_SOUND = (SoundEvent)Registry.register(Registry.SOUND_EVENT, "block.cotton-resources.metal.step", new SoundEvent(new Identifier("c:block.cotton-resources.metal.step")));
+		METAL_SOUND_GROUP = new BlockSoundGroup(1.0F, 1.5F, SoundEvents.BLOCK_METAL_BREAK, METAL_STEP_SOUND, SoundEvents.BLOCK_METAL_PLACE, SoundEvents.BLOCK_METAL_HIT, SoundEvents.BLOCK_METAL_FALL);
 		
 		builtinMetal("copper", BlockSuppliers.STONE_TIER_ORE, MACHINE_AFFIXES);
 		builtinMetal("silver", BlockSuppliers.IRON_TIER_ORE, MACHINE_AFFIXES);
