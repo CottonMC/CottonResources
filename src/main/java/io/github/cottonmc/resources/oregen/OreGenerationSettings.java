@@ -14,6 +14,7 @@ import blue.endless.jankson.JsonElement;
 import blue.endless.jankson.JsonObject;
 import blue.endless.jankson.JsonPrimitive;
 import io.github.cottonmc.jankson.BlockAndItemSerializers;
+import io.github.cottonmc.resources.CottonResources;
 
 public class OreGenerationSettings {
 	public Set<BlockState> ores = new HashSet<>();
@@ -83,9 +84,13 @@ public class OreGenerationSettings {
 		if (elem==null) return ImmutableSet.of();
 		
 		if (elem instanceof JsonPrimitive) {
-			return ImmutableSet.of(BlockAndItemSerializers.getBlockStatePrimitive(((JsonPrimitive) elem).getValue()));
+			BlockState state = BlockAndItemSerializers.getBlockStatePrimitive(((JsonPrimitive) elem).getValue());
+			if (state==null) System.out.println("State not found for "+((JsonPrimitive) elem).getValue());
+			return (state==null) ? ImmutableSet.of() : ImmutableSet.of(state);
 		} else if (elem instanceof JsonObject) {
-			return ImmutableSet.of(BlockAndItemSerializers.getBlockState((JsonObject) elem));
+			BlockState state = BlockAndItemSerializers.getBlockState((JsonObject) elem);
+			if (state==null) System.out.println("State not found for "+((JsonPrimitive) elem).getValue());
+			return (state==null) ? ImmutableSet.of() : ImmutableSet.of(state);
 		} else if (elem instanceof JsonArray) {
 			HashSet<BlockState> result = new HashSet<>();
 			for(JsonElement e : (JsonArray)elem) {

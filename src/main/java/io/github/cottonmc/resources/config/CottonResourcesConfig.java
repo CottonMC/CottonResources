@@ -11,6 +11,9 @@ public class CottonResourcesConfig {
 	@Comment("If true, vanilla's ore gen will be cancelled.")
 	public boolean override_vanilla_generation = false;
 	
+	@Comment("Listing a resource here forces it to generate in the world, even if no mod requests it, unless it's also forbidden")
+	public Set<String> enabledResources = new HashSet<>();
+	
 	@Comment("Listing a resource here forces it not to generate in the world, even if a mod requests it.")
 	public Set<String> disabledResources = new HashSet<>();
 	

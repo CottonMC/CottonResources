@@ -3,9 +3,12 @@ package io.github.cottonmc.resources;
 import io.github.cottonmc.jankson.JanksonFactory;
 import io.github.cottonmc.resources.command.StripCommand;
 import io.github.cottonmc.resources.config.CottonResourcesConfig;
+import io.github.cottonmc.resources.oregen.BiomeSpec;
 import io.github.cottonmc.resources.oregen.CottonOreFeature;
+import io.github.cottonmc.resources.oregen.DimensionSpec;
 import io.github.cottonmc.resources.oregen.OreGenerationSettings;
 import io.github.cottonmc.resources.oregen.OregenResourceListener;
+import io.github.cottonmc.resources.oregen.TaggableSpec;
 import io.github.cottonmc.resources.tag.WorldTagReloadListener;
 import io.github.cottonmc.resources.type.GemResourceType;
 import io.github.cottonmc.resources.type.GenericResourceType;
@@ -69,13 +72,7 @@ public class CottonResources implements ModInitializer {
 	
 	@Override
 	public void onInitialize() {
-		File file = new File(FabricLoader.getInstance().getConfigDirectory(),"CottonResources.json5");
-		if (file.exists()) {
-			CONFIG = loadConfig();
-			saveConfig(CONFIG);
-		} else {
-			saveConfig(CONFIG);
-		}
+		
 		
 		METAL_STEP_SOUND = (SoundEvent)Registry.register(Registry.SOUND_EVENT, "block.cotton-resources.metal.step", new SoundEvent(new Identifier("c:block.cotton-resources.metal.step")));
 		METAL_SOUND_GROUP = new BlockSoundGroup(1.0F, 1.5F, SoundEvents.BLOCK_METAL_BREAK, METAL_STEP_SOUND, SoundEvents.BLOCK_METAL_PLACE, SoundEvents.BLOCK_METAL_HIT, SoundEvents.BLOCK_METAL_FALL);
@@ -142,6 +139,14 @@ public class CottonResources implements ModInitializer {
 			
 			dispatcher.getRoot().addChild(stripCommandNode);
 		});
+		
+		File file = new File(FabricLoader.getInstance().getConfigDirectory(),"CottonResources.json5");
+		if (file.exists()) {
+			CONFIG = loadConfig();
+			saveConfig(CONFIG);
+		} else {
+			saveConfig(CONFIG);
+		}
 	}
 	
 	private static void setupBiomeGenerators() {
@@ -205,21 +210,28 @@ public class CottonResources implements ModInitializer {
 	public static CottonResourcesConfig loadConfig() {
 		File file = new File(FabricLoader.getInstance().getConfigDirectory(),"CottonResources.json5");
 		
-		Jankson jankson = JanksonFactory.createJankson();
+		Jankson jankson = JanksonFactory.builder()
+				.registerTypeAdapter(OreGenerationSettings.class, OreGenerationSettings::deserialize)
+				.build();
 		try {
 			JsonObject json = jankson.load(file);
+			System.out.println("Loading: "+json);
 			CottonResourcesConfig loading = jankson.fromJson(json, CottonResourcesConfig.class);
-			
+			System.out.println("Loaded Map: "+loading.generators);
 			//Manually reload oregen because BiomeSpec and DimensionSpec can be fussy
-			JsonObject oregen = json.getObject("oregen");
+			
+			JsonObject oregen = json.getObject("generators");
 			if (oregen!=null) {
+				System.out.println("RELOADING "+oregen.size()+" entries");
 				for(Map.Entry<String, JsonElement> entry : oregen.entrySet()) {
-					if (entry instanceof JsonObject) {
+					if (entry.getValue() instanceof JsonObject) {
 						OreGenerationSettings settings = OreGenerationSettings.deserialize((JsonObject)entry.getValue());
 						loading.generators.put(entry.getKey(), settings);
 					}
 				}
 			}
+			
+			System.out.println("RELOADED Map: "+loading.generators);
 			
 			return loading;
 		} catch (IOException | SyntaxError e) {
@@ -233,7 +245,8 @@ public class CottonResources implements ModInitializer {
 		File file = new File(FabricLoader.getInstance().getConfigDirectory(),"CottonResources.json5");
 		
 		Jankson jankson = JanksonFactory.builder()
-				//.registerSerializer(BiomeSpec.class, BiomeSpec.)
+				.registerSerializer(BiomeSpec.class, (spec, marshaller)->TaggableSpec.serialize(spec))
+				.registerSerializer(DimensionSpec.class, (spec, marshaller)->TaggableSpec.serialize(spec))
 				.build();
 		
 		JsonElement json = jankson.toJson(config);

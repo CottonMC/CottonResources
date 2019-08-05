@@ -53,6 +53,7 @@ public class OregenResourceListener implements SimpleSynchronousResourceReloadLi
 		
 		//Config overrides all this, so clobber anything that exists with the config:
 		jsonConfig.generators.putAll(CottonResources.CONFIG.generators);
+		jsonConfig.ores.addAll(CottonResources.CONFIG.enabledResources);
 		jsonConfig.ores.removeAll(CottonResources.CONFIG.disabledResources);
 		
 		CottonResources.LOGGER.info("Final set of generator keys available: {}", jsonConfig.generators.keySet());

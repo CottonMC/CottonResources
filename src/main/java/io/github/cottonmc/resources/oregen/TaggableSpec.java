@@ -11,6 +11,7 @@ import blue.endless.jankson.JsonArray;
 import blue.endless.jankson.JsonElement;
 import blue.endless.jankson.JsonObject;
 import blue.endless.jankson.JsonPrimitive;
+import io.github.cottonmc.resources.CottonResources;
 import net.minecraft.util.Identifier;
 
 /**
@@ -72,6 +73,29 @@ public abstract class TaggableSpec<T> implements Predicate<T> {
 		}
 		
 		return result;
+	}
+	
+	public static JsonElement serialize(TaggableSpec<?> spec) {
+		if (spec.deny.isEmpty()) {
+			//This can just be a JsonArray of allowed elements
+			JsonArray result = new JsonArray();
+			for(Identifier id : spec.allow) {
+				result.add(new JsonPrimitive(id.toString()));
+			}
+			return result;
+		} else if (spec.allow.isEmpty()) {
+			JsonObject result = new JsonObject();
+			JsonArray arr = new JsonArray();
+			result.put("not", arr);
+			for(Identifier id : spec.deny) {
+				arr.add(new JsonPrimitive(id.toString()));
+			}
+			return result;
+		} else {
+			CottonResources.LOGGER.error("Failed to serialize a complex TaggableSpec!");
+			return new JsonObject();
+		}
+		
 	}
 	
 	public static <U extends TaggableSpec<?>> void parseNot(JsonElement not, U spec, Function<Identifier, Set<Identifier>> tagResolver) {
