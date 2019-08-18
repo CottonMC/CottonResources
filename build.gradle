@@ -26,7 +26,10 @@ dependencies {
     modCompile "io.github.cottonmc:Jankson:${jankson_version}"
     include "io.github.cottonmc:Jankson:${jankson_version}"
 
-    modImplementation ("me.shedaniel:RoughlyEnoughItems:2.9.6+build.138") { exclude(group: "blue.endless", module: "jankson") }
+    modImplementation ("me.shedaniel:RoughlyEnoughItems:3.0-pre+build.1") {
+        exclude(group: "blue.endless", module: "jankson")
+        exclude(group: "io.github.prospector.modmenu", module: "ModMenu")
+    }
     
     implementation "com.google.code.findbugs:jsr305:3.0.2"
 }
