@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:blasting",
+  "group": "ruby",
+  "ingredient": {
+    "tag": "c:ruby_ore"
+  },
+  "result": "c:ruby",
+  "experience": 1.0,
+  "cookingtime": 100
+}

@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "brass_gear",
+  "pattern": [
+    " R ",
+    "RRR",
+    " R "
+  ],
+  "key": {
+    "R": {
+      "tag": "c:brass_ingot"
+    }
+  },
+  "result": {
+    "item": "c:brass_gear"
+  }
+}

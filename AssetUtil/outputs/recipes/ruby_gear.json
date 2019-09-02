@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "ruby_gear",
+  "pattern": [
+    " R ",
+    "RRR",
+    " R "
+  ],
+  "key": {
+    "R": {
+      "tag": "c:ruby"
+    }
+  },
+  "result": {
+    "item": "c:ruby_gear"
+  }
+}

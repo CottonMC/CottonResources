@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "silver_ingot",
+  "pattern": [
+    "RRR",
+    "RRR",
+    "RRR"
+  ],
+  "key": {
+    "R": {
+      "tag": "c:silver_nugget"
+    }
+  },
+  "result": {
+    "item": "c:silver_ingot"
+  }
+}

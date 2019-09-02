@@ -1,0 +1,27 @@
+{
+	"default": {
+		"items": {
+			"affixes": [ "ingot", "nugget", "ore", "gear", "plate", "dust" ],
+			"tags": true,
+			"recipes": [
+				"ingots/x_block_from_ingot",
+				"ingots/x_gear",
+				"ingots/x_ingot_from_blasting",
+				"ingots/x_ingot_from_block",
+				"ingots/x_ingot_from_nugget",
+				"ingots/x_ingot_from_smelting",
+				"ingots/x_nugget_from_ingot",
+				"ingots/x_plate"
+			],
+		},
+		"blocks": {
+			"affixes": [ "block", "ore", "nether_ore" ],
+			"tags": true,
+			"models": true,
+			//"models": [ "metal_block", "ore", "nether_ore" ],
+			"item_models": true,
+			"loot_tables": true
+		},
+	},
+	"generate": [ "cobalt", "aluminum", "lead", "tin", "copper", "silver", "zinc", "titanium", "tungsten", "platinum", "iridium", "osmium", "palladium", "uranium" ]
+}

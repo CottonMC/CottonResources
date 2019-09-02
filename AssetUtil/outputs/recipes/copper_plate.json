@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "copper_plate",
+  "pattern": [
+    "R",
+    "R"
+  ],
+  "key": {
+    "R": {
+      "tag": "c:copper_ingot"
+    }
+  },
+  "result": {
+    "item": "c:copper_plate"
+  }
+}

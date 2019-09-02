@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:blasting",
+  "group": "palladium_ingot",
+  "ingredient": [
+    {
+      "tag": "c:palladium_ore"
+    },
+    {
+      "tag": "c:palladium_dust"
+    }
+  ],
+  "result": "c:palladium_ingot",
+  "experience": 1.0,
+  "cookingtime": 100
+}

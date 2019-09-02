@@ -39,6 +39,7 @@ public class REICompat implements REIPluginV0 {
 		for (ResourceType rsrc : CottonResources.BUILTINS.values()) {
 			if (IMMUNE_TO_HIDING.contains(rsrc.getBaseResource())) continue;
 			
+			System.out.println("Not hiding: "+OregenResourceListener.getConfig().ores);
 			boolean enabled = OregenResourceListener.getConfig().ores.contains(rsrc.getBaseResource());
 			for(String affix : rsrc.getAffixes()) {
 				Item item = rsrc.getItem(affix);
@@ -67,10 +68,10 @@ public class REICompat implements REIPluginV0 {
 					}
 				}
 				
-				if (add) {
+				//if (add) {
 					//System.out.println("Re-adding "+item.getTranslationKey());
-					list.add(Entry.create(new ItemStack(item)));
-				}
+				//	list.add(Entry.create(new ItemStack(item)));
+				//}
 			}
 		}
 	}
