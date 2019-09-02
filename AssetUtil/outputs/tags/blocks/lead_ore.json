@@ -1,0 +1,7 @@
+{
+  "replace": false,
+  "values": [
+    "c:lead_ore"
+    "c:lead_nether_ore"
+  ]
+}

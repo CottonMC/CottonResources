@@ -3,6 +3,7 @@ package io.github.cottonmc.resources.util;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.Map;
 
 import javax.annotation.Nullable;
 
@@ -103,12 +104,12 @@ public class ResourcePlan {
 		
 		public ArrayList<String> affixes = new ArrayList<>();
 		
-		/** A list of affixes to generate tags for */
-		public ArrayList<String> tags = new ArrayList<>();
+		public HashMap<String, String> tags = new HashMap<>();
+		public HashMap<String, String> item_tags = new HashMap<>();
+		
 		
 		/** Map of block affixes to model template names */
 		public HashMap<String, String> models = new HashMap<>();
-		
 		public boolean item_models = true;
 		public boolean loot_tables = false; //TODO: Schema
 		
@@ -123,7 +124,48 @@ public class ResourcePlan {
 		public static Blocks fromJson(JsonObject json) {
 			Blocks result = new Blocks();
 			
+			String[] affixes = json.get(String[].class, "affixes");
+			if (affixes==null) return result; //Nothing to see here.
+			result.affixes.addAll(Arrays.asList(affixes));
+			
+			
+			readMap(result.tags, json.get(JsonObject.class, "tags"));
+			//JsonObject tagsObj = json.get(JsonObject.class, "tags");
+			/*if (tagsObj!=null) {
+				for(Map.Entry<String, JsonElement> entries : tagsObj.entrySet()) {
+					if (entries.getValue() instanceof JsonPrimitive) {
+						String value = ((JsonPrimitive) entries.getValue()).asString();
+						result.tags.put(entries.getKey(), value);
+					}
+				}
+			}*/
+			readMap(result.item_tags, json.get(JsonObject.class, "item_tags"));
+			
+			//result.item_tags = readBoolean(json.get("item_tags"), result.item_tags);
+			result.item_models = readBoolean(json.get("item_models"), result.item_models);
+			
 			return result;
 		}
+	}
+	
+	private static void readMap(Map<String, String> map, JsonObject obj) {
+		if (map!=null) {
+			for(Map.Entry<String, JsonElement> entries : obj.entrySet()) {
+				if (entries.getValue() instanceof JsonPrimitive) {
+					String value = ((JsonPrimitive) entries.getValue()).asString();
+					map.put(entries.getKey(), value);
+				}
+			}
+		}
+	}
+	
+	private static boolean readBoolean(JsonElement elem, boolean originalValue) {
+		if (elem!=null && elem instanceof JsonPrimitive) {
+			JsonPrimitive p = (JsonPrimitive)elem;
+			if (p.getValue() instanceof Boolean) {
+				return ((Boolean) p.getValue()).booleanValue();
+			}
+		}
+		return originalValue;
 	}
 }

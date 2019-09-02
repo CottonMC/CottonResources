@@ -1,0 +1,7 @@
+{
+  "replace": false,
+  "values": [
+    "c:osmium_ore"
+    "c:osmium_nether_ore"
+  ]
+}

@@ -15,8 +15,15 @@
 			],
 		},
 		"blocks": {
-			"affixes": [ "block", "ore", "nether_ore" ],
-			"tags": true,
+			"affixes": [ "block", "ore" ],
+			"tags": {
+				"block": "block",
+				"ore_with_nether": "ore"
+			},
+			"item_tags": {
+				"block": "block",
+				"ore_with_nether": "ore"
+			},
 			"models": true,
 			//"models": [ "metal_block", "ore", "nether_ore" ],
 			"item_models": true,

@@ -1,0 +1,7 @@
+{
+  "replace": false,
+  "values": [
+    "c:copper_ore"
+    "c:copper_nether_ore"
+  ]
+}

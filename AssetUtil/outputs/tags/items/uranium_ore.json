@@ -1,0 +1,7 @@
+{
+  "replace": false,
+  "values": [
+    "c:uranium_ore"
+    "c:uranium_nether_ore"
+  ]
+}
