@@ -1,8 +1,9 @@
 {
 	"default": {
 		"items": {
-			"affixes": [ "ingot", "nugget", "ore", "gear", "plate", "dust" ],
+			"affixes": [ "ingot", "nugget", "gear", "plate", "dust" ],
 			"tags": true,
+			//"models": true,
 			"recipes": [
 				"ingots/x_block_from_ingot",
 				"ingots/x_gear",
@@ -11,23 +12,26 @@
 				"ingots/x_ingot_from_nugget",
 				"ingots/x_ingot_from_smelting",
 				"ingots/x_nugget_from_ingot",
-				"ingots/x_plate"
+				//"ingots/x_plate"
 			],
 		},
 		"blocks": {
-			"affixes": [ "block", "ore" ],
+			//"affixes": [ "block", "ore" ],
 			"tags": {
 				"block": "block",
-				"ore_with_nether": "ore"
+				"ore"  : "ore_with_nether"
 			},
 			"item_tags": {
 				"block": "block",
-				"ore_with_nether": "ore"
+				"ore"  : "ore_with_nether"
 			},
-			"models": true,
-			//"models": [ "metal_block", "ore", "nether_ore" ],
-			"item_models": true,
-			"loot_tables": true
+			"loot_tables": {
+				"block"     : "block",
+				"ore"       : "block",
+				"nether_ore": "block"
+			},
+			//"models": true,
+			//"item_models": true
 		},
 	},
 	"generate": [ "cobalt", "aluminum", "lead", "tin", "copper", "silver", "zinc", "titanium", "tungsten", "platinum", "iridium", "osmium", "palladium", "uranium" ]

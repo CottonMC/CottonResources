@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:smelting",
+  "group": "gold_ingot",
+  "ingredient": [
+    {
+      "tag": "c:gold_dust"
+    }
+  ],
+  "result": "minecraft:gold_ingot",
+  "experience": 1.0,
+  "cookingtime": 200
+}

@@ -1,6 +1,6 @@
 {
   "replace": false,
   "values": [
-    "c:{{{resource}}}_block"
+    "c:{{{base}}}_block"
   ]
 }

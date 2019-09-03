@@ -1,0 +1,33 @@
+{
+	"default": {
+		"items": {
+			"affixes": [ "ingot", "nugget", "gear", "plate", "dust" ],
+			"tags": true,
+			//"models": true,
+			"recipes": [
+				"ingots/x_block_from_ingot",
+				"ingots/x_gear",
+				"ingots/x_ingot_from_block",
+				"ingots/x_ingot_from_nugget",
+				"ingots/x_nugget_from_ingot",
+				"no_ore/x_ingot_from_blasting",
+				"no_ore/x_ingot_from_smelting"
+			],
+		},
+		"blocks": {
+			//"affixes": [ "block" ],
+			"tags": {
+				"block": "block"
+			},
+			"item_tags": {
+				"block": "block"
+			},
+			"loot_tables": {
+				"block": "block"
+			},
+			//"models": true,
+			//"item_models": true
+		},
+	},
+	"generate": [ "plutonium", "thorium" ]
+}

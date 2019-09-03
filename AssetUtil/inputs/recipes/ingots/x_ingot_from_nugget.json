@@ -1,6 +1,6 @@
 {
   "type": "minecraft:crafting_shaped",
-  "group": "{{{resource}}}_ingot",
+  "group": "{{{base}}}_ingot",
   "pattern": [
     "RRR",
     "RRR",
@@ -8,10 +8,10 @@
   ],
   "key": {
     "R": {
-      "tag": "c:{{{resource}}}_nugget"
+      "tag": "c:{{{base}}}_nugget"
     }
   },
   "result": {
-    "item": "c:{{{resource}}}_ingot"
+    "item": "c:{{{base}}}_ingot"
   }
 }

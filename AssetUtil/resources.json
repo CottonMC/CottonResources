@@ -1,6 +1,9 @@
 {
-	"metals": [ "cobalt", "aluminum", "lead", "tin", "copper", "silver", "zinc", "titanium", "tungsten", "platinum", "iridium", "osmium", "palladium", "uranium" ],
+	"metals": [ "cobalt", "aluminum", "lead", "tin", "copper", "silver", "zinc", "titanium", "tungsten", "platinum", "iridium", "osmium", "palladium", "uranium" ], //done
+	"radioactive": [ "plutonium", "thorium" ], //done
+	"alloys": [ "electrum", "brass", "steel"], //done
 	"gems": [ "ruby", "sapphire", "amethyst", "topaz", "peridot" ],
-	"alloys": [ "electrum", "brass", "steel"],
-	"radioactive": [ "uranium", "plutonium", "thorium" ]
+	"vanilla_metal": [ "iron", "gold" ],
+	"vanilla_gem": ["emerald", "diamond" ],
+	"simple": [ "wood", "stone" ]
 }

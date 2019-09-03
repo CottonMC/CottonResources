@@ -1,13 +1,13 @@
 {
   "type": "minecraft:crafting_shapeless",
-  "group": "{{{resource}}}_nugget",
+  "group": "{{{base}}}_nugget",
   "ingredients": [
     {
-      "tag": "c:{{{resource}}}_ingot"
+      "tag": "c:{{{base}}}_ingot"
     }
   ],
   "result": {
-    "item": "c:{{{resource}}}_nugget",
+    "item": "c:{{{base}}}_nugget",
     "count": 9
   }
 }

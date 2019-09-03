@@ -110,8 +110,9 @@ public class ResourcePlan {
 		
 		/** Map of block affixes to model template names */
 		public HashMap<String, String> models = new HashMap<>();
+		public HashMap<String, String> loot_tables = new HashMap<>();
 		public boolean item_models = true;
-		public boolean loot_tables = false; //TODO: Schema
+		
 		
 		public Blocks clone() {
 			try {
@@ -125,21 +126,12 @@ public class ResourcePlan {
 			Blocks result = new Blocks();
 			
 			String[] affixes = json.get(String[].class, "affixes");
-			if (affixes==null) return result; //Nothing to see here.
-			result.affixes.addAll(Arrays.asList(affixes));
+			if (affixes!=null) result.affixes.addAll(Arrays.asList(affixes));
 			
 			
 			readMap(result.tags, json.get(JsonObject.class, "tags"));
-			//JsonObject tagsObj = json.get(JsonObject.class, "tags");
-			/*if (tagsObj!=null) {
-				for(Map.Entry<String, JsonElement> entries : tagsObj.entrySet()) {
-					if (entries.getValue() instanceof JsonPrimitive) {
-						String value = ((JsonPrimitive) entries.getValue()).asString();
-						result.tags.put(entries.getKey(), value);
-					}
-				}
-			}*/
 			readMap(result.item_tags, json.get(JsonObject.class, "item_tags"));
+			readMap(result.loot_tables, json.get(JsonObject.class, "loot_tables"));
 			
 			//result.item_tags = readBoolean(json.get("item_tags"), result.item_tags);
 			result.item_models = readBoolean(json.get("item_models"), result.item_models);
@@ -149,7 +141,7 @@ public class ResourcePlan {
 	}
 	
 	private static void readMap(Map<String, String> map, JsonObject obj) {
-		if (map!=null) {
+		if (map!=null && obj!=null) {
 			for(Map.Entry<String, JsonElement> entries : obj.entrySet()) {
 				if (entries.getValue() instanceof JsonPrimitive) {
 					String value = ((JsonPrimitive) entries.getValue()).asString();

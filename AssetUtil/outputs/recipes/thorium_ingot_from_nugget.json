@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "thorium_ingot",
+  "pattern": [
+    "RRR",
+    "RRR",
+    "RRR"
+  ],
+  "key": {
+    "R": {
+      "tag": "c:thorium_nugget"
+    }
+  },
+  "result": {
+    "item": "c:thorium_ingot"
+  }
+}

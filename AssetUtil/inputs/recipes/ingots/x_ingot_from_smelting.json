@@ -1,15 +1,15 @@
 {
   "type": "minecraft:smelting",
-  "group": "{{{resource}}}_ingot",
+  "group": "{{{base}}}_ingot",
   "ingredient": [
     {
-      "tag": "c:{{{resource}}}_ore"
+      "tag": "c:{{{base}}}_ore"
     },
     {
-      "tag": "c:{{{resource}}}_dust"
+      "tag": "c:{{{base}}}_dust"
     }
   ],
-  "result": "c:{{{resource}}}_ingot",
+  "result": "c:{{{base}}}_ingot",
   "experience": 1.0,
   "cookingtime": 200
 }

@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:blasting",
+  "group": "{{{base}}}_ingot",
+  "ingredient": [
+    {
+      "tag": "c:{{{base}}}_dust"
+    }
+  ],
+  "result": "minecraft:{{{base}}}_ingot",
+  "experience": 1.0,
+  "cookingtime": 100
+}
