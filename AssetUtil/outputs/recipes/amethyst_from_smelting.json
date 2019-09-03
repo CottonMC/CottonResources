@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:smelting",
+  "group": "amethyst",
+  "ingredient": {
+    "tag": "c:amethyst_ore"
+  },
+  "result": "c:amethyst",
+  "experience": 1.0,
+  "cookingtime": 200
+}

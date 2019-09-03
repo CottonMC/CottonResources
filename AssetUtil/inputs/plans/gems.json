@@ -1,0 +1,35 @@
+{
+	"default": {
+		"items": {
+			"affixes": [ "gear", "plate", "dust" ],
+			"tags": true,
+			//"models": true,
+			"recipes": [
+				"gems/x_block_from_gem",
+				"gems/x_from_blasting",
+				"gems/x_from_smelting",
+				"gems/x_gear",
+				"gems/x_gem_from_block"
+			],
+		},
+		"blocks": {
+			//"affixes": [ "block", "ore", "nether_ore" ],
+			"tags": {
+				"block": "block",
+				"ore"  : "ore_with_nether"
+			},
+			"item_tags": {
+				"block": "block",
+				"ore"  : "ore_with_nether"
+			},
+			"loot_tables": {
+				"block"     : "block",
+				"ore"       : "gem_ore",
+				"nether_ore": "gem_ore"
+			},
+			//"models": true,
+			//"item_models": true
+		}
+	},
+	"generate": [ "ruby", "sapphire", "amethyst", "topaz", "peridot" ]
+}

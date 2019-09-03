@@ -1,0 +1,14 @@
+{
+	"default": {
+		"items": {
+			"affixes": [ "gear" ],
+			"tags": true,
+			//"models": true,
+			"recipes": [
+				"ingots/x_gear",
+			],
+		},
+		"blocks": {}
+	},
+	"generate": [ "wood", "stone" ]
+}

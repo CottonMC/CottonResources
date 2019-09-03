@@ -1,0 +1,28 @@
+{
+	"default": {
+		"items": {
+			"affixes": [ "" ],
+			"tags": true,
+			//"models": true,
+			"recipes": [
+				"coal_coke",
+				"x_from_block"
+			],
+		},
+		"blocks": {
+			//"affixes": [ "block", "ore" ],
+			"tags": {
+				"block": "block"
+			},
+			"item_tags": {
+				"block": "block"
+			},
+			"loot_tables": {
+				"block"     : "block"
+			},
+			//"models": true,
+			//"item_models": true
+		},
+	},
+	"generate": [ "coal_coke" ]
+}

@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "diamond_gear",
+  "pattern": [
+    " R ",
+    "RRR",
+    " R "
+  ],
+  "key": {
+    "R": {
+      "tag": "c:diamond"
+    }
+  },
+  "result": {
+    "item": "c:diamond_gear"
+  }
+}
