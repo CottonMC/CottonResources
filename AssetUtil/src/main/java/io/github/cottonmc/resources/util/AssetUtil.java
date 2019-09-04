@@ -145,7 +145,7 @@ public class AssetUtil {
 		if (!itemTagsFolder.exists()) itemTagsFolder.mkdirs();
 		
 		for(String s : items.tags) {
-			String item = base+"_"+s;
+			String item = (!s.isEmpty()) ? base + "_" + s : base;
 			
 			File outputFile = new File("./outputs/tags/items/"+item+".json");
 			apply(templateFile, outputFile, new ItemScope(base, item));
@@ -162,15 +162,10 @@ public class AssetUtil {
 			
 			for(Map.Entry<String, String> entry : blocks.tags.entrySet()) {
 				File templateFile = new File("./inputs/tags", entry.getValue()+".json");
-				//Mustache template = template(templateFile);
 				
-				String item = base+"_"+entry.getKey();
-				//handledBlocks.add(item);
+				String item = (!entry.getKey().isEmpty()) ? base + "_" + entry.getKey() : base;
 				File outputFile = new File("./outputs/tags/blocks/"+item+".json");
-				//Writer writer = new OutputStreamWriter(new FileOutputStream(outputFile), StandardCharsets.UTF_8);
-				//template.execute(writer, new ItemScope(base, item));
 				apply(templateFile, outputFile, new ItemScope(base, item));
-				//writer.flush();
 				numFilesGenerated++;
 			}
 			
@@ -179,14 +174,10 @@ public class AssetUtil {
 				if (!itemTagsFolder.exists()) itemTagsFolder.mkdirs();
 				
 				for(Map.Entry<String, String> entry : blocks.item_tags.entrySet()) {
-					String item = base+"_"+entry.getKey();
+					String item = (!entry.getKey().isEmpty()) ? base + "_" + entry.getKey() : base;
 					File templateFile = new File("./inputs/tags", entry.getValue()+".json");
-					//Mustache template = template(templateFile);
 					
 					File outputFile = new File("./outputs/tags/items/"+item+".json");
-					//Writer writer = new OutputStreamWriter(new FileOutputStream(outputFile), StandardCharsets.UTF_8);
-					//template.execute(writer, new Scope(base, item));
-					//writer.flush();
 					apply(templateFile, outputFile, new ItemScope(base, item));
 					numFilesGenerated++;
 				}
@@ -203,7 +194,7 @@ public class AssetUtil {
 		if (!lootTablesFolder.exists()) lootTablesFolder.mkdirs();
 		
 		for(Map.Entry<String, String> entry : blocks.loot_tables.entrySet()) {
-			String item = (!entry.getKey().isEmpty()) ? base + "_" + entry.getKey() : entry.getKey();
+			String item = (!entry.getKey().isEmpty()) ? base + "_" + entry.getKey() : base;
 			
 			File templateFile = new File("./inputs/loot_tables/"+entry.getValue()+".json");
 			File outputFile = new File("./outputs/loot_tables/"+item+".json");
@@ -226,7 +217,7 @@ public class AssetUtil {
 		
 		if (!plan.blocks.models.isEmpty()) {
 			for(Map.Entry<String, String> entry : plan.blocks.models.entrySet()) {
-				String item = (!entry.getKey().isEmpty()) ? plan.name + "_" + entry.getKey() : entry.getKey();
+				String item = (!entry.getKey().isEmpty()) ? plan.name + "_" + entry.getKey() : plan.name;
 				File templateFile = new File("./inputs/models/"+entry.getValue()+".json");
 				File outputFile = new File("./outputs/assets/models/block/", item+".json");
 				apply(templateFile, outputFile, new ItemScope(plan.name, item));
