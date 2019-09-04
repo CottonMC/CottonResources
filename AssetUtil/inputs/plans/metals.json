@@ -3,7 +3,7 @@
 		"items": {
 			"affixes": [ "ingot", "nugget", "gear", "plate", "dust" ],
 			"tags": true,
-			//"models": true,
+			"models": true,
 			"recipes": [
 				"ingots/x_block_from_ingot",
 				"ingots/x_gear",
@@ -11,12 +11,11 @@
 				"ingots/x_ingot_from_block",
 				"ingots/x_ingot_from_nugget",
 				"ingots/x_ingot_from_smelting",
-				"ingots/x_nugget_from_ingot",
-				//"ingots/x_plate"
+				"ingots/x_nugget_from_ingot"
 			],
 		},
 		"blocks": {
-			//"affixes": [ "block", "ore" ],
+			"affixes": [ "block", "ore", "nether_ore", "end_ore" ],
 			"tags": {
 				"block": "block",
 				"ore"  : "ore_with_nether"
@@ -30,8 +29,9 @@
 				"ore"       : "block",
 				"nether_ore": "block"
 			},
-			//"models": true,
-			//"item_models": true
+			"models": true,
+			"item_models": true,
+			"blockstates": true
 		},
 	},
 	"generate": [ "cobalt", "aluminum", "lead", "tin", "copper", "silver", "zinc", "titanium", "tungsten", "platinum", "iridium", "osmium", "palladium", "uranium" ]

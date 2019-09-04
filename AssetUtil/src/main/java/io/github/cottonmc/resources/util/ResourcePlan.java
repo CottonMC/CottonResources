@@ -49,7 +49,7 @@ public class ResourcePlan {
 	}
 	
 	
-	public static class Items {
+	public static class Items implements Cloneable {
 		public ArrayList<String> affixes = new ArrayList<>();
 		
 		/** If true, generate a tag for each item */
@@ -60,13 +60,24 @@ public class ResourcePlan {
 		 */
 		public ArrayList<String> recipes = new ArrayList<>();
 		
+		public boolean models = false;
+		
 		@Override
 		public Items clone() {
+			/*
 			Items result = new Items();
 			result.affixes.addAll(affixes);
 			result.tags.addAll(tags);
 			result.recipes.addAll(recipes);
+			result.models = models;
 			return result;
+			*/
+			
+			try {
+				return (Items) super.clone();
+			} catch (CloneNotSupportedException e) {
+				throw new RuntimeException(e);
+			}
 		}
 		
 		public static Items fromJson(JsonObject json) {
@@ -96,6 +107,7 @@ public class ResourcePlan {
 				}
 			}
 			
+			result.models = readBoolean(json.get("models"), false);
 			return result;
 		}
 	}
@@ -111,8 +123,8 @@ public class ResourcePlan {
 		/** Map of block affixes to model template names */
 		public HashMap<String, String> models = new HashMap<>();
 		public HashMap<String, String> loot_tables = new HashMap<>();
-		public boolean item_models = true;
-		
+		public boolean item_models = false;
+		public boolean blockstates = false;
 		
 		public Blocks clone() {
 			try {
@@ -133,8 +145,17 @@ public class ResourcePlan {
 			readMap(result.item_tags, json.get(JsonObject.class, "item_tags"));
 			readMap(result.loot_tables, json.get(JsonObject.class, "loot_tables"));
 			
-			//result.item_tags = readBoolean(json.get("item_tags"), result.item_tags);
+			JsonElement modelsElem = json.get("models");
+			if (modelsElem instanceof JsonObject) {
+				readMap(result.models, (JsonObject) modelsElem);
+			} else if (modelsElem instanceof JsonPrimitive) {
+				if (readBoolean(modelsElem, false)) {
+					for(String s : affixes) result.models.put(s, s);
+				}
+			}
+			
 			result.item_models = readBoolean(json.get("item_models"), result.item_models);
+			result.blockstates = readBoolean(json.get("blockstates"), result.blockstates);
 			
 			return result;
 		}

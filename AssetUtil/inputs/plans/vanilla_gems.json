@@ -3,7 +3,7 @@
 		"items": {
 			"affixes": [ "gear", "plate", "dust" ],
 			"tags": true,
-			//"models": true,
+			"models": true,
 			"recipes": [
 				"gems/x_gear"
 			],

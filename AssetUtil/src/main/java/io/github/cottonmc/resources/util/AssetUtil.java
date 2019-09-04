@@ -55,7 +55,6 @@ public class AssetUtil {
 							ResourcePlan plan = defaultPlan.clone();
 							plan.name = ((JsonPrimitive) generateElem).asString();
 							handlePlan(jankson, plan);
-							//System.out.println("Generated configured ResourcePlan "+jankson.toJson(plan).toJson(JsonGrammar.JSON5));
 						} else {
 							//TODO: Apply the generateElem object on top of the defaults somehow
 						}
@@ -77,29 +76,37 @@ public class AssetUtil {
 	
 	public static void handlePlan(Jankson jankson, ResourcePlan plan) {
 		try {
-			//System.out.println("	[Item tags]");
 			handleItemTags(jankson, plan.name, plan.items);
 		} catch (IOException ex) {
 			ex.printStackTrace();
 		}
 		
 		try {
-			//System.out.println("	[Recipes]");
 			handleItemRecipes(jankson, plan.name, plan.items);
 		} catch (IOException ex) {
 			ex.printStackTrace();
 		}
 		
 		try {
-			//System.out.println("	[Block Tags]");
 			handleBlockTags(jankson, plan.name, plan.blocks);
 		} catch (NotEnoughJsonException ex) {
 			ex.printStackTrace();
 		}
 		
 		try {
-			//System.out.println("	[Loot Tables]");
-			handleLootTables(jankson, plan.name, plan.blocks);
+			handleLootTables(plan.name, plan.blocks);
+		} catch (IOException ex) {
+			ex.printStackTrace();
+		}
+		
+		try {
+			handleModels(plan);
+		} catch (IOException ex) {
+			ex.printStackTrace();
+		}
+		
+		try {
+			handleBlockstates(plan);
 		} catch (IOException ex) {
 			ex.printStackTrace();
 		}
@@ -134,21 +141,14 @@ public class AssetUtil {
 		File templateFile = new File("./inputs/tags", "item.json");
 		if (!templateFile.exists()) throw new FileNotFoundException("Can't generate item tags: 'inputs/tags/item_tag.json' doesn't exist");
 		
-		//MustacheFactory factory = new DefaultMustacheFactory();
-		
-		//Mustache template = factory.compile(new InputStreamReader(new FileInputStream(templateFile), StandardCharsets.UTF_8), templateFile.getName());
-	
 		File itemTagsFolder = new File("./outputs/tags/items/");
 		if (!itemTagsFolder.exists()) itemTagsFolder.mkdirs();
 		
 		for(String s : items.tags) {
 			String item = base+"_"+s;
-			//handledItems.add(item);
+			
 			File outputFile = new File("./outputs/tags/items/"+item+".json");
 			apply(templateFile, outputFile, new ItemScope(base, item));
-			//Writer writer = new OutputStreamWriter(new FileOutputStream(outputFile), StandardCharsets.UTF_8);
-			//template.execute(writer, new Scope(item)); //TODO: switch to base, item notation
-			//writer.flush();
 			numFilesGenerated++;
 		}
 	}
@@ -162,14 +162,15 @@ public class AssetUtil {
 			
 			for(Map.Entry<String, String> entry : blocks.tags.entrySet()) {
 				File templateFile = new File("./inputs/tags", entry.getValue()+".json");
-				Mustache template = template(templateFile);
+				//Mustache template = template(templateFile);
 				
 				String item = base+"_"+entry.getKey();
 				//handledBlocks.add(item);
 				File outputFile = new File("./outputs/tags/blocks/"+item+".json");
-				Writer writer = new OutputStreamWriter(new FileOutputStream(outputFile), StandardCharsets.UTF_8);
-				template.execute(writer, new Scope(base, item));
-				writer.flush();
+				//Writer writer = new OutputStreamWriter(new FileOutputStream(outputFile), StandardCharsets.UTF_8);
+				//template.execute(writer, new ItemScope(base, item));
+				apply(templateFile, outputFile, new ItemScope(base, item));
+				//writer.flush();
 				numFilesGenerated++;
 			}
 			
@@ -180,12 +181,13 @@ public class AssetUtil {
 				for(Map.Entry<String, String> entry : blocks.item_tags.entrySet()) {
 					String item = base+"_"+entry.getKey();
 					File templateFile = new File("./inputs/tags", entry.getValue()+".json");
-					Mustache template = template(templateFile);
+					//Mustache template = template(templateFile);
 					
 					File outputFile = new File("./outputs/tags/items/"+item+".json");
-					Writer writer = new OutputStreamWriter(new FileOutputStream(outputFile), StandardCharsets.UTF_8);
-					template.execute(writer, new Scope(base, item));
-					writer.flush();
+					//Writer writer = new OutputStreamWriter(new FileOutputStream(outputFile), StandardCharsets.UTF_8);
+					//template.execute(writer, new Scope(base, item));
+					//writer.flush();
+					apply(templateFile, outputFile, new ItemScope(base, item));
 					numFilesGenerated++;
 				}
 			}
@@ -194,21 +196,68 @@ public class AssetUtil {
 		}
 	}
 	
-	public static void handleLootTables(Jankson jankson, String base, ResourcePlan.Blocks blocks) throws IOException {
+	public static void handleLootTables(String base, ResourcePlan.Blocks blocks) throws IOException {
 		if (blocks.loot_tables.isEmpty()) return;
 		
 		File lootTablesFolder = new File("./outputs/loot_tables/");
 		if (!lootTablesFolder.exists()) lootTablesFolder.mkdirs();
 		
 		for(Map.Entry<String, String> entry : blocks.loot_tables.entrySet()) {
-			String item = base+"_"+entry.getKey();
+			String item = (!entry.getKey().isEmpty()) ? base + "_" + entry.getKey() : entry.getKey();
 			
 			File templateFile = new File("./inputs/loot_tables/"+entry.getValue()+".json");
 			File outputFile = new File("./outputs/loot_tables/"+item+".json");
-			apply(templateFile, outputFile, new Scope(base, item));
+			apply(templateFile, outputFile, new ItemScope(base, item));
 			numFilesGenerated++;
 		}
 	}
+	
+	public static void handleModels(ResourcePlan plan) throws IOException {
+		if (plan.items.models) {
+			for(String s : plan.items.affixes) {
+				String item = (!s.isEmpty()) ? plan.name + "_" + s : plan.name;
+				
+				File templateFile = new File("./inputs/models/item.json");
+				File outputFile = new File("./outputs/assets/models/item/"+item+".json");
+				apply(templateFile, outputFile, new ItemScope(plan.name, item));
+				numFilesGenerated++;
+			}
+		}
+		
+		if (!plan.blocks.models.isEmpty()) {
+			for(Map.Entry<String, String> entry : plan.blocks.models.entrySet()) {
+				String item = (!entry.getKey().isEmpty()) ? plan.name + "_" + entry.getKey() : entry.getKey();
+				File templateFile = new File("./inputs/models/"+entry.getValue()+".json");
+				File outputFile = new File("./outputs/assets/models/block/", item+".json");
+				apply(templateFile, outputFile, new ItemScope(plan.name, item));
+				numFilesGenerated++;
+				
+				if (plan.blocks.item_models) {
+					File itemTemplate = new File("./inputs/models/item_block.json");
+					File itemOutput = new File("./outputs/assets/models/item/"+item+".json");
+					apply(itemTemplate, itemOutput, new ItemScope(plan.name, item));
+					numFilesGenerated++;
+				}
+			}
+			
+			
+		}
+	}
+	
+	public static void handleBlockstates(ResourcePlan plan) throws IOException {
+		if (plan.blocks.blockstates) {
+			for(String s : plan.blocks.affixes) {
+				String item = (!s.isEmpty()) ? plan.name + "_" + s : plan.name;
+				
+				File templateFile = new File("./inputs/blockstates/block.json");
+				File outputFile = new File("./outputs/assets/blockstates/"+item+".json");
+				apply(templateFile, outputFile, new ItemScope(plan.name, item));
+				numFilesGenerated++;
+			}
+		}
+	}
+	
+	
 	
 	private static final MustacheFactory FACTORY = new DefaultMustacheFactory();
 	public static Mustache template(File f) throws NotEnoughJsonException {
@@ -244,24 +293,5 @@ public class AssetUtil {
 		public String base;
 		public String item;
 		public ItemScope(String base, String item) { this.base = base; this.item = item; }
-	}
-	
-	public static class Scope {
-		public String base;
-		public String item;
-		@Deprecated
-		public String resource;
-		
-		public Scope(String resource) {
-			this.base = resource;
-			this.item = resource;
-			this.resource = resource;
-		}
-		
-		public Scope(String base, String item) {
-			this.base = base;
-			this.item = item;
-			this.resource = base;
-		}
 	}
 }

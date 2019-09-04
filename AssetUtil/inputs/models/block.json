@@ -1,0 +1,7 @@
+{
+  "parent": "block/cube_all",
+  "textures": {
+    "particle": "c:block/{{{base}}}_block",
+    "all": "c:block/{{{base}}}_block"
+  }
+}

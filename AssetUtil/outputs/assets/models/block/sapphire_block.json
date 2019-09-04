@@ -1,0 +1,7 @@
+{
+  "parent": "block/cube_all",
+  "textures": {
+    "particle": "c:block/sapphire_block",
+    "all": "c:block/sapphire_block"
+  }
+}

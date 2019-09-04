@@ -3,7 +3,7 @@
 		"items": {
 			"affixes": [ "ingot", "nugget", "gear", "plate", "dust" ],
 			"tags": true,
-			//"models": true,
+			"models": true,
 			"recipes": [
 				"ingots/x_block_from_ingot",
 				"ingots/x_gear",
@@ -16,7 +16,7 @@
 			],
 		},
 		"blocks": {
-			//"affixes": [ "block" ],
+			"affixes": [ "block" ],
 			"tags": {
 				"block": "block"
 			},
@@ -26,8 +26,9 @@
 			"loot_tables": {
 				"block": "block"
 			},
-			//"models": true,
-			//"item_models": true
+			"models": true,
+			"item_models": true,
+			"blockstates": true
 		},
 	},
 	"generate": [ "brass" ]

@@ -3,7 +3,7 @@
 		"items": {
 			"affixes": [ "gear" ],
 			"tags": true,
-			//"models": true,
+			"models": true,
 			"recipes": [
 				"ingots/x_gear",
 			],
