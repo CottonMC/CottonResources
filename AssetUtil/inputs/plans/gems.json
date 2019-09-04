@@ -25,7 +25,8 @@
 			"loot_tables": {
 				"block"     : "block",
 				"ore"       : "gem_ore",
-				"nether_ore": "gem_ore"
+				"nether_ore": "gem_ore",
+				"end_ore"   : "gem_ore"
 			},
 			"models": true,
 			"item_models": true,

@@ -83,7 +83,7 @@ public class CottonResources implements ModInitializer {
 		builtinMetal("zinc", BlockSuppliers.STONE_TIER_ORE, MACHINE_AFFIXES);
 		builtinMetal("aluminum", BlockSuppliers.IRON_TIER_ORE, MACHINE_AFFIXES);
 		MetalResourceType cobalt = builtinMetal("cobalt", BlockSuppliers.IRON_TIER_ORE, MACHINE_AFFIXES);
-		cobalt.withBlockAffix("nether_ore", BlockSuppliers.IRON_TIER_ORE);
+		//cobalt.withBlockAffix("nether_ore", BlockSuppliers.IRON_TIER_ORE);
 		
 		builtinMetal("tin", BlockSuppliers.STONE_TIER_ORE, MACHINE_AFFIXES);
 		builtinMetal("titanium", BlockSuppliers.IRON_TIER_ORE, MACHINE_AFFIXES);
@@ -108,7 +108,10 @@ public class CottonResources implements ModInitializer {
 		builtinItem("gold", "gear", "plate", "dust");
 
 		//These might get rods or molten capsules. They'd just need to be added to the end.
-		builtinRadioactive("uranium", BlockSuppliers.DIAMOND_TIER_ORE, "gear", "plate", "ingot", "nugget");
+		RadioactiveResourceType uranium = builtinRadioactive("uranium", null, "gear", "plate", "ingot", "nugget");
+		uranium.withBlockAffix("ore", BlockSuppliers.DIAMOND_TIER_ORE);
+		uranium.withBlockAffix("nether_ore", BlockSuppliers.DIAMOND_TIER_ORE);
+		uranium.withBlockAffix("end_ore", BlockSuppliers.DIAMOND_TIER_ORE);
 		builtinRadioactive("plutonium", null, "gear", "plate", "ingot", "nugget");
 		builtinRadioactive("thorium", null, "gear", "plate", "ingot", "nugget");
 
@@ -168,7 +171,11 @@ public class CottonResources implements ModInitializer {
 
 	private static MetalResourceType builtinMetal(String id, Supplier<Block> oreSupplier, String... extraAffixes) {
 		MetalResourceType result = new MetalResourceType(id);
-		if (oreSupplier != null) result.withOreSupplier(oreSupplier);
+		if (oreSupplier != null) {
+			result.withOreSupplier(oreSupplier);
+			result.withBlockAffix("nether_ore", oreSupplier);
+			result.withBlockAffix("end_ore", oreSupplier);
+		}
 
 		if (extraAffixes.length > 0) {
 			result.withItemAffixes(extraAffixes);
@@ -187,7 +194,7 @@ public class CottonResources implements ModInitializer {
 		BUILTINS.put(id, result);
 	}
 
-	private static void builtinRadioactive(String id, Supplier<Block> oreSupplier, String... extraAffixes) {
+	private static RadioactiveResourceType builtinRadioactive(String id, Supplier<Block> oreSupplier, String... extraAffixes) {
 		RadioactiveResourceType result = new RadioactiveResourceType(id);
 		if (oreSupplier != null) result.withOreSupplier(oreSupplier);
 
@@ -196,6 +203,7 @@ public class CottonResources implements ModInitializer {
 		}
 
 		BUILTINS.put(id, result);
+		return result;
 	}
 
 	private static void builtinItem(String id, String... extraAffixes) {

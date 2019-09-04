@@ -24,7 +24,7 @@
                   }
                 }
               ],
-              "item": "c:ruby_ore"
+              "name": "c:ruby_ore"
             },
             {
               "type": "minecraft:item",

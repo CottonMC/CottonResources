@@ -5,7 +5,7 @@
 			"tags": true,
 			"models": true,
 			"recipes": [
-				"gems/x_gear"
+				"vanilla_gems/x_gear"
 			],
 		},
 		"blocks": {}

@@ -24,7 +24,7 @@
                   }
                 }
               ],
-              "item": "c:amethyst_ore"
+              "name": "c:amethyst_ore"
             },
             {
               "type": "minecraft:item",

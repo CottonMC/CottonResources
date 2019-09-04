@@ -7,7 +7,9 @@
     " R "
   ],
   "key": {
-    "R": { "item": "minecraft:iron_ingot" }
+    "R": {
+      "item": "minecraft:iron_ingot"
+    }
   },
   "result": {
     "item": "c:iron_gear"

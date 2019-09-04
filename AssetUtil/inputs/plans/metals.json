@@ -27,7 +27,8 @@
 			"loot_tables": {
 				"block"     : "block",
 				"ore"       : "block",
-				"nether_ore": "block"
+				"nether_ore": "block",
+				"end_ore"   : "block"
 			},
 			"models": true,
 			"item_models": true,

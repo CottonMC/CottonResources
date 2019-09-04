@@ -16,6 +16,8 @@ public class GemResourceType extends GenericResourceType {
 
     public GemResourceType withOreSupplier(Supplier<Block> oreSupplier) {
         withBlockAffix("ore", oreSupplier);
+        withBlockAffix("nether_ore", oreSupplier);
+        withBlockAffix("end_ore", oreSupplier);
         return this;
     }
 

@@ -7,7 +7,9 @@
     " R "
   ],
   "key": {
-    "R": { "item": "minecraft:cobblestone" }
+    "R": {
+      "item": "minecraft:cobblestone"
+    }
   },
   "result": {
     "item": "c:stone_gear"

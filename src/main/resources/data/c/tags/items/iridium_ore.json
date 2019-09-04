@@ -1,6 +1,8 @@
 {
   "replace": false,
   "values": [
-    "c:iridium_ore"
+    "c:iridium_ore",
+    "c:iridium_nether_ore",
+    "c:iridium_end_ore"
   ]
 }

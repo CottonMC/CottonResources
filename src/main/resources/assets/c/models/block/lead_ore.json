@@ -1,7 +1,7 @@
 {
   "parent": "c:block/ore",
   "textures": {
-    "particle": "c:block/lead_ore",
+    "particle": "minecraft:block/stone",
     "stone": "minecraft:block/stone",
     "ore": "c:block/lead_ore"
   }

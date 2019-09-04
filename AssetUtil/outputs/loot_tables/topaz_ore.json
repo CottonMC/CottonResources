@@ -24,7 +24,7 @@
                   }
                 }
               ],
-              "item": "c:topaz_ore"
+              "name": "c:topaz_ore"
             },
             {
               "type": "minecraft:item",

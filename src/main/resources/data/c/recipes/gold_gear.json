@@ -7,7 +7,9 @@
     " R "
   ],
   "key": {
-    "R": { "item": "minecraft:gold_ingot" }
+    "R": {
+      "item": "minecraft:gold_ingot"
+    }
   },
   "result": {
     "item": "c:gold_gear"

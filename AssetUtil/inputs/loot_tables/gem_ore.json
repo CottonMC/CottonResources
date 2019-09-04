@@ -24,7 +24,7 @@
                   }
                 }
               ],
-              "item": "c:{{{item}}}"
+              "name": "c:{{{item}}}"
             },
             {
               "type": "minecraft:item",

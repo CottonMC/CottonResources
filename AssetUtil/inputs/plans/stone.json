@@ -1,0 +1,14 @@
+{
+	"default": {
+		"items": {
+			"affixes": [ "gear" ],
+			"tags": true,
+			"models": true,
+			"recipes": [
+				"vanilla_metals/stone_gear",
+			],
+		},
+		"blocks": {}
+	},
+	"generate": [ "stone" ]
+}

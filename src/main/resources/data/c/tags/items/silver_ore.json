@@ -1,6 +1,8 @@
 {
   "replace": false,
   "values": [
-    "c:silver_ore"
+    "c:silver_ore",
+    "c:silver_nether_ore",
+    "c:silver_end_ore"
   ]
 }

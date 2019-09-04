@@ -1,6 +1,8 @@
 {
   "replace": false,
   "values": [
-    "c:zinc_ore"
+    "c:zinc_ore",
+    "c:zinc_nether_ore",
+    "c:zinc_end_ore"
   ]
 }

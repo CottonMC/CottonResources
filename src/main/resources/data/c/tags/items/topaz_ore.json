@@ -1,6 +1,8 @@
 {
   "replace": false,
   "values": [
-    "c:topaz_ore"
+    "c:topaz_ore",
+    "c:topaz_nether_ore",
+    "c:topaz_end_ore"
   ]
 }

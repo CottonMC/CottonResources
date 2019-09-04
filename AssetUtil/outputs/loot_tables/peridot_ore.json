@@ -24,7 +24,7 @@
                   }
                 }
               ],
-              "item": "c:peridot_ore"
+              "name": "c:peridot_ore"
             },
             {
               "type": "minecraft:item",

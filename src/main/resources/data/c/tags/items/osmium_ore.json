@@ -1,6 +1,8 @@
 {
   "replace": false,
   "values": [
-    "c:osmium_ore"
+    "c:osmium_ore",
+    "c:osmium_nether_ore",
+    "c:osmium_end_ore"
   ]
 }

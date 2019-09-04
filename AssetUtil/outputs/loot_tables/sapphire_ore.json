@@ -24,7 +24,7 @@
                   }
                 }
               ],
-              "item": "c:sapphire_ore"
+              "name": "c:sapphire_ore"
             },
             {
               "type": "minecraft:item",

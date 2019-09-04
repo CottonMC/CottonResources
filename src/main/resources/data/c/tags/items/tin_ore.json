@@ -1,6 +1,8 @@
 {
   "replace": false,
   "values": [
-    "c:tin_ore"
+    "c:tin_ore",
+    "c:tin_nether_ore",
+    "c:tin_end_ore"
   ]
 }

@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "{{{base}}}_gear",
+  "pattern": [
+    " R ",
+    "RRR",
+    " R "
+  ],
+  "key": {
+    "R": {
+      "item": "minecraft:{{{base}}}_ingot"
+    }
+  },
+  "result": {
+    "item": "c:{{{base}}}_gear"
+  }
+}

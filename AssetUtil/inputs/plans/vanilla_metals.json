@@ -5,7 +5,7 @@
 			"tags": true,
 			"models": true,
 			"recipes": [
-				"ingots/x_gear",
+				"vanilla_metals/x_gear",
 				"vanilla_metals/x_ingot_from_blasting",
 				"vanilla_metals/x_ingot_from_smelting",
 			],

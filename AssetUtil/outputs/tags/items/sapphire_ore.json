@@ -1,7 +1,8 @@
 {
   "replace": false,
   "values": [
-    "c:sapphire_ore"
-    "c:sapphire_nether_ore"
+    "c:sapphire_ore",
+    "c:sapphire_nether_ore",
+    "c:sapphire_end_ore"
   ]
 }

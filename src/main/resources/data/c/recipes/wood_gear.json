@@ -7,7 +7,9 @@
     " R "
   ],
   "key": {
-    "R": { "tag": "minecraft:planks" }
+    "R": {
+      "tag": "minecraft:planks"
+    }
   },
   "result": {
     "item": "c:wood_gear"

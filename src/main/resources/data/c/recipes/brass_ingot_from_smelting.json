@@ -1,9 +1,11 @@
 {
   "type": "minecraft:smelting",
   "group": "brass_ingot",
-  "ingredient": {
-    "tag": "c:brass_dust"
-  },
+  "ingredient": [
+    {
+      "tag": "c:brass_dust"
+    }
+  ],
   "result": "c:brass_ingot",
   "experience": 1.0,
   "cookingtime": 200

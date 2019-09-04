@@ -1,7 +1,8 @@
 {
   "replace": false,
   "values": [
-    "c:{{{base}}}_ore"
-    "c:{{{base}}}_nether_ore"
+    "c:{{{base}}}_ore",
+    "c:{{{base}}}_nether_ore",
+    "c:{{{base}}}_end_ore"
   ]
 }
