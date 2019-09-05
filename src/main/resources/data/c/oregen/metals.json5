@@ -143,7 +143,65 @@
 			"max_height": 48,
 			"cluster_count": 8,
 			"cluster_size": 8,
-		}
+		},
 	},
-	"replacements": { "cobalt": { "minecraft:netherrack": "c:cobalt_nether_ore" } }
+	"replacements": {
+		"aluminum": {
+			"minecraft:netherrack": "c:aluminum_nether_ore",
+			"minecraft:end_stone": "c:aluminum_end_ore"
+		},
+		"cobalt": {
+			"minecraft:netherrack": "c:cobalt_nether_ore",
+			"minecraft:end_stone": "c:cobalt_end_ore"
+		},
+		"copper": {
+			"minecraft:netherrack": "c:copper_nether_ore",
+			"minecraft:end_stone": "c:copper_end_ore"
+		},
+		"iridium": {
+			"minecraft:netherrack": "c:iridium_nether_ore",
+			"minecraft:end_stone": "c:iridium_end_ore"
+		},
+		"lead": {
+			"minecraft:netherrack": "c:lead_nether_ore",
+			"minecraft:end_stone": "c:lead_end_ore"
+		},
+		"osmium": {
+			"minecraft:netherrack": "c:osmium_nether_ore",
+			"minecraft:end_stone": "c:osmium_end_ore"
+		},
+		"palladium": {
+			"minecraft:netherrack": "c:palladium_nether_ore",
+			"minecraft:end_stone": "c:palladium_end_ore"
+		},
+		"platinum": {
+			"minecraft:netherrack": "c:platinum_nether_ore",
+			"minecraft:end_stone": "c:platinum_end_ore"
+		},
+		"silver": {
+			"minecraft:netherrack": "c:silver_nether_ore",
+			"minecraft:end_stone": "c:silver_end_ore"
+		},
+		"tin": {
+			"minecraft:netherrack": "c:tin_nether_ore",
+			"minecraft:end_stone": "c:tin_end_ore"
+		},
+		"titanium": {
+			"minecraft:netherrack": "c:titanium_nether_ore",
+			"minecraft:end_stone": "c:titanium_end_ore"
+		},
+		"tungsten": {
+			"minecraft:netherrack": "c:tungsten_nether_ore",
+			"minecraft:end_stone": "c:tungsten_end_ore"
+		},
+		"uranium": {
+			"minecraft:netherrack": "c:uranium_nether_ore",
+			"minecraft:end_stone": "c:uranium_end_ore"
+		},
+		"zinc": {
+			"minecraft:netherrack": "c:zinc_nether_ore",
+			"minecraft:end_stone": "c:zinc_end_ore"
+		},
+		
+	}
 }
