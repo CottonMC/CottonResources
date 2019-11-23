@@ -63,7 +63,7 @@ public class OregenResourceListener implements SimpleSynchronousResourceReloadLi
 			String resourceName = replacerBlockEntry.getKey();
 			HashMap<String, String> replacements = replacerBlockEntry.getValue();
 			CottonResources.LOGGER.info("    Replacers for {}: {}", resourceName, replacements);
-			//System.out.println("    Replacers for "+resourceName+": "+replacements);
+			//CottonResources.LOGGER.info("    Replacers for "+resourceName+": "+replacements);
 		}*/
 		
 		REISafeCompat.doObjectHiding.run();

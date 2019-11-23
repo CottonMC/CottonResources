@@ -1,0 +1,7 @@
+{
+  "replace": false,
+  "values": [
+    "c:coal_coke",
+    "#c:coal_coke"
+  ]
+}

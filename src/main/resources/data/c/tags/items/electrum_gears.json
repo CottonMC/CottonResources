@@ -1,0 +1,7 @@
+{
+  "replace": false,
+  "values": [
+    "c:electrum_gear",
+    "#c:electrum_gear"
+  ]
+}

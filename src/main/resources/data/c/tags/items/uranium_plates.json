@@ -1,0 +1,7 @@
+{
+  "replace": false,
+  "values": [
+    "c:uranium_plate",
+    "#c:uranium_plate"
+  ]
+}

@@ -1,0 +1,7 @@
+{
+  "replace": false,
+  "values": [
+    "c:gold_gear",
+    "#c:gold_gear"
+  ]
+}

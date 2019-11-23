@@ -2,6 +2,9 @@ package io.github.cottonmc.resources.tag;
 
 import java.util.Optional;
 
+import net.minecraft.resource.ResourceReloadListener;
+import net.minecraft.tag.BlockTags;
+import net.minecraft.tag.ItemTags;
 import net.minecraft.tag.TagContainer;
 import net.minecraft.world.dimension.DimensionType;
 

@@ -1,0 +1,7 @@
+{
+  "replace": false,
+  "values": [
+    "c:osmium_block",
+	"#c:osmium_block"
+  ]
+}

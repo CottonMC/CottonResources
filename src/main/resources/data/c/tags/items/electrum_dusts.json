@@ -1,0 +1,7 @@
+{
+  "replace": false,
+  "values": [
+    "c:electrum_dust",
+    "#c:electrum_dust"
+  ]
+}

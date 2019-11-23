@@ -1,18 +1,20 @@
 {
   "replace": false,
   "values": [
-  	"minecraft:stone",
-  	"minecraft:granite",
-  	"minecraft:diorite",
-  	"minecraft:andesite",
-  	"minecraft:dirt",
-  	"minecraft:grass_block",
-  	"#minecraft:logs",
-  	"minecraft:water",
+	"minecraft:stone",
+	"minecraft:granite",
+	"minecraft:diorite",
+	"minecraft:andesite",
+	"minecraft:dirt",
+	"minecraft:gravel",
+	"minecraft:sand",
+	"minecraft:grass_block",
+	"#minecraft:logs",
+	"minecraft:water",
 
-  	"minecraft:netherrack",
-  	"minecraft:lava",
+	"minecraft:netherrack",
+	"minecraft:lava",
   	
-  	"minecraft:end_stone"
+	"minecraft:end_stone"
   ]
 }

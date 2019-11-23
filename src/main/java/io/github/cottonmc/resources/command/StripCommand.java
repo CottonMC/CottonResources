@@ -27,26 +27,28 @@ public class StripCommand implements Command<ServerCommandSource>{
 	public int run(CommandContext<ServerCommandSource> context) throws CommandSyntaxException {
 		ServerPlayerEntity caller = context.getSource().getPlayer();
 		Chunk chunk = caller.getEntityWorld().getChunk(caller.getBlockPos());
-		context.getSource().sendFeedback(new LiteralText("Stripping "+chunk.getPos()+"..."), true);
+		context.getSource().sendFeedback(new LiteralText("Stripping " + chunk.getPos() + "..."), true);
 		
-		Tag<Block> stripTag = BlockTags.getContainer().get(new Identifier("c:strip_command"));
-		if (stripTag==null) return -1;
+		Tag<Block> stripTag = BlockTags.getContainer().get(new Identifier("c", "strip_command"));
+		if (stripTag == null) {
+			return -1;
+		}
 		
-		for(int z=0; z<16; z++) {
-			for(int x=0; x<16; x++) {
-				for(int y=0; y<256; y++) {
+		for (int z = 0; z < 16; z++) {
+			for (int x = 0; x < 16; x++) {
+				for (int y = 0; y < 256; y++) {
 					BlockPos pos = chunk.getPos().toBlockPos(x, y, z);
 					BlockState toReplace = caller.getEntityWorld().getBlockState(pos);
-					if (toReplace.isAir()) continue;
-					
-					boolean strip = false;
-					if (stripTag!=null) {
-						strip = stripTag.contains(toReplace.getBlock());
-					} else {
-						strip = BUILTIN_STRIPS.contains(toReplace.getBlock());
+					if (toReplace.isAir()) {
+						continue;
 					}
 					
-					if (strip) caller.getEntityWorld().setBlockState(pos, Blocks.AIR.getDefaultState(), 3);
+					boolean strip;
+					strip = stripTag.contains(toReplace.getBlock());
+
+					if (strip) {
+						caller.getEntityWorld().setBlockState(pos, Blocks.AIR.getDefaultState(), 3);
+					}
 				}
 			}
 		}

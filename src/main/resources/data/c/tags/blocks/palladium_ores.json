@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "c:palladium_ore",
+    "c:palladium_nether_ore",
+    "c:palladium_end_ore",
+	"#c:palladium_ore"
+  ]
+}
