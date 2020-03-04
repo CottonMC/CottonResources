@@ -4,7 +4,7 @@ import com.google.common.collect.ImmutableSet;
 import io.github.cottonmc.resources.CottonResources;
 import io.github.cottonmc.resources.oregen.OregenResourceListener;
 import io.github.cottonmc.resources.type.ResourceType;
-import me.shedaniel.rei.api.Entry;
+import me.shedaniel.rei.api.EntryStack;
 import me.shedaniel.rei.api.EntryRegistry;
 import me.shedaniel.rei.api.plugins.REIPluginV0;
 import net.fabricmc.loader.api.SemanticVersion;
@@ -32,36 +32,36 @@ public class REICompat implements REIPluginV0 {
 	@Override
 	public void registerEntries(EntryRegistry entryRegistry) {
 		CottonResources.LOGGER.info("Configuring resource visibility");
-		recheckItemHiding(entryRegistry.getModifiableEntryList());
+		recheckItemHiding(entryRegistry.getStacksList());
 	}
 	
-	public void recheckItemHiding(List<Entry> list) {
+	public void recheckItemHiding(List<EntryStack> list) {
 		for (ResourceType rsrc : CottonResources.BUILTINS.values()) {
 			if (IMMUNE_TO_HIDING.contains(rsrc.getBaseResource())) continue;
-			
-			System.out.println("Not hiding: "+OregenResourceListener.getConfig().ores);
+
+			CottonResources.LOGGER.info("Not hiding: "+OregenResourceListener.getConfig().ores);
 			boolean enabled = OregenResourceListener.getConfig().ores.contains(rsrc.getBaseResource());
 			for(String affix : rsrc.getAffixes()) {
 				Item item = rsrc.getItem(affix);
 				if (item==null || item.equals(Items.AIR)) {
-					System.out.println(rsrc.getBaseResource()+"_"+affix+" does not exist?!");
+					CottonResources.LOGGER.info(rsrc.getBaseResource()+"_"+affix+" does not exist?!");
 					continue;
 				}
 				ItemStack stack = new ItemStack(item);
 				
 				boolean add = enabled;
 				for(int i=0; i<list.size(); i++) {
-					Entry entry = list.get(i);
-					if (entry.getEntryType() == Entry.Type.ITEM) {
+					EntryStack entry = list.get(i);
+					if (entry.getType() == EntryStack.Type.ITEM) {
 						ItemStack listItem = entry.getItemStack();
 						if (listItem.getItem() == item) {
 							add = false;
 							if (!enabled) {
-								//System.out.println("Removing "+item.getTranslationKey());
+								//CottonResources.LOGGER.info("Removing "+item.getTranslationKey());
 								list.remove(i);
 								break;
 							} else {
-								//System.out.println("Letting stay "+item.getTranslationKey());
+								//CottonResources.LOGGER.info("Letting stay "+item.getTranslationKey());
 								break;
 							}
 						}
@@ -69,7 +69,7 @@ public class REICompat implements REIPluginV0 {
 				}
 				
 				//if (add) {
-					//System.out.println("Re-adding "+item.getTranslationKey());
+					//CottonResources.LOGGER.info("Re-adding "+item.getTranslationKey());
 				//	list.add(Entry.create(new ItemStack(item)));
 				//}
 			}

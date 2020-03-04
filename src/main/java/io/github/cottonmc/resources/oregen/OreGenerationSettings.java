@@ -1,5 +1,6 @@
 package io.github.cottonmc.resources.oregen;
 
+import com.google.common.base.MoreObjects;
 import net.minecraft.block.BlockState;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
@@ -85,11 +86,11 @@ public class OreGenerationSettings {
 		
 		if (elem instanceof JsonPrimitive) {
 			BlockState state = BlockAndItemSerializers.getBlockStatePrimitive(((JsonPrimitive) elem).getValue());
-			if (state==null) System.out.println("State not found for "+((JsonPrimitive) elem).getValue());
+			if (state==null) CottonResources.LOGGER.error("State not found for "+((JsonPrimitive) elem).getValue());
 			return (state==null) ? ImmutableSet.of() : ImmutableSet.of(state);
 		} else if (elem instanceof JsonObject) {
 			BlockState state = BlockAndItemSerializers.getBlockState((JsonObject) elem);
-			if (state==null) System.out.println("State not found for "+((JsonPrimitive) elem).getValue());
+			if (state==null) CottonResources.LOGGER.error("State not found for "+((JsonPrimitive) elem).getValue());
 			return (state==null) ? ImmutableSet.of() : ImmutableSet.of(state);
 		} else if (elem instanceof JsonArray) {
 			HashSet<BlockState> result = new HashSet<>();
@@ -105,5 +106,16 @@ public class OreGenerationSettings {
 	public static int getIntOrDefault(JsonObject obj, String key, int defaultValue) {
 		Integer val = obj.get(Integer.class, key);
 		return (val==null) ? defaultValue : val;
+	}
+
+	public String toString() {
+		return MoreObjects.toStringHelper(this)
+				.add("min_height", min_height)
+				.add("max_height", max_height)
+				.add("cluster_size", cluster_size)
+				.add("cluster_count", cluster_count)
+				.add("dimensionspec", dimensions)
+				.add("biomes", biomes)
+				.toString();
 	}
 }

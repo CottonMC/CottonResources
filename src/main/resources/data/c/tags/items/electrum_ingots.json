@@ -1,0 +1,7 @@
+{
+  "replace": false,
+  "values": [
+    "c:electrum_ingot",
+    "#c:electrum_ingot"
+  ]
+}

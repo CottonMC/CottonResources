@@ -1,0 +1,7 @@
+{
+  "replace": false,
+  "values": [
+    "c:coal_coke_block",
+    "#c:coal_coke_block"
+  ]
+}

@@ -1,7 +1,7 @@
 {
 	"generators": {
 		"ruby": {
-			"dimensions": [ { "tag": "overworlds" } ],
+			"dimensions": [ { "tag": "c:overworlds" } ],
 
 			"ore_block": "c:ruby_ore",
 			
@@ -11,7 +11,7 @@
 			"cluster_size": 5
 		},
 		"topaz": {
-			"dimensions": [ { "tag": "overworlds" } ],
+			"dimensions": [ { "tag": "c:overworlds" } ],
 
 			"ore_block": "c:topaz_ore",
 			
@@ -21,7 +21,7 @@
 			"cluster_size": 5
 		},
 		"sapphire": {
-			"dimensions": [ { "tag": "overworlds" } ],
+			"dimensions": [ { tag: "c:overworlds"} ],
 
 			"ore_block": "c:sapphire_ore",
 			
@@ -31,7 +31,7 @@
 			"cluster_size": 5
 		},
 		"peridot": {
-			"dimensions": [ { "tag": "overworlds" } ],
+			"dimensions": [ { "tag": "c:overworlds" } ],
 
 			"ore_block": "c:peridot_ore",
 			
@@ -41,7 +41,7 @@
 			"cluster_size": 5
 		},
 		"amethyst": {
-			"dimensions": [ { "tag": "overworlds" } ],
+			"dimensions": [ { "tag": "c:overworlds" } ],
 
 			"ore_block": "c:amethyst_ore",
 			
@@ -54,22 +54,27 @@
 
 	"replacements": {
 		"ruby": {
+			"#c:natural_stone": "c:ruby_ore",
 			"minecraft:netherrack": "c:ruby_nether_ore",
 			"minecraft:end_stone": "c:ruby_end_ore"
 		},
 		"topaz": {
+			"#c:natural_stone": "c:topaz_ore",
 			"minecraft:netherrack": "c:topaz_nether_ore",
 			"minecraft:end_stone": "c:topaz_end_ore"
 		},
 		"amethyst": {
+			"#c:natural_stone": "c:amethyst_ore",
 			"minecraft:netherrack": "c:amethyst_nether_ore",
 			"minecraft:end_stone": "c:amethyst_end_ore"
 		},
 		"peridot": {
+			"#c:natural_stone": "c:peridot_ore",
 			"minecraft:netherrack": "c:peridot_nether_ore",
 			"minecraft:end_stone": "c:peridot_end_ore"
 		},
 		"sapphire": {
+			"#c:natural_stone": "c:sapphire_ore",
 			"minecraft:netherrack": "c:sapphire_nether_ore",
 			"minecraft:end_stone": "c:sapphire_end_ore"
 		},

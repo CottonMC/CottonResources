@@ -1,0 +1,7 @@
+{
+  "replace": false,
+  "values": [
+    "c:osmium_plate",
+    "#c:osmium_plate"
+  ]
+}

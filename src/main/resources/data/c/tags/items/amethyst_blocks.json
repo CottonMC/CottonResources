@@ -1,0 +1,7 @@
+{
+  "replace": false,
+  "values": [
+    "c:amethyst_block",
+    "#c:amethyst_block"
+  ]
+}

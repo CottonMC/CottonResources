@@ -1,0 +1,7 @@
+{
+  "replace": false,
+  "values": [
+    "c:electrum_plate",
+    "#c:electrum_plate"
+  ]
+}

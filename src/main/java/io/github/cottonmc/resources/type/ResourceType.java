@@ -4,10 +4,15 @@ import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 
 import java.util.Collection;
+import java.util.Optional;
 
 import javax.annotation.Nullable;
 
 public interface ResourceType {
+	static ResourceTypeBuilder builder(String resourceName) {
+		return new ResourceTypeBuilder(resourceName);
+	}
+
 	/** Gets the base resource name. For example, "copper". */
 	String getBaseResource();
 
@@ -36,6 +41,22 @@ public interface ResourceType {
 	 */
 	@Nullable
 	Item getItem(String itemName);
+
+	Optional<Item> getGear();
+
+	Optional<Item> getDust();
+
+	Optional<Item> getNugget();
+
+	Optional<Item> getPlate();
+
+	Optional<Block> getBlock();
+
+	Optional<Block> getOre();
+
+	Optional<Block> getNetherOre();
+
+	Optional<Block> getEndOre();
 
 	/** 
 	 * Gets the block corresponding to this block name. If it's already defined, returns the already-defined one. If

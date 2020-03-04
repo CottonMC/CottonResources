@@ -1,0 +1,7 @@
+{
+  "replace": false,
+  "values": [
+    "c:lead_plate",
+    "#c:lead_plate"
+  ]
+}

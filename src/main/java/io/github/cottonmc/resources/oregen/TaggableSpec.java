@@ -5,6 +5,7 @@ import java.util.Set;
 import java.util.function.Function;
 import java.util.function.Predicate;
 
+import com.google.common.base.MoreObjects;
 import com.google.common.collect.ImmutableSet;
 
 import blue.endless.jankson.JsonArray;
@@ -127,5 +128,13 @@ public abstract class TaggableSpec<T> implements Predicate<T> {
 		}
 		
 		return ImmutableSet.of();
+	}
+
+
+	public String toString() {
+		return MoreObjects.toStringHelper(this)
+			.add("Allowed", allow)
+			.add("Disallowed", deny)
+			.toString();
 	}
 }

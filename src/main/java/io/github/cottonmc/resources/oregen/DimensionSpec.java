@@ -3,11 +3,13 @@ package io.github.cottonmc.resources.oregen;
 import java.util.HashSet;
 import java.util.Set;
 
+import com.google.common.base.MoreObjects;
 import com.google.common.collect.ImmutableSet;
 
 import blue.endless.jankson.JsonElement;
 import io.github.cottonmc.resources.tag.DimensionTypeTags;
 import net.minecraft.tag.Tag;
+import net.minecraft.tag.TagContainer;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.dimension.Dimension;
@@ -40,12 +42,13 @@ public class DimensionSpec extends TaggableSpec<Dimension> {
 	}
 	
 	public static Set<Identifier> resolveTag(Identifier tagName) {
-		Tag<DimensionType> tag = DimensionTypeTags.CONTAINER.get(tagName);
+		TagContainer<DimensionType> tagContainer = DimensionTypeTags.getContainer();
+		Tag<DimensionType> tag = tagContainer.get(tagName);
 		if (tag==null) return ImmutableSet.of();
 		
 		HashSet<Identifier> result = new HashSet<>();
 		for(DimensionType dimension : tag.values()) {
-			Identifier id = Registry.DIMENSION.getId(dimension);
+			Identifier id = Registry.DIMENSION_TYPE.getId(dimension);
 			if (id!=null) result.add(id);
 		}
 		return result;

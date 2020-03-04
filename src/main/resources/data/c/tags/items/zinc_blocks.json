@@ -1,0 +1,7 @@
+{
+  "replace": false,
+  "values": [
+    "c:zinc_block",
+    "#c:zinc_block"
+  ]
+}

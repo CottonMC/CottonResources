@@ -1,0 +1,7 @@
+{
+  "replace": false,
+  "values": [
+    "c:tin_block",
+    "#c:tin_block"
+  ]
+}

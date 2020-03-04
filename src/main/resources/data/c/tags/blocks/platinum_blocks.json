@@ -1,0 +1,7 @@
+{
+  "replace": false,
+  "values": [
+    "c:platinum_block",
+	"#c:platinum_block"
+  ]
+}

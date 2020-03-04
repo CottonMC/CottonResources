@@ -1,0 +1,7 @@
+{
+  "replace": false,
+  "values": [
+    "c:steel_ingot",
+	"#c:steel_ingot"
+  ]
+}
