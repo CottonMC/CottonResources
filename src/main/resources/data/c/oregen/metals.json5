@@ -147,74 +147,74 @@
 	},
 	"replacements": {
 		"aluminum": {
-			"#c:natural_stone": "c:aluminum_ore",
-			"minecraft:netherrack": "c:aluminum_nether_ore",
-			"minecraft:end_stone": "c:aluminum_end_ore"
+			"#c:natural_stones": "c:aluminum_ore",
+			"#c:netherracks": "c:aluminum_nether_ore",
+			"#c:end_stones": "c:aluminum_end_ore"
 		},
 		"cobalt": {
-			"#c:natural_stone": "c:cobalt_ore",
-			"minecraft:netherrack": "c:cobalt_nether_ore",
-			"minecraft:end_stone": "c:cobalt_end_ore"
+			"#c:natural_stones": "c:cobalt_ore",
+			"#c:netherracks": "c:cobalt_nether_ore",
+			"#c:end_stones": "c:cobalt_end_ore"
 		},
 		"copper": {
-			"#c:natural_stone": "c:copper_ore",
-			"minecraft:netherrack": "c:copper_nether_ore",
-			"minecraft:end_stone": "c:copper_end_ore"
+			"#c:natural_stones": "c:copper_ore",
+			"#c:netherracks": "c:copper_nether_ore",
+			"#c:end_stones": "c:copper_end_ore"
 		},
 		"iridium": {
-			"#c:natural_stone": "c:iridium_ore",
-			"minecraft:netherrack": "c:iridium_nether_ore",
-			"minecraft:end_stone": "c:iridium_end_ore"
+			"#c:natural_stones": "c:iridium_ore",
+			"#c:netherracks": "c:iridium_nether_ore",
+			"#c:end_stones": "c:iridium_end_ore"
 		},
 		"lead": {
-			"#c:natural_stone": "c:lead_ore",
-			"minecraft:netherrack": "c:lead_nether_ore",
-			"minecraft:end_stone": "c:lead_end_ore"
+			"#c:natural_stones": "c:lead_ore",
+			"#c:netherracks": "c:lead_nether_ore",
+			"#c:end_stones": "c:lead_end_ore"
 		},
 		"osmium": {
-			"#c:natural_stone": "c:osmium_ore",
-			"minecraft:netherrack": "c:osmium_nether_ore",
-			"minecraft:end_stone": "c:osmium_end_ore"
+			"#c:natural_stones": "c:osmium_ore",
+			"#c:netherracks": "c:osmium_nether_ore",
+			"#c:end_stones": "c:osmium_end_ore"
 		},
 		"palladium": {
-			"#c:natural_stone": "c:palladium_ore",
-			"minecraft:netherrack": "c:palladium_nether_ore",
-			"minecraft:end_stone": "c:palladium_end_ore"
+			"#c:natural_stones": "c:palladium_ore",
+			"#c:netherracks": "c:palladium_nether_ore",
+			"#c:end_stones": "c:palladium_end_ore"
 		},
 		"platinum": {
-			"#c:natural_stone": "c:platinum_ore",
-			"minecraft:netherrack": "c:platinum_nether_ore",
-			"minecraft:end_stone": "c:platinum_end_ore"
+			"#c:natural_stones": "c:platinum_ore",
+			"#c:netherracks": "c:platinum_nether_ore",
+			"#c:end_stones": "c:platinum_end_ore"
 		},
 		"silver": {
-			"#c:natural_stone": "c:silver_ore",
-			"minecraft:netherrack": "c:silver_nether_ore",
-			"minecraft:end_stone": "c:silver_end_ore"
+			"#c:natural_stones": "c:silver_ore",
+			"#c:netherracks": "c:silver_nether_ore",
+			"#c:end_stones": "c:silver_end_ore"
 		},
 		"tin": {
-			"#c:natural_stone": "c:tin_ore",
-			"minecraft:netherrack": "c:tin_nether_ore",
-			"minecraft:end_stone": "c:tin_end_ore"
+			"#c:natural_stones": "c:tin_ore",
+			"#c:netherracks": "c:tin_nether_ore",
+			"#c:end_stones": "c:tin_end_ore"
 		},
 		"titanium": {
-			"#c:natural_stone": "c:titanium_ore",
-			"minecraft:netherrack": "c:titanium_nether_ore",
-			"minecraft:end_stone": "c:titanium_end_ore"
+			"#c:natural_stones": "c:titanium_ore",
+			"#c:netherracks": "c:titanium_nether_ore",
+			"#c:end_stones": "c:titanium_end_ore"
 		},
 		"tungsten": {
-			"#c:natural_stone": "c:tungsten_ore",
-			"minecraft:netherrack": "c:tungsten_nether_ore",
-			"minecraft:end_stone": "c:tungsten_end_ore"
+			"#c:natural_stones": "c:tungsten_ore",
+			"#c:netherracks": "c:tungsten_nether_ore",
+			"#c:end_stones": "c:tungsten_end_ore"
 		},
 		"uranium": {
-			"#c:natural_stone": "c:uranium_ore",
-			"minecraft:netherrack": "c:uranium_nether_ore",
-			"minecraft:end_stone": "c:uranium_end_ore"
+			"#c:natural_stones": "c:uranium_ore",
+			"#c:netherracks": "c:uranium_nether_ore",
+			"#c:end_stones": "c:uranium_end_ore"
 		},
 		"zinc": {
-			"#c:natural_stone": "c:zinc_ore",
-			"minecraft:netherrack": "c:zinc_nether_ore",
-			"minecraft:end_stone": "c:zinc_end_ore"
+			"#c:natural_stones": "c:zinc_ore",
+			"#c:netherracks": "c:zinc_nether_ore",
+			"#c:end_stones": "c:zinc_end_ore"
 		},
 		
 	}

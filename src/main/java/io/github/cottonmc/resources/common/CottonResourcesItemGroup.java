@@ -22,25 +22,19 @@
  * SOFTWARE.
  */
 
-package io.github.cottonmc.resources.config;
+package io.github.cottonmc.resources.common;
 
-import io.github.cottonmc.resources.oregen.OreGenerationSettings;
-import blue.endless.jankson.Comment;
+import io.github.cottonmc.resources.BuiltinResources;
+import io.github.cottonmc.resources.CottonResources;
+import net.fabricmc.fabric.api.client.itemgroup.FabricItemGroupBuilder;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemGroup;
+import net.minecraft.item.ItemStack;
 
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Set;
+public class CottonResourcesItemGroup {
+	public static ItemGroup ITEM_GROUP = FabricItemGroupBuilder.build(CottonResources.resources("resources"), () -> new ItemStack(BuiltinResources.COPPER.getGear().orElseThrow(IllegalStateException::new)));
+	public static Item.Settings ITEM_GROUP_SETTINGS = new Item.Settings().group(CottonResourcesItemGroup.ITEM_GROUP);
 
-public class CottonResourcesConfig {
-	@Comment("If true, vanilla's ore gen will be cancelled.")
-	public boolean override_vanilla_generation = false;
-
-	@Comment("Listing a resource here forces it to generate in the world, even if no mod requests it, unless it's also forbidden")
-	public Set<String> enabledResources = new HashSet<>();
-
-	@Comment("Listing a resource here forces it not to generate in the world, even if a mod requests it.")
-	public Set<String> disabledResources = new HashSet<>();
-
-	@Comment("Additional settings for ore generators. Identical to the datapack json")
-	public HashMap<String, OreGenerationSettings> generators = new HashMap<>();
+	public static void init() {
+	}
 }

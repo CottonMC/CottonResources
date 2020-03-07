@@ -2,6 +2,8 @@ plugins {
     id 'fabric-loom' version '0.2.6-SNAPSHOT'
     id 'maven-publish'
     id 'com.jfrog.artifactory' version '4.9.0'
+    id 'checkstyle'
+    id 'net.minecrell.licenser' version '0.4.1'
 }
 
 sourceCompatibility = JavaVersion.VERSION_1_8
@@ -24,8 +26,8 @@ dependencies {
     modApi "net.fabricmc:fabric-loader:${loader_version}"
     modApi "net.fabricmc.fabric-api:fabric-api:${fabric_version}"
 
-    modCompile "io.github.cottonmc:Jankson:${jankson_version}"
-    include "io.github.cottonmc:Jankson:${jankson_version}"
+    modCompile "io.github.cottonmc:Jankson-Fabric:${jankson_version}"
+    include "io.github.cottonmc:Jankson-Fabric:${jankson_version}"
 
     modImplementation ("me.shedaniel:RoughlyEnoughItems:${rei_version}") {
         exclude(group: "blue.endless", module: "jankson")
@@ -59,6 +61,17 @@ task sourcesJar(type: Jar, dependsOn: classes) {
 
 jar {
     from "LICENSE"
+}
+
+checkstyle {
+    configFile = rootProject.file("checkstyle.xml")
+    toolVersion = '8.25'
+}
+
+license {
+    header = file('LICENSE')
+    include '**/*.java'
+    style.java = 'BLOCK_COMMENT'
 }
 
 publishing {

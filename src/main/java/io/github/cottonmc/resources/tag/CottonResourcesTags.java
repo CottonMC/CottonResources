@@ -22,25 +22,14 @@
  * SOFTWARE.
  */
 
-package io.github.cottonmc.resources.config;
+package io.github.cottonmc.resources.tag;
 
-import io.github.cottonmc.resources.oregen.OreGenerationSettings;
-import blue.endless.jankson.Comment;
+import io.github.cottonmc.resources.CottonResources;
+import net.fabricmc.fabric.api.tag.TagRegistry;
+import net.minecraft.block.Block;
+import net.minecraft.tag.Tag;
 
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Set;
-
-public class CottonResourcesConfig {
-	@Comment("If true, vanilla's ore gen will be cancelled.")
-	public boolean override_vanilla_generation = false;
-
-	@Comment("Listing a resource here forces it to generate in the world, even if no mod requests it, unless it's also forbidden")
-	public Set<String> enabledResources = new HashSet<>();
-
-	@Comment("Listing a resource here forces it not to generate in the world, even if a mod requests it.")
-	public Set<String> disabledResources = new HashSet<>();
-
-	@Comment("Additional settings for ore generators. Identical to the datapack json")
-	public HashMap<String, OreGenerationSettings> generators = new HashMap<>();
+public class CottonResourcesTags {
+	public static final Tag<Block> STRIP_COMMAND = TagRegistry.block(CottonResources.common("strip_command"));
+	public static final Tag<Block> NATURAL_STONES = TagRegistry.block(CottonResources.common("natural_stones"));
 }

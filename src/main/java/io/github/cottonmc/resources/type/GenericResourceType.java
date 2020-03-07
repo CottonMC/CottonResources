@@ -1,8 +1,33 @@
+/*
+ * MIT License
+ *
+ * Copyright (c) 2018-2020 The Cotton Project
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in all
+ * copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
+ */
+
 package io.github.cottonmc.resources.type;
 
 import io.github.cottonmc.resources.CottonResources;
-import io.github.cottonmc.resources.LayeredOreBlock;
+import io.github.cottonmc.resources.block.LayeredOreBlock;
 import io.github.cottonmc.resources.common.CommonRegistry;
+import io.github.cottonmc.resources.common.CottonResourcesItemGroup;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
@@ -58,9 +83,11 @@ public class GenericResourceType implements ResourceType {
 		if (itemName.equals(name) && itemAffixes.contains("")) {
 			return true; //matches empty affix
 		}
-		if (!itemName.startsWith(getBaseResource()+"_")) {
+
+		if (!itemName.startsWith(getBaseResource() + "_")) {
 			return false; //not even our prefix
 		}
+
 		String affix = getAffixFor(itemName);
 
 		return (itemAffixes.contains(affix) || blockAffixes.keySet().contains(affix));
@@ -68,9 +95,9 @@ public class GenericResourceType implements ResourceType {
 
 	@Override
 	public Item getItem(String itemName) {
-		String fullName = (itemName!=null && !itemName.isEmpty()) ? name+"_"+itemName : name;
+		String fullName = (itemName != null && !itemName.isEmpty()) ? name + "_" + itemName : name;
 
-		Identifier id = new Identifier("c", fullName); //Because CommonItems.getItem has a condition flipped
+		Identifier id = CottonResources.common(fullName); //Because CommonItems.getItem has a condition flipped
 		return Registry.ITEM.getOrEmpty(id).orElse(null);
 	}
 
@@ -115,16 +142,16 @@ public class GenericResourceType implements ResourceType {
 	}
 
 	public Item registerItem(String itemName) {
-		return CommonRegistry.register(itemName, new Item((new Item.Settings()).group(CottonResources.ITEM_GROUP)));
+		return CommonRegistry.register(itemName, new Item(CottonResourcesItemGroup.ITEM_GROUP_SETTINGS));
 	}
 
 	@Override
 	public Block getBlock(String blockName) {
-		Block existing = (blockName != null) ? CommonRegistry.getBlock(name + "_"+blockName) : CommonRegistry.getBlock(name);
+		Block existing = (blockName != null) ? CommonRegistry.getBlock(name + "_" + blockName) : CommonRegistry.getBlock(name);
+
 		if (existing != null) {
 			return existing;
-		}
-		else {
+		} else {
 			CottonResources.LOGGER.warn("No block found with name " + blockName + "!");
 			return null;
 		}
@@ -133,17 +160,18 @@ public class GenericResourceType implements ResourceType {
 	public Block registerBlock(String blockName) {
 		String affix = getAffixFor(blockName);
 		Supplier<Block> blockSupplier = blockAffixes.get(affix);
+
 		if (blockSupplier == null) {
 			return null;
 		}
 
 		Block resultBlock = blockSupplier.get();
 
-		if (resultBlock instanceof LayeredOreBlock && FabricLoader.getInstance().getEnvironmentType() == EnvType.CLIENT){
+		if (resultBlock instanceof LayeredOreBlock && FabricLoader.getInstance().getEnvironmentType() == EnvType.CLIENT) {
 			handleMipped(resultBlock);
 		}
 
-		BlockItem resultItem =  new BlockItem(resultBlock, new Item.Settings().group(CottonResources.ITEM_GROUP)); //Shouldn't be necessary, but is?
+		BlockItem resultItem = new BlockItem(resultBlock, CottonResourcesItemGroup.ITEM_GROUP_SETTINGS); //Shouldn't be necessary, but is?
 
 		return CommonRegistry.register(blockName, resultBlock, resultItem);
 	}
@@ -180,6 +208,11 @@ public class GenericResourceType implements ResourceType {
 
 		public Builder(String resourceName) {
 			super(resourceName);
+		}
+
+		public GenericResourceType.Builder noAffix() {
+			this.affix = "";
+			return this;
 		}
 
 		public GenericResourceType.Builder withAffix(String affix) {
