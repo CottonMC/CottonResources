@@ -22,25 +22,23 @@
  * SOFTWARE.
  */
 
-package io.github.cottonmc.resources.config;
+package io.github.cottonmc.resources.command;
 
-import io.github.cottonmc.resources.oregen.OreGenerationSettings;
-import blue.endless.jankson.Comment;
+import com.mojang.brigadier.CommandDispatcher;
+import com.mojang.brigadier.tree.LiteralCommandNode;
+import com.mojang.brigadier.tree.RootCommandNode;
+import net.minecraft.server.command.CommandManager;
+import net.minecraft.server.command.ServerCommandSource;
 
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Set;
+public class CottonResourcesCommands {
+	public static void register(CommandDispatcher<ServerCommandSource> dispatcher) {
+		RootCommandNode<ServerCommandSource> rootCommandNode = dispatcher.getRoot();
 
-public class CottonResourcesConfig {
-	@Comment("If true, vanilla's ore gen will be cancelled.")
-	public boolean override_vanilla_generation = false;
+		LiteralCommandNode<ServerCommandSource> stripCommandNode = CommandManager.literal("strip")
+				.executes(new StripCommand())
+				.requires((source) -> source.hasPermissionLevel(3))
+				.build();
 
-	@Comment("Listing a resource here forces it to generate in the world, even if no mod requests it, unless it's also forbidden")
-	public Set<String> enabledResources = new HashSet<>();
-
-	@Comment("Listing a resource here forces it not to generate in the world, even if a mod requests it.")
-	public Set<String> disabledResources = new HashSet<>();
-
-	@Comment("Additional settings for ore generators. Identical to the datapack json")
-	public HashMap<String, OreGenerationSettings> generators = new HashMap<>();
+		rootCommandNode.addChild(stripCommandNode);
+	}
 }

@@ -1,5 +1,30 @@
+/*
+ * MIT License
+ *
+ * Copyright (c) 2018-2020 The Cotton Project
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in all
+ * copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
+ */
+
 package io.github.cottonmc.resources;
 
+import io.github.cottonmc.resources.block.BlockSuppliers;
 import io.github.cottonmc.resources.type.GemResourceType;
 import io.github.cottonmc.resources.type.GenericResourceType;
 import io.github.cottonmc.resources.type.MetalResourceType;
@@ -31,36 +56,36 @@ public final class BuiltinResources {
 	public static final MetalResourceType ELECTRUM = ResourceTemplates.metalTypeNoOre("electrum").build();
 
 	public static final GenericResourceType COAL = ResourceType.builder("coal")
-		.generic()
-		.noBlock()
-		.withDustAffix()
-		.build();
+			.generic()
+			.noBlock()
+			.withDustAffix()
+			.build();
 
 	public static final GenericResourceType COAL_COKE = ResourceType.builder("coal_coke")
-		.generic()
-		.blockSupplier(BlockSuppliers.COAL_BLOCK)
-		.withAffix("")
-		.build();
+			.generic()
+			.blockSupplier(BlockSuppliers.COAL_BLOCK)
+			.noAffix()
+			.build();
 
 	public static final GenericResourceType MERCURY = ResourceType.builder("mercury")
-		.generic()
-		.noBlock()
-		.withAffix("")
-		.build();
+			.generic()
+			.noBlock()
+			.noAffix()
+			.build();
 
 	public static final RadioactiveResourceType URANIUM = ResourceTemplates.radioactiveTypeNoOre("uranium")
-		.allOres()
-		.itemAffixName("ingot")
-		.oreSupplier(BlockSuppliers.RADIOACTIVE_DIAMOND_TIER_ORE)
-		.build();
+			.allOres()
+			.itemAffixName("ingot")
+			.oreSupplier(BlockSuppliers.RADIOACTIVE_DIAMOND_TIER_ORE)
+			.build();
 
 	public static final RadioactiveResourceType THORIUM = ResourceTemplates.radioactiveTypeNoOre("thorium")
-		.itemAffixName("ingot")
-		.build();
+			.itemAffixName("ingot")
+			.build();
 
 	public static final RadioactiveResourceType PLUTONIUM = ResourceTemplates.radioactiveTypeNoOre("plutonium")
-		.itemAffixName("ingot")
-		.build();
+			.itemAffixName("ingot")
+			.build();
 
 	public static final GemResourceType RUBY = ResourceTemplates.fullGemType("ruby").oreSupplier(BlockSuppliers.IRON_TIER_ORE).build();
 	public static final GemResourceType TOPAZ = ResourceTemplates.fullGemType("topaz").oreSupplier(BlockSuppliers.IRON_TIER_ORE).build();
@@ -72,43 +97,42 @@ public final class BuiltinResources {
 	// These exist solely to add the gears/plates/dust when applicable.
 
 	public static final GenericResourceType WOOD = ResourceType.builder("wood")
-		.generic()
-		.noBlock()
-		.withGearAffix()
-		.build();
+			.generic()
+			.noBlock()
+			.withGearAffix()
+			.build();
 
 	public static final GenericResourceType STONE = ResourceType.builder("stone")
-		.generic()
-		.noBlock()
-		.withGearAffix()
-		.build();
+			.generic()
+			.noBlock()
+			.withGearAffix()
+			.build();
 
 	public static final GenericResourceType IRON = ResourceType.builder("iron")
-		.generic()
-		.noBlock()
-		.withDustAffix()
-		.withMachineAffixes()
-		.build();
+			.generic()
+			.noBlock()
+			.withDustAffix()
+			.withMachineAffixes()
+			.build();
 
 	public static final GenericResourceType GOLD = ResourceType.builder("gold")
-		.generic()
-		.noBlock()
-		.withDustAffix()
-		.withMachineAffixes()
-		.build();
+			.generic()
+			.noBlock()
+			.withDustAffix()
+			.withMachineAffixes()
+			.build();
 
 	public static final GenericResourceType DIAMOND = ResourceType.builder("diamond")
-		.generic()
-		.noBlock()
-		.withDustAffix()
-		.withMachineAffixes()
-		.build();
+			.generic()
+			.noBlock()
+			.withDustAffix()
+			.withMachineAffixes()
+			.build();
 
 	public static final GenericResourceType EMERALD = ResourceType.builder("emerald")
-		.generic()
-		.noBlock()
-		.withDustAffix()
-		.withMachineAffixes()
-		.build();
-
+			.generic()
+			.noBlock()
+			.withDustAffix()
+			.withMachineAffixes()
+			.build();
 }

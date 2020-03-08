@@ -22,25 +22,22 @@
  * SOFTWARE.
  */
 
-package io.github.cottonmc.resources.config;
+package io.github.cottonmc.resources.util;
 
-import io.github.cottonmc.resources.oregen.OreGenerationSettings;
-import blue.endless.jankson.Comment;
+import org.apache.logging.log4j.message.AbstractMessageFactory;
+import org.apache.logging.log4j.message.Message;
+import org.apache.logging.log4j.message.ParameterizedMessage;
 
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Set;
+public class PrefixMessageFactory extends AbstractMessageFactory {
+	private static final long serialVersionUID = -5551389178212469285L;
+	private final String prefix;
 
-public class CottonResourcesConfig {
-	@Comment("If true, vanilla's ore gen will be cancelled.")
-	public boolean override_vanilla_generation = false;
+	public PrefixMessageFactory(String prefix) {
+		this.prefix = prefix;
+	}
 
-	@Comment("Listing a resource here forces it to generate in the world, even if no mod requests it, unless it's also forbidden")
-	public Set<String> enabledResources = new HashSet<>();
-
-	@Comment("Listing a resource here forces it not to generate in the world, even if a mod requests it.")
-	public Set<String> disabledResources = new HashSet<>();
-
-	@Comment("Additional settings for ore generators. Identical to the datapack json")
-	public HashMap<String, OreGenerationSettings> generators = new HashMap<>();
+	@Override
+	public Message newMessage(String message, Object... params) {
+		return new ParameterizedMessage("[" + prefix + "] " + message, params);
+	}
 }
