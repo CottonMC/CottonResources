@@ -9,7 +9,7 @@ repositories {
   ...
   maven {
       name = "Cotton"
-      url = "http://server.bbkr.space:8081/artifactory/libs-release/"
+      url = "https://server.bbkr.space:8081/artifactory/libs-release/"
   }
 }
 ```
@@ -29,7 +29,7 @@ dependencies {
 
 Set the version in `gradle.properties`:
 ```properties
-cotton_resources_version=1.4.1+1.14.4
+cotton_resources_version=1.5.1+1.15.2
 ```
 
 Tell Loader about your dependency in `fabric.mod.json`:
@@ -38,6 +38,6 @@ Tell Loader about your dependency in `fabric.mod.json`:
     "fabric": "*",
     ...
 
-    "cotton-resources": ">=1.4.1",
+    "cotton-resources": ">=1.5.1",
   }
 ```
