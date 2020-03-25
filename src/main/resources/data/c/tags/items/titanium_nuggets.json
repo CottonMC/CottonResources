@@ -1,7 +1,6 @@
 {
   "replace": false,
   "values": [
-    "c:titanium_nugget",
-    "#c:titanium_nugget"
+    "c:titanium_nugget"
   ]
 }

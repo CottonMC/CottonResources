@@ -1,7 +1,6 @@
 {
   "replace": false,
   "values": [
-    "c:sapphire_dust",
-    "#c:sapphire_dust"
+    "c:sapphire_dust"
   ]
 }

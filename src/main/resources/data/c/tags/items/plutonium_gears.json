@@ -1,7 +1,6 @@
 {
   "replace": false,
   "values": [
-    "c:plutonium_gear",
-    "#c:plutonium_gear"
+    "c:plutonium_gear"
   ]
 }

@@ -1,7 +1,6 @@
 {
   "replace": false,
   "values": [
-    "c:amethyst_dust",
-    "#c:amethyst_dust"
+    "c:amethyst_dust"
   ]
 }

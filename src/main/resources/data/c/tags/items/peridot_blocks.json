@@ -1,7 +1,6 @@
 {
   "replace": false,
   "values": [
-    "c:peridot_block",
-    "#c:peridot_block"
+    "c:peridot_block"
   ]
 }

@@ -3,7 +3,6 @@
   "values": [
     "c:ruby_ore",
     "c:ruby_nether_ore",
-    "c:ruby_end_ore",
-	"#c:ruby_ore"
+    "c:ruby_end_ore"
   ]
 }

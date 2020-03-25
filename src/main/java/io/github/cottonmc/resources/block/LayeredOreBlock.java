@@ -51,14 +51,14 @@ public class LayeredOreBlock extends OreBlock {
 	@Override
 	public List<ItemStack> getDroppedStacks(BlockState state, LootContext.Builder builder) {
 		//EARLY DETECTION OF BUSTED LOOT TABLES:
-		Identifier tableId = this.getDropTableId();
+		Identifier tableId = this.getDropTableID();
 
 		if (tableId == LootTables.EMPTY) {
 			return Collections.emptyList();
 		} else {
 			LootContext context = builder.put(LootContextParameters.BLOCK_STATE, state).build(LootContextTypes.BLOCK);
 			ServerWorld world = context.getWorld();
-			LootTable lootSupplier = world.getServer().getLootManager().getSupplier(tableId);
+			LootTable lootSupplier = world.getServer().getLootManager().getTable(tableId);
 
 			List<ItemStack> result = lootSupplier.getDrops(context);
 

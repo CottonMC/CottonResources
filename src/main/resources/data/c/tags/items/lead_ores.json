@@ -3,7 +3,6 @@
   "values": [
     "c:lead_ore",
     "c:lead_nether_ore",
-    "c:lead_end_ore",
-    "#c:lead_ore"
+    "c:lead_end_ore"
   ]
 }

@@ -1,7 +1,6 @@
 {
   "replace": false,
   "values": [
-    "c:uranium_block",
-    "#c:uranium_block"
+    "c:uranium_block"
   ]
 }

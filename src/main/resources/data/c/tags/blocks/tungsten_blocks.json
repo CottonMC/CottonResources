@@ -1,7 +1,6 @@
 {
   "replace": false,
   "values": [
-    "c:tungsten_block",
-	"#c:tungsten_block"
+    "c:tungsten_block"
   ]
 }

@@ -1,7 +1,6 @@
 {
   "replace": false,
   "values": [
-    "c:wood_gear",
-	"#c:wood_gear"
+    "c:wood_gear"
   ]
 }

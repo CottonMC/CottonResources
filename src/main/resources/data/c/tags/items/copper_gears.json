@@ -1,7 +1,6 @@
 {
   "replace": false,
   "values": [
-    "c:copper_gear",
-    "#c:copper_gear"
+    "c:copper_gear"
   ]
 }

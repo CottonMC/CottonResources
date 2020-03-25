@@ -3,7 +3,6 @@
   "values": [
     "c:platinum_ore",
     "c:platinum_nether_ore",
-    "c:platinum_end_ore",
-    "#c:platinum_ore"
+    "c:platinum_end_ore"
   ]
 }

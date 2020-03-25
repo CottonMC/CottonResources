@@ -3,7 +3,6 @@
   "values": [
     "c:titanium_ore",
     "c:titanium_nether_ore",
-    "c:titanium_end_ore",
-    "#c:titanium_ore"
+    "c:titanium_end_ore"
   ]
 }

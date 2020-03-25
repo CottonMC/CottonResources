@@ -1,7 +1,6 @@
 {
   "replace": false,
   "values": [
-    "c:copper_nugget",
-    "#c:copper_nugget"
+    "c:copper_nugget"
   ]
 }

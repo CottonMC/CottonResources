@@ -1,7 +1,6 @@
 {
   "replace": false,
   "values": [
-    "c:uranium_nugget",
-    "#c:uranium_nugget"
+    "c:uranium_nugget"
   ]
 }

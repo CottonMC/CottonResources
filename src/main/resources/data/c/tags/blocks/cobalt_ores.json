@@ -3,7 +3,6 @@
   "values": [
     "c:cobalt_ore",
     "c:cobalt_nether_ore",
-    "c:cobalt_end_ore",
-	"#c:cobalt_ore"
+    "c:cobalt_end_ore"
   ]
 }

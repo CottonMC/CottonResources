@@ -1,7 +1,6 @@
 {
   "replace": false,
   "values": [
-    "c:uranium_gear",
-    "#c:uranium_gear"
+    "c:uranium_gear"
   ]
 }

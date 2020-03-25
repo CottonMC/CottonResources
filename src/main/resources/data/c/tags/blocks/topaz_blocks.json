@@ -1,7 +1,6 @@
 {
   "replace": false,
   "values": [
-    "c:topaz_block",
-	"#c:topaz_block"
+    "c:topaz_block"
   ]
 }

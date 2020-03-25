@@ -49,11 +49,6 @@ public class GlowingLayeredOreBlock extends LayeredOreBlock {
 	}
 
 	@Override
-	public int getLuminance(BlockState state) {
-		return state.get(LIT) ? super.getLuminance(state) : 0;
-	}
-
-	@Override
 	public void onBlockBreakStart(BlockState state, World world, BlockPos pos, PlayerEntity player) {
 		light(state, world, pos);
 		super.onBlockBreakStart(state, world, pos, player);

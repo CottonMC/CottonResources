@@ -1,7 +1,6 @@
 {
   "replace": false,
   "values": [
-    "c:brass_dust",
-    "#c:brass_dust"
+    "c:brass_dust"
   ]
 }

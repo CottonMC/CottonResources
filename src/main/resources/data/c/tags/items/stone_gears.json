@@ -1,7 +1,6 @@
 {
   "replace": false,
   "values": [
-    "c:stone_gear",
-    "#c:stone_gear"
+    "c:stone_gear"
   ]
 }

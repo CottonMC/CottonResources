@@ -3,6 +3,7 @@
 /bin
 /.gradle
 /minecraft
+/remappedSrc
 /out
 /run
 /classes

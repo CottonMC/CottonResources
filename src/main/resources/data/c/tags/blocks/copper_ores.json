@@ -3,7 +3,6 @@
   "values": [
     "c:copper_ore",
     "c:copper_nether_ore",
-    "c:copper_end_ore",
-	"#c:copper_ore"
+    "c:copper_end_ore"
   ]
 }

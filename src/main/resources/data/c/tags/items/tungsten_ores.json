@@ -3,7 +3,6 @@
   "values": [
     "c:tungsten_ore",
     "c:tungsten_nether_ore",
-    "c:tungsten_end_ore",
-    "#c:tungsten_ore"
+    "c:tungsten_end_ore"
   ]
 }

@@ -1,7 +1,6 @@
 {
   "replace": false,
   "values": [
-    "c:platinum_ingot",
-    "#c:platinum_ingot"
+    "c:platinum_ingot"
   ]
 }

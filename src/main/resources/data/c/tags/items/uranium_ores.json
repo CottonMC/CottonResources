@@ -3,7 +3,6 @@
   "values": [
     "c:uranium_ore",
     "c:uranium_nether_ore",
-    "c:uranium_end_ore",
-    "#c:uranium_ore"
+    "c:uranium_end_ore"
   ]
 }

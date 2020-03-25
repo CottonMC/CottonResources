@@ -1,7 +1,6 @@
 {
   "replace": false,
   "values": [
-    "c:platinum_gear",
-    "#c:platinum_gear"
+    "c:platinum_gear"
   ]
 }

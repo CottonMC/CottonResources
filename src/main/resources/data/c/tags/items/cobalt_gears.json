@@ -1,7 +1,6 @@
 {
   "replace": false,
   "values": [
-    "c:cobalt_gear",
-    "#c:cobalt_gear"
+    "c:cobalt_gear"
   ]
 }

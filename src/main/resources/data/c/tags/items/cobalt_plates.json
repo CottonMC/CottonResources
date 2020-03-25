@@ -1,7 +1,6 @@
 {
   "replace": false,
   "values": [
-    "c:cobalt_plate",
-    "#c:cobalt_plate"
+    "c:cobalt_plate"
   ]
 }

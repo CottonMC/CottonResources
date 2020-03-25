@@ -28,10 +28,13 @@ import io.github.cottonmc.resources.CottonResources;
 import net.fabricmc.fabric.api.block.FabricBlockSettings;
 import net.fabricmc.fabric.api.tools.FabricToolTags;
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.Material;
+import net.minecraft.state.property.Properties;
 
 import java.util.function.Supplier;
+import java.util.function.ToIntFunction;
 
 /**
  * Contains all Suppliers used to create the block types used by Cotton-Resources.
@@ -77,7 +80,8 @@ public class BlockSuppliers {
 			.hardness(3.0f)
 			.resistance(3.0f)
 			.breakByTool(FabricToolTags.PICKAXES, 3)
-			.build());
+			.build()
+			.lightLevel(createLightLevelFromBlockState(9)));
 	/**
 	 * A generic metal block supplier, based on the properties from iron_block.
 	 */
@@ -93,4 +97,8 @@ public class BlockSuppliers {
 			.hardness(5.0f)
 			.resistance(6.0f)
 			.build());
+
+	public static ToIntFunction<BlockState> createLightLevelFromBlockState(int luminance) {
+		return (blockState) -> blockState.get(Properties.LIT) ? luminance : 0;
+	}
 }

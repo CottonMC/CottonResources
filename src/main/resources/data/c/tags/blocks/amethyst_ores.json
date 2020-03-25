@@ -3,7 +3,6 @@
   "values": [
     "c:amethyst_ore",
     "c:amethyst_nether_ore",
-    "c:amethyst_end_ore",
-	"#c:amethyst_ore"
+    "c:amethyst_end_ore"
   ]
 }

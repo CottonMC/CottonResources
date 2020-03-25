@@ -1,7 +1,6 @@
 {
   "replace": false,
   "values": [
-    "c:copper_block",
-    "#c:copper_block"
+    "c:copper_block"
   ]
 }

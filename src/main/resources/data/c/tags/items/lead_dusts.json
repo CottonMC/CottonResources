@@ -1,7 +1,6 @@
 {
   "replace": false,
   "values": [
-    "c:lead_dust",
-    "#c:lead_dust"
+    "c:lead_dust"
   ]
 }

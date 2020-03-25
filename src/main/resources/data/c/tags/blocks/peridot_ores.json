@@ -3,7 +3,6 @@
   "values": [
     "c:peridot_ore",
     "c:peridot_nether_ore",
-    "c:peridot_end_ore",
-	"#c:peridot_ore"
+    "c:peridot_end_ore"
   ]
 }

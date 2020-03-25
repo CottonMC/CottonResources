@@ -1,7 +1,6 @@
 {
   "replace": false,
   "values": [
-    "c:plutonium_dust",
-    "#c:plutonium_dust"
+    "c:plutonium_dust"
   ]
 }

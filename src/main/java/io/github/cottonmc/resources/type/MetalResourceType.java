@@ -50,7 +50,7 @@ public class MetalResourceType extends GenericResourceType {
 	}
 
 	public static MetalResourceType.Builder builder(String resourceName) {
-		return new Builder(resourceName);
+		return new io.github.cottonmc.resources.type.MetalResourceType.Builder(resourceName);
 	}
 
 	public static class Builder extends ResourceTypeBuilder.Builder<MetalResourceType.Builder> {

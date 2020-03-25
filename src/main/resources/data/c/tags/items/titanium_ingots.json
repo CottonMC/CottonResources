@@ -1,7 +1,6 @@
 {
   "replace": false,
   "values": [
-    "c:titanium_ingot",
-    "#c:titanium_ingot"
+    "c:titanium_ingot"
   ]
 }
