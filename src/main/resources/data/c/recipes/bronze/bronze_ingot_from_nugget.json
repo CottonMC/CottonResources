@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "bronze_ingots",
+  "pattern": [
+    "RRR",
+    "RRR",
+    "RRR"
+  ],
+  "key": {
+    "R": {
+      "tag": "c:bronze_nuggets"
+    }
+  },
+  "result": {
+    "item": "c:bronze_ingot"
+  }
+}

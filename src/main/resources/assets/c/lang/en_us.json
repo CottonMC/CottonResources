@@ -229,6 +229,13 @@
   "item.c.brass_gear": "Brass Gear",
   "item.c.brass_plate": "Brass Plate",
 
+  "block.c.bronze_block": "Bronze Block",
+  "item.c.bronze_dust": "Bronze Dust",
+  "item.c.bronze_nugget": "Bronze Nugget",
+  "item.c.bronze_ingot": "Bronze Ingot",
+  "item.c.bronze_gear": "Bronze Gear",
+  "item.c.bronze_plate": "Bronze Plate",
+
   "block.c.steel_block": "Steel Block",
   "item.c.steel_dust": "Steel Dust",
   "item.c.steel_nugget": "Steel Nugget",

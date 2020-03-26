@@ -54,6 +54,7 @@ public final class BuiltinResources {
 	public static final MetalResourceType STEEL = ResourceTemplates.metalTypeNoOre("steel").build();
 	public static final MetalResourceType BRASS = ResourceTemplates.metalTypeNoOre("brass").build();
 	public static final MetalResourceType ELECTRUM = ResourceTemplates.metalTypeNoOre("electrum").build();
+	public static final MetalResourceType BRONZE = ResourceTemplates.metalTypeNoOre("bronze").build();
 
 	public static final GenericResourceType COAL = ResourceType.builder("coal")
 			.generic()

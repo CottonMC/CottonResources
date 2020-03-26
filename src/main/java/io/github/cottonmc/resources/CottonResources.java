@@ -113,6 +113,7 @@ public class CottonResources implements ModInitializer {
 		BUILTINS.put("steel", BuiltinResources.STEEL);
 		BUILTINS.put("brass", BuiltinResources.BRASS);
 		BUILTINS.put("electrum", BuiltinResources.ELECTRUM);
+		BUILTINS.put("bronze", BuiltinResources.BRONZE);
 
 		BUILTINS.put("coal", BuiltinResources.COAL);
 		BUILTINS.put("coal_coke", BuiltinResources.COAL_COKE);
