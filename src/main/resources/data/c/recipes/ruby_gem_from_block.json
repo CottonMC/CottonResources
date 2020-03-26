@@ -1,9 +1,9 @@
 {
   "type": "minecraft:crafting_shapeless",
-  "group": "ruby",
+  "group": "rubies",
   "ingredients": [
     {
-      "tag": "c:ruby_block"
+      "tag": "c:ruby_blocks"
     }
   ],
   "result": {

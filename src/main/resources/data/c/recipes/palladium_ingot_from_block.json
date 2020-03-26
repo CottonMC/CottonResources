@@ -1,9 +1,9 @@
 {
   "type": "minecraft:crafting_shapeless",
-  "group": "palladium_ingot",
+  "group": "palladium_ingots",
   "ingredients": [
     {
-      "tag": "c:palladium_block"
+      "tag": "c:palladium_blocks"
     }
   ],
   "result": {

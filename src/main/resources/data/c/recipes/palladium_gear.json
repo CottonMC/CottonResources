@@ -1,6 +1,6 @@
 {
   "type": "minecraft:crafting_shaped",
-  "group": "palladium_gear",
+  "group": "palladium_gears",
   "pattern": [
     " R ",
     "RRR",
@@ -8,7 +8,7 @@
   ],
   "key": {
     "R": {
-      "tag": "c:palladium_ingot"
+      "tag": "c:palladium_ingots"
     }
   },
   "result": {

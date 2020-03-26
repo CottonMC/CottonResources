@@ -1,9 +1,9 @@
 {
   "type": "minecraft:crafting_shapeless",
-  "group": "platinum_nugget",
+  "group": "platinum_nuggets",
   "ingredients": [
     {
-      "tag": "c:platinum_ingot"
+      "tag": "c:platinum_ingots"
     }
   ],
   "result": {

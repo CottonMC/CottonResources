@@ -1,6 +1,6 @@
 {
   "type": "minecraft:crafting_shaped",
-  "group": "palladium_ingot",
+  "group": "palladium_ingots",
   "pattern": [
     "RRR",
     "RRR",
@@ -8,7 +8,7 @@
   ],
   "key": {
     "R": {
-      "tag": "c:palladium_nugget"
+      "tag": "c:palladium_nuggets"
     }
   },
   "result": {

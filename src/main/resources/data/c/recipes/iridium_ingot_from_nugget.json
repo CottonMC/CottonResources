@@ -1,6 +1,6 @@
 {
   "type": "minecraft:crafting_shaped",
-  "group": "iridium_ingot",
+  "group": "iridium_ingots",
   "pattern": [
     "RRR",
     "RRR",
@@ -8,7 +8,7 @@
   ],
   "key": {
     "R": {
-      "tag": "c:iridium_nugget"
+      "tag": "c:iridium_nuggets"
     }
   },
   "result": {

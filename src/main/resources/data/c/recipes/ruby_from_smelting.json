@@ -1,8 +1,8 @@
 {
   "type": "minecraft:smelting",
-  "group": "ruby",
+  "group": "rubies",
   "ingredient": {
-    "tag": "c:ruby_ore"
+    "tag": "c:ruby_ores"
   },
   "result": "c:ruby",
   "experience": 1.0,

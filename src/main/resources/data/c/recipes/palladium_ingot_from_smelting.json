@@ -1,12 +1,12 @@
 {
   "type": "minecraft:smelting",
-  "group": "palladium_ingot",
+  "group": "palladium_ingots",
   "ingredient": [
     {
-      "tag": "c:palladium_ore"
+      "tag": "c:palladium_ores"
     },
     {
-      "tag": "c:palladium_dust"
+      "tag": "c:palladium_dusts"
     }
   ],
   "result": "c:palladium_ingot",

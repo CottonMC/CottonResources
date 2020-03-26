@@ -1,15 +1,15 @@
 {
   "type": "minecraft:crafting_shapeless",
-  "group": "brass_dust",
+  "group": "brass_dusts",
   "ingredients": [
     {
-      "tag": "c:copper_dust"
+      "tag": "c:copper_dusts"
     },
     {
-      "tag": "c:copper_dust"
+      "tag": "c:copper_dusts"
     },
     {
-      "tag": "c:zinc_dust"
+      "tag": "c:zinc_dusts"
     }
   ],
   "result": {

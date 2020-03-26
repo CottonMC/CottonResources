@@ -1,8 +1,8 @@
 {
   "type": "minecraft:blasting",
-  "group": "topaz",
+  "group": "topazes",
   "ingredient": {
-    "tag": "c:topaz_ore"
+    "tag": "c:topaz_ores"
   },
   "result": "c:topaz",
   "experience": 1.0,

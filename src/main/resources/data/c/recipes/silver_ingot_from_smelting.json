@@ -1,12 +1,12 @@
 {
   "type": "minecraft:smelting",
-  "group": "silver_ingot",
+  "group": "silver_ingots",
   "ingredient": [
     {
-      "tag": "c:silver_ore"
+      "tag": "c:silver_ores"
     },
     {
-      "tag": "c:silver_dust"
+      "tag": "c:silver_dusts"
     }
   ],
   "result": "c:silver_ingot",

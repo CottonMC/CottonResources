@@ -1,6 +1,6 @@
 {
   "type": "minecraft:crafting_shaped",
-  "group": "zinc_gear",
+  "group": "zinc_gears",
   "pattern": [
     " R ",
     "RRR",
@@ -8,7 +8,7 @@
   ],
   "key": {
     "R": {
-      "tag": "c:zinc_ingot"
+      "tag": "c:zinc_ingots"
     }
   },
   "result": {

@@ -1,6 +1,6 @@
 {
   "type": "minecraft:crafting_shaped",
-  "group": "brass_gear",
+  "group": "brass_gears",
   "pattern": [
     " R ",
     "RRR",
@@ -8,7 +8,7 @@
   ],
   "key": {
     "R": {
-      "tag": "c:brass_ingot"
+      "tag": "c:brass_ingots"
     }
   },
   "result": {

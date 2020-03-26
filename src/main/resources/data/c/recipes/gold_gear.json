@@ -1,6 +1,6 @@
 {
   "type": "minecraft:crafting_shaped",
-  "group": "gold_gear",
+  "group": "gold_gears",
   "pattern": [
     " R ",
     "RRR",
@@ -8,7 +8,7 @@
   ],
   "key": {
     "R": {
-      "item": "minecraft:gold_ingot"
+      "tag": "c:gold_ingots"
     }
   },
   "result": {

@@ -1,12 +1,12 @@
 {
   "type": "minecraft:blasting",
-  "group": "iridium_ingot",
+  "group": "iridium_ingots",
   "ingredient": [
     {
-      "tag": "c:iridium_ore"
+      "tag": "c:iridium_ores"
     },
     {
-      "tag": "c:iridium_dust"
+      "tag": "c:iridium_dusts"
     }
   ],
   "result": "c:iridium_ingot",

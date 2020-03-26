@@ -1,9 +1,9 @@
 {
   "type": "minecraft:crafting_shapeless",
-  "group": "brass_ingot",
+  "group": "brass_ingots",
   "ingredients": [
     {
-      "tag": "c:brass_block"
+      "tag": "c:brass_blocks"
     }
   ],
   "result": {

@@ -1,12 +1,12 @@
 {
   "type": "minecraft:blasting",
-  "group": "aluminum_ingot",
+  "group": "aluminum_ingots",
   "ingredient": [
     {
-      "tag": "c:aluminum_ore"
+      "tag": "c:aluminum_ores"
     },
     {
-      "tag": "c:aluminum_dust"
+      "tag": "c:aluminum_dusts"
     }
   ],
   "result": "c:aluminum_ingot",

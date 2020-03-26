@@ -1,6 +1,6 @@
 {
   "type": "minecraft:crafting_shaped",
-  "group": "peridot_block",
+  "group": "peridot_blocks",
   "pattern": [
     "RRR",
     "RRR",
@@ -8,7 +8,7 @@
   ],
   "key": {
     "R": {
-      "tag": "c:peridot"
+      "tag": "c:peridots"
     }
   },
   "result": {

@@ -1,12 +1,12 @@
 {
   "type": "minecraft:smelting",
-  "group": "osmium_ingot",
+  "group": "osmium_ingots",
   "ingredient": [
     {
-      "tag": "c:osmium_ore"
+      "tag": "c:osmium_ores"
     },
     {
-      "tag": "c:osmium_dust"
+      "tag": "c:osmium_dusts"
     }
   ],
   "result": "c:osmium_ingot",

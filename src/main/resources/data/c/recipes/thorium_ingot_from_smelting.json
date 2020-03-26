@@ -1,9 +1,9 @@
 {
   "type": "minecraft:smelting",
-  "group": "thorium_ingot",
+  "group": "thorium_ingots",
   "ingredient": [
     {
-      "tag": "c:thorium_dust"
+      "tag": "c:thorium_dusts"
     }
   ],
   "result": "c:thorium_ingot",

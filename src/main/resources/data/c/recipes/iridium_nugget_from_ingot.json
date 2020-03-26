@@ -1,9 +1,9 @@
 {
   "type": "minecraft:crafting_shapeless",
-  "group": "iridium_nugget",
+  "group": "iridium_nuggets",
   "ingredients": [
     {
-      "tag": "c:iridium_ingot"
+      "tag": "c:iridium_ingots"
     }
   ],
   "result": {

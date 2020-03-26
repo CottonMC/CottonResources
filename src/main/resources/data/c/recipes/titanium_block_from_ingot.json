@@ -1,6 +1,6 @@
 {
   "type": "minecraft:crafting_shaped",
-  "group": "titanium_block",
+  "group": "titanium_blocks",
   "pattern": [
     "RRR",
     "RRR",
@@ -8,7 +8,7 @@
   ],
   "key": {
     "R": {
-      "tag": "c:titanium_ingot"
+      "tag": "c:titanium_ingots"
     }
   },
   "result": {

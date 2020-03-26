@@ -1,6 +1,6 @@
 {
   "type": "minecraft:crafting_shaped",
-  "group": "tungsten_ingot",
+  "group": "tungsten_ingots",
   "pattern": [
     "RRR",
     "RRR",
@@ -8,7 +8,7 @@
   ],
   "key": {
     "R": {
-      "tag": "c:tungsten_nugget"
+      "tag": "c:tungsten_nuggets"
     }
   },
   "result": {

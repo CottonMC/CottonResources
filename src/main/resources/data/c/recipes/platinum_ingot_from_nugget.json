@@ -1,6 +1,6 @@
 {
   "type": "minecraft:crafting_shaped",
-  "group": "platinum_ingot",
+  "group": "platinum_ingots",
   "pattern": [
     "RRR",
     "RRR",
@@ -8,7 +8,7 @@
   ],
   "key": {
     "R": {
-      "tag": "c:platinum_nugget"
+      "tag": "c:platinum_nuggets"
     }
   },
   "result": {

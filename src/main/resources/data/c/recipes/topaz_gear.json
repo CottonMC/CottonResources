@@ -1,6 +1,6 @@
 {
   "type": "minecraft:crafting_shaped",
-  "group": "topaz_gear",
+  "group": "topaz_gears",
   "pattern": [
     " R ",
     "RRR",
@@ -8,7 +8,7 @@
   ],
   "key": {
     "R": {
-      "tag": "c:topaz"
+      "tag": "c:topazes"
     }
   },
   "result": {

@@ -1,9 +1,9 @@
 {
   "type": "minecraft:crafting_shapeless",
-  "group": "tungsten_nugget",
+  "group": "tungsten_nuggets",
   "ingredients": [
     {
-      "tag": "c:tungsten_ingot"
+      "tag": "c:tungsten_ingots"
     }
   ],
   "result": {

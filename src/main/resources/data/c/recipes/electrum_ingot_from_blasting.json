@@ -1,9 +1,9 @@
 {
   "type": "minecraft:blasting",
-  "group": "electrum_ingot",
+  "group": "electrum_ingots",
   "ingredient": [
     {
-      "tag": "c:electrum_dust"
+      "tag": "c:electrum_dusts"
     }
   ],
   "result": "c:electrum_ingot",

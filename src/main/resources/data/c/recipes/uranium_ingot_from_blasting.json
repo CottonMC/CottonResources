@@ -1,12 +1,12 @@
 {
   "type": "minecraft:blasting",
-  "group": "uranium_ingot",
+  "group": "uranium_ingots",
   "ingredient": [
     {
-      "tag": "c:uranium_ore"
+      "tag": "c:uranium_ores"
     },
     {
-      "tag": "c:uranium_dust"
+      "tag": "c:uranium_dusts"
     }
   ],
   "result": "c:uranium_ingot",

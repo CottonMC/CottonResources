@@ -1,9 +1,9 @@
 {
   "type": "minecraft:crafting_shapeless",
-  "group": "sapphire",
+  "group": "sapphires",
   "ingredients": [
     {
-      "tag": "c:sapphire_block"
+      "tag": "c:sapphire_blocks"
     }
   ],
   "result": {

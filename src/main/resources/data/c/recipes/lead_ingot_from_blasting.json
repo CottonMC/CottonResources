@@ -1,12 +1,12 @@
 {
   "type": "minecraft:blasting",
-  "group": "lead_ingot",
+  "group": "lead_ingots",
   "ingredient": [
     {
-      "tag": "c:lead_ore"
+      "tag": "c:lead_ores"
     },
     {
-      "tag": "c:lead_dust"
+      "tag": "c:lead_dusts"
     }
   ],
   "result": "c:lead_ingot",

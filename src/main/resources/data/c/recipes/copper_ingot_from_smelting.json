@@ -1,12 +1,12 @@
 {
   "type": "minecraft:smelting",
-  "group": "copper_ingot",
+  "group": "copper_ingots",
   "ingredient": [
     {
-      "tag": "c:copper_ore"
+      "tag": "c:copper_ores"
     },
     {
-      "tag": "c:copper_dust"
+      "tag": "c:copper_dusts"
     }
   ],
   "result": "c:copper_ingot",

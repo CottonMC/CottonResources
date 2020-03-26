@@ -1,9 +1,9 @@
 {
   "type": "minecraft:crafting_shapeless",
-  "group": "aluminum_nugget",
+  "group": "aluminum_nuggets",
   "ingredients": [
     {
-      "tag": "c:aluminum_ingot"
+      "tag": "c:aluminum_ingots"
     }
   ],
   "result": {

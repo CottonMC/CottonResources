@@ -1,6 +1,6 @@
 {
   "type": "minecraft:crafting_shaped",
-  "group": "tungsten_gear",
+  "group": "tungsten_gears",
   "pattern": [
     " R ",
     "RRR",
@@ -8,7 +8,7 @@
   ],
   "key": {
     "R": {
-      "tag": "c:tungsten_ingot"
+      "tag": "c:tungsten_ingots"
     }
   },
   "result": {

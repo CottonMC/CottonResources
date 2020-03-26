@@ -1,9 +1,9 @@
 {
   "type": "minecraft:crafting_shapeless",
-  "group": "tin_nugget",
+  "group": "tin_nuggets",
   "ingredients": [
     {
-      "tag": "c:tin_ingot"
+      "tag": "c:tin_ingots"
     }
   ],
   "result": {

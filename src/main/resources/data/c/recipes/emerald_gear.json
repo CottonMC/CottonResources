@@ -1,6 +1,6 @@
 {
   "type": "minecraft:crafting_shaped",
-  "group": "emerald_gear",
+  "group": "emerald_gears",
   "pattern": [
     " R ",
     "RRR",
@@ -8,7 +8,7 @@
   ],
   "key": {
     "R": {
-      "item": "minecraft:emerald"
+      "tag": "c:emeralds"
     }
   },
   "result": {

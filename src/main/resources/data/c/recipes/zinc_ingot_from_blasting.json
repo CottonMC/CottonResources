@@ -1,12 +1,12 @@
 {
   "type": "minecraft:blasting",
-  "group": "zinc_ingot",
+  "group": "zinc_ingots",
   "ingredient": [
     {
-      "tag": "c:zinc_ore"
+      "tag": "c:zinc_ores"
     },
     {
-      "tag": "c:zinc_dust"
+      "tag": "c:zinc_dusts"
     }
   ],
   "result": "c:zinc_ingot",

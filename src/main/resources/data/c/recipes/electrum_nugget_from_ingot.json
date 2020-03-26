@@ -1,9 +1,9 @@
 {
   "type": "minecraft:crafting_shapeless",
-  "group": "electrum_nugget",
+  "group": "electrum_nuggets",
   "ingredients": [
     {
-      "tag": "c:electrum_ingot"
+      "tag": "c:electrum_ingots"
     }
   ],
   "result": {

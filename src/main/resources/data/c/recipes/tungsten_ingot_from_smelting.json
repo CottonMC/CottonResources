@@ -1,12 +1,12 @@
 {
   "type": "minecraft:smelting",
-  "group": "tungsten_ingot",
+  "group": "tungsten_ingots",
   "ingredient": [
     {
-      "tag": "c:tungsten_ore"
+      "tag": "c:tungsten_ores"
     },
     {
-      "tag": "c:tungsten_dust"
+      "tag": "c:tungsten_dusts"
     }
   ],
   "result": "c:tungsten_ingot",

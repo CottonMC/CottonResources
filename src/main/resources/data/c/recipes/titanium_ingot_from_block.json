@@ -1,9 +1,9 @@
 {
   "type": "minecraft:crafting_shapeless",
-  "group": "titanium_ingot",
+  "group": "titanium_ingots",
   "ingredients": [
     {
-      "tag": "c:titanium_block"
+      "tag": "c:titanium_blocks"
     }
   ],
   "result": {

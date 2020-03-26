@@ -1,6 +1,6 @@
 {
   "type": "minecraft:crafting_shaped",
-  "group": "steel_ingot",
+  "group": "steel_ingots",
   "pattern": [
     "RRR",
     "RRR",
@@ -8,7 +8,7 @@
   ],
   "key": {
     "R": {
-      "tag": "c:steel_nugget"
+      "tag": "c:steel_nuggets"
     }
   },
   "result": {

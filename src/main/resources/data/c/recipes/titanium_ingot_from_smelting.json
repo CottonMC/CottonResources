@@ -1,12 +1,12 @@
 {
   "type": "minecraft:smelting",
-  "group": "titanium_ingot",
+  "group": "titanium_ingots",
   "ingredient": [
     {
-      "tag": "c:titanium_ore"
+      "tag": "c:titanium_ores"
     },
     {
-      "tag": "c:titanium_dust"
+      "tag": "c:titanium_dusts"
     }
   ],
   "result": "c:titanium_ingot",

@@ -1,9 +1,9 @@
 {
   "type": "minecraft:crafting_shapeless",
-  "group": "zinc_nugget",
+  "group": "zinc_nuggets",
   "ingredients": [
     {
-      "tag": "c:zinc_ingot"
+      "tag": "c:zinc_ingots"
     }
   ],
   "result": {

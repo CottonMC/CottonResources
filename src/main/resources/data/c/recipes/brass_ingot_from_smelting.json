@@ -1,9 +1,9 @@
 {
   "type": "minecraft:smelting",
-  "group": "brass_ingot",
+  "group": "brass_ingots",
   "ingredient": [
     {
-      "tag": "c:brass_dust"
+      "tag": "c:brass_dusts"
     }
   ],
   "result": "c:brass_ingot",

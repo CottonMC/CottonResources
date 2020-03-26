@@ -1,9 +1,9 @@
 {
   "type": "minecraft:crafting_shapeless",
-  "group": "osmium_ingot",
+  "group": "osmium_ingots",
   "ingredients": [
     {
-      "tag": "c:osmium_block"
+      "tag": "c:osmium_blocks"
     }
   ],
   "result": {

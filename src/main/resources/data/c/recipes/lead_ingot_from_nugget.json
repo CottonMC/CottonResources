@@ -1,6 +1,6 @@
 {
   "type": "minecraft:crafting_shaped",
-  "group": "lead_ingot",
+  "group": "lead_ingots",
   "pattern": [
     "RRR",
     "RRR",
@@ -8,7 +8,7 @@
   ],
   "key": {
     "R": {
-      "tag": "c:lead_nugget"
+      "tag": "c:lead_nuggets"
     }
   },
   "result": {

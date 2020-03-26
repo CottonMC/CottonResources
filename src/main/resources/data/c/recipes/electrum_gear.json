@@ -1,6 +1,6 @@
 {
   "type": "minecraft:crafting_shaped",
-  "group": "electrum_gear",
+  "group": "electrum_gears",
   "pattern": [
     " R ",
     "RRR",
@@ -8,7 +8,7 @@
   ],
   "key": {
     "R": {
-      "tag": "c:electrum_ingot"
+      "tag": "c:electrum_ingots"
     }
   },
   "result": {

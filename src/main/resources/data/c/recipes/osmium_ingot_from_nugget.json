@@ -1,6 +1,6 @@
 {
   "type": "minecraft:crafting_shaped",
-  "group": "osmium_ingot",
+  "group": "osmium_ingots",
   "pattern": [
     "RRR",
     "RRR",
@@ -8,7 +8,7 @@
   ],
   "key": {
     "R": {
-      "tag": "c:osmium_nugget"
+      "tag": "c:osmium_nuggets"
     }
   },
   "result": {

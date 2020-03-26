@@ -1,8 +1,8 @@
 {
   "type": "minecraft:blasting",
-  "group": "peridot",
+  "group": "peridots",
   "ingredient": {
-    "tag": "c:peridot_ore"
+    "tag": "c:peridot_ores"
   },
   "result": "c:peridot",
   "experience": 1.0,

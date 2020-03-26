@@ -1,6 +1,6 @@
 {
   "type": "minecraft:crafting_shaped",
-  "group": "aluminum_block",
+  "group": "aluminum_blocks",
   "pattern": [
     "RRR",
     "RRR",
@@ -8,7 +8,7 @@
   ],
   "key": {
     "R": {
-      "tag": "c:aluminum_ingot"
+      "tag": "c:aluminum_ingots"
     }
   },
   "result": {

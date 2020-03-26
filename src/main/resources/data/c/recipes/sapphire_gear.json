@@ -1,6 +1,6 @@
 {
   "type": "minecraft:crafting_shaped",
-  "group": "sapphire_gear",
+  "group": "sapphire_gears",
   "pattern": [
     " R ",
     "RRR",
@@ -8,7 +8,7 @@
   ],
   "key": {
     "R": {
-      "tag": "c:sapphire"
+      "tag": "c:sapphires"
     }
   },
   "result": {

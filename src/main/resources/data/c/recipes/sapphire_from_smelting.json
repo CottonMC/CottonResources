@@ -1,8 +1,8 @@
 {
   "type": "minecraft:smelting",
-  "group": "sapphire",
+  "group": "sapphires",
   "ingredient": {
-    "tag": "c:sapphire_ore"
+    "tag": "c:sapphire_ores"
   },
   "result": "c:sapphire",
   "experience": 1.0,

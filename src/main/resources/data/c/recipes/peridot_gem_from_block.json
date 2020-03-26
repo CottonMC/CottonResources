@@ -1,9 +1,9 @@
 {
   "type": "minecraft:crafting_shapeless",
-  "group": "peridot",
+  "group": "peridots",
   "ingredients": [
     {
-      "tag": "c:peridot_block"
+      "tag": "c:peridot_blocks"
     }
   ],
   "result": {

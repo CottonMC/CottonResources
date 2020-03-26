@@ -1,6 +1,6 @@
 {
   "type": "minecraft:crafting_shaped",
-  "group": "wood_gear",
+  "group": "wood_gears",
   "pattern": [
     " R ",
     "RRR",

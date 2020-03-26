@@ -1,9 +1,9 @@
 {
   "type": "minecraft:crafting_shapeless",
-  "group": "silver_nugget",
+  "group": "silver_nuggets",
   "ingredients": [
     {
-      "tag": "c:silver_ingot"
+      "tag": "c:silver_ingots"
     }
   ],
   "result": {

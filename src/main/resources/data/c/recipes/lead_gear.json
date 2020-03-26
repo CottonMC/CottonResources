@@ -1,6 +1,6 @@
 {
   "type": "minecraft:crafting_shaped",
-  "group": "lead_gear",
+  "group": "lead_gears",
   "pattern": [
     " R ",
     "RRR",
@@ -8,7 +8,7 @@
   ],
   "key": {
     "R": {
-      "tag": "c:lead_ingot"
+      "tag": "c:lead_ingots"
     }
   },
   "result": {

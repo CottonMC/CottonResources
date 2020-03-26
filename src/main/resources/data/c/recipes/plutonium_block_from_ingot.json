@@ -1,6 +1,6 @@
 {
   "type": "minecraft:crafting_shaped",
-  "group": "plutonium_block",
+  "group": "plutonium_blocks",
   "pattern": [
     "RRR",
     "RRR",
@@ -8,7 +8,7 @@
   ],
   "key": {
     "R": {
-      "tag": "c:plutonium_ingot"
+      "tag": "c:plutonium_ingots"
     }
   },
   "result": {

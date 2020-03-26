@@ -3,7 +3,7 @@
   "group": "coal_coke",
   "ingredients": [
     {
-      "tag": "c:coal_coke_block"
+      "tag": "c:coal_coke_blocks"
     }
   ],
   "result": {

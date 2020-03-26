@@ -1,12 +1,12 @@
 {
   "type": "minecraft:smelting",
-  "group": "platinum_ingot",
+  "group": "platinum_ingots",
   "ingredient": [
     {
-      "tag": "c:platinum_ore"
+      "tag": "c:platinum_ores"
     },
     {
-      "tag": "c:platinum_dust"
+      "tag": "c:platinum_dusts"
     }
   ],
   "result": "c:platinum_ingot",

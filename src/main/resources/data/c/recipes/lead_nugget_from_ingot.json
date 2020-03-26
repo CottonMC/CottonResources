@@ -1,9 +1,9 @@
 {
   "type": "minecraft:crafting_shapeless",
-  "group": "lead_nugget",
+  "group": "lead_nuggets",
   "ingredients": [
     {
-      "tag": "c:lead_ingot"
+      "tag": "c:lead_ingots"
     }
   ],
   "result": {

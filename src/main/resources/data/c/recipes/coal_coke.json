@@ -2,7 +2,7 @@
   "type": "minecraft:crafting_shapeless",
   "ingredients": [
     {
-      "tag": "c:coal_coke_block"
+      "tag": "c:coal_coke_blocks"
     }
   ],
   "result": {

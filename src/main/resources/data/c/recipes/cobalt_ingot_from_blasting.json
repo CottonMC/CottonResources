@@ -1,12 +1,12 @@
 {
   "type": "minecraft:blasting",
-  "group": "cobalt_ingot",
+  "group": "cobalt_ingots",
   "ingredient": [
     {
-      "tag": "c:cobalt_ore"
+      "tag": "c:cobalt_ores"
     },
     {
-      "tag": "c:cobalt_dust"
+      "tag": "c:cobalt_dusts"
     }
   ],
   "result": "c:cobalt_ingot",

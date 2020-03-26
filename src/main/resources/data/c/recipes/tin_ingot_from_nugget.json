@@ -1,6 +1,6 @@
 {
   "type": "minecraft:crafting_shaped",
-  "group": "tin_ingot",
+  "group": "tin_ingots",
   "pattern": [
     "RRR",
     "RRR",
@@ -8,7 +8,7 @@
   ],
   "key": {
     "R": {
-      "tag": "c:tin_nugget"
+      "tag": "c:tin_nuggets"
     }
   },
   "result": {

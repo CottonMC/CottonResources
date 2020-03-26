@@ -1,6 +1,6 @@
 {
   "type": "minecraft:crafting_shaped",
-  "group": "amethyst_gear",
+  "group": "amethyst_gears",
   "pattern": [
     " R ",
     "RRR",
@@ -8,7 +8,7 @@
   ],
   "key": {
     "R": {
-      "tag": "c:amethyst"
+      "tag": "c:amethysts"
     }
   },
   "result": {

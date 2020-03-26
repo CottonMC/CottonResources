@@ -1,6 +1,6 @@
 {
   "type": "minecraft:crafting_shaped",
-  "group": "peridot_gear",
+  "group": "peridot_gears",
   "pattern": [
     " R ",
     "RRR",
@@ -8,7 +8,7 @@
   ],
   "key": {
     "R": {
-      "tag": "c:peridot"
+      "tag": "c:peridots"
     }
   },
   "result": {

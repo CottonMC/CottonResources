@@ -1,6 +1,6 @@
 {
   "type": "minecraft:crafting_shaped",
-  "group": "copper_ingot",
+  "group": "copper_ingots",
   "pattern": [
     "RRR",
     "RRR",
@@ -8,7 +8,7 @@
   ],
   "key": {
     "R": {
-      "tag": "c:copper_nugget"
+      "tag": "c:copper_nuggets"
     }
   },
   "result": {

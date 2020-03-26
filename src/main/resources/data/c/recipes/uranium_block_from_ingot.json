@@ -1,6 +1,6 @@
 {
   "type": "minecraft:crafting_shaped",
-  "group": "uranium_block",
+  "group": "uranium_blocks",
   "pattern": [
     "RRR",
     "RRR",
@@ -8,7 +8,7 @@
   ],
   "key": {
     "R": {
-      "tag": "c:uranium_ingot"
+      "tag": "c:uranium_ingots"
     }
   },
   "result": {

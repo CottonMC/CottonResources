@@ -1,12 +1,12 @@
 {
   "type": "minecraft:crafting_shapeless",
-  "group": "electrum_dust",
+  "group": "electrum_dusts",
   "ingredients": [
     {
-      "item": "c:gold_dust"
+      "tag": "c:gold_dusts"
     },
     {
-      "item": "c:silver_dust"
+      "tag": "c:silver_dusts"
     }
   ],
   "result": {

@@ -1,9 +1,9 @@
 {
   "type": "minecraft:crafting_shapeless",
-  "group": "plutonium_ingot",
+  "group": "plutonium_ingots",
   "ingredients": [
     {
-      "tag": "c:plutonium_block"
+      "tag": "c:plutonium_blocks"
     }
   ],
   "result": {

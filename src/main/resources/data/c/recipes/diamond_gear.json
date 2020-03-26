@@ -1,6 +1,6 @@
 {
   "type": "minecraft:crafting_shaped",
-  "group": "diamond_gear",
+  "group": "diamond_gears",
   "pattern": [
     " R ",
     "RRR",
@@ -8,7 +8,7 @@
   ],
   "key": {
     "R": {
-      "item": "minecraft:diamond"
+      "tag": "c:diamonds"
     }
   },
   "result": {

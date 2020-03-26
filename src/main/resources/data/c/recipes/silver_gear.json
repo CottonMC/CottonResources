@@ -1,6 +1,6 @@
 {
   "type": "minecraft:crafting_shaped",
-  "group": "silver_gear",
+  "group": "silver_gears",
   "pattern": [
     " R ",
     "RRR",
@@ -8,7 +8,7 @@
   ],
   "key": {
     "R": {
-      "tag": "c:silver_ingot"
+      "tag": "c:silver_ingots"
     }
   },
   "result": {

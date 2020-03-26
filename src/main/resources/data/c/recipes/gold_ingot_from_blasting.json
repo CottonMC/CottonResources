@@ -1,9 +1,9 @@
 {
   "type": "minecraft:blasting",
-  "group": "gold_ingot",
+  "group": "gold_ingots",
   "ingredient": [
     {
-      "tag": "c:gold_dust"
+      "tag": "c:gold_dusts"
     }
   ],
   "result": "minecraft:gold_ingot",

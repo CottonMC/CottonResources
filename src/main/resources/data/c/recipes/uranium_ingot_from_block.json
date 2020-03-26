@@ -1,9 +1,9 @@
 {
   "type": "minecraft:crafting_shapeless",
-  "group": "uranium_ingot",
+  "group": "uranium_ingots",
   "ingredients": [
     {
-      "tag": "c:uranium_block"
+      "tag": "c:uranium_blocks"
     }
   ],
   "result": {

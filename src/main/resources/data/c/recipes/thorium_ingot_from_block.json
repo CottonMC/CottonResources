@@ -1,9 +1,9 @@
 {
   "type": "minecraft:crafting_shapeless",
-  "group": "thorium_ingot",
+  "group": "thorium_ingots",
   "ingredients": [
     {
-      "tag": "c:thorium_block"
+      "tag": "c:thorium_blocks"
     }
   ],
   "result": {

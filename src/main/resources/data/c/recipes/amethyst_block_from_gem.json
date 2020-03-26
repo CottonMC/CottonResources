@@ -1,6 +1,6 @@
 {
   "type": "minecraft:crafting_shaped",
-  "group": "amethyst_block",
+  "group": "amethyst_blocks",
   "pattern": [
     "RRR",
     "RRR",
@@ -8,7 +8,7 @@
   ],
   "key": {
     "R": {
-      "tag": "c:amethyst"
+      "tag": "c:amethysts"
     }
   },
   "result": {
