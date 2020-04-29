@@ -35,7 +35,7 @@ import net.minecraft.world.biome.Biome;
 public class BiomeTags {
 	public static TagContainer<Biome> CONTAINER = new TagContainer<>((identifier) -> {
 		return Optional.empty();
-	}, "", false, "");
+	}, "", "");
 
 	public static TagContainer<Biome> getContainer() {
 		return CONTAINER;

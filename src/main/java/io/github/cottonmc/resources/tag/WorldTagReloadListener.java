@@ -48,7 +48,7 @@ public class WorldTagReloadListener implements SimpleSynchronousResourceReloadLi
 		RegistryTagContainer<T> container = new RegistryTagContainer<>(registry, folder, name);
 
 		try {
-			Map<Identifier, Tag.Builder<T>> map = container.prepareReload(resourceManager, MoreExecutors.directExecutor()).get(); //waits synchronously for prepareReload to complete
+			Map<Identifier, Tag.Builder> map = container.prepareReload(resourceManager, MoreExecutors.directExecutor()).get(); //waits synchronously for prepareReload to complete
 			container.applyReload(map);
 		} catch (Throwable t) {
 			t.printStackTrace();

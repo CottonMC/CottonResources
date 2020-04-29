@@ -32,7 +32,7 @@ import net.minecraft.world.dimension.DimensionType;
  * Now you can tag dimensions!
  */
 public class DimensionTypeTags {
-	public static TagContainer<DimensionType> CONTAINER = new TagContainer<>((identifier) -> Optional.empty(), "", false, "");
+	public static TagContainer<DimensionType> CONTAINER = new TagContainer<>((identifier) -> Optional.empty(), "", "");
 
 	public static TagContainer<DimensionType> getContainer() {
 		return CONTAINER;

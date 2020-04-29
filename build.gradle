@@ -1,5 +1,5 @@
 plugins {
-    id 'fabric-loom' version '0.2.6-SNAPSHOT'
+    id 'fabric-loom' version '0.2.7-SNAPSHOT'
     id 'maven-publish'
     id 'com.jfrog.artifactory' version '4.9.0'
     id 'checkstyle'
@@ -29,7 +29,8 @@ dependencies {
     modCompile "io.github.cottonmc:Jankson-Fabric:${jankson_version}"
     include "io.github.cottonmc:Jankson-Fabric:${jankson_version}"
 
-    modImplementation ("me.shedaniel:RoughlyEnoughItems:${rei_version}") {
+    // TODO: Temp modCompOnly
+    modCompileOnly ("me.shedaniel:RoughlyEnoughItems:${rei_version}") {
         exclude(group: "blue.endless", module: "jankson")
         exclude(group: "io.github.prospector.modmenu", module: "ModMenu")
     }

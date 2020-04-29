@@ -38,6 +38,7 @@ import net.minecraft.world.IWorld;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.source.BiomeArray;
 import net.minecraft.world.chunk.Chunk;
+import net.minecraft.world.gen.StructureAccessor;
 import net.minecraft.world.gen.chunk.ChunkGenerator;
 import net.minecraft.world.gen.chunk.ChunkGeneratorConfig;
 import net.minecraft.world.gen.feature.DefaultFeatureConfig;
@@ -59,7 +60,8 @@ public class CottonOreFeature extends Feature<DefaultFeatureConfig> {
 		super(DefaultFeatureConfig::deserialize);
 	}
 
-	public boolean generate(IWorld world, ChunkGenerator<? extends ChunkGeneratorConfig> generator, Random rand, BlockPos pos, DefaultFeatureConfig uselessConfig) {
+	@Override
+	public boolean generate(IWorld world, StructureAccessor accessor, ChunkGenerator<? extends ChunkGeneratorConfig> generator, Random rand, BlockPos pos, DefaultFeatureConfig uselessConfig) {
 		OreVoteConfig config = OregenResourceListener.getConfig();
 
 		if (config.ores.isEmpty()) return true; // We didn't generate anything, but yes, don't retry.
