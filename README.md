@@ -9,7 +9,7 @@ repositories {
   ...
   maven {
       name = "Cotton"
-      url = "https://server.bbkr.space:8081/artifactory/libs-release/"
+      url = "https://server.bbkr.space/artifactory/libs-release/"
   }
 }
 ```
