@@ -31,8 +31,6 @@ import io.github.cottonmc.resources.type.ResourceType;
 import me.shedaniel.rei.api.EntryStack;
 import me.shedaniel.rei.api.EntryRegistry;
 import me.shedaniel.rei.api.plugins.REIPluginV0;
-import net.fabricmc.loader.api.SemanticVersion;
-import net.fabricmc.loader.util.version.VersionParsingException;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
@@ -60,7 +58,7 @@ public class REICompat implements REIPluginV0 {
 	}
 
 	public void recheckItemHiding(List<EntryStack> list) {
-		for (ResourceType rsrc : CottonResources.BUILTINS.values()) {
+		for (ResourceType rsrc : CottonResources.RESOURCE_TYPES) {
 			if (IMMUNE_TO_HIDING.contains(rsrc.getBaseResource())) continue;
 
 			CottonResources.LOGGER.info("Not hiding: " + OregenResourceListener.getConfig().ores);
@@ -105,10 +103,5 @@ public class REICompat implements REIPluginV0 {
 				//}
 			}
 		}
-	}
-
-	@Override
-	public SemanticVersion getMinimumVersion() throws VersionParsingException {
-		return SemanticVersion.parse("3.0-pre");
 	}
 }

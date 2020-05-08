@@ -30,110 +30,115 @@ import io.github.cottonmc.resources.type.GenericResourceType;
 import io.github.cottonmc.resources.type.MetalResourceType;
 import io.github.cottonmc.resources.type.RadioactiveResourceType;
 import io.github.cottonmc.resources.type.ResourceType;
+import net.minecraft.util.registry.Registry;
 
 /**
  * An enumeration of all Built-in resources provided by Cotton-Resources.
  */
 public final class BuiltinResources {
-	public static final MetalResourceType COPPER = ResourceTemplates.fullMetalType("copper").oreSupplier(BlockSuppliers.STONE_TIER_ORE).build();
-	public static final MetalResourceType SILVER = ResourceTemplates.fullMetalType("silver").oreSupplier(BlockSuppliers.IRON_TIER_ORE).build();
-	public static final MetalResourceType LEAD = ResourceTemplates.fullMetalType("lead").oreSupplier(BlockSuppliers.IRON_TIER_ORE).build();
-	public static final MetalResourceType ZINC = ResourceTemplates.fullMetalType("zinc").oreSupplier(BlockSuppliers.STONE_TIER_ORE).build();
-	public static final MetalResourceType ALUMINUM = ResourceTemplates.fullMetalType("aluminum").oreSupplier(BlockSuppliers.IRON_TIER_ORE).build();
-	public static final MetalResourceType COBALT = ResourceTemplates.fullMetalType("cobalt").oreSupplier(BlockSuppliers.IRON_TIER_ORE).build();
+	public static final MetalResourceType COPPER = register(ResourceTemplates.fullMetalType("copper").oreSupplier(BlockSuppliers.STONE_TIER_ORE).build());
+	public static final MetalResourceType SILVER = register(ResourceTemplates.fullMetalType("silver").oreSupplier(BlockSuppliers.IRON_TIER_ORE).build());
+	public static final MetalResourceType LEAD = register(ResourceTemplates.fullMetalType("lead").oreSupplier(BlockSuppliers.IRON_TIER_ORE).build());
+	public static final MetalResourceType ZINC = register(ResourceTemplates.fullMetalType("zinc").oreSupplier(BlockSuppliers.STONE_TIER_ORE).build());
+	public static final MetalResourceType ALUMINUM = register(ResourceTemplates.fullMetalType("aluminum").oreSupplier(BlockSuppliers.IRON_TIER_ORE).build());
+	public static final MetalResourceType COBALT = register(ResourceTemplates.fullMetalType("cobalt").oreSupplier(BlockSuppliers.IRON_TIER_ORE).build());
 
-	public static final MetalResourceType TIN = ResourceTemplates.fullMetalType("tin").oreSupplier(BlockSuppliers.STONE_TIER_ORE).build();
-	public static final MetalResourceType TITANIUM = ResourceTemplates.fullMetalType("titanium").oreSupplier(BlockSuppliers.IRON_TIER_ORE).build();
-	public static final MetalResourceType TUNGSTEN = ResourceTemplates.fullMetalType("tungsten").oreSupplier(BlockSuppliers.IRON_TIER_ORE).build();
+	public static final MetalResourceType TIN = register(ResourceTemplates.fullMetalType("tin").oreSupplier(BlockSuppliers.STONE_TIER_ORE).build());
+	public static final MetalResourceType TITANIUM = register(ResourceTemplates.fullMetalType("titanium").oreSupplier(BlockSuppliers.IRON_TIER_ORE).build());
+	public static final MetalResourceType TUNGSTEN = register(ResourceTemplates.fullMetalType("tungsten").oreSupplier(BlockSuppliers.IRON_TIER_ORE).build());
 
-	public static final MetalResourceType PLATINUM = ResourceTemplates.fullMetalType("platinum").oreSupplier(BlockSuppliers.IRON_TIER_ORE).build();
-	public static final MetalResourceType PALLADIUM = ResourceTemplates.fullMetalType("palladium").oreSupplier(BlockSuppliers.IRON_TIER_ORE).build();
-	public static final MetalResourceType OSMIUM = ResourceTemplates.fullMetalType("osmium").oreSupplier(BlockSuppliers.IRON_TIER_ORE).build();
-	public static final MetalResourceType IRIDIUM = ResourceTemplates.fullMetalType("iridium").oreSupplier(BlockSuppliers.IRON_TIER_ORE).build();
+	public static final MetalResourceType PLATINUM = register(ResourceTemplates.fullMetalType("platinum").oreSupplier(BlockSuppliers.IRON_TIER_ORE).build());
+	public static final MetalResourceType PALLADIUM = register(ResourceTemplates.fullMetalType("palladium").oreSupplier(BlockSuppliers.IRON_TIER_ORE).build());
+	public static final MetalResourceType OSMIUM = register(ResourceTemplates.fullMetalType("osmium").oreSupplier(BlockSuppliers.IRON_TIER_ORE).build());
+	public static final MetalResourceType IRIDIUM = register(ResourceTemplates.fullMetalType("iridium").oreSupplier(BlockSuppliers.IRON_TIER_ORE).build());
 
-	public static final MetalResourceType STEEL = ResourceTemplates.metalTypeNoOre("steel").build();
-	public static final MetalResourceType BRASS = ResourceTemplates.metalTypeNoOre("brass").build();
-	public static final MetalResourceType ELECTRUM = ResourceTemplates.metalTypeNoOre("electrum").build();
-	public static final MetalResourceType BRONZE = ResourceTemplates.metalTypeNoOre("bronze").build();
+	public static final MetalResourceType STEEL = register(ResourceTemplates.metalTypeNoOre("steel").build());
+	public static final MetalResourceType BRASS = register(ResourceTemplates.metalTypeNoOre("brass").build());
+	public static final MetalResourceType ELECTRUM = register(ResourceTemplates.metalTypeNoOre("electrum").build());
+	public static final MetalResourceType BRONZE = register(ResourceTemplates.metalTypeNoOre("bronze").build());
 
-	public static final GenericResourceType COAL = ResourceType.builder("coal")
+	public static final GenericResourceType COAL = register(ResourceType.builder("coal")
 			.generic()
 			.noBlock()
 			.withDustAffix()
-			.build();
+			.build());
 
-	public static final GenericResourceType COAL_COKE = ResourceType.builder("coal_coke")
+	public static final GenericResourceType COAL_COKE = register(ResourceType.builder("coal_coke")
 			.generic()
 			.blockSupplier(BlockSuppliers.COAL_BLOCK)
 			.noAffix()
-			.build();
+			.build());
 
-	public static final GenericResourceType MERCURY = ResourceType.builder("mercury")
+	public static final GenericResourceType MERCURY = register(ResourceType.builder("mercury")
 			.generic()
 			.noBlock()
 			.noAffix()
-			.build();
+			.build());
 
-	public static final RadioactiveResourceType URANIUM = ResourceTemplates.radioactiveTypeNoOre("uranium")
+	public static final RadioactiveResourceType URANIUM = register(ResourceTemplates.radioactiveTypeNoOre("uranium")
 			.allOres()
 			.itemAffixName("ingot")
 			.oreSupplier(BlockSuppliers.RADIOACTIVE_DIAMOND_TIER_ORE)
-			.build();
+			.build());
 
-	public static final RadioactiveResourceType THORIUM = ResourceTemplates.radioactiveTypeNoOre("thorium")
+	public static final RadioactiveResourceType THORIUM = register(ResourceTemplates.radioactiveTypeNoOre("thorium")
 			.itemAffixName("ingot")
-			.build();
+			.build());
 
-	public static final RadioactiveResourceType PLUTONIUM = ResourceTemplates.radioactiveTypeNoOre("plutonium")
+	public static final RadioactiveResourceType PLUTONIUM = register(ResourceTemplates.radioactiveTypeNoOre("plutonium")
 			.itemAffixName("ingot")
-			.build();
+			.build());
 
-	public static final GemResourceType RUBY = ResourceTemplates.fullGemType("ruby").oreSupplier(BlockSuppliers.IRON_TIER_ORE).build();
-	public static final GemResourceType TOPAZ = ResourceTemplates.fullGemType("topaz").oreSupplier(BlockSuppliers.IRON_TIER_ORE).build();
-	public static final GemResourceType AMETHYST = ResourceTemplates.fullGemType("amethyst").oreSupplier(BlockSuppliers.IRON_TIER_ORE).build();
-	public static final GemResourceType PERIDOT = ResourceTemplates.fullGemType("peridot").oreSupplier(BlockSuppliers.IRON_TIER_ORE).build();
-	public static final GemResourceType SAPPHIRE = ResourceTemplates.fullGemType("sapphire").oreSupplier(BlockSuppliers.IRON_TIER_ORE).build();
+	public static final GemResourceType RUBY = register(ResourceTemplates.fullGemType("ruby").oreSupplier(BlockSuppliers.IRON_TIER_ORE).build());
+	public static final GemResourceType TOPAZ = register(ResourceTemplates.fullGemType("topaz").oreSupplier(BlockSuppliers.IRON_TIER_ORE).build());
+	public static final GemResourceType AMETHYST = register(ResourceTemplates.fullGemType("amethyst").oreSupplier(BlockSuppliers.IRON_TIER_ORE).build());
+	public static final GemResourceType PERIDOT = register(ResourceTemplates.fullGemType("peridot").oreSupplier(BlockSuppliers.IRON_TIER_ORE).build());
+	public static final GemResourceType SAPPHIRE = register(ResourceTemplates.fullGemType("sapphire").oreSupplier(BlockSuppliers.IRON_TIER_ORE).build());
 
 	// Vanilla Resource Types
 	// These exist solely to add the gears/plates/dust when applicable.
 
-	public static final GenericResourceType WOOD = ResourceType.builder("wood")
+	public static final GenericResourceType WOOD = register(ResourceType.builder("wood")
 			.generic()
 			.noBlock()
 			.withGearAffix()
-			.build();
+			.build());
 
-	public static final GenericResourceType STONE = ResourceType.builder("stone")
+	public static final GenericResourceType STONE = register(ResourceType.builder("stone")
 			.generic()
 			.noBlock()
 			.withGearAffix()
-			.build();
+			.build());
 
-	public static final GenericResourceType IRON = ResourceType.builder("iron")
+	public static final GenericResourceType IRON = register(ResourceType.builder("iron")
 			.generic()
 			.noBlock()
 			.withDustAffix()
 			.withMachineAffixes()
-			.build();
+			.build());
 
-	public static final GenericResourceType GOLD = ResourceType.builder("gold")
+	public static final GenericResourceType GOLD = register(ResourceType.builder("gold")
 			.generic()
 			.noBlock()
 			.withDustAffix()
 			.withMachineAffixes()
-			.build();
+			.build());
 
-	public static final GenericResourceType DIAMOND = ResourceType.builder("diamond")
+	public static final GenericResourceType DIAMOND = register(ResourceType.builder("diamond")
 			.generic()
 			.noBlock()
 			.withDustAffix()
 			.withMachineAffixes()
-			.build();
+			.build());
 
-	public static final GenericResourceType EMERALD = ResourceType.builder("emerald")
+	public static final GenericResourceType EMERALD = register(ResourceType.builder("emerald")
 			.generic()
 			.noBlock()
 			.withDustAffix()
 			.withMachineAffixes()
-			.build();
+			.build());
+
+	private static <T extends ResourceType> T register(T resourceType) {
+		return Registry.register(CottonResources.RESOURCE_TYPES, CottonResources.resources(resourceType.getBaseResource()), resourceType);
+	}
 }

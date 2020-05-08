@@ -1,5 +1,10 @@
 # Cotton Resources
 
+V2 Branch **UNSTABLE**
+======================
+
+This is an expirimental branch where many things in cotton resources may change. Please don't use this branch unless you are insane.
+
 ## Importing
 
 Include the Cotton maven in your `build.gradle`:

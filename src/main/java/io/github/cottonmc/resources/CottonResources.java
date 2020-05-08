@@ -29,7 +29,6 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.Map;
 
 import blue.endless.jankson.Jankson;
@@ -60,6 +59,7 @@ import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
+import net.minecraft.util.registry.SimpleRegistry;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.GenerationStep;
 import net.minecraft.world.gen.decorator.Decorator;
@@ -73,16 +73,13 @@ public class CottonResources implements ModInitializer {
 	public static final String MODID = "cotton-resources";
 	public static final Logger LOGGER = LogManager.getLogger("CottonResources", new PrefixMessageFactory("CottonResources"));
 	public static CottonResourcesConfig CONFIG = new CottonResourcesConfig(); //ConfigManager.loadConfig(CottonResourcesConfig.class);
+	public static final Registry<ResourceType> RESOURCE_TYPES = new SimpleRegistry<>();
 	public static final Jankson JANKSON = JanksonFactory.builder()
 			.registerTypeAdapter(OreGenerationSettings.class, OreGenerationSettings::deserialize)
 			.registerSerializer(BiomeSpec.class, (spec, marshaller) -> TaggableSpec.serialize(spec))
 			.registerSerializer(DimensionSpec.class, (spec, marshaller) -> TaggableSpec.serialize(spec))
 			.build();
 	private static final String[] MACHINE_AFFIXES = new String[]{"gear", "plate"};
-	/**
-	 * @deprecated Please use the values in {@link BuiltinResources} instead to obtain the resource types.
-	 */
-	public static final Map<String, ResourceType> BUILTINS = new HashMap<>();
 
 	public static SoundEvent METAL_STEP_SOUND;
 	public static BlockSoundGroup METAL_SOUND_GROUP;
@@ -94,52 +91,14 @@ public class CottonResources implements ModInitializer {
 
 		CottonResourcesItemGroup.init();
 
-		BUILTINS.put("copper", BuiltinResources.COPPER);
-		BUILTINS.put("silver", BuiltinResources.SILVER);
-		BUILTINS.put("lead", BuiltinResources.LEAD);
-		BUILTINS.put("zinc", BuiltinResources.ZINC);
-		BUILTINS.put("aluminum", BuiltinResources.ALUMINUM);
-		BUILTINS.put("cobalt", BuiltinResources.COBALT);
+		BuiltinResources.ALUMINUM.getClass(); // Gotta load all the entries ourselves somehow. If someone else already did, then good
 
-		BUILTINS.put("tin", BuiltinResources.TIN);
-		BUILTINS.put("titanium", BuiltinResources.TITANIUM);
-		BUILTINS.put("tungsten", BuiltinResources.TUNGSTEN);
+		CottonResources.RESOURCE_TYPES.stream().forEach(ResourceType::registerAll);
 
-		BUILTINS.put("platinum", BuiltinResources.PLATINUM);
-		BUILTINS.put("palladium", BuiltinResources.PALLADIUM);
-		BUILTINS.put("osmium", BuiltinResources.OSMIUM);
-		BUILTINS.put("iridium", BuiltinResources.IRIDIUM);
-
-		BUILTINS.put("steel", BuiltinResources.STEEL);
-		BUILTINS.put("brass", BuiltinResources.BRASS);
-		BUILTINS.put("electrum", BuiltinResources.ELECTRUM);
-		BUILTINS.put("bronze", BuiltinResources.BRONZE);
-
-		BUILTINS.put("coal", BuiltinResources.COAL);
-		BUILTINS.put("coal_coke", BuiltinResources.COAL_COKE);
-		BUILTINS.put("mercury", BuiltinResources.MERCURY);
-
-		BUILTINS.put("wood", BuiltinResources.WOOD);
-		BUILTINS.put("stone", BuiltinResources.STONE);
-		BUILTINS.put("iron", BuiltinResources.IRON);
-		BUILTINS.put("gold", BuiltinResources.GOLD);
-		BUILTINS.put("diamond", BuiltinResources.DIAMOND);
-		BUILTINS.put("emerald", BuiltinResources.EMERALD);
-
-		//These might get rods or molten capsules. They'd just need to be added to the RadioactiveResourceType builder and their templates edited slightly.
-		BUILTINS.put("uranium", BuiltinResources.URANIUM);
-		BUILTINS.put("thorium", BuiltinResources.THORIUM);
-		BUILTINS.put("plutonium", BuiltinResources.PLUTONIUM);
-
-		BUILTINS.put("ruby", BuiltinResources.RUBY);
-		BUILTINS.put("topaz", BuiltinResources.TOPAZ);
-		BUILTINS.put("amethyst", BuiltinResources.AMETHYST);
-		BUILTINS.put("peridot", BuiltinResources.PERIDOT);
-		BUILTINS.put("sapphire", BuiltinResources.SAPPHIRE);
-
-		for (ResourceType resource : BUILTINS.values()) {
-			resource.registerAll();
-		}
+		// Track new registrations and register them.
+		RegistryEntryAddedCallback.event(CottonResources.RESOURCE_TYPES).register((rawId, identifier, resourceType) -> {
+			resourceType.registerAll();
+		});
 
 		setupBiomeGenerators(); //add cotton-resources ores to all current biomes
 		RegistryEntryAddedCallback.event(Registry.BIOME).register((id, ident, biome) -> setupBiomeGenerator(biome)); //Add cotton-resources ores to any later biomes that appear
