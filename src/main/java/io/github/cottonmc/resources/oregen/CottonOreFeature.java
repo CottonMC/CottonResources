@@ -34,13 +34,12 @@ import net.minecraft.tag.Tag;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.registry.Registry;
-import net.minecraft.world.IWorld;
+import net.minecraft.world.ServerWorldAccess;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.source.BiomeArray;
 import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.gen.StructureAccessor;
 import net.minecraft.world.gen.chunk.ChunkGenerator;
-import net.minecraft.world.gen.chunk.ChunkGeneratorConfig;
 import net.minecraft.world.gen.feature.DefaultFeatureConfig;
 import net.minecraft.world.gen.feature.Feature;
 
@@ -57,11 +56,11 @@ public class CottonOreFeature extends Feature<DefaultFeatureConfig> {
 	};
 
 	public CottonOreFeature() {
-		super(DefaultFeatureConfig::deserialize);
+		super(DefaultFeatureConfig.CODEC);
 	}
 
 	@Override
-	public boolean generate(IWorld world, StructureAccessor accessor, ChunkGenerator<? extends ChunkGeneratorConfig> generator, Random rand, BlockPos pos, DefaultFeatureConfig uselessConfig) {
+	public boolean generate(ServerWorldAccess world, StructureAccessor accessor, ChunkGenerator generator, Random rand, BlockPos pos, DefaultFeatureConfig uselessConfig) {
 		OreVoteConfig config = OregenResourceListener.getConfig();
 
 		if (config.ores.isEmpty()) return true; // We didn't generate anything, but yes, don't retry.
@@ -198,7 +197,7 @@ public class CottonOreFeature extends Feature<DefaultFeatureConfig> {
 		return replaced;
 	}*/
 
-	protected int generateVeinPartGaussianClump(String resourceName, IWorld world, int x, int y, int z, int clumpSize, int radius, Set<BlockState> states, int density, Random rand) {
+	protected int generateVeinPartGaussianClump(String resourceName, ServerWorldAccess world, int x, int y, int z, int clumpSize, int radius, Set<BlockState> states, int density, Random rand) {
 		int radIndex = radius - 1;
 		Clump clump = (radIndex < SPHERES.length) ? SPHERES[radIndex].copy() : Clump.of(radius);
 
@@ -220,7 +219,7 @@ public class CottonOreFeature extends Feature<DefaultFeatureConfig> {
 		return replaced;
 	}
 
-	public boolean replace(IWorld world, int x, int y, int z, String resource, BlockState[] states, Random rand) {
+	public boolean replace(ServerWorldAccess world, int x, int y, int z, String resource, BlockState[] states, Random rand) {
 		BlockPos pos = new BlockPos(x, y, z);
 		BlockState toReplace = world.getBlockState(pos);
 		HashMap<String, String> replacementSpecs = OregenResourceListener.getConfig().replacements.get(resource);

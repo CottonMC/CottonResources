@@ -26,7 +26,8 @@ package io.github.cottonmc.resources.mixin;
 
 import io.github.cottonmc.resources.CottonResources;
 import net.minecraft.world.biome.Biome;
-import net.minecraft.world.biome.DefaultBiomeFeatures;
+import net.minecraft.world.gen.feature.DefaultBiomeFeatures;
+
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -53,6 +54,13 @@ public abstract class MixinVanillaOregen {
 
 	@Inject(method = "addEmeraldOre", at = @At(value = "HEAD"), cancellable = true)
 	private static void mixinEmeraldOre(Biome biome, CallbackInfo ci) {
+		if (CottonResources.CONFIG.override_vanilla_generation) {
+			ci.cancel();
+		}
+	}
+
+	@Inject(method = "addNetherOres", at = @At("HEAD"), cancellable = true)
+	private static void mixinAddNetherOres(Biome biome, int goldCount, int quartzCount, CallbackInfo ci) {
 		if (CottonResources.CONFIG.override_vanilla_generation) {
 			ci.cancel();
 		}
