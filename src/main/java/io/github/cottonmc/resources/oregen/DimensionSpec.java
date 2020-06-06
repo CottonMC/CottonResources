@@ -24,19 +24,21 @@
 
 package io.github.cottonmc.resources.oregen;
 
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 import com.google.common.collect.ImmutableSet;
 import blue.endless.jankson.JsonElement;
+import io.github.cottonmc.resources.CottonResources;
 import io.github.cottonmc.resources.tag.DimensionTypeTags;
+import org.spongepowered.asm.util.PrettyPrinter;
+
 import net.minecraft.tag.Tag;
 import net.minecraft.tag.TagContainer;
 import net.minecraft.util.Identifier;
-import net.minecraft.util.registry.Registry;
-import net.minecraft.world.dimension.Dimension;
 import net.minecraft.world.dimension.DimensionType;
 
-public class DimensionSpec extends TaggableSpec<Dimension> {
+public class DimensionSpec extends TaggableSpec<DimensionType> {
 	public DimensionSpec allowTag(Identifier tag) {
 		allow.addAll(resolveTag(tag));
 		return this;
@@ -48,14 +50,16 @@ public class DimensionSpec extends TaggableSpec<Dimension> {
 	}
 
 	@Override
-	public boolean test(Dimension dim) {
-		Identifier id = DimensionType.getId(dim.getType());
+	public boolean test(DimensionType dim) {
+		return true; // FIXME: Reimplement me! - Force for now
 
-		if (deny.contains(id)) return false; //nulls (unregistered dims) will always pass this test
+		//Identifier id = DimensionType.getId(dim.getType());
 
-		if (allow.isEmpty() || allow.contains(ANY)) return true; //'*' will accept nulls
+		//if (deny.contains(id)) return false; //nulls (unregistered dims) will always pass this test
 
-		return allow.contains(id); //null-id dimensions will always fail this check
+		//if (allow.isEmpty() || allow.contains(ANY)) return true; //'*' will accept nulls
+
+		//return allow.contains(id); //null-id dimensions will always fail this check
 	}
 
 	/**
@@ -66,6 +70,15 @@ public class DimensionSpec extends TaggableSpec<Dimension> {
 	}
 
 	public static Set<Identifier> resolveTag(Identifier tagName) {
+		new PrettyPrinter(80)
+				.add("Warning, Dimension Tags have been temporary disabled due to 1.16 snapshot changes.")
+				.hr()
+				.add("Affected tag: " + tagName)
+				.log(CottonResources.LOGGER);
+		if (true) {
+			return Collections.emptySet(); // FIXME Reimplement
+		}
+
 		TagContainer<DimensionType> tagContainer = DimensionTypeTags.getContainer();
 		Tag<DimensionType> tag = tagContainer.get(tagName);
 
@@ -74,9 +87,10 @@ public class DimensionSpec extends TaggableSpec<Dimension> {
 		HashSet<Identifier> result = new HashSet<>();
 
 		for (DimensionType dimension : tag.values()) {
-			Identifier id = Registry.DIMENSION_TYPE.getId(dimension);
+			// FIXME Reimplement
+			//Identifier id = Registry.DIMENSION_TYPE.getId(dimension);
 
-			if (id != null) result.add(id);
+			//if (id != null) result.add(id);
 		}
 
 		return result;

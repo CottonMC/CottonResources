@@ -41,7 +41,8 @@ public class WorldTagReloadListener implements SimpleSynchronousResourceReloadLi
 	@Override
 	public void apply(ResourceManager resourceManager) {
 		BiomeTags.setContainer(reload(resourceManager, Registry.BIOME, "tags/biomes", "biome"));
-		DimensionTypeTags.setContainer(reload(resourceManager, Registry.DIMENSION_TYPE, "tags/dimensions", "dimension"));
+		// TODO: Reimplement me
+		//DimensionTypeTags.setContainer(reload(resourceManager, Registry.DIMENSION_TYPE, "tags/dimensions", "dimension"));
 	}
 
 	private static <T> TagContainer<T> reload(ResourceManager resourceManager, Registry<T> registry, String folder, String name) {
