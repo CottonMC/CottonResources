@@ -70,6 +70,7 @@ public class DimensionSpec extends TaggableSpec<DimensionType> {
 
 	public static Set<Identifier> resolveTag(Identifier tagName) {
 		CottonResources.LOGGER.warn("Dimension Tags have been temporary disabled due to 1.16 changes.");
+
 		if (true) {
 			return Collections.emptySet(); // FIXME Reimplement
 		}
