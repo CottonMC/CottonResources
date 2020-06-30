@@ -31,7 +31,6 @@ import com.google.common.collect.ImmutableSet;
 import blue.endless.jankson.JsonElement;
 import io.github.cottonmc.resources.CottonResources;
 import io.github.cottonmc.resources.tag.DimensionTypeTags;
-import org.spongepowered.asm.util.PrettyPrinter;
 
 import net.minecraft.tag.Tag;
 import net.minecraft.tag.TagContainer;
@@ -70,11 +69,7 @@ public class DimensionSpec extends TaggableSpec<DimensionType> {
 	}
 
 	public static Set<Identifier> resolveTag(Identifier tagName) {
-		new PrettyPrinter(80)
-				.add("Warning, Dimension Tags have been temporary disabled due to 1.16 snapshot changes.")
-				.hr()
-				.add("Affected tag: " + tagName)
-				.log(CottonResources.LOGGER);
+		CottonResources.LOGGER.warn("Dimension Tags have been temporary disabled due to 1.16 changes.");
 		if (true) {
 			return Collections.emptySet(); // FIXME Reimplement
 		}
