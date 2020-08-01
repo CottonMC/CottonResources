@@ -93,7 +93,7 @@ public class OreGenerationSettings {
 	//Handle some of the especially-vague polymorphism of DimensionSpec and BiomeSpec
 	public static OreGenerationSettings deserialize(JsonObject obj) {
 		OreGenerationSettings result = new OreGenerationSettings();
-		JsonElement blockElem = obj.get("ore_block");
+		JsonElement blockElem = obj.get("ores");
 		result.ores.addAll(deserializeBlockState(blockElem));
 
 		result.min_height = getIntOrDefault(obj, "min_height", result.min_height);
