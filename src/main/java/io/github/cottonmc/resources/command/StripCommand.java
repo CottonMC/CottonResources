@@ -51,7 +51,7 @@ public class StripCommand implements Command<ServerCommandSource> {
 		for (int z = 0; z < 16; z++) {
 			for (int x = 0; x < 16; x++) {
 				for (int y = 0; y < 256; y++) {
-					BlockPos pos = chunk.getPos().toBlockPos(x, y, z);
+					BlockPos pos = chunk.getPos().getStartPos().add(x, y, z);
 					BlockState toReplace = caller.getEntityWorld().getBlockState(pos);
 
 					if (toReplace.isAir()) {

@@ -25,46 +25,22 @@
 package io.github.cottonmc.resources;
 
 import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
-import blue.endless.jankson.Jankson;
-import blue.endless.jankson.JsonElement;
-import blue.endless.jankson.JsonGrammar;
-import blue.endless.jankson.JsonObject;
-import blue.endless.jankson.api.SyntaxError;
-import io.github.cottonmc.jankson.JanksonFactory;
 import io.github.cottonmc.resources.command.CottonResourcesCommands;
 import io.github.cottonmc.resources.common.CottonResourcesItemGroup;
-import io.github.cottonmc.resources.config.CottonResourcesConfig;
-import io.github.cottonmc.resources.oregen.BiomeSpec;
-import io.github.cottonmc.resources.oregen.CottonOreFeature;
-import io.github.cottonmc.resources.oregen.DimensionSpec;
-import io.github.cottonmc.resources.oregen.OreGenerationSettings;
-import io.github.cottonmc.resources.oregen.OregenResourceListener;
-import io.github.cottonmc.resources.oregen.TaggableSpec;
-import io.github.cottonmc.resources.tag.WorldTagReloadListener;
 import io.github.cottonmc.resources.type.ResourceType;
 import io.github.cottonmc.resources.util.PrefixMessageFactory;
 import net.fabricmc.api.ModInitializer;
-import net.fabricmc.fabric.api.event.registry.RegistryEntryAddedCallback;
 import net.fabricmc.fabric.api.registry.CommandRegistry;
-import net.fabricmc.fabric.api.resource.ResourceManagerHelper;
 import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
-import net.minecraft.world.biome.Biome;
-import net.minecraft.world.gen.GenerationStep;
-import net.minecraft.world.gen.decorator.Decorator;
-import net.minecraft.world.gen.decorator.RangeDecoratorConfig;
-import net.minecraft.world.gen.feature.FeatureConfig;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -72,12 +48,6 @@ public class CottonResources implements ModInitializer {
 	public static final String COMMON = "c";
 	public static final String MODID = "cotton-resources";
 	public static final Logger LOGGER = LogManager.getLogger("CottonResources", new PrefixMessageFactory("CottonResources"));
-	public static CottonResourcesConfig CONFIG = new CottonResourcesConfig(); //ConfigManager.loadConfig(CottonResourcesConfig.class);
-	public static final Jankson JANKSON = JanksonFactory.builder()
-			.registerTypeAdapter(OreGenerationSettings.class, OreGenerationSettings::deserialize)
-			.registerSerializer(BiomeSpec.class, (spec, marshaller) -> TaggableSpec.serialize(spec))
-			.registerSerializer(DimensionSpec.class, (spec, marshaller) -> TaggableSpec.serialize(spec))
-			.build();
 	private static final String[] MACHINE_AFFIXES = new String[]{"gear", "plate"};
 	/**
 	 * @deprecated Please use the values in {@link BuiltinResources} instead to obtain the resource types.
@@ -141,83 +111,9 @@ public class CottonResources implements ModInitializer {
 			resource.registerAll();
 		}
 
-		setupBiomeGenerators(); //add cotton-resources ores to all current biomes
-		RegistryEntryAddedCallback.event(Registry.BIOME).register((id, ident, biome) -> setupBiomeGenerator(biome)); //Add cotton-resources ores to any later biomes that appear
-
-		// THIS MUST BE WORLD TAGS, THEN OREGEN LISTENER OR DIMENSION AND BIOME SPECS SHALL FAIL GLORIOUSLY.
-		ResourceManagerHelper.get(net.minecraft.resource.ResourceType.SERVER_DATA).registerReloadListener(new WorldTagReloadListener());
-		ResourceManagerHelper.get(net.minecraft.resource.ResourceType.SERVER_DATA).registerReloadListener(new OregenResourceListener());
-
 		CommandRegistry.INSTANCE.register(false, CottonResourcesCommands::register);
 
 		File file = new File(FabricLoader.getInstance().getConfigDirectory(), "CottonResources.json5");
-
-		if (file.exists()) {
-			CONFIG = loadConfig();
-		}
-
-		saveConfig(CONFIG);
-	}
-
-	private static void setupBiomeGenerators() {
-		for (Biome biome : Registry.BIOME) {
-			setupBiomeGenerator(biome);
-		}
-	}
-
-	private static void setupBiomeGenerator(Biome biome) {
-		biome.addFeature(GenerationStep.Feature.UNDERGROUND_ORES,
-				CottonOreFeature.COTTON_ORE
-						.configure(FeatureConfig.DEFAULT)
-						.createDecoratedFeature(
-								Decorator.COUNT_RANGE.configure(new RangeDecoratorConfig(1, 0, 0, 256)
-								)
-						));
-	}
-
-	public static CottonResourcesConfig loadConfig() {
-		File file = new File(FabricLoader.getInstance().getConfigDirectory(), "CottonResources.json5");
-
-		try {
-			JsonObject json = JANKSON.load(file);
-			CottonResources.LOGGER.info("Loading: " + json);
-			CottonResourcesConfig loading = JANKSON.fromJson(json, CottonResourcesConfig.class);
-			CottonResources.LOGGER.info("Loaded Map: " + loading.generators);
-			//Manually reload oregen because BiomeSpec and DimensionSpec can be fussy
-
-			JsonObject oregen = json.getObject("generators");
-
-			if (oregen != null) {
-				CottonResources.LOGGER.info("RELOADING " + oregen.size() + " entries");
-
-				for (Map.Entry<String, JsonElement> entry : oregen.entrySet()) {
-					if (entry.getValue() instanceof JsonObject) {
-						OreGenerationSettings settings = OreGenerationSettings.deserialize((JsonObject) entry.getValue());
-						loading.generators.put(entry.getKey(), settings);
-					}
-				}
-			}
-
-			CottonResources.LOGGER.info("RELOADED Map: " + loading.generators);
-
-			return loading;
-		} catch (IOException | SyntaxError e) {
-			e.printStackTrace();
-		}
-
-		return new CottonResourcesConfig();
-	}
-
-	public static void saveConfig(CottonResourcesConfig config) {
-		File file = new File(FabricLoader.getInstance().getConfigDirectory(), "CottonResources.json5");
-
-		JsonElement json = JANKSON.toJson(config);
-
-		try (FileOutputStream out = new FileOutputStream(file, false)) {
-			out.write(json.toJson(JsonGrammar.JSON5).getBytes(StandardCharsets.UTF_8));
-		} catch (IOException ex) {
-			LOGGER.error("Could not write config", ex);
-		}
 	}
 
 	@SafeVarargs
