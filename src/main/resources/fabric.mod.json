@@ -9,9 +9,6 @@
   "entrypoints": {
     "main": [
       "io.github.cottonmc.resources.CottonResources"
-    ],
-    "rei_plugins_v0": [
-      "io.github.cottonmc.resources.compat.REICompat"
     ]
   },
   "mixins": [
