@@ -1,7 +1,0 @@
-{
-  "parent": "block/cube_all",
-  "textures": {
-    "particle": "c:block/copper_block",
-    "all": "c:block/copper_block"
-  }
-}
