@@ -19,6 +19,7 @@ package io.github.cottonmc.resources.api;
 import io.github.cottonmc.resources.impl.BuiltinNameTransformers;
 import io.github.cottonmc.resources.impl.BuiltinResources;
 import io.github.cottonmc.resources.CottonResources;
+import io.github.cottonmc.resources.impl.BuiltinSuppliers;
 import net.minecraft.block.Block;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.item.BlockItem;
@@ -36,62 +37,62 @@ public class Resource {
 
     public static Builder fullMetalType(int tier) {
         return new Builder()
-                .hasItem(BuiltinResources.Parts.INGOT, BuiltinResources.Suppliers.MISC_SUPP.get(), BuiltinNameTransformers.INGOT)
-                .hasBlockWithItem(BuiltinResources.Parts.ORE, BuiltinResources.Suppliers.makeTieredOre(tier),
-                        BuiltinResources.Suppliers.BUILDING_BLOCK.get(), BuiltinNameTransformers.ORE)
-                .hasBlockWithItem(BuiltinResources.Parts.STORAGE_BLOCK, BuiltinResources.Suppliers.METAL_STORAGE_BLOCK_SUPP.get(),
-                        BuiltinResources.Suppliers.BUILDING_BLOCK.get(), BuiltinNameTransformers.STORAGE_BLOCK)
-                .hasItem(BuiltinResources.Parts.NUGGET, BuiltinResources.Suppliers.MISC_SUPP.get(), BuiltinNameTransformers.NUGGET)
-                .hasItem(BuiltinResources.Parts.DUST, BuiltinResources.Suppliers.MISC_SUPP.get(), BuiltinNameTransformers.DUST)
-                .hasBlockWithItem(BuiltinResources.Parts.END_ORE, BuiltinResources.Suppliers.makeTieredOre(tier),
-                        BuiltinResources.Suppliers.BUILDING_BLOCK.get(), BuiltinNameTransformers.END_ORE)
-                .hasBlockWithItem(BuiltinResources.Parts.NETHER_ORE, BuiltinResources.Suppliers.makeTieredOre(tier),
-                        BuiltinResources.Suppliers.BUILDING_BLOCK.get(), BuiltinNameTransformers.NETHER_ORE)
-                .hasItem(BuiltinResources.Parts.GEAR, BuiltinResources.Suppliers.MISC_SUPP.get(), BuiltinNameTransformers.GEAR)
-                .hasItem(BuiltinResources.Parts.PLATE, BuiltinResources.Suppliers.MISC_SUPP.get(), BuiltinNameTransformers.PLATE);
+                .hasItem(BuiltinResources.Parts.INGOT, BuiltinSuppliers.MISC_SUPP.get(), BuiltinNameTransformers.INGOT)
+                .hasBlockWithItem(BuiltinResources.Parts.ORE, BuiltinSuppliers.makeTieredOre(tier),
+                        BuiltinSuppliers.BUILDING_BLOCK.get(), BuiltinNameTransformers.ORE)
+                .hasBlockWithItem(BuiltinResources.Parts.STORAGE_BLOCK, BuiltinSuppliers.METAL_STORAGE_BLOCK_SUPP.get(),
+                        BuiltinSuppliers.BUILDING_BLOCK.get(), BuiltinNameTransformers.STORAGE_BLOCK)
+                .hasItem(BuiltinResources.Parts.NUGGET, BuiltinSuppliers.MISC_SUPP.get(), BuiltinNameTransformers.NUGGET)
+                .hasItem(BuiltinResources.Parts.DUST, BuiltinSuppliers.MISC_SUPP.get(), BuiltinNameTransformers.DUST)
+                .hasBlockWithItem(BuiltinResources.Parts.END_ORE, BuiltinSuppliers.makeTieredOre(tier),
+                        BuiltinSuppliers.BUILDING_BLOCK.get(), BuiltinNameTransformers.END_ORE)
+                .hasBlockWithItem(BuiltinResources.Parts.NETHER_ORE, BuiltinSuppliers.makeTieredOre(tier),
+                        BuiltinSuppliers.BUILDING_BLOCK.get(), BuiltinNameTransformers.NETHER_ORE)
+                .hasItem(BuiltinResources.Parts.GEAR, BuiltinSuppliers.MISC_SUPP.get(), BuiltinNameTransformers.GEAR)
+                .hasItem(BuiltinResources.Parts.PLATE, BuiltinSuppliers.MISC_SUPP.get(), BuiltinNameTransformers.PLATE);
     }
     public static Builder fullMetalGlowingType(int tier, Color particleColor) {
         return new Builder()
-                .hasItem(BuiltinResources.Parts.INGOT, BuiltinResources.Suppliers.MISC_SUPP.get(), BuiltinNameTransformers.INGOT)
-                .hasBlockWithItem(BuiltinResources.Parts.ORE, BuiltinResources.Suppliers.makeGlowingTieredOre(tier, particleColor,
-                        9), BuiltinResources.Suppliers.BUILDING_BLOCK.get(), BuiltinNameTransformers.ORE)
-                .hasBlockWithItem(BuiltinResources.Parts.STORAGE_BLOCK, BuiltinResources.Suppliers.METAL_STORAGE_BLOCK_SUPP.get(),
-                        BuiltinResources.Suppliers.BUILDING_BLOCK.get(), BuiltinNameTransformers.STORAGE_BLOCK)
-                .hasItem(BuiltinResources.Parts.NUGGET, BuiltinResources.Suppliers.MISC_SUPP.get(), BuiltinNameTransformers.NUGGET)
-                .hasItem(BuiltinResources.Parts.DUST, BuiltinResources.Suppliers.MISC_SUPP.get(), BuiltinNameTransformers.DUST)
-                .hasBlockWithItem(BuiltinResources.Parts.END_ORE, BuiltinResources.Suppliers.makeGlowingTieredOre(tier, particleColor,
-                        9), BuiltinResources.Suppliers.BUILDING_BLOCK.get(), BuiltinNameTransformers.END_ORE)
-                .hasBlockWithItem(BuiltinResources.Parts.NETHER_ORE, BuiltinResources.Suppliers.makeGlowingTieredOre(tier, particleColor,
-                        9), BuiltinResources.Suppliers.BUILDING_BLOCK.get(), BuiltinNameTransformers.NETHER_ORE)
-                .hasItem(BuiltinResources.Parts.GEAR, BuiltinResources.Suppliers.MISC_SUPP.get(), BuiltinNameTransformers.GEAR)
-                .hasItem(BuiltinResources.Parts.PLATE, BuiltinResources.Suppliers.MISC_SUPP.get(), BuiltinNameTransformers.PLATE);
+                .hasItem(BuiltinResources.Parts.INGOT, BuiltinSuppliers.MISC_SUPP.get(), BuiltinNameTransformers.INGOT)
+                .hasBlockWithItem(BuiltinResources.Parts.ORE, BuiltinSuppliers.makeGlowingTieredOre(tier, particleColor,
+                        9), BuiltinSuppliers.BUILDING_BLOCK.get(), BuiltinNameTransformers.ORE)
+                .hasBlockWithItem(BuiltinResources.Parts.STORAGE_BLOCK, BuiltinSuppliers.METAL_STORAGE_BLOCK_SUPP.get(),
+                        BuiltinSuppliers.BUILDING_BLOCK.get(), BuiltinNameTransformers.STORAGE_BLOCK)
+                .hasItem(BuiltinResources.Parts.NUGGET, BuiltinSuppliers.MISC_SUPP.get(), BuiltinNameTransformers.NUGGET)
+                .hasItem(BuiltinResources.Parts.DUST, BuiltinSuppliers.MISC_SUPP.get(), BuiltinNameTransformers.DUST)
+                .hasBlockWithItem(BuiltinResources.Parts.END_ORE, BuiltinSuppliers.makeGlowingTieredOre(tier, particleColor,
+                        9), BuiltinSuppliers.BUILDING_BLOCK.get(), BuiltinNameTransformers.END_ORE)
+                .hasBlockWithItem(BuiltinResources.Parts.NETHER_ORE, BuiltinSuppliers.makeGlowingTieredOre(tier, particleColor,
+                        9), BuiltinSuppliers.BUILDING_BLOCK.get(), BuiltinNameTransformers.NETHER_ORE)
+                .hasItem(BuiltinResources.Parts.GEAR, BuiltinSuppliers.MISC_SUPP.get(), BuiltinNameTransformers.GEAR)
+                .hasItem(BuiltinResources.Parts.PLATE, BuiltinSuppliers.MISC_SUPP.get(), BuiltinNameTransformers.PLATE);
     }
 
     public static Builder metalTypeNoOre() {
         return new Builder()
-                .hasItem(BuiltinResources.Parts.INGOT, BuiltinResources.Suppliers.MISC_SUPP.get(), BuiltinNameTransformers.INGOT)
-                .hasBlockWithItem(BuiltinResources.Parts.STORAGE_BLOCK, BuiltinResources.Suppliers.METAL_STORAGE_BLOCK_SUPP.get(),
-                        BuiltinResources.Suppliers.BUILDING_BLOCK.get(), BuiltinNameTransformers.STORAGE_BLOCK)
-                .hasItem(BuiltinResources.Parts.NUGGET, BuiltinResources.Suppliers.MISC_SUPP.get(), BuiltinNameTransformers.NUGGET)
-                .hasItem(BuiltinResources.Parts.DUST, BuiltinResources.Suppliers.MISC_SUPP.get(), BuiltinNameTransformers.DUST)
-                .hasItem(BuiltinResources.Parts.GEAR, BuiltinResources.Suppliers.MISC_SUPP.get(), BuiltinNameTransformers.GEAR)
-                .hasItem(BuiltinResources.Parts.PLATE, BuiltinResources.Suppliers.MISC_SUPP.get(), BuiltinNameTransformers.PLATE);
+                .hasItem(BuiltinResources.Parts.INGOT, BuiltinSuppliers.MISC_SUPP.get(), BuiltinNameTransformers.INGOT)
+                .hasBlockWithItem(BuiltinResources.Parts.STORAGE_BLOCK, BuiltinSuppliers.METAL_STORAGE_BLOCK_SUPP.get(),
+                        BuiltinSuppliers.BUILDING_BLOCK.get(), BuiltinNameTransformers.STORAGE_BLOCK)
+                .hasItem(BuiltinResources.Parts.NUGGET, BuiltinSuppliers.MISC_SUPP.get(), BuiltinNameTransformers.NUGGET)
+                .hasItem(BuiltinResources.Parts.DUST, BuiltinSuppliers.MISC_SUPP.get(), BuiltinNameTransformers.DUST)
+                .hasItem(BuiltinResources.Parts.GEAR, BuiltinSuppliers.MISC_SUPP.get(), BuiltinNameTransformers.GEAR)
+                .hasItem(BuiltinResources.Parts.PLATE, BuiltinSuppliers.MISC_SUPP.get(), BuiltinNameTransformers.PLATE);
     }
 
     public static Builder fullGemType(int tier) {
         return new Builder()
-                .hasItem(BuiltinResources.Parts.GEM, BuiltinResources.Suppliers.MISC_SUPP.get(), BuiltinNameTransformers.NO_CHANGE)
-                .hasBlockWithItem(BuiltinResources.Parts.ORE, BuiltinResources.Suppliers.makeTieredOre(tier),
-                        BuiltinResources.Suppliers.BUILDING_BLOCK.get(), BuiltinNameTransformers.ORE)
-                .hasBlockWithItem(BuiltinResources.Parts.STORAGE_BLOCK, BuiltinResources.Suppliers.METAL_STORAGE_BLOCK_SUPP.get(),
-                        BuiltinResources.Suppliers.BUILDING_BLOCK.get(), BuiltinNameTransformers.STORAGE_BLOCK)
-                .hasItem(BuiltinResources.Parts.DUST, BuiltinResources.Suppliers.MISC_SUPP.get(), BuiltinNameTransformers.DUST)
-                .hasBlockWithItem(BuiltinResources.Parts.END_ORE, BuiltinResources.Suppliers.makeTieredOre(tier),
-                        BuiltinResources.Suppliers.BUILDING_BLOCK.get(), BuiltinNameTransformers.END_ORE)
-                .hasBlockWithItem(BuiltinResources.Parts.NETHER_ORE, BuiltinResources.Suppliers.makeTieredOre(tier),
-                        BuiltinResources.Suppliers.BUILDING_BLOCK.get(), BuiltinNameTransformers.NETHER_ORE)
-                .hasItem(BuiltinResources.Parts.GEAR, BuiltinResources.Suppliers.MISC_SUPP.get(), BuiltinNameTransformers.GEAR)
-                .hasItem(BuiltinResources.Parts.PLATE, BuiltinResources.Suppliers.MISC_SUPP.get(), BuiltinNameTransformers.PLATE);
+                .hasItem(BuiltinResources.Parts.GEM, BuiltinSuppliers.MISC_SUPP.get(), BuiltinNameTransformers.NO_CHANGE)
+                .hasBlockWithItem(BuiltinResources.Parts.ORE, BuiltinSuppliers.makeTieredOre(tier),
+                        BuiltinSuppliers.BUILDING_BLOCK.get(), BuiltinNameTransformers.ORE)
+                .hasBlockWithItem(BuiltinResources.Parts.STORAGE_BLOCK, BuiltinSuppliers.METAL_STORAGE_BLOCK_SUPP.get(),
+                        BuiltinSuppliers.BUILDING_BLOCK.get(), BuiltinNameTransformers.STORAGE_BLOCK)
+                .hasItem(BuiltinResources.Parts.DUST, BuiltinSuppliers.MISC_SUPP.get(), BuiltinNameTransformers.DUST)
+                .hasBlockWithItem(BuiltinResources.Parts.END_ORE, BuiltinSuppliers.makeTieredOre(tier),
+                        BuiltinSuppliers.BUILDING_BLOCK.get(), BuiltinNameTransformers.END_ORE)
+                .hasBlockWithItem(BuiltinResources.Parts.NETHER_ORE, BuiltinSuppliers.makeTieredOre(tier),
+                        BuiltinSuppliers.BUILDING_BLOCK.get(), BuiltinNameTransformers.NETHER_ORE)
+                .hasItem(BuiltinResources.Parts.GEAR, BuiltinSuppliers.MISC_SUPP.get(), BuiltinNameTransformers.GEAR)
+                .hasItem(BuiltinResources.Parts.PLATE, BuiltinSuppliers.MISC_SUPP.get(), BuiltinNameTransformers.PLATE);
     }
     public static class Part<T> {
         protected boolean enabled;
